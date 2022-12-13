@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: f3ae6e01cb4794d67a1dab4bc55d7e30
+timeCreated: 1667145688
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Blockstepped
+  fontNames:
+  - Blockstepped
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
