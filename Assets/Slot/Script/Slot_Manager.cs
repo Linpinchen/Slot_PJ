@@ -97,11 +97,13 @@ public class Slot_Manager : MonoBehaviour {
 	public Button Options_Yes;
 	public Button Options_No;
 	public RawImage VideoImage;
+	public SlotGrid XD = new SlotGrid(1, 3, 3);
+	public SlotGrid XC = new SlotGrid(2, 4, 4);
 	// Use this for initialization
-	void Start ()
+	[System.Obsolete]
+    void Start ()
 	{
-
-		
+	 
 
 
 		BonusDateBtn.onClick.AddListener(delegate ()
@@ -133,12 +135,7 @@ public class Slot_Manager : MonoBehaviour {
 		ObjectPoolInitialization();//物件池生成
 		start_btn.onClick.AddListener(delegate()
 		{
-			//if (!PlayerPrefs.HasKey("遊戲資料"))
-			//{
-			//	Cycle_Count = 1;
-
-			//}
-			
+		
 			if (Start_Slot==false&&_SlotDate.Bet_Coin!=0&&_SlotDate.Coin>=100)
 			{
 				int Autoi;
@@ -500,7 +497,7 @@ public class Slot_Manager : MonoBehaviour {
 	/// <param name="Chang_Sprite"></param>
 	public void Initialization_Slot_Sprite(List<Reel_Sprite_Date> Chang_Sprite)
 	{
-		Debug.Log("依＿Reel_Sprite_Date資料設置圖片");
+		//Debug.Log("依＿Reel_Sprite_Date資料設置圖片");
 		int Tempi;
 		Tempi = _SlotDate.Sprite_Pool.Length - 2;
 		
@@ -512,7 +509,7 @@ public class Slot_Manager : MonoBehaviour {
 				int Changei;
 				Changei = Random.Range(0, Tempi);
 				_Reel_Moves[i].transform.GetChild(j).GetComponent<Image>().sprite = _SlotDate.Sprite_Pool[Changei];
-				Debug.Log(string.Format("第{0}個輪條的第{1}張圖片,圖片名稱{2}",i,j,_Reel_Moves[i].transform.GetChild(j).GetComponent<Image>().sprite.name));
+				//Debug.Log(string.Format("第{0}個輪條的第{1}張圖片,圖片名稱{2}",i,j,_Reel_Moves[i].transform.GetChild(j).GetComponent<Image>().sprite.name));
 
 			}
 
@@ -2382,8 +2379,8 @@ public class Slot_Manager : MonoBehaviour {
 		Reuse.GetComponent<DrawLine>().Temp_VV = Reuse.GetComponent<DrawLine>().Taget_Point[0].transform;//PointPosition[0];
 		Reuse.GetComponent<DrawLine>().Orange_point = OrangePoint.gameObject;
 		Reuse.GetComponent<DrawLine>().Taget_Point.Add(EndPoint);
-		Debug.Log("Manager__ Temp_point.Count : " + Reuse.GetComponent<DrawLine>().Temp_point.Count);
-		Debug.Log("Manager__Taget_Point.Count : " + Reuse.GetComponent<DrawLine>().Taget_Point.Count);
+		//Debug.Log("Manager__ Temp_point.Count : " + Reuse.GetComponent<DrawLine>().Temp_point.Count);
+		//Debug.Log("Manager__Taget_Point.Count : " + Reuse.GetComponent<DrawLine>().Taget_Point.Count);
 	}
 
 	/// <summary>
@@ -2402,7 +2399,7 @@ public class Slot_Manager : MonoBehaviour {
 		if (StayDrawLine.Count != 0)//LineRenderOutPool.childCount != 0
 		{
 			//Debug.Log("----------------LineRenderOutPool.childCount : ----------------------"+ LineRenderOutPool.childCount);
-			Debug.Log("StayDrawLine.Count :" + StayDrawLine.Count);
+			//Debug.Log("StayDrawLine.Count :" + StayDrawLine.Count);
 
 			if (_SHowOk.Count != 0 && StayDrawLine.Count != 0)//持續更新裡面的bool
 			{
@@ -2410,7 +2407,7 @@ public class Slot_Manager : MonoBehaviour {
 
 				for (int i = 0; i < StayDrawLine.Count; i++)
 				{
-					Debug.Log("_SHowOk[i] 持續更新");
+					//Debug.Log("_SHowOk[i] 持續更新");
 					_SHowOk[i] = StayDrawLine[i].GetComponent<DrawLine>().StDrawLine;
 
 

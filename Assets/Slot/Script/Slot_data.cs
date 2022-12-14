@@ -46,14 +46,10 @@ public class Slot_data : MonoBehaviour {
 			int Tempi = ReelScripts[i].transform.childCount;
 			for (int j=0;j<Tempi;j++)
 			{
-				//int _pool_Temp;
-				//_pool_Temp = Sprite_Pool.Length - 2;
-				//int Tempj = Random.Range(0,_pool_Temp);
-				//_Reel_Sprite_Date[i].Sever_Sprites.Add(Sprite_Pool[Tempj]);
 				_Reel_Sprite_Date[i].Sever_Sprites.Add(null);
 				_Date[i]._IntCount.Add(0);
 			}
-			Debug.Log(string.Format("盤面資料生成,輪條數：{0},各輪條內圖片數量：{1}", ReelScripts.Length,Tempi));
+			//Debug.Log(string.Format("盤面資料生成,輪條數：{0},各輪條內圖片數量：{1}", ReelScripts.Length,Tempi));
 		}
 
 
@@ -82,7 +78,7 @@ public class Slot_data : MonoBehaviour {
 					if (_Reel_Sprite_Date[i].Sever_Sprites.Contains(_One_Sprite_pool[6]))//已經有Bonus圖的話 就不要再出現Bonus圖了
 					{
 						
-						Debug.Log("_Reel_Sprite_Date[i].Sever_Sprites.Contains(_One_Sprite_pool[6])" + _Reel_Sprite_Date[i].Sever_Sprites.Contains(_One_Sprite_pool[6]));
+						//Debug.Log("_Reel_Sprite_Date[i].Sever_Sprites.Contains(_One_Sprite_pool[6])" + _Reel_Sprite_Date[i].Sever_Sprites.Contains(_One_Sprite_pool[6]));
 						int Temp_B;
 						Temp_B = Random.Range(0,_One_Sprite_pool_Temp);
 						
@@ -148,7 +144,7 @@ public class Slot_data : MonoBehaviour {
 					
 					
 					_Reel_Sprite_Date[i].Sever_Sprites.Contains(Sprite_Pool[7]);
-					Debug.Log("_Reel_Sprite_Date[i].Sever_Sprites.Contains(Sprite_Pool[7]);" + _Reel_Sprite_Date[i].Sever_Sprites.Contains(Sprite_Pool[7]));
+					//Debug.Log("_Reel_Sprite_Date[i].Sever_Sprites.Contains(Sprite_Pool[7]);" + _Reel_Sprite_Date[i].Sever_Sprites.Contains(Sprite_Pool[7]));
 				}
 
 				for (int Slot_i = 1; Slot_i < 4; Slot_i++)
@@ -434,14 +430,7 @@ public class Slot_data : MonoBehaviour {
 			int tempi = _ReelMove[i].Sever_Sprites.Count;
 			for (int j=0;j<tempi;j++)
 			{
-				//Pool_Images _PoolImages;
-				//string s;
-				//s =_ReelMove[i].Sever_Sprites[j].name;
-				//_PoolImages = (Pool_Images)System.Enum.Parse(typeof(Pool_Images),s);//字串轉Enum
-					
-
-				//_Date[i]._IntCount[j]=(int)_PoolImages;
-
+				
 				int Dateindex;
 
 				Dateindex = SS.IndexOf(_ReelMove[i].Sever_Sprites[j]);
@@ -509,13 +498,7 @@ public enum Pool_Images
 
 }
 #endregion
-//[System.Serializable]
-//public class BonusSpriteDate
-//{
 
-//	public List<Sprite> BomusSprite;
-
-//}
 
 [System.Serializable]
 public class Reel_Sprite_Date
@@ -538,5 +521,91 @@ public class intCount
 {
 
 	public List<int> _IntCount = new List<int>();
+
+}
+
+[System.Serializable]
+public class  GridInt
+{
+
+	public List<int> _GridInt ;
+
+
+}
+
+[System.Serializable]
+public class GridIntS
+{
+
+	public List<GridInt> _Grids;
+
+
+}
+
+
+//------------------------------------------------------------------------------------------------------------------
+[System.Serializable]
+public class SlotGrid
+{
+	int Girdcount;//盤面數
+	int Rollcount;
+	int ImageCount;
+	[SerializeField]
+	List<GridIntS> Grid;//盤面內容
+
+
+	public SlotGrid(int _Girdocunt,int _ReelMove,int _ImageCount)//建構子
+	{
+		this.Girdcount = _Girdocunt;
+		this.Rollcount = _ReelMove;
+		this.ImageCount = _ImageCount;
+		Grid = new List<GridIntS>();
+		Reel_Initialization();
+
+	}
+
+	public int _REgirdcount
+	{
+		get { return Girdcount; }
+		set { Girdcount = value; }
+	}
+
+	public List<GridIntS> _REGrids
+	{
+		get { return Grid; }
+
+	}
+
+	/// <summary>
+    /// 生成資料空間
+    /// </summary>
+	 void Reel_Initialization()
+	{
+		for (int k=0;k<Girdcount;k++)
+		{
+			Grid.Add(new GridIntS());
+			Grid[k]._Grids = new List<GridInt>();
+			for (int i = 0; i < Rollcount; i++)
+			{
+				Grid[k]._Grids.Add(new GridInt());
+				Grid[k]._Grids[i]._GridInt = new List<int>();
+
+				
+				for (int j = 0; j < ImageCount; j++)
+				{
+					Grid[k]._Grids[i]._GridInt.Add(0);
+
+				}
+
+				//Debug.Log(string.Format("盤面資料生成,輪條數：{0},各輪條內圖片數量：{1}", Grid[k]._Grids.Count, ImageCount));
+			}
+
+		}
+
+	}
+
+
+
+
 
 }

@@ -13,9 +13,13 @@ public class Reel_Move : MonoBehaviour {
     public bool b;
     public int speed;
     public int Date_Temp;
-    
-	// Use this for initialization
-	void Start () {
+
+    //待修改  Reel_images 應該要是 Image的 List
+    //然後在 start 這裡 GetComponent 先抓好資料  不要在Update處理  
+
+
+    // Use this for initialization
+    void Start () {
         Date_Temp = 0;
 		originalv2 = gameObject.GetComponent<RectTransform>().anchoredPosition;//取得原始座標
 		//Debug.Log("originalv2" + originalv2);
