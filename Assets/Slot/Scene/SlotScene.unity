@@ -2272,7 +2272,7 @@ RectTransform:
   - {fileID: 978678791}
   - {fileID: 1810831975}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9311,102 +9311,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1320978485}
---- !u!1 &1336633729
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1336633731}
-  - component: {fileID: 1336633730}
-  m_Layer: 0
-  m_Name: Slot_Date
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1336633730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1336633729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da70be46fa89c4775b54df136c8afc0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _Reel_Sprite_Date: []
-  Coin: 0
-  Bet_Coin: 0
-  Sprite_Pool:
-  - {fileID: 21300000, guid: 814074e3de7b549e8888201ab3664d79, type: 3}
-  - {fileID: 21300000, guid: c22de691c9a0b4c818e6f290b546ca2f, type: 3}
-  - {fileID: 21300000, guid: 598ee62696add424cbc78bec38667616, type: 3}
-  - {fileID: 21300000, guid: a46d679b763e241de8c17b32a479ea76, type: 3}
-  - {fileID: 21300000, guid: 7b4d3c7fae92a445399845cf7f1d30d3, type: 3}
-  - {fileID: 21300000, guid: f164005461f5048058f5a759b7c49258, type: 3}
-  - {fileID: 21300000, guid: aae534f73625d4b46bdc2b062459fbcf, type: 3}
-  - {fileID: 21300000, guid: 6a88eafb6de254fa0ab202f373e95daf, type: 3}
-  _One_Sprite_pool:
-  - {fileID: 21300000, guid: 814074e3de7b549e8888201ab3664d79, type: 3}
-  - {fileID: 21300000, guid: c22de691c9a0b4c818e6f290b546ca2f, type: 3}
-  - {fileID: 21300000, guid: 598ee62696add424cbc78bec38667616, type: 3}
-  - {fileID: 21300000, guid: a46d679b763e241de8c17b32a479ea76, type: 3}
-  - {fileID: 21300000, guid: 7b4d3c7fae92a445399845cf7f1d30d3, type: 3}
-  - {fileID: 21300000, guid: f164005461f5048058f5a759b7c49258, type: 3}
-  - {fileID: 21300000, guid: 6a88eafb6de254fa0ab202f373e95daf, type: 3}
-  BonusOneSpritePool:
-  - {fileID: 21300000, guid: 814074e3de7b549e8888201ab3664d79, type: 3}
-  - {fileID: 21300000, guid: c22de691c9a0b4c818e6f290b546ca2f, type: 3}
-  - {fileID: 21300000, guid: 598ee62696add424cbc78bec38667616, type: 3}
-  - {fileID: 21300000, guid: a46d679b763e241de8c17b32a479ea76, type: 3}
-  - {fileID: 21300000, guid: 7b4d3c7fae92a445399845cf7f1d30d3, type: 3}
-  - {fileID: 21300000, guid: f164005461f5048058f5a759b7c49258, type: 3}
-  BonusSpritePool:
-  - {fileID: 21300000, guid: 814074e3de7b549e8888201ab3664d79, type: 3}
-  - {fileID: 21300000, guid: c22de691c9a0b4c818e6f290b546ca2f, type: 3}
-  - {fileID: 21300000, guid: 598ee62696add424cbc78bec38667616, type: 3}
-  - {fileID: 21300000, guid: a46d679b763e241de8c17b32a479ea76, type: 3}
-  - {fileID: 21300000, guid: 7b4d3c7fae92a445399845cf7f1d30d3, type: 3}
-  - {fileID: 21300000, guid: f164005461f5048058f5a759b7c49258, type: 3}
-  - {fileID: 21300000, guid: aae534f73625d4b46bdc2b062459fbcf, type: 3}
-  Bonus_count: 0
-  _AllBonusSpriteDate: []
-  _Slot_SeverDate:
-    Win_Coin: 0
-    BonusCoin: 0
-    Bet_Coin: 0
-    Player_Coin: 0
-    Auto_HasRollcount: 0
-    Auto_NotYet: 0
-    Auto_PlayerSet: 0
-    Data: []
-  GetSlotDate:
-    Win_Coin: 0
-    BonusCoin: 0
-    Bet_Coin: 0
-    Player_Coin: 0
-    Auto_HasRollcount: 0
-    Auto_NotYet: 0
-    Auto_PlayerSet: 0
-    Data: []
-  _Date: []
---- !u!4 &1336633731
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1336633729}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -39.651196, y: 56.12716, z: 100}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1341708705
 GameObject:
   m_ObjectHideFlags: 0
@@ -10204,7 +10108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa73c6bdbb5c8429ab7c653e012bcf9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SlotDate: {fileID: 1336633730}
+  _SlotDate: {fileID: 0}
   RollSpeed: 600
   start_btn: {fileID: 1444190457}
   Bet_Button: {fileID: 482751836}
@@ -13597,7 +13501,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1954930564
 GameObject:
