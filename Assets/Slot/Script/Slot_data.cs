@@ -3,8 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Slot_data :IDate {
-	int Coin;//玩家擁有的錢
+[System.Serializable]
+public class Slot_data :IDate ,IDateEvent{
+
+    IShow _Ishow;
+    IUIControlMethod IUICM;
+    Reel_Move[] _Reelmove;
+
+    int Coin;//玩家擁有的錢
 	int bet_Coin;//押注的錢
 	int WinCoin;//普通盤面贏的錢
 	int leastBetCount;//最小押注數
@@ -83,16 +89,59 @@ public class Slot_data :IDate {
 		get { return leastBetCount; }
 		set { leastBetCount = value; }
 
-	}
+    }
 
-	#endregion
+    #endregion
 
 
-	#region 普通盤面生成灌入
-	/// <summary>
-	/// 生成圖片資料
-	/// </summary>
-	public void Generate_Date_Sprite(SlotGrid slotGrid)
+    public void Init(IShow ishow,IUIControlMethod _IUICM)
+    {
+
+        this._Ishow = ishow;
+        this.IUICM = _IUICM;
+    }
+
+
+
+    #region 初始化時 將盤面的圖灌好 跟資料無關只是顯示圖片
+    /// <summary>
+    /// 初始化時 將盤面的圖灌成跟＿Reel_Sprite_Date資料上的一樣
+    /// </summary>
+    /// <param name = "Chang_Sprite" ></ param >
+       public void Initialization_Slot_Sprite(Reel_Move[]reel_Moves)
+    {
+        //Debug.Log("依＿Reel_Sprite_Date資料設置圖片");
+        int Tempi;
+        Tempi = Sprite_Pool.Length - 2;//不要特殊圖
+
+        for (int i = 0; i < reel_Moves.Length; i++)
+        {
+
+            for (int j = 0; j < reel_Moves[i].transform.childCount; j++)
+            {
+                int Changei;
+                Changei = Random.Range(0, Tempi);
+                reel_Moves[i].transform.GetChild(j).GetComponent<Image>().sprite = Sprite_Pool[Changei];
+                //Debug.Log(string.Format("第{0}個輪條的第{1}張圖片,圖片名稱{2}",i,j,_Reel_Moves[i].transform.GetChild(j).GetComponent<Image>().sprite.name));
+
+            }
+
+
+
+        }
+
+
+    }
+    #endregion
+
+
+
+
+    #region 普通盤面生成灌入
+    /// <summary>
+    /// 生成圖片資料
+    /// </summary>
+    public void Generate_Date_Sprite(SlotGrid slotGrid)
 	{
 		int GridCount = slotGrid._grids.Count - 1;
 		
@@ -414,7 +463,7 @@ public class Slot_data :IDate {
     /// 資料轉成Int儲存
     /// </summary>
     /// <param name="_ReelMove"></param>
-    public void Date_Save(SlotGrid _SlotGrid)
+    public void DateTypeChange(SlotGrid _SlotGrid)
 	{
 		int Reelcount;
 		Reelcount = _SlotGrid.reelcount;//有多少輪條
@@ -432,19 +481,7 @@ public class Slot_data :IDate {
 
 			}
 
-
-
-
-
 		}
-
-
-
-		
-
-
-
-
 
 	}
 
@@ -632,7 +669,7 @@ public class Slot_data :IDate {
     /// 連線判斷
     /// </summary>
     /// <param name="Date"></param>
-    public void Win_Line(GridIntS _Gridints, List<Transform> ReadyShow, ref int Win_Money, Transform _StayOutPool, List<GameObject> _StayDrawLine)
+    public void Win_Line(GridIntS _Gridints, List<Transform> ShinyReadyShow, ref int Win_Money, Transform _LRStayOutPool, List<GameObject> _LRStayDrawLine)
     {
         //33
         if ((_Gridints._Grids[0]._GridInt[3] == _Gridints._Grids[1]._GridInt[3] || _Gridints._Grids[1]._GridInt[3] == Pool_Images.Universal_Sprite) && _Gridints._Grids[0]._GridInt[3] != Pool_Images.Bonus)
@@ -678,10 +715,10 @@ public class Slot_data :IDate {
                 int[] RoolWinNumber;
                 RoolWinNumber = new int[] { 3, 3, 3, 3, 3 };
                 List<Transform> _GetRoolWinImg;
-                _GetRoolWinImg = GetRoolWinImg(Date, RoolWinNumber);
-                ObjectPool(StartEndPoint[2], _GetRoolWinImg, StartEndPoint[5], _StayOutPool, _StayDrawLine);
-                ListShiny(_GetRoolWinImg, ReadyShow);
-
+                _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
+                _Ishow.ObjectPool(_Ishow.StartPoint[2], _GetRoolWinImg, _Ishow.StartPoint[5], _LRStayOutPool, _LRStayDrawLine);
+                _Ishow. ListShiny(_GetRoolWinImg, ShinyReadyShow);
+                
 
             }
 
@@ -722,9 +759,9 @@ public class Slot_data :IDate {
                 int[] RoolWinNumber;
                 RoolWinNumber = new int[] { 3, 3, 2, 1, 1 };
                 List<Transform> _GetRoolWinImg;
-                _GetRoolWinImg = GetRoolWinImg(Date, RoolWinNumber);
-                ObjectPool(StartEndPoint[2], _GetRoolWinImg, StartEndPoint[3], _StayOutPool, _StayDrawLine);
-                ListShiny(_GetRoolWinImg, ReadyShow);
+                _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
+                _Ishow.ObjectPool(_Ishow.StartPoint[2], _GetRoolWinImg, _Ishow.StartPoint[3], _LRStayOutPool, _LRStayDrawLine);
+                _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
 
 
             }
@@ -764,9 +801,9 @@ public class Slot_data :IDate {
                 int[] RoolWinNumber;
                 RoolWinNumber = new int[] { 3, 3, 1, 3, 3 };
                 List<Transform> _GetRoolWinImg;
-                _GetRoolWinImg = GetRoolWinImg(Date, RoolWinNumber);
-                ObjectPool(StartEndPoint[2], _GetRoolWinImg, StartEndPoint[5], _StayOutPool, _StayDrawLine);
-                ListShiny(_GetRoolWinImg, ReadyShow);
+                _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
+                _Ishow.ObjectPool(_Ishow.StartPoint[2], _GetRoolWinImg, _Ishow.StartPoint[5], _LRStayOutPool, _LRStayDrawLine);
+                _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
             }
 
 
@@ -809,9 +846,9 @@ public class Slot_data :IDate {
                 int[] RoolWinNumber;
                 RoolWinNumber = new int[] { 3, 2, 1, 2, 3 };
                 List<Transform> _GetRoolWinImg;
-                _GetRoolWinImg = GetRoolWinImg(Date, RoolWinNumber);
-                ObjectPool(StartEndPoint[2], _GetRoolWinImg, StartEndPoint[5], _StayOutPool, _StayDrawLine);
-                ListShiny(_GetRoolWinImg, ReadyShow);
+                _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
+                _Ishow.ObjectPool(_Ishow.StartPoint[2], _GetRoolWinImg, _Ishow.StartPoint[5], _LRStayOutPool, _LRStayDrawLine);
+                _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
 
             }
             //322
@@ -849,9 +886,9 @@ public class Slot_data :IDate {
                 int[] RoolWinNumber;
                 RoolWinNumber = new int[] { 3, 2, 2, 2, 3 };
                 List<Transform> _GetRoolWinImg;
-                _GetRoolWinImg = GetRoolWinImg(Date, RoolWinNumber);
-                ObjectPool(StartEndPoint[2], _GetRoolWinImg, StartEndPoint[5], _StayOutPool, _StayDrawLine);
-                ListShiny(_GetRoolWinImg, ReadyShow);
+                _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
+                _Ishow.ObjectPool(_Ishow.StartPoint[2], _GetRoolWinImg, _Ishow.StartPoint[5], _LRStayOutPool, _LRStayDrawLine);
+                _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
 
             }
             //323
@@ -888,9 +925,9 @@ public class Slot_data :IDate {
                 int[] RoolWinNumber;
                 RoolWinNumber = new int[] { 3, 2, 3, 2, 3 };
                 List<Transform> _GetRoolWinImg;
-                _GetRoolWinImg = GetRoolWinImg(Date, RoolWinNumber);
-                ObjectPool(StartEndPoint[2], _GetRoolWinImg, StartEndPoint[5], _StayOutPool, _StayDrawLine);
-                ListShiny(_GetRoolWinImg, ReadyShow);
+                _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
+                _Ishow.ObjectPool(_Ishow.StartPoint[2], _GetRoolWinImg, _Ishow.StartPoint[5], _LRStayOutPool, _LRStayDrawLine);
+                _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
             }
         }
         //23
@@ -933,9 +970,9 @@ public class Slot_data :IDate {
                 int[] RoolWinNumber;
                 RoolWinNumber = new int[] { 2, 3, 3, 3, 2 };
                 List<Transform> _GetRoolWinImg;
-                _GetRoolWinImg = GetRoolWinImg(Date, RoolWinNumber);
-                ObjectPool(StartEndPoint[1], _GetRoolWinImg, StartEndPoint[4], _StayOutPool, _StayDrawLine);
-                ListShiny(_GetRoolWinImg, ReadyShow);
+                _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
+                _Ishow.ObjectPool(_Ishow.StartPoint[1], _GetRoolWinImg, _Ishow.StartPoint[4], _LRStayOutPool, _LRStayDrawLine);
+                _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
 
 
             }
@@ -975,9 +1012,9 @@ public class Slot_data :IDate {
                 int[] RoolWinNumber;
                 RoolWinNumber = new int[] { 2, 3, 2, 1, 2 };
                 List<Transform> _GetRoolWinImg;
-                _GetRoolWinImg = GetRoolWinImg(Date, RoolWinNumber);
-                ObjectPool(StartEndPoint[1], _GetRoolWinImg, StartEndPoint[4], _StayOutPool, _StayDrawLine);
-                ListShiny(_GetRoolWinImg, ReadyShow);
+                _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
+                _Ishow.ObjectPool(_Ishow.StartPoint[1], _GetRoolWinImg, _Ishow.StartPoint[4], _LRStayOutPool, _LRStayDrawLine);
+                _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
 
             }
             //231
@@ -1016,9 +1053,9 @@ public class Slot_data :IDate {
                 int[] RoolWinNumber;
                 RoolWinNumber = new int[] { 2, 3, 1, 3, 2 };
                 List<Transform> _GetRoolWinImg;
-                _GetRoolWinImg = GetRoolWinImg(Date, RoolWinNumber);
-                ObjectPool(StartEndPoint[1], _GetRoolWinImg, StartEndPoint[4], _StayOutPool, _StayDrawLine);
-                ListShiny(_GetRoolWinImg, ReadyShow);
+                _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
+                _Ishow.ObjectPool(_Ishow.StartPoint[1], _GetRoolWinImg, _Ishow.StartPoint[4], _LRStayOutPool, _LRStayDrawLine);
+                _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
 
             }
 
@@ -1069,9 +1106,9 @@ public class Slot_data :IDate {
                 int[] RoolWinNumber;
                 RoolWinNumber = new int[] { 2, 2, 3, 2, 2 };
                 List<Transform> _GetRoolWinImg;
-                _GetRoolWinImg = GetRoolWinImg(Date, RoolWinNumber);
-                ObjectPool(StartEndPoint[1], _GetRoolWinImg, StartEndPoint[4], _StayOutPool, _StayDrawLine);
-                ListShiny(_GetRoolWinImg, ReadyShow);
+                _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
+                _Ishow.ObjectPool(_Ishow.StartPoint[1], _GetRoolWinImg, _Ishow.StartPoint[4], _LRStayOutPool, _LRStayDrawLine);
+                _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
 
             }
             //222
@@ -1110,9 +1147,9 @@ public class Slot_data :IDate {
                 int[] RoolWinNumber;
                 RoolWinNumber = new int[] { 2, 2, 2, 2, 2 };
                 List<Transform> _GetRoolWinImg;
-                _GetRoolWinImg = GetRoolWinImg(Date, RoolWinNumber);
-                ObjectPool(StartEndPoint[1], _GetRoolWinImg, StartEndPoint[4], _StayOutPool, _StayDrawLine);
-                ListShiny(_GetRoolWinImg, ReadyShow);
+                _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
+                _Ishow.ObjectPool(_Ishow.StartPoint[1], _GetRoolWinImg, _Ishow.StartPoint[4], _LRStayOutPool, _LRStayDrawLine);
+                _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
 
             }
             //221
@@ -1153,9 +1190,9 @@ public class Slot_data :IDate {
                 int[] RoolWinNumber;
                 RoolWinNumber = new int[] { 2, 2, 1, 2, 2 };
                 List<Transform> _GetRoolWinImg;
-                _GetRoolWinImg = GetRoolWinImg(Date, RoolWinNumber);
-                ObjectPool(StartEndPoint[1], _GetRoolWinImg, StartEndPoint[4], _StayOutPool, _StayDrawLine);
-                ListShiny(_GetRoolWinImg, ReadyShow);
+                _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
+                _Ishow.ObjectPool(_Ishow.StartPoint[1], _GetRoolWinImg, _Ishow.StartPoint[4], _LRStayOutPool, _LRStayDrawLine);
+                _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
 
             }
 
@@ -1201,9 +1238,9 @@ public class Slot_data :IDate {
                 int[] RoolWinNumber;
                 RoolWinNumber = new int[] { 2, 1, 2, 3, 2 };
                 List<Transform> _GetRoolWinImg;
-                _GetRoolWinImg = GetRoolWinImg(Date, RoolWinNumber);
-                ObjectPool(StartEndPoint[1], _GetRoolWinImg, StartEndPoint[4], _StayOutPool, _StayDrawLine);
-                ListShiny(_GetRoolWinImg, ReadyShow);
+                _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
+                _Ishow.ObjectPool(_Ishow.StartPoint[1], _GetRoolWinImg, _Ishow.StartPoint[4], _LRStayOutPool, _LRStayDrawLine);
+                _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
 
             }
             //211
@@ -1241,9 +1278,9 @@ public class Slot_data :IDate {
                 int[] RoolWinNumber;
                 RoolWinNumber = new int[] { 2, 1, 1, 1, 2 };
                 List<Transform> _GetRoolWinImg;
-                _GetRoolWinImg = GetRoolWinImg(Date, RoolWinNumber);
-                ObjectPool(StartEndPoint[1], _GetRoolWinImg, StartEndPoint[4], _StayOutPool, _StayDrawLine);
-                ListShiny(_GetRoolWinImg, ReadyShow);
+                _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
+                _Ishow.ObjectPool(_Ishow.StartPoint[1], _GetRoolWinImg, _Ishow.StartPoint[4], _LRStayOutPool, _LRStayDrawLine);
+                _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
 
             }
 
@@ -1291,9 +1328,9 @@ public class Slot_data :IDate {
                 int[] RoolWinNumber;
                 RoolWinNumber = new int[] { 1, 2, 3, 2, 1 };
                 List<Transform> _GetRoolWinImg;
-                _GetRoolWinImg = GetRoolWinImg(Date, RoolWinNumber);
-                ObjectPool(StartEndPoint[0], _GetRoolWinImg, StartEndPoint[3], _StayOutPool, _StayDrawLine);
-                ListShiny(_GetRoolWinImg, ReadyShow);
+                _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
+                _Ishow.ObjectPool(_Ishow.StartPoint[0], _GetRoolWinImg, _Ishow.StartPoint[3], _LRStayOutPool, _LRStayDrawLine);
+                _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
 
             }
             //122
@@ -1332,9 +1369,9 @@ public class Slot_data :IDate {
                 int[] RoolWinNumber;
                 RoolWinNumber = new int[] { 1, 2, 2, 2, 1 };
                 List<Transform> _GetRoolWinImg;
-                _GetRoolWinImg = GetRoolWinImg(Date, RoolWinNumber);
-                ObjectPool(StartEndPoint[0], _GetRoolWinImg, StartEndPoint[3], _StayOutPool, _StayDrawLine);
-                ListShiny(_GetRoolWinImg, ReadyShow);
+                _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
+                _Ishow.ObjectPool(_Ishow.StartPoint[0], _GetRoolWinImg, _Ishow.StartPoint[3], _LRStayOutPool, _LRStayDrawLine);
+                _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
 
             }
             //121
@@ -1372,9 +1409,9 @@ public class Slot_data :IDate {
                 int[] RoolWinNumber;
                 RoolWinNumber = new int[] { 1, 2, 1, 2, 1 };
                 List<Transform> _GetRoolWinImg;
-                _GetRoolWinImg = GetRoolWinImg(Date, RoolWinNumber);
-                ObjectPool(StartEndPoint[0], _GetRoolWinImg, StartEndPoint[3], _StayOutPool, _StayDrawLine);
-                ListShiny(_GetRoolWinImg, ReadyShow);
+                _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
+                _Ishow.ObjectPool(_Ishow.StartPoint[0], _GetRoolWinImg, _Ishow.StartPoint[3], _LRStayOutPool, _LRStayDrawLine);
+                _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
 
             }
 
@@ -1420,9 +1457,9 @@ public class Slot_data :IDate {
                 int[] RoolWinNumber;
                 RoolWinNumber = new int[] { 1, 1, 3, 1, 1 };
                 List<Transform> _GetRoolWinImg;
-                _GetRoolWinImg = GetRoolWinImg(Date, RoolWinNumber);
-                ObjectPool(StartEndPoint[0], _GetRoolWinImg, StartEndPoint[3], _StayOutPool, _StayDrawLine);
-                ListShiny(_GetRoolWinImg, ReadyShow);
+                _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
+                _Ishow.ObjectPool(_Ishow.StartPoint[0], _GetRoolWinImg, _Ishow.StartPoint[3], _LRStayOutPool, _LRStayDrawLine);
+                _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
 
             }
             //112
@@ -1460,9 +1497,9 @@ public class Slot_data :IDate {
                 int[] RoolWinNumber;
                 RoolWinNumber = new int[] { 1, 1, 2, 3, 3 };
                 List<Transform> _GetRoolWinImg;
-                _GetRoolWinImg = GetRoolWinImg(Date, RoolWinNumber);
-                ObjectPool(StartEndPoint[0], _GetRoolWinImg, StartEndPoint[5], _StayOutPool, _StayDrawLine);
-                ListShiny(_GetRoolWinImg, ReadyShow);
+                _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
+                _Ishow.ObjectPool(_Ishow.StartPoint[0], _GetRoolWinImg, _Ishow.StartPoint[5], _LRStayOutPool, _LRStayDrawLine);
+                _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
 
             }
 
@@ -1479,7 +1516,7 @@ public class Slot_data :IDate {
                     Win_Sprite(_PoolImages, Line_count, ref Win_Money);
                     Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
                 }
-                else if (Date[0].Sever_Sprites[1] == Date[3].Sever_Sprites[1] || Date[3].Sever_Sprites[1] == Universal_Sprite)
+                else if (_PoolImages == _Gridints._Grids[3]._GridInt[1] || _Gridints._Grids[3]._GridInt[1] == Pool_Images.Universal_Sprite)
                 {
 
                     Debug.Log("Win");
@@ -1502,9 +1539,9 @@ public class Slot_data :IDate {
                 int[] RoolWinNumber;
                 RoolWinNumber = new int[] { 1, 1, 1, 1, 1 };
                 List<Transform> _GetRoolWinImg;
-                _GetRoolWinImg = GetRoolWinImg(Date, RoolWinNumber);
-                ObjectPool(StartEndPoint[0], _GetRoolWinImg, StartEndPoint[3], _StayOutPool, _StayDrawLine);
-                ListShiny(_GetRoolWinImg, ReadyShow);
+                _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
+                _Ishow.ObjectPool(_Ishow.StartPoint[0], _GetRoolWinImg, _Ishow.StartPoint[3], _LRStayOutPool, _LRStayDrawLine);
+                _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
 
             }
 
@@ -1521,6 +1558,61 @@ public class Slot_data :IDate {
 
 
 
+    }
+    #endregion
+
+
+
+    #region 資料的儲存以及讀取
+    /// <summary>
+    /// 將資料轉成Jason並且儲存
+    /// </summary>
+    public void DateSave(SlotGrid CommonGrid,SlotGrid BonusGrid)//
+    {
+
+        if (Bonus_count == 3)
+        {
+            int i = BonusGrid._girdcount - 1;
+           DateTypeChange(BonusGrid);
+
+        }
+        else
+        {
+
+            DateTypeChange(CommonGrid);
+
+        }
+
+        _Slot_SeverDate.Bet_Coin =bet_Coin;
+        _Slot_SeverDate.Auto_HasRollcount = _AutoSurplus;
+        _Slot_SeverDate.Auto_PlayerSet = _AutoCount;
+        _Slot_SeverDate.Auto_NotYet = _CycleCount;
+        _Slot_SeverDate.Player_Coin = Coin;
+        _Slot_SeverDate.BonusCoin = Total_BonusWinCoin;
+        _Slot_SeverDate.Win_Coin = WinCoin;
+        _Slot_SeverDate.Data = _Date;
+        string SaveDateToJason;
+        SaveDateToJason = JsonUtility.ToJson(_Slot_SeverDate);
+        PlayerPrefs.SetString("遊戲資料", SaveDateToJason);
+        PlayerPrefs.Save();
+        Debug.Log("資料儲存完成");
+        Debug.Log("資料內容 ：" + SaveDateToJason);
+        Debug.Log("目前是否有儲存到資料 ：" + PlayerPrefs.HasKey("遊戲資料")); ;
+
+    }
+
+    /// <summary>
+    /// 將資料讀取
+    /// </summary>
+    public void GetDateSave()
+    {
+        Debug.Log("有無遊戲資料 ：" + PlayerPrefs.HasKey("遊戲資料"));
+        if (PlayerPrefs.HasKey("遊戲資料"))
+        {
+            IUICM.Options.SetActive(true);
+
+        }
+       
     }
     #endregion
 

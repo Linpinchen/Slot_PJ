@@ -10,7 +10,7 @@ public class UIControlMethod : IUIControlMethod{
     Button_EventTrigger EventReduce;
 
 
-   
+    bool _StAddBonusDate;
     GameObject _Bet_Menu;
     GameObject _Auto_Menu;
     GameObject _Options;
@@ -20,6 +20,9 @@ public class UIControlMethod : IUIControlMethod{
     Sprite[] _InFoSprites;
     Image _InfoBackSprite;
     Image _Img_Introduction;
+
+
+    public bool StAddBonusDate { get { return _StAddBonusDate; } set { _StAddBonusDate = value; } }
 
     public GameObject Bet_Menu { get { return _Bet_Menu; } }
 
@@ -41,6 +44,31 @@ public class UIControlMethod : IUIControlMethod{
 
 
 
+
+
+
+    /// <summary>
+    ///  AddBonus 的 Bool 開關
+    /// </summary>
+    public void AddBonus()
+    {
+
+
+        if (_StAddBonusDate)
+        {
+            _StAddBonusDate = false;
+
+
+        }
+        else if (!_StAddBonusDate)
+        {
+
+            _StAddBonusDate = true;
+
+        }
+
+
+    }
 
 
     /// <summary>

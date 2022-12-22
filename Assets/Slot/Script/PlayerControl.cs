@@ -45,14 +45,6 @@ public class PlayerControl
 
         });
 
-        //測試用必中Bonus按鈕
-        BonusDateCreat_Button.onClick.AddListener(delegate
-        {
-
-            BonusDateCreat();
-
-        });
-
         //遊戲資料 - 確定讀取 按鈕
         Options_Yes_Button.onClick.AddListener(delegate
         {
@@ -66,6 +58,15 @@ public class PlayerControl
         {
 
             Option_No();
+
+        });
+
+
+        //測試用必中Bonus按鈕
+        BonusDateCreat_Button.onClick.AddListener(delegate
+        {
+
+            _UIMethod.AddBonus();
 
         });
 

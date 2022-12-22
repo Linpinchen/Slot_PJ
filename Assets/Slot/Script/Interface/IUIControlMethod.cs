@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public interface IUIControlMethod
 
 {
+    bool StAddBonusDate { get; set; }
     GameObject Bet_Menu { get; }
     GameObject Auto_Menu { get; }
     GameObject Options { get; }
@@ -15,6 +16,8 @@ public interface IUIControlMethod
     Image InfoBackSprite { get; }
     Image Img_Introduction { get; }
 
+
+    void AddBonus();
 
     void BetMenuSwitch();
 
