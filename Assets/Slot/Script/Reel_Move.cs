@@ -22,7 +22,7 @@ public class Reel_Move : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        ChangeSprite = new List<int>();
+        //ChangeSprite = new List<int>();
 
         Date_Temp = 0;
         originalv2 = gameObject.GetComponent<RectTransform>().anchoredPosition;//取得原始座標
@@ -85,6 +85,15 @@ public class Reel_Move : MonoBehaviour {
                             Date_Temp++;
                             // Debug.Log("tempi:" + tempi + "Roolcount" + Roolcount);
 
+                            if (tempi==Roolcount)//這裡做重置的動作
+                            {
+
+                                strool = false;
+                                tempi = 0;
+
+                            }
+
+
                         }
                         else
                         {
@@ -124,6 +133,13 @@ public class Reel_Move : MonoBehaviour {
 
         this.ReelNumber = ReelNumber;
 
+        ChangeSprite = new List<int>();
+
+        for (int i=0;i<this.transform.childCount;i++)
+        {
+
+            ChangeSprite.Add(0);
+        }
 
     }
 

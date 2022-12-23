@@ -6097,6 +6097,68 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758204668}
+--- !u!1 &769559403
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 769559405}
+  - component: {fileID: 769559404}
+  m_Layer: 0
+  m_Name: ShowScript
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &769559404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 769559403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49a1db295758448d9aa805e10a2a0410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _StRecover: 0
+  _StartPoint:
+  - {fileID: 1346375770}
+  - {fileID: 700322428}
+  - {fileID: 325138224}
+  - {fileID: 282021146}
+  - {fileID: 2006003732}
+  - {fileID: 1140008401}
+  _PrepareDrawLine: []
+  _DrawLineOk: 
+  _GBDrawLine: {fileID: 0}
+  _InLineRenderPool: {fileID: 216749773}
+  _LineRenderOutPool: {fileID: 1316623208}
+  _BonusLineRenderOutPool: {fileID: 94375134}
+  _BonusLineRenderChildPool: {fileID: 426151076}
+  _UiShow: []
+  _Amr_WinShow: {fileID: 0}
+  _BonusAnimator: {fileID: 0}
+  _BonusEndShow: {fileID: 0}
+  _EndShowPlayer: {fileID: 0}
+  _EndShowVideoClip: {fileID: 0}
+  _VideoImage: {fileID: 0}
+--- !u!4 &769559405
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 769559403}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.0236722, y: 14.460905, z: 100}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &771466546
 GameObject:
   m_ObjectHideFlags: 0
@@ -10108,70 +10170,102 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa73c6bdbb5c8429ab7c653e012bcf9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SlotDate: {fileID: 0}
-  RollSpeed: 600
-  start_btn: {fileID: 1444190457}
-  Bet_Button: {fileID: 482751836}
-  Auto_Button: {fileID: 113385979}
-  Bet_Menu: {fileID: 882049209}
-  Auto_Menu: {fileID: 94217569}
-  Bet_Plus: {fileID: 1634184988}
-  Bet_Reduce: {fileID: 1645551044}
-  Bet_MaxCoin: {fileID: 128198695}
-  Auto_Clear_Button: {fileID: 959735643}
-  Auto_pause_Button: {fileID: 2042336712}
-  Auto_Plus: {fileID: 422637268}
-  Auto_Reduce: {fileID: 851277649}
-  Start_Slot: 0
-  Bet_Button_Bool: 0
-  Auto_Button_bool: 0
-  Loopcount: 60
+  _SlotDate:
+    Coin: 0
+    bet_Coin: 0
+    WinCoin: 0
+    leastBetCount: 100
+    BonusWin: 
+    totalBonusWin: 0
+    _AutoCount: 0
+    _CycleCount: 0
+    _AutoSurplus: 0
+    Bonus_count: 0
+    Sprite_Pool:
+    - {fileID: 21300000, guid: 814074e3de7b549e8888201ab3664d79, type: 3}
+    - {fileID: 21300000, guid: c22de691c9a0b4c818e6f290b546ca2f, type: 3}
+    - {fileID: 21300000, guid: 598ee62696add424cbc78bec38667616, type: 3}
+    - {fileID: 21300000, guid: a46d679b763e241de8c17b32a479ea76, type: 3}
+    - {fileID: 21300000, guid: 7b4d3c7fae92a445399845cf7f1d30d3, type: 3}
+    - {fileID: 21300000, guid: f164005461f5048058f5a759b7c49258, type: 3}
+    - {fileID: 21300000, guid: aae534f73625d4b46bdc2b062459fbcf, type: 3}
+    - {fileID: 21300000, guid: 6a88eafb6de254fa0ab202f373e95daf, type: 3}
+    _Slot_SeverDate:
+      Win_Coin: 0
+      BonusCoin: 0
+      Bet_Coin: 0
+      Player_Coin: 0
+      Auto_HasRollcount: 0
+      Auto_NotYet: 0
+      Auto_PlayerSet: 0
+      Data: []
+    GetSlotDate:
+      Win_Coin: 0
+      BonusCoin: 0
+      Bet_Coin: 0
+      Player_Coin: 0
+      Auto_HasRollcount: 0
+      Auto_NotYet: 0
+      Auto_PlayerSet: 0
+      Data: []
+    _Date: []
   _Reel_Moves:
   - {fileID: 1874128269}
   - {fileID: 481062305}
   - {fileID: 1511679378}
   - {fileID: 137248849}
   - {fileID: 816450351}
+  _ShowScript: {fileID: 769559404}
+  _UIControlMethod:
+    _StAddBonusDate: 0
+    _Bet_Menu: {fileID: 882049209}
+    _Auto_Menu: {fileID: 94217569}
+    _Options: {fileID: 597141287}
+    _Bet_Text: {fileID: 1861365868}
+    _BetMenu_Text: {fileID: 262783985}
+    _Auto_text: {fileID: 1448656060}
+    _PlayerCoin_Text: {fileID: 29287471}
+    _InFoSprites:
+    - {fileID: 21300000, guid: cecd12c1e7c0644df8405c0d93eca5b8, type: 3}
+    - {fileID: 21300000, guid: d7af7ca5bc88b4d069c19cda1a4371e0, type: 3}
+    - {fileID: 21300000, guid: c4db684d29e4d4bedbe7cb1cc59430fd, type: 3}
+    - {fileID: 21300000, guid: d6bfd8207ba944e6eb05ca3673cd8f26, type: 3}
+    _InfoBackSprite: {fileID: 650811261}
+    _Img_Introduction: {fileID: 1365633014}
+  _PlayerControl:
+    StartGame_Button: {fileID: 1444190457}
+    Bet_Button: {fileID: 482751836}
+    Auto_Button: {fileID: 113385979}
+    Bet_Plus_Button: {fileID: 1634184988}
+    Bet_Reduce_Button: {fileID: 1645551044}
+    Bet_MaxCoin_Button: {fileID: 128198695}
+    Auto_Clear_Button: {fileID: 959735643}
+    Auto_pause_Button: {fileID: 2042336712}
+    Auto_Plus_Button: {fileID: 422637268}
+    Auto_Reduce_Button: {fileID: 851277649}
+    BonusDateCreat_Button: {fileID: 515475870}
+    InFoButton_Button: {fileID: 1380706715}
+    InfoOutButton_Button: {fileID: 1981909833}
+    ButtonLeft_Button: {fileID: 162187787}
+    ButtonRight_Button: {fileID: 323781273}
+    Options_Yes_Button: {fileID: 583170954}
+    Options_No_Button: {fileID: 934489068}
+  RollSpeed: 600
+  Start_Slot: 0
+  Bet_Button_Bool: 0
+  Auto_Button_bool: 0
+  Loopcount: 60
   Slot_mantissa: 0
-  Player_coin_Text: {fileID: 29287471}
-  BET_text: {fileID: 262783985}
-  Bet_text_out: {fileID: 1861365868}
-  Auto_text: {fileID: 1448656060}
-  Auto_Count: 1
-  Cycle_Count: 0
-  Auto_Temp_Count: 0
-  Win_Money_Temp: 0
-  Win_BonusMoney_Temp: 0
-  Win_BonusMoney_Date: 
-  Total_BonusWinCoin: 0
   St_Roll: 0
   _ButtonPlus_EventTrigger: {fileID: 1634184991}
   _ButtonReduce_EventTrigger: {fileID: 1645551047}
-  PrepareDrawLine: []
   _Bonus_PrepareDrawLinePool: []
-  GBDrawLine: {fileID: 1866994171093288, guid: 4e5857d84f1f14a9a83e362ed41b03e4, type: 2}
-  InLineRenderPool: {fileID: 216749773}
-  LineRenderOutPool: {fileID: 1316623208}
-  BonusLineRenderOutPool: {fileID: 94375134}
-  BonusLineRenderChildPool: {fileID: 1237279204077276, guid: 04a45ce0c6eef4be9880ddc9b14a6dde,
-    type: 2}
-  StartEndPoint:
-  - {fileID: 1346375770}
-  - {fileID: 700322428}
-  - {fileID: 325138224}
-  - {fileID: 282021146}
-  - {fileID: 2006003732}
-  - {fileID: 1140008401}
   StRecover: 1
-  ShowOK: []
-  _Bonus_ShowOK: []
   StCoShow: 1
-  UiShow: []
   _BonusShinyDate: []
   MIcon:
   - {fileID: 2800000, guid: 000fd0aa0473c404da850b35f605a766, type: 3}
   - {fileID: 2800000, guid: 84c667ec209854e4e9766f9951c599a9, type: 3}
-  Amr_WinShow: {fileID: 1618343270}
   ShowOver: 0
   WinCoins:
   - {fileID: 2081687510}
@@ -10195,13 +10289,9 @@ MonoBehaviour:
   StCoShowWinCoin: 1
   CoinShowOK: 1
   BonusShow: 0
-  BonusAnimator: {fileID: 1028357192}
-  BonusEndShow: {fileID: 344375965}
-  BonusCount: 0
   FreeGameCount: 0
   BonusRolling: 1
   Slot_BonusGoRoll: 0
-  BonusDateBtn: {fileID: 515475870}
   StAddBonusDate: 0
   StBonusShowOk: 0
   UseBonus: 0
@@ -10215,25 +10305,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d7af7ca5bc88b4d069c19cda1a4371e0, type: 3}
   - {fileID: 21300000, guid: cecd12c1e7c0644df8405c0d93eca5b8, type: 3}
   - {fileID: 21300000, guid: d6bfd8207ba944e6eb05ca3673cd8f26, type: 3}
-  ButtonINFO: {fileID: 1380706715}
   ImagaInfo: {fileID: 650811261}
-  InfoOutButton: {fileID: 1981909833}
-  ButtonLeft: {fileID: 162187787}
-  ButtonRight: {fileID: 323781273}
   Img_Introduction: {fileID: 1365633014}
-  Options: {fileID: 597141287}
-  Options_Yes: {fileID: 583170954}
-  Options_No: {fileID: 934489068}
   VideoImage: {fileID: 986113863}
-  XD:
-    Girdcount: 0
-    Reelcount: 0
-    ImageCount: 
+  CommonGrid:
     Grid: []
-  XC:
-    Girdcount: 0
-    Reelcount: 0
-    ImageCount: 
+  BonusGrid:
     Grid: []
 --- !u!1 &1444190455
 GameObject:

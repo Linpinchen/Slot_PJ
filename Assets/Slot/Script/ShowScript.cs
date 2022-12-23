@@ -3,25 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
-
+[System.Serializable]
 public class ShowScript : MonoBehaviour,IShow
 {
+    [SerializeField]
     bool _StRecover;
+    [SerializeField]
     Transform[] _StartPoint;
+    [SerializeField]
     Queue<GameObject> _DrawLinePool;
+    [SerializeField]
     List<List<GameObject>> _BonusPrepareDrawline;
+    [SerializeField]
     List<GameObject> _PrepareDrawLine;
+    [SerializeField]
+    List<List<bool>> _BonusDrawLineOk;
+    [SerializeField]
+    List<bool> _DrawLineOk;
+    [SerializeField]
     GameObject _GBDrawLine;
+    [SerializeField]
     Transform _InLineRenderPool;
+    [SerializeField]
     Transform _LineRenderOutPool;
+    [SerializeField]
     Transform _BonusLineRenderOutPool;
+    [SerializeField]
     GameObject _BonusLineRenderChildPool;
+    [SerializeField]
     List<Transform> _UiShow;
+    [SerializeField]
+    List<List<Transform>> _BonusUiShow;
+    [SerializeField]
     Animator _Amr_WinShow;
+    [SerializeField]
     Animator _BonusAnimator;
+    [SerializeField]
     Animator _BonusEndShow;
+    [SerializeField]
     VideoPlayer _EndShowPlayer;
+    [SerializeField]
     VideoClip _EndShowVideoClip;
+    [SerializeField]
     RawImage _VideoImage;
    
 
@@ -37,6 +60,10 @@ public class ShowScript : MonoBehaviour,IShow
 
     public List<GameObject> PrepareDrawLine { get {return _PrepareDrawLine; } set { _PrepareDrawLine = value; } }
 
+    public List<List<bool>> BonusDrawLineOk { get { return _BonusDrawLineOk; } set { _BonusDrawLineOk = value; } }
+
+    public List<bool> DrawLineOK { get {return _DrawLineOk;} set {_DrawLineOk=value;} }
+
     public GameObject GBDrawLine { get { return _GBDrawLine; } set { _GBDrawLine = value; } }
 
     public Transform InLineRenderPool { get {return _InLineRenderPool; } set { _InLineRenderPool=value; } }
@@ -48,6 +75,8 @@ public class ShowScript : MonoBehaviour,IShow
     public GameObject BonusLineRenderChildPool { get { return _BonusLineRenderChildPool; } set { _BonusLineRenderChildPool = value; } }
 
     public List<Transform> UiShow { get { return _UiShow; } set { _UiShow = value; } }
+
+    public List<List<Transform>> BonusUiShow { get { return _BonusUiShow; }set { _BonusUiShow = value; } }
 
     public Animator Amr_WinShow { get { return _Amr_WinShow; } set { _Amr_WinShow = value; } }
 
@@ -62,13 +91,12 @@ public class ShowScript : MonoBehaviour,IShow
     public RawImage VideoImage { get { return _VideoImage; } set { _VideoImage = value; } }
 
 
-
-
-
-
-
-
-
+    /// <summary>
+    /// 取得連線時輪條上中獎的圖 並裝進陣列回傳
+    /// </summary>
+    /// <param name="Date"></param>
+    /// <param name="SlotSequence"></param>
+    /// <returns></returns>
     public List<Transform> GetRoolWinImg(Reel_Move[] _ReelMove, int[] SlotSequence)
     {
 
@@ -87,7 +115,49 @@ public class ShowScript : MonoBehaviour,IShow
 
     }
 
+    /// <summary>
+    /// 將要表演的圖片放入List
+    /// </summary>
+    /// <param name="_GetRoolWinImg"></param>
+    public void ListShiny(List<Transform> _GetRoolWinImg, List<Transform> ReadyShow)
+    {
 
+        for (int i = 0; i < _GetRoolWinImg.Count; i++)
+        {
+            if (!ReadyShow.Contains(_GetRoolWinImg[i]))
+            {
+                ReadyShow.Add(_GetRoolWinImg[i]);
+
+            }
+
+
+        }
+
+    }
+
+    /// <summary>
+    /// 打開Uishow陣列內物件的Animator的Trigger
+    /// </summary>
+    public void ShinyShow(List<Transform> ReadyShow)
+    {
+        for (int i = 0; i < ReadyShow.Count; i++)
+        {
+            Animator Amo;
+            Amo = ReadyShow[i].GetComponent<Animator>();
+            Amo.SetTrigger("StShiny");
+
+
+        }
+    }
+
+
+    /// <summary>
+    /// 預制物初始化
+    /// </summary>
+    /// <param name="Reuse"></param>
+    /// <param name="OrangePoint"></param>
+    /// <param name="PointPosition"></param>
+    /// <param name="EndPoint"></param>
     public void InstObjectInitialization(GameObject Reuse, Transform OrangePoint, List<Transform> PointPosition, Transform EndPoint)
     {
         Reuse.GetComponent<DrawLine>().Taget_Point = new List<Transform>();
@@ -110,36 +180,12 @@ public class ShowScript : MonoBehaviour,IShow
     }
 
 
-    public void ListShiny(List<Transform> _GetRoolWinImg, List<Transform> ReadyShow)
-    {
-
-        for (int i = 0; i < _GetRoolWinImg.Count; i++)
-        {
-            if (!ReadyShow.Contains(_GetRoolWinImg[i]))
-            {
-                ReadyShow.Add(_GetRoolWinImg[i]);
-
-            }
-
-
-        }
-
-    }
-
-
-    public void ShinyShow(List<Transform> ReadyShow)
-    {
-        for (int i = 0; i < ReadyShow.Count; i++)
-        {
-            Animator Amo;
-            Amo = ReadyShow[i].GetComponent<Animator>();
-            Amo.SetTrigger("StShiny");
-
-
-        }
-    }
-
-
+    /// <summary>
+    /// 物件池 （判斷物件池內有無物件 有就取出 無就生成）
+    /// </summary>
+    /// <param name="initalPosition"></param>
+    /// <param name="PointPosition"></param>
+    /// <param name="EndPoint"></param>
     public void ObjectPool(Transform initalPosition, List<Transform> PointPosition, Transform EndPoint, Transform StayOutpool, List<GameObject> StayDrawLine)
     {
         GameObject Reuse;
@@ -170,7 +216,9 @@ public class ShowScript : MonoBehaviour,IShow
 
     }
 
-
+    /// <summary>
+    /// 物件池生成設定
+    /// </summary>
     public void ObjectPoolInitialization()
     {
         int InitailSize = 5;
@@ -188,7 +236,11 @@ public class ShowScript : MonoBehaviour,IShow
         }
     }
 
-
+    /// <summary>
+    /// 物件用完回收物件池
+    /// </summary>
+    /// <param name="recover"></param>
+    /// <param name="Stb"></param>
     public void Recover(GameObject recover, bool Stb)
     {
         Transform OringerTs = gameObject.transform;//OringerTs就是自身座標
@@ -207,12 +259,17 @@ public class ShowScript : MonoBehaviour,IShow
 
     }
 
-
+    /// <summary>
+    /// /判斷DrawLine完了沒 ,結束後執行回收（執行Recover）
+    /// </summary>
+    /// <param name="OutPool"></param>
+    /// <param name="StayDrawLine"></param>
+    /// <param name="_SHowOk"></param>
     public void RecoverComply(Transform OutPool, List<GameObject> StayDrawLine, List<bool> _SHowOk)
     {
 
         bool DrawAllBool;
-        DrawAllBool = _SHowOk.Contains(true);
+        DrawAllBool = _SHowOk.Contains(true);//確認Lineder都跑完了沒
 
 
         if (StayDrawLine.Count != 0)//LineRenderOutPool.childCount != 0

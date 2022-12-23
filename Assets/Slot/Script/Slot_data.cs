@@ -8,20 +8,32 @@ public class Slot_data :IDate ,IDateEvent{
 
     IShow _Ishow;
     IUIControlMethod IUICM;
+   
     Reel_Move[] _Reelmove;
 
+
+    [SerializeField]
     int Coin;//玩家擁有的錢
-	int bet_Coin;//押注的錢
-	int WinCoin;//普通盤面贏的錢
-	int leastBetCount;//最小押注數
-	List<int> BonusWin;//Bonus每盤各贏得錢
-	int totalBonusWin;//Bonus共贏多少
-	int _AutoCount;//Auto循環次數
-	int _CycleCount;//以轉動次數
-	int _AutoSurplus;//尚未循環次數
-	Sprite[] Sprite_Pool;//圖片庫
-	public int Bonus_count;//當前 Bonus圖片出現的數量（用來算每個輪條[2][3][4]Bonus圖片出現幾次）
-	public Slot_SeveDate _Slot_SeverDate;
+    [SerializeField]
+    int bet_Coin;//押注的錢
+    [SerializeField]
+    int WinCoin;//普通盤面贏的錢
+    [SerializeField]
+    int leastBetCount;//最小押注數
+    [SerializeField]
+    List<int> BonusWin;//Bonus每盤各贏得錢
+    [SerializeField]
+    int totalBonusWin;//Bonus共贏多少
+    [SerializeField]
+    int _AutoCount;//Auto循環次數
+    [SerializeField]
+    int _CycleCount;//以轉動次數
+    [SerializeField]
+    int _AutoSurplus;//尚未循環次數
+    [SerializeField]
+    int Bonus_count;//當前 Bonus圖片出現的數量（用來算每個輪條[2][3][4]Bonus圖片出現幾次）
+    public Sprite[] Sprite_Pool;//圖片庫
+    public Slot_SeveDate _Slot_SeverDate;
 	public Slot_SeveDate GetSlotDate;
 	public List<intCount> _Date;
 
@@ -94,11 +106,16 @@ public class Slot_data :IDate ,IDateEvent{
     #endregion
 
 
-    public void Init(IShow ishow,IUIControlMethod _IUICM)
+    public void Init(IShow ishow,IUIControlMethod _IUICM ,Reel_Move[] _ReelMoves)
     {
 
         this._Ishow = ishow;
         this.IUICM = _IUICM;
+        this._Reelmove = _ReelMoves;
+        _Date = new List<intCount>();
+
+
+
     }
 
 

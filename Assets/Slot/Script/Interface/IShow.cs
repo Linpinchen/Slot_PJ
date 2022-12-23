@@ -8,6 +8,8 @@ public interface IShow
 {
 
     bool StRecover { get; set; }
+    List<List<bool>> BonusDrawLineOk { get; set; }
+    List<bool> DrawLineOK { get; set; }
     Transform[] StartPoint { get; }
     Queue<GameObject> DrawLinePool { get; set; }
     List<List<GameObject>> BonusPrepareDrawline { get; set; }
@@ -18,6 +20,7 @@ public interface IShow
     Transform BonusLineRenderOutPool { get; set; }
     GameObject BonusLineRenderChildPool { get; set; }
     List<Transform> UiShow { get; set; }
+    List<List<Transform>> BonusUiShow { get; set; }
     Animator Amr_WinShow { get; set; }
     Animator BonusAnimator { get; set; }
     Animator BonusEndShow { get; set; }

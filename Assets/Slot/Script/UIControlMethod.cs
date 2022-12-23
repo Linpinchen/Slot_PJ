@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+[System.Serializable]
 public class UIControlMethod : IUIControlMethod{
 
 
@@ -9,16 +10,27 @@ public class UIControlMethod : IUIControlMethod{
     Button_EventTrigger EventPlus;
     Button_EventTrigger EventReduce;
 
-
+    [SerializeField]
     bool _StAddBonusDate;
+    [SerializeField]
     GameObject _Bet_Menu;
+    [SerializeField]
     GameObject _Auto_Menu;
+    [SerializeField]
     GameObject _Options;
+    [SerializeField]
     Text _Bet_Text;
+    [SerializeField]
     Text _BetMenu_Text;
+    [SerializeField]
     Text _Auto_text;
+    [SerializeField]
+    Text _PlayerCoin_Text;
+    [SerializeField]
     Sprite[] _InFoSprites;
+    [SerializeField]
     Image _InfoBackSprite;
+    [SerializeField]
     Image _Img_Introduction;
 
 
@@ -35,6 +47,8 @@ public class UIControlMethod : IUIControlMethod{
     public Text BetMenu_Text { get { return _BetMenu_Text; } }
 
     public Text Auto_text { get { return _Auto_text; } }
+
+    public Text PlayerCoin_Text { get { return _PlayerCoin_Text; } }
 
     public Sprite[] InFoSprites { get { return _InFoSprites; } }
 

@@ -15,7 +15,7 @@ public interface IUIControlMethod
     Sprite[] InFoSprites { get; }
     Image InfoBackSprite { get; }
     Image Img_Introduction { get; }
-
+    Text PlayerCoin_Text { get; }
 
     void AddBonus();
 
