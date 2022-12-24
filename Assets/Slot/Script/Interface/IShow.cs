@@ -6,8 +6,10 @@ using UnityEngine.Video;
 public interface IShow
 
 {
-
+    int TempWinCoin { get; set; }
     bool StRecover { get; set; }
+    Image[] WinCoins { get; set; }
+    Sprite[] Numbers { get; set; }
     List<List<bool>> BonusDrawLineOk { get; set; }
     List<bool> DrawLineOK { get; set; }
     Transform[] StartPoint { get; }
@@ -38,9 +40,10 @@ public interface IShow
     void InstObjectInitialization(GameObject Reuse, Transform OrangePoint, List<Transform> PointPosition, Transform EndPoint);
     void RecoverComply(Transform OutPool, List<GameObject> StayDrawLine, List<bool> _SHowOk);
     List<Transform> GetRoolWinImg(Reel_Move[]_ReelMove, int[] SlotSequence);
-    void StartDrawLine(List<GameObject> StayDrawLine, List<bool> _ShowOk);
+    IEnumerator StartDrawLine(List<GameObject> StayDrawLine, List<bool> _ShowOk);
     void ListShiny(List<Transform> _GetRoolWinImg, List<Transform> ReadyShow);
-    void ShinyShow(List<Transform> ReadyShow);
+    IEnumerator ShinyShow(List<Transform> ReadyShow);
+    IEnumerator CoinShow(int Coin,int FreeGameCount);
 
    
 }

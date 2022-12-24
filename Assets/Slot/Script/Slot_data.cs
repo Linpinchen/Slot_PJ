@@ -113,8 +113,7 @@ public class Slot_data :IDate ,IDateEvent{
         this.IUICM = _IUICM;
         this._Reelmove = _ReelMoves;
         _Date = new List<intCount>();
-
-
+       
 
     }
 

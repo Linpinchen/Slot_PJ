@@ -6,49 +6,84 @@ using UnityEngine.Video;
 [System.Serializable]
 public class ShowScript : MonoBehaviour,IShow
 {
+
+    IDate _IDate;
+    IUIControlMethod _IUIMethod;
+
+    [SerializeField]
+    Sprite[] _Numbers;
+
+    [SerializeField]
+    Image[] _WinCoins;
+
+    [SerializeField]
+    int _TempWinCoin;
+
     [SerializeField]
     bool _StRecover;
+
     [SerializeField]
     Transform[] _StartPoint;
+
     [SerializeField]
-    Queue<GameObject> _DrawLinePool;
+    Queue<GameObject> _DrawLinePool;//預置物放置取出的位置
+
     [SerializeField]
     List<List<GameObject>> _BonusPrepareDrawline;
+
     [SerializeField]
     List<GameObject> _PrepareDrawLine;
+
     [SerializeField]
-    List<List<bool>> _BonusDrawLineOk;
+    List<List<bool>> _BonusDrawLineOk;//確認 Bonus每個Linerender都到最後
+
     [SerializeField]
-    List<bool> _DrawLineOk;
+    List<bool> _DrawLineOk;//確認每個Linerender都到最後
+
     [SerializeField]
-    GameObject _GBDrawLine;
+    GameObject _GBDrawLine;//預置物
+
     [SerializeField]
-    Transform _InLineRenderPool;
+    Transform _InLineRenderPool;//預置物放置在Hierarchy 顯示的位置
+
     [SerializeField]
-    Transform _LineRenderOutPool;
+    Transform _LineRenderOutPool;// 普盤用的預置物放置在Hierarchy 待表演 顯示的位置
+
     [SerializeField]
-    Transform _BonusLineRenderOutPool;
+    Transform _BonusLineRenderOutPool;// Bonus盤用的預置物放置在Hierarchy 待表演 顯示的位置
+
     [SerializeField]
     GameObject _BonusLineRenderChildPool;
+
     [SerializeField]
-    List<Transform> _UiShow;
+    List<Transform> _UiShow;//普盤 裝等待Shiny表演的
+
     [SerializeField]
-    List<List<Transform>> _BonusUiShow;
+    List<List<Transform>> _BonusUiShow;//Bonus盤 裝等待Shiny表演的
+
     [SerializeField]
-    Animator _Amr_WinShow;
+    Animator _Amr_WinShow;//跳錢得背景動畫
+
     [SerializeField]
-    Animator _BonusAnimator;
+    Animator _BonusAnimator;//Bonus開頭的動畫表演
+
     [SerializeField]
-    Animator _BonusEndShow;
+    Animator _BonusEndShow;//Bonus最後的總跳錢背景動畫
+
     [SerializeField]
     VideoPlayer _EndShowPlayer;
+
     [SerializeField]
     VideoClip _EndShowVideoClip;
+
     [SerializeField]
     RawImage _VideoImage;
-   
 
- 
+    public Sprite[] Numbers { get { return _Numbers; }set { _Numbers = value; } }
+
+    public Image[] WinCoins { get { return _WinCoins; } set { _WinCoins = value; } }
+
+    public int TempWinCoin { get { return _TempWinCoin; }set { _TempWinCoin = value; } }
 
     public bool StRecover { get { return _StRecover; } set { StRecover = value; }  }
 
@@ -100,7 +135,6 @@ public class ShowScript : MonoBehaviour,IShow
     public List<Transform> GetRoolWinImg(Reel_Move[] _ReelMove, int[] SlotSequence)
     {
 
-
         List<Transform> VVVs;
         VVVs = new List<Transform>();
         for (int i = 0; i < _ReelMove.Length; i++)
@@ -111,8 +145,6 @@ public class ShowScript : MonoBehaviour,IShow
         }
         return VVVs;
 
-
-
     }
 
     /// <summary>
@@ -122,14 +154,16 @@ public class ShowScript : MonoBehaviour,IShow
     public void ListShiny(List<Transform> _GetRoolWinImg, List<Transform> ReadyShow)
     {
 
+        Debug.Log("ListShiny");
+
         for (int i = 0; i < _GetRoolWinImg.Count; i++)
         {
             if (!ReadyShow.Contains(_GetRoolWinImg[i]))
             {
+                Debug.Log("ListShiny . ADD");
                 ReadyShow.Add(_GetRoolWinImg[i]);
 
             }
-
 
         }
 
@@ -138,14 +172,14 @@ public class ShowScript : MonoBehaviour,IShow
     /// <summary>
     /// 打開Uishow陣列內物件的Animator的Trigger
     /// </summary>
-    public void ShinyShow(List<Transform> ReadyShow)
+    public IEnumerator ShinyShow(List<Transform> ReadyShow)
     {
         for (int i = 0; i < ReadyShow.Count; i++)
         {
             Animator Amo;
             Amo = ReadyShow[i].GetComponent<Animator>();
             Amo.SetTrigger("StShiny");
-
+            yield return null;
 
         }
     }
@@ -191,7 +225,6 @@ public class ShowScript : MonoBehaviour,IShow
         GameObject Reuse;
         if (DrawLinePool.Count > 0)//如果有DrawLinePool裡有預制物就取出來用
         {
-
 
             Reuse = DrawLinePool.Dequeue();//取出DrawLinePool的預制物
             Reuse.transform.position = initalPosition.position;//設置預制物的位置
@@ -280,21 +313,14 @@ public class ShowScript : MonoBehaviour,IShow
             if (_SHowOk.Count != 0 && StayDrawLine.Count != 0)//持續更新裡面的bool
             {
 
-
                 for (int i = 0; i < StayDrawLine.Count; i++)
                 {
                     //Debug.Log("_SHowOk[i] 持續更新");
                     _SHowOk[i] = StayDrawLine[i].GetComponent<DrawLine>().StDrawLine;
 
-
                 }
 
-
-
-
             }
-
-
 
             //Debug.Log("--------------DrawStop :--------"+ DrawStop);
 
@@ -304,7 +330,6 @@ public class ShowScript : MonoBehaviour,IShow
                 {
 
                     Recover(OutPool.transform.GetChild(i).gameObject, DrawAllBool); //這裡因為Bonus每個盤面生成的物件都放這 所以出了問題
-
 
                 }
 
@@ -324,7 +349,7 @@ public class ShowScript : MonoBehaviour,IShow
     }
 
 
-    public void StartDrawLine(List<GameObject> StayDrawLine, List<bool> _ShowOk)
+    public IEnumerator StartDrawLine(List<GameObject> StayDrawLine, List<bool> _ShowOk)
     {
         for (int i = 0; i < StayDrawLine.Count; i++)
         {
@@ -333,5 +358,93 @@ public class ShowScript : MonoBehaviour,IShow
             _ShowOk.Add(StayDrawLine[i].GetComponent<DrawLine>().StDrawLine);
 
         }
+        yield return null;
     }
+
+
+    public IEnumerator CoinShow(int Coin,int FreeGameCount)
+    {
+
+        while (TempWinCoin < Coin)
+        {
+
+            if (TempWinCoin <= Coin)
+            {
+
+                string SWinCoin = TempWinCoin.ToString();
+                //Debug.Log("SWinCoin(暫存金額) ：" + SWinCoin);
+                int ImgCount = SWinCoin.Length;//取得幾位數
+                                               //Debug.Log("本局Win金額 ＝ " + ImgCount + "位數");
+                for (int i = 0; i < ImgCount; i++)
+                {
+                    int TempValu;//用字串處理 取的 Win_Money_Temp各個位數的值
+                    TempValu = int.Parse(SWinCoin.Substring(i, 1));
+                    WinCoins[i].gameObject.SetActive(true);
+                    WinCoins[i].sprite = Numbers[TempValu];
+
+
+
+                }
+                yield return null;
+
+            }
+            else if (TempWinCoin >= Coin)
+            {
+                yield return new WaitForSeconds(1f);
+                int Win_All_Coin_Temp;
+
+                yield return new WaitForSeconds(0.2f);
+                for (int i = 0; i < WinCoins.Length; i++)
+                {
+                    WinCoins[i].gameObject.SetActive(false);
+
+
+                }
+
+                TempWinCoin = 0;
+                Win_All_Coin_Temp = _IDate.PlayerCoin + Coin;
+                _IDate.PlayerCoin = Win_All_Coin_Temp;
+                _IUIMethod.PlayerCoin_Text.text = "Money:" + Win_All_Coin_Temp.ToString();
+                if (_IDate.BonusCount==3)
+                {
+
+                    _IDate.BonusWinCoin[FreeGameCount] = 0;
+
+                }
+                else
+                {
+
+                    _IDate.Win_Coin = 0;
+
+                }
+
+                yield return new WaitForSeconds(0.5f);
+
+
+            }
+
+            if (Coin - TempWinCoin < 50)
+            {
+                TempWinCoin += 1;
+                yield return new WaitForSeconds(0.01f);
+
+            }
+            else
+            {
+
+                TempWinCoin += 21;
+                yield return new WaitForSeconds(0.01f);
+            }
+
+        }
+
+
+        
+
+    }
+
+
+
 }
+
+

@@ -1258,7 +1258,6 @@ MonoBehaviour:
   Roolcount: 0
   Sprites: []
   ChangeSprite: 
-  ReelNumber: 0
 --- !u!1 &140686179
 GameObject:
   m_ObjectHideFlags: 0
@@ -3942,7 +3941,6 @@ MonoBehaviour:
   Roolcount: 0
   Sprites: []
   ChangeSprite: 
-  ReelNumber: 0
 --- !u!1 &482751834
 GameObject:
   m_ObjectHideFlags: 0
@@ -6124,6 +6122,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49a1db295758448d9aa805e10a2a0410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _Numbers: []
+  _WinCoins: []
+  _TempWinCoin: 0
   _StRecover: 0
   _StartPoint:
   - {fileID: 1346375770}
@@ -6134,7 +6135,8 @@ MonoBehaviour:
   - {fileID: 1140008401}
   _PrepareDrawLine: []
   _DrawLineOk: 
-  _GBDrawLine: {fileID: 0}
+  _GBDrawLine: {fileID: 1866994171093288, guid: 4e5857d84f1f14a9a83e362ed41b03e4,
+    type: 2}
   _InLineRenderPool: {fileID: 216749773}
   _LineRenderOutPool: {fileID: 1316623208}
   _BonusLineRenderOutPool: {fileID: 94375134}
@@ -6355,7 +6357,6 @@ MonoBehaviour:
   Roolcount: 0
   Sprites: []
   ChangeSprite: 
-  ReelNumber: 0
 --- !u!1 &849999067
 GameObject:
   m_ObjectHideFlags: 0
@@ -10125,6 +10126,7 @@ GameObject:
   - component: {fileID: 1415726911}
   - component: {fileID: 1415726912}
   - component: {fileID: 1415726910}
+  - component: {fileID: 1415726913}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -10255,6 +10257,7 @@ MonoBehaviour:
   Bet_Button_Bool: 0
   Auto_Button_bool: 0
   Loopcount: 60
+  WinShowOk: 0
   Slot_mantissa: 0
   St_Roll: 0
   _ButtonPlus_EventTrigger: {fileID: 1634184991}
@@ -10290,6 +10293,7 @@ MonoBehaviour:
   CoinShowOK: 1
   BonusShow: 0
   FreeGameCount: 0
+  NowFreeCount: 0
   BonusRolling: 1
   Slot_BonusGoRoll: 0
   StAddBonusDate: 0
@@ -10312,6 +10316,19 @@ MonoBehaviour:
     Grid: []
   BonusGrid:
     Grid: []
+--- !u!114 &1415726913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1415726909}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1baff0c0fa964b2da76119593b708f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Poops: 000000000100000000000000
+  ii: 0
 --- !u!1 &1444190455
 GameObject:
   m_ObjectHideFlags: 0
@@ -10966,7 +10983,6 @@ MonoBehaviour:
   Roolcount: 0
   Sprites: []
   ChangeSprite: 
-  ReelNumber: 0
 --- !u!1 &1532987427
 GameObject:
   m_ObjectHideFlags: 0
@@ -13134,7 +13150,6 @@ MonoBehaviour:
   Roolcount: 0
   Sprites: []
   ChangeSprite: 
-  ReelNumber: 0
 --- !u!1 &1876450630
 GameObject:
   m_ObjectHideFlags: 0

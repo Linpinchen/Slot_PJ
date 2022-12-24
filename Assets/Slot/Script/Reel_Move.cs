@@ -15,7 +15,7 @@ public class Reel_Move : MonoBehaviour {
     public int Roolcount;
     public Sprite[] Sprites;
     public List<int> ChangeSprite;
-    public int ReelNumber;//當前的輪條號碼
+    //public int ReelNumber;//當前的輪條號碼
     //待修改  Reel_images 應該要是 Image的 List
     //然後在 start 這裡 GetComponent 先抓好資料  不要在Update處理  
 
@@ -80,24 +80,24 @@ public class Reel_Move : MonoBehaviour {
                         if (tempi >= Date_Chang_Count)
                         {
 
-                            Reel_images[i].sprite = Sprites[ChangeSprite[i]];
+                            Reel_images[i].sprite = Sprites[ChangeSprite[Date_Temp]];
                             tempi++;
                             Date_Temp++;
-                            // Debug.Log("tempi:" + tempi + "Roolcount" + Roolcount);
+                             Debug.Log("tempi:" + tempi + "Roolcount" + Roolcount + "Sprites :" + ChangeSprite[i]);
 
                             if (tempi==Roolcount)//這裡做重置的動作
                             {
 
                                 strool = false;
-                                tempi = 0;
-
+                                //tempi = 0;
+                                Date_Temp = 0;
                             }
 
 
                         }
                         else
                         {
-                            Reel_images[i].GetComponent<Image>().sprite = Sprites[ri];
+                            Reel_images[i].sprite = Sprites[ri];
                             tempi++;
                             // Debug.Log("tempi:" + tempi + "Roolcount" + Roolcount);
 
@@ -122,7 +122,7 @@ public class Reel_Move : MonoBehaviour {
 
 
 
-    public void Init(int Roolcount, Sprite[] sprites, float Speed, int ReelNumber)
+    public void Init(int Roolcount, Sprite[] sprites, float Speed)
     {
 
         this.Roolcount = Roolcount;
@@ -130,8 +130,6 @@ public class Reel_Move : MonoBehaviour {
         this.Sprites = sprites;
 
         this.Speed = Speed;
-
-        this.ReelNumber = ReelNumber;
 
         ChangeSprite = new List<int>();
 
@@ -142,20 +140,7 @@ public class Reel_Move : MonoBehaviour {
         }
 
     }
-
-    public void GetGrid(SlotGrid slotGrid,int Gride_i)
-    {
-        for (int i=0;i<slotGrid.imagecount[ReelNumber];i++)
-        {
-            int Child_i;
-            Child_i = (int)slotGrid._grids[Gride_i]._Grids[ReelNumber]._GridInt[i];
-
-            ChangeSprite.Add(Child_i);
-
-        }
-         
-    }
-
+  
 
 
 
