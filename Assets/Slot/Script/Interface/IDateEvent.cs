@@ -4,12 +4,12 @@ using UnityEngine;
 
 public interface IDateEvent {
 
-    void Initialization_Slot_Sprite(Reel_Move[] reel_Moves);
+    void Initialization_Slot_Sprite();
     void Generate_Date_Sprite(SlotGrid slotGrid);
     void GenerateBonusDate(SlotGrid slotGrid);
     void Add_BonusDate(bool BtnTrue, SlotGrid _SlotGrid);
     void DateTypeChange(SlotGrid _SlotGrid);
-    void Win_Sprite(Pool_Images _poolimage, int Line_Count, ref int WinMoneys);
-    void Win_Line(GridIntS _Gridints, List<Transform> ReadyShow, ref int Win_Money, Transform _StayOutPool, List<GameObject> _StayDrawLine);
+    int Win_Sprite(Pool_Images _poolimage, int Line_Count,int WinMoneys);
     void DateSave(SlotGrid CommonGrid, SlotGrid BonusGrid);
+    int WInChack(int[] PrizeDate, GridIntS _Gridints,int Win_Money);
 }

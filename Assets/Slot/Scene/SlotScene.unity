@@ -6122,8 +6122,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49a1db295758448d9aa805e10a2a0410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _Numbers: []
-  _WinCoins: []
+  _Numbers:
+  - {fileID: 21300000, guid: e5682854fbf694e9e9f8e0015d24d781, type: 3}
+  - {fileID: 21300000, guid: 64d4cde571de846b3929fb66403f8c04, type: 3}
+  - {fileID: 21300000, guid: f6b414135fde44e1594545747bea66e3, type: 3}
+  - {fileID: 21300000, guid: e64c05509f2a74650b048b1ca577b50a, type: 3}
+  - {fileID: 21300000, guid: 1e19581e8587e4660b599fe2ad2b1ecd, type: 3}
+  - {fileID: 21300000, guid: 19f51dd27e32845d08e0d17c46bced7f, type: 3}
+  - {fileID: 21300000, guid: 67a7f11b4b98c4243a9e9fd6a7acd341, type: 3}
+  - {fileID: 21300000, guid: eb3cbd75d76b54a79b397a08c7fc27fa, type: 3}
+  - {fileID: 21300000, guid: 8fa474852d7804d8883380c76fb5fbf2, type: 3}
+  - {fileID: 21300000, guid: 815a6289727d1413991340dc3f16f1eb, type: 3}
+  _WinCoins:
+  - {fileID: 2081687510}
+  - {fileID: 1716216902}
+  - {fileID: 735196635}
+  - {fileID: 140686181}
+  - {fileID: 265462501}
+  - {fileID: 1956063353}
   _TempWinCoin: 0
   _StRecover: 0
   _StartPoint:
@@ -6142,9 +6158,9 @@ MonoBehaviour:
   _BonusLineRenderOutPool: {fileID: 94375134}
   _BonusLineRenderChildPool: {fileID: 426151076}
   _UiShow: []
-  _Amr_WinShow: {fileID: 0}
-  _BonusAnimator: {fileID: 0}
-  _BonusEndShow: {fileID: 0}
+  _Amr_WinShow: {fileID: 1618343270}
+  _BonusAnimator: {fileID: 1028357192}
+  _BonusEndShow: {fileID: 344375965}
   _EndShowPlayer: {fileID: 0}
   _EndShowVideoClip: {fileID: 0}
   _VideoImage: {fileID: 0}
@@ -10173,6 +10189,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _SlotDate:
+    _Temp: 
+    _PrizeDate: 35820000bb8100006d8100007b7d0000df7d0000437e0000245b0000ac5a00005c5a000032570000ce5600006a560000f05200007852000021300000bd2f0000592f00002f2c0000e12b0000672b0000
     Coin: 0
     bet_Coin: 0
     WinCoin: 0
@@ -10257,12 +10275,12 @@ MonoBehaviour:
   Bet_Button_Bool: 0
   Auto_Button_bool: 0
   Loopcount: 60
+  B_Slot_timeOut: 0
   WinShowOk: 0
   Slot_mantissa: 0
   St_Roll: 0
   _ButtonPlus_EventTrigger: {fileID: 1634184991}
   _ButtonReduce_EventTrigger: {fileID: 1645551047}
-  _Bonus_PrepareDrawLinePool: []
   StRecover: 1
   StCoShow: 1
   _BonusShinyDate: []
@@ -12182,8 +12200,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 84.45, y: -62.5}
-  m_SizeDelta: {x: 56.3, y: 125}
+  m_AnchoredPosition: {x: 278.25, y: -62.5}
+  m_SizeDelta: {x: 185.5, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1716216902
 MonoBehaviour:
@@ -14511,8 +14529,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 28.149994, y: -62.5}
-  m_SizeDelta: {x: 56.3, y: 125}
+  m_AnchoredPosition: {x: 185.5, y: -62.5}
+  m_SizeDelta: {x: 371, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2081687510
 MonoBehaviour:

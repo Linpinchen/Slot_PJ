@@ -23,7 +23,7 @@ public class ShowScript : MonoBehaviour,IShow
     bool _StRecover;
 
     [SerializeField]
-    Transform[] _StartPoint;
+    RectTransform[] _StartPoint;
 
     [SerializeField]
     Queue<GameObject> _DrawLinePool;//預置物放置取出的位置
@@ -87,7 +87,7 @@ public class ShowScript : MonoBehaviour,IShow
 
     public bool StRecover { get { return _StRecover; } set { StRecover = value; }  }
 
-    public Transform[] StartPoint { get{ return _StartPoint; } }
+    public RectTransform[] StartPoint { get{ return _StartPoint; } }
 
     public Queue<GameObject> DrawLinePool { get {return _DrawLinePool; } set { _DrawLinePool = value; } }
 
@@ -132,17 +132,25 @@ public class ShowScript : MonoBehaviour,IShow
     /// <param name="Date"></param>
     /// <param name="SlotSequence"></param>
     /// <returns></returns>
-    public List<Transform> GetRoolWinImg(Reel_Move[] _ReelMove, int[] SlotSequence)
+    public List<RectTransform> GetRoolWinImg(Reel_Move[] _ReelMove, int SlotSequence)
     {
+        string SNumber;
+        List<RectTransform> VVVs;
+        VVVs = new List<RectTransform>();
 
-        List<Transform> VVVs;
-        VVVs = new List<Transform>();
+        SNumber = SlotSequence.ToString();
+
         for (int i = 0; i < _ReelMove.Length; i++)
         {
+            char Number = SNumber[i];
 
-            VVVs.Add(_ReelMove[i].Reel_images[i].rectTransform);
-            Debug.Log(VVVs[i]);
+            int Inumber = int.Parse(Number.ToString());
+
+            VVVs.Add(_ReelMove[i].Reel_images[Inumber].rectTransform);
+
+            //Debug.Log(VVVs[i]);
         }
+
         return VVVs;
 
     }
@@ -151,17 +159,22 @@ public class ShowScript : MonoBehaviour,IShow
     /// 將要表演的圖片放入List
     /// </summary>
     /// <param name="_GetRoolWinImg"></param>
-    public void ListShiny(List<Transform> _GetRoolWinImg, List<Transform> ReadyShow)
+    public void ListShiny(Reel_Move[] _ReelMove,int Number, List<Transform> ReadyShow)
     {
 
         Debug.Log("ListShiny");
 
-        for (int i = 0; i < _GetRoolWinImg.Count; i++)
+        List<RectTransform> GetTrans = GetRoolWinImg(_ReelMove, Number);//取得RectTransform
+
+        for (int i = 0; i < GetTrans.Count; i++)
         {
-            if (!ReadyShow.Contains(_GetRoolWinImg[i]))
+
+            if (!ReadyShow.Contains(GetTrans[i]))//檢測ReadyShow 有沒有相同內容
             {
+
                 Debug.Log("ListShiny . ADD");
-                ReadyShow.Add(_GetRoolWinImg[i]);
+
+                ReadyShow.Add(GetTrans[i]);
 
             }
 
@@ -176,12 +189,16 @@ public class ShowScript : MonoBehaviour,IShow
     {
         for (int i = 0; i < ReadyShow.Count; i++)
         {
+
             Animator Amo;
+
             Amo = ReadyShow[i].GetComponent<Animator>();
+
             Amo.SetTrigger("StShiny");
-            yield return null;
 
         }
+
+        yield return null;
     }
 
 
@@ -192,7 +209,7 @@ public class ShowScript : MonoBehaviour,IShow
     /// <param name="OrangePoint"></param>
     /// <param name="PointPosition"></param>
     /// <param name="EndPoint"></param>
-    public void InstObjectInitialization(GameObject Reuse, Transform OrangePoint, List<Transform> PointPosition, Transform EndPoint)
+    public void InstObjectInitialization(GameObject Reuse, RectTransform OrangePoint, List<RectTransform> PointPosition, RectTransform EndPoint)
     {
         Reuse.GetComponent<DrawLine>().Taget_Point = new List<Transform>();
 
@@ -201,16 +218,23 @@ public class ShowScript : MonoBehaviour,IShow
 
             Reuse.GetComponent<DrawLine>().Taget_Point.Add(PointPosition[i].transform);
 
-
         }
         Reuse.GetComponent<DrawLine>().Temp_point = new List<Transform>();
+
         Reuse.GetComponent<DrawLine>().Temp_point.Add(OrangePoint);
+
         Reuse.GetComponent<DrawLine>().Temp_point.Add(Reuse.GetComponent<DrawLine>().gameObject.transform);
+
         Reuse.GetComponent<DrawLine>().Temp_VV = Reuse.GetComponent<DrawLine>().Taget_Point[0].transform;//PointPosition[0];
+
         Reuse.GetComponent<DrawLine>().Orange_point = OrangePoint.gameObject;
+
         Reuse.GetComponent<DrawLine>().Taget_Point.Add(EndPoint);
+
         //Debug.Log("Manager__ Temp_point.Count : " + Reuse.GetComponent<DrawLine>().Temp_point.Count);
+
         //Debug.Log("Manager__Taget_Point.Count : " + Reuse.GetComponent<DrawLine>().Taget_Point.Count);
+
     }
 
 
@@ -220,17 +244,73 @@ public class ShowScript : MonoBehaviour,IShow
     /// <param name="initalPosition"></param>
     /// <param name="PointPosition"></param>
     /// <param name="EndPoint"></param>
-    public void ObjectPool(Transform initalPosition, List<Transform> PointPosition, Transform EndPoint, Transform StayOutpool, List<GameObject> StayDrawLine)
+    public void ObjectPool(Reel_Move[] _ReelMove, int Number, Transform StayOutpool, List<GameObject> StayDrawLine)//起點,中間位置群,終點,畫面上要放進等待表演的父物件,等待要表演的陣列
     {
+
+        string Snumber = Number.ToString();
+        char FirstNumber = Snumber[0];
+        char EndNumber = Snumber[Snumber.Length - 1];
+        RectTransform First=null;
+        RectTransform End =null;
         GameObject Reuse;
+
+        switch (FirstNumber)
+        {
+            case '1':
+                {
+                    First = _StartPoint[0];
+                    break;
+
+                }
+            case '2':
+                {
+                    First = _StartPoint[1];
+                    break;
+
+                }
+            case '3':
+                {
+                    First = _StartPoint[2];
+                    break;
+
+                }
+
+        }
+
+        switch (EndNumber)
+        {
+            case '1':
+                {
+                    End = _StartPoint[3];
+                    break;
+
+                }
+            case '2':
+                {
+                    End = _StartPoint[4];
+                    break;
+
+                }
+            case '3':
+                {
+                    End = _StartPoint[5];
+                    break;
+
+                }
+
+        }
+
         if (DrawLinePool.Count > 0)//如果有DrawLinePool裡有預制物就取出來用
         {
 
             Reuse = DrawLinePool.Dequeue();//取出DrawLinePool的預制物
-            Reuse.transform.position = initalPosition.position;//設置預制物的位置
 
-            InstObjectInitialization(Reuse, initalPosition, PointPosition, EndPoint);
+            Reuse.transform.position = First.position;//設置預制物的位置
+
+            InstObjectInitialization(Reuse, First, GetRoolWinImg(_ReelMove, Number), End);
+
             Reuse.transform.parent = StayOutpool;
+
             StayDrawLine.Add(Reuse);//放進去等待啟動
 
         }
@@ -238,10 +318,13 @@ public class ShowScript : MonoBehaviour,IShow
         {
 
             Reuse = Instantiate(GBDrawLine, StayOutpool);
-            Reuse.transform.position = initalPosition.position;
 
-            InstObjectInitialization(Reuse, initalPosition, PointPosition, EndPoint);
+            Reuse.transform.position = First.position;
+
+            InstObjectInitialization(Reuse, First, GetRoolWinImg(_ReelMove, Number), End);
+
             Reuse.SetActive(false);
+
             StayDrawLine.Add(Reuse);//放進去等待啟動
 
 
@@ -263,10 +346,15 @@ public class ShowScript : MonoBehaviour,IShow
             GameObject InstGb;
 
             InstGb = Instantiate(GBDrawLine, InLineRenderPool);//預制物生成
+
             DrawLinePool.Enqueue(InstGb);//將生成的預制物方進DrawLinePool這個Queue裡
+
             InstGb.SetActive(false);
+
             Debug.Log("DrawLinePool.Count:" + DrawLinePool.Count);
+
         }
+
     }
 
     /// <summary>
@@ -277,15 +365,19 @@ public class ShowScript : MonoBehaviour,IShow
     public void Recover(GameObject recover, bool Stb)
     {
         Transform OringerTs = gameObject.transform;//OringerTs就是自身座標
+
         if (!Stb)
         {
             Debug.Log("---------------------------Start_Recover :------------------------");
 
             recover.GetComponent<DrawLine>().LI.positionCount = 0;
+
             recover.GetComponent<DrawLine>().LI.positionCount = 2;
 
             DrawLinePool.Enqueue(recover);
+
             recover.transform.parent = InLineRenderPool;
+
             recover.SetActive(false);
 
         }
@@ -302,12 +394,14 @@ public class ShowScript : MonoBehaviour,IShow
     {
 
         bool DrawAllBool;
-        DrawAllBool = _SHowOk.Contains(true);//確認Lineder都跑完了沒
 
+        DrawAllBool = _SHowOk.Contains(true);//確認Lineder都跑完了沒
 
         if (StayDrawLine.Count != 0)//LineRenderOutPool.childCount != 0
         {
+
             //Debug.Log("----------------LineRenderOutPool.childCount : ----------------------"+ LineRenderOutPool.childCount);
+
             //Debug.Log("StayDrawLine.Count :" + StayDrawLine.Count);
 
             if (_SHowOk.Count != 0 && StayDrawLine.Count != 0)//持續更新裡面的bool
@@ -316,6 +410,7 @@ public class ShowScript : MonoBehaviour,IShow
                 for (int i = 0; i < StayDrawLine.Count; i++)
                 {
                     //Debug.Log("_SHowOk[i] 持續更新");
+
                     _SHowOk[i] = StayDrawLine[i].GetComponent<DrawLine>().StDrawLine;
 
                 }
@@ -337,31 +432,49 @@ public class ShowScript : MonoBehaviour,IShow
                 {
 
                     StayDrawLine.Clear();
+
                     _SHowOk.Clear();
+
                     //Debug.Log("------------PrepareDrawLine.Count :------------" + PrepareDrawLine.Count);
+
                     StRecover = true;
+
                 }
 
             }
 
-
         }
+
     }
 
-
+    /// <summary>
+    /// 啟動畫線
+    /// </summary>
+    /// <param name="StayDrawLine"></param>
+    /// <param name="_ShowOk"></param>
+    /// <returns></returns>
     public IEnumerator StartDrawLine(List<GameObject> StayDrawLine, List<bool> _ShowOk)
     {
         for (int i = 0; i < StayDrawLine.Count; i++)
         {
+
             StayDrawLine[i].SetActive(true);
+
             StayDrawLine[i].GetComponent<DrawLine>().StDrawLine = true;
-            _ShowOk.Add(StayDrawLine[i].GetComponent<DrawLine>().StDrawLine);
+
+            _ShowOk.Add(StayDrawLine[i].GetComponent<DrawLine>().StDrawLine);//把DrawLine的Bool放進陣列統一判斷是否結束
 
         }
+
         yield return null;
     }
 
-
+    /// <summary>
+    /// 金錢表演
+    /// </summary>
+    /// <param name="Coin"></param>
+    /// <param name="FreeGameCount"></param>
+    /// <returns></returns>
     public IEnumerator CoinShow(int Coin,int FreeGameCount)
     {
 
@@ -372,39 +485,52 @@ public class ShowScript : MonoBehaviour,IShow
             {
 
                 string SWinCoin = TempWinCoin.ToString();
+
                 //Debug.Log("SWinCoin(暫存金額) ：" + SWinCoin);
+
                 int ImgCount = SWinCoin.Length;//取得幾位數
-                                               //Debug.Log("本局Win金額 ＝ " + ImgCount + "位數");
+
+                //Debug.Log("本局Win金額 ＝ " + ImgCount + "位數");
+
                 for (int i = 0; i < ImgCount; i++)
                 {
+
                     int TempValu;//用字串處理 取的 Win_Money_Temp各個位數的值
+
                     TempValu = int.Parse(SWinCoin.Substring(i, 1));
+
                     WinCoins[i].gameObject.SetActive(true);
+
                     WinCoins[i].sprite = Numbers[TempValu];
 
-
-
                 }
+
                 yield return null;
 
             }
             else if (TempWinCoin >= Coin)
             {
                 yield return new WaitForSeconds(1f);
+
                 int Win_All_Coin_Temp;
 
                 yield return new WaitForSeconds(0.2f);
+
                 for (int i = 0; i < WinCoins.Length; i++)
                 {
-                    WinCoins[i].gameObject.SetActive(false);
 
+                    WinCoins[i].gameObject.SetActive(false);
 
                 }
 
                 TempWinCoin = 0;
+
                 Win_All_Coin_Temp = _IDate.PlayerCoin + Coin;
+
                 _IDate.PlayerCoin = Win_All_Coin_Temp;
+
                 _IUIMethod.PlayerCoin_Text.text = "Money:" + Win_All_Coin_Temp.ToString();
+
                 if (_IDate.BonusCount==3)
                 {
 
@@ -426,6 +552,7 @@ public class ShowScript : MonoBehaviour,IShow
             if (Coin - TempWinCoin < 50)
             {
                 TempWinCoin += 1;
+
                 yield return new WaitForSeconds(0.01f);
 
             }
@@ -433,15 +560,63 @@ public class ShowScript : MonoBehaviour,IShow
             {
 
                 TempWinCoin += 21;
+
                 yield return new WaitForSeconds(0.01f);
             }
 
         }
 
-
-        
-
     }
+
+
+
+
+    //public Transform GetPoint(char FirstNumber, char EndNumber)
+    //{
+    //    Transform Sprites;
+
+    //    switch(FirstNumber)
+    //    {
+    //        case '1':
+    //            {
+    //                Sprites = _StartPoint[0];
+    //                break;
+    //            }
+    //        case '2':
+    //            {
+    //                Sprites = _StartPoint[1];
+    //                break;
+    //            }
+    //        case '3':
+    //            {
+    //                Sprites = _StartPoint[2];
+    //                break;
+    //            }
+    //    }
+
+    //    switch (EndNumber)
+    //    {
+    //        case '1':
+    //            {
+    //                Sprites = _StartPoint[3];
+    //                break;
+    //            }
+    //        case '2':
+    //            {
+    //                Sprites = _StartPoint[4];
+    //                break;
+    //            }
+    //        case '3':
+    //            {
+    //                Sprites = _StartPoint[5];
+    //                break;
+    //            }
+    //    }
+
+
+    //    return Sprites;
+
+    //}
 
 
 

@@ -12,7 +12,7 @@ public interface IShow
     Sprite[] Numbers { get; set; }
     List<List<bool>> BonusDrawLineOk { get; set; }
     List<bool> DrawLineOK { get; set; }
-    Transform[] StartPoint { get; }
+    RectTransform[] StartPoint { get; }
     Queue<GameObject> DrawLinePool { get; set; }
     List<List<GameObject>> BonusPrepareDrawline { get; set; }
     List<GameObject> PrepareDrawLine { get; set; }
@@ -35,13 +35,13 @@ public interface IShow
 
 
     void ObjectPoolInitialization();
-    void ObjectPool(Transform initalPosition, List<Transform> PointPosition, Transform EndPoint, Transform StayOutpool, List<GameObject> StayDrawLine);
+    void ObjectPool(Reel_Move[] _ReelMove, int Number, Transform StayOutpool, List<GameObject> StayDrawLine);
     void Recover(GameObject recover, bool Stb);
-    void InstObjectInitialization(GameObject Reuse, Transform OrangePoint, List<Transform> PointPosition, Transform EndPoint);
+    void InstObjectInitialization(GameObject Reuse, RectTransform OrangePoint, List<RectTransform> PointPosition, RectTransform EndPoint);
     void RecoverComply(Transform OutPool, List<GameObject> StayDrawLine, List<bool> _SHowOk);
-    List<Transform> GetRoolWinImg(Reel_Move[]_ReelMove, int[] SlotSequence);
+    List<RectTransform> GetRoolWinImg(Reel_Move[] _ReelMove, int SlotSequence);
     IEnumerator StartDrawLine(List<GameObject> StayDrawLine, List<bool> _ShowOk);
-    void ListShiny(List<Transform> _GetRoolWinImg, List<Transform> ReadyShow);
+    void ListShiny(Reel_Move[] _ReelMove, int Number, List<Transform> ReadyShow);
     IEnumerator ShinyShow(List<Transform> ReadyShow);
     IEnumerator CoinShow(int Coin,int FreeGameCount);
 

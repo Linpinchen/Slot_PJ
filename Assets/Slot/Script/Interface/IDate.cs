@@ -4,6 +4,8 @@ using UnityEngine;
 
 public interface IDate
 {
+    List<int> Temp { get; set; }
+    int[] PrizeDate { get; }
     int PlayerCoin { get; set; }
     int Bet_Coin { get; set; }
     int Win_Coin { get; set; }

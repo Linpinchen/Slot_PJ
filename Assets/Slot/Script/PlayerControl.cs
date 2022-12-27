@@ -8,27 +8,45 @@ public class PlayerControl
     public delegate void StartGameMethod();
 
     public StartGameMethod startGameMethod;
+
     public StartGameMethod BonusDateCreat;
+
     public StartGameMethod Option_Yes;
+
     public StartGameMethod Option_No;
 
-
     public Button StartGame_Button;
+
 	public Button Bet_Button;
+
 	public Button Auto_Button;
+
     public Button Bet_Plus_Button;
+
     public Button Bet_Reduce_Button;
+
     public Button Bet_MaxCoin_Button;
+
     public Button Auto_Clear_Button;
+
     public Button Auto_pause_Button;
+
     public Button Auto_Plus_Button;
+
     public Button Auto_Reduce_Button;
+
     public Button BonusDateCreat_Button;
+
     public Button InFoButton_Button;
+
     public Button InfoOutButton_Button;
+
     public Button ButtonLeft_Button;
+
     public Button ButtonRight_Button;
+
     public Button Options_Yes_Button;
+
     public Button Options_No_Button;
 
 
@@ -38,10 +56,7 @@ public class PlayerControl
         StartGame_Button.onClick.AddListener(delegate
         {
 
-
             startGameMethod();
-
-
 
         });
 
@@ -94,7 +109,6 @@ public class PlayerControl
                 _UIMethod.BetPlus();
 
             }
-           
 
         });
 
@@ -103,9 +117,7 @@ public class PlayerControl
         {
             if (!_Manager.Start_Slot)
             {
-
                 _UIMethod.BetReduce();
-
             }
             
         });
@@ -131,6 +143,7 @@ public class PlayerControl
         //Auto - 停止循環 - 按鈕
         Auto_pause_Button.onClick.AddListener(delegate
         {
+
             _UIMethod.Auto_pause();
 
         });
@@ -174,7 +187,6 @@ public class PlayerControl
         {
 
             _UIMethod.InfoLeft();
-
 
         });
 

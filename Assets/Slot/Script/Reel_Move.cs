@@ -25,8 +25,10 @@ public class Reel_Move : MonoBehaviour {
         //ChangeSprite = new List<int>();
 
         Date_Temp = 0;
+
         originalv2 = gameObject.GetComponent<RectTransform>().anchoredPosition;//取得原始座標
-                                                                               //Debug.Log("originalv2" + originalv2);
+
+        //Debug.Log("originalv2" + originalv2);
 
         ReelV2 = gameObject.GetComponent<RectTransform>();//移動用的座標
 
@@ -36,9 +38,7 @@ public class Reel_Move : MonoBehaviour {
         {
             Reel_images.Add(gameObject.transform.GetChild(i).GetComponent<Image>());
 
-
         }
-
 
     }
 
@@ -52,17 +52,12 @@ public class Reel_Move : MonoBehaviour {
 
             ReelV2.anchoredPosition += new Vector2(0, -5) * Speed * Time.deltaTime;
 
-
-
-
             if (ReelV2.anchoredPosition.y <= -170)
-
             {
-
-
                 ReelV2.anchoredPosition = originalv2;//回歸初始座標
 
                 int ri;
+
                 ri = Random.Range(0, Sprites.Length);//換圖用隨機值
 
                 for (int i = 0; i < gameObject.transform.childCount; i++)
@@ -81,24 +76,29 @@ public class Reel_Move : MonoBehaviour {
                         {
 
                             Reel_images[i].sprite = Sprites[ChangeSprite[Date_Temp]];
+
                             tempi++;
+
                             Date_Temp++;
-                             Debug.Log("tempi:" + tempi + "Roolcount" + Roolcount + "Sprites :" + ChangeSprite[i]);
+
+                            //Debug.Log("tempi:" + tempi + "Roolcount" + Roolcount + "Sprites :" + ChangeSprite[i]);
 
                             if (tempi==Roolcount)//這裡做重置的動作
                             {
-
                                 strool = false;
+
                                 //tempi = 0;
+
                                 Date_Temp = 0;
                             }
-
 
                         }
                         else
                         {
                             Reel_images[i].sprite = Sprites[ri];
+
                             tempi++;
+
                             // Debug.Log("tempi:" + tempi + "Roolcount" + Roolcount);
 
                         }
@@ -110,17 +110,9 @@ public class Reel_Move : MonoBehaviour {
 
             }
 
-
-
         }
 
-
-
-
     }
-
-
-
 
     public void Init(int Roolcount, Sprite[] sprites, float Speed)
     {
@@ -140,11 +132,7 @@ public class Reel_Move : MonoBehaviour {
         }
 
     }
-  
-
-
-
-
+ 
     //public void Reel_Move_(float RoolSpeed, Sprite[] ChangeSprite, int Roolcount, List<Reel_Sprite_Date> Date_Sprite_Change, int Temp_i)//Temp_i 用來知道當前輪條是哪一條
     //{
 
