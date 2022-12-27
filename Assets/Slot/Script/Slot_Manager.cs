@@ -140,7 +140,7 @@ public class Slot_Manager : MonoBehaviour
 
         }
 
-        if ( B_Slot_timeOut == true  &&  _Reel_Moves[Slot_mantissa].tempi==Loopcount )
+        if (B_Slot_timeOut == true && _Reel_Moves[Slot_mantissa].tempi == Loopcount)
         {
             Debug.Log("執行 Co_Slot_timeOut ");
 
@@ -164,8 +164,7 @@ public class Slot_Manager : MonoBehaviour
 
 
 
-       // _ShowScript.RecoverComply(_ShowScript.LineRenderOutPool, _ShowScript.PrepareDrawLine, _ShowScript.DrawLineOK);
-
+        UpdateMethod(_ShowScript,_SlotDate,_UIControlMethod);
 
 
 
@@ -860,166 +859,166 @@ public class Slot_Manager : MonoBehaviour
                 Debug.Log("StART Win SHow");
             }
 
-
-            yield return new WaitUntil(()=> WinShowOk = true);
+            yield return null;
+            //yield return new WaitUntil(()=> WinShowOk = true);
 
             Debug.Log("WinShowOk :" + WinShowOk);
 
             //if (ShowOver && !BonusShow && !StEndShow)//表演結束
             //{
-            if (WinShowOk && !BonusShow && !StEndShow)//表演結束
-            {
+            //if (WinShowOk && !BonusShow && !StEndShow)//表演結束
+            //{
 
 
-                if (_Idate.CycleCount < _Idate.AutoCount && _Idate.PlayerCoin > _Idate.Bet_Coin)//循環次數未到 而且 玩家金額不小於下注金額
-                {
+            //    if (_Idate.CycleCount < _Idate.AutoCount && _Idate.PlayerCoin > _Idate.Bet_Coin)//循環次數未到 而且 玩家金額不小於下注金額
+            //    {
 
-                    ShowOver = false;
+            //        ShowOver = false;
 
-                    Debug.Log("-----------------------------開始轉動-------------------------");
+            //        Debug.Log("-----------------------------開始轉動-------------------------");
 
-                    //_Ishow.UiShow.Clear();//目前先關起來 測試表演
+            //        //_Ishow.UiShow.Clear();//目前先關起來 測試表演
 
-                    StRecover = true;
+            //        StRecover = true;
 
-                    for (int i = 0; i < _Reel_Moves.Length; i++)//輪條轉動次數初始化
-                    {
-                        _Reel_Moves[i].tempi = 0;
+            //        for (int i = 0; i < _Reel_Moves.Length; i++)//輪條轉動次數初始化
+            //        {
+            //            _Reel_Moves[i].tempi = 0;
 
-                        _Reel_Moves[i].Date_Temp = 0;
+            //            _Reel_Moves[i].Date_Temp = 0;
 
-                        Debug.Log(string.Format("輪調{0}內滾動次數{1}", i, _Reel_Moves[i].tempi));
+            //            Debug.Log(string.Format("輪調{0}內滾動次數{1}", i, _Reel_Moves[i].tempi));
 
-                    }
+            //        }
 
 
-                    if (_Reel_Moves[Slot_mantissa].tempi == 0) //這裡重新生成盤面資料 兌獎 設定預制物 
-                    {
-                        _Idate.BonusCount = 0;
+            //        if (_Reel_Moves[Slot_mantissa].tempi == 0) //這裡重新生成盤面資料 兌獎 設定預制物 
+            //        {
+            //            _Idate.BonusCount = 0;
 
-                        if (StAddBonusDate)//如果有按下 直接中大獎按鈕
-                        {
-                            _Ide.Add_BonusDate(StAddBonusDate, CommonGrid);//將普盤的盤面資料 灌成 有中Bonus的盤面
+            //            if (StAddBonusDate)//如果有按下 直接中大獎按鈕
+            //            {
+            //                _Ide.Add_BonusDate(StAddBonusDate, CommonGrid);//將普盤的盤面資料 灌成 有中Bonus的盤面
 
-                        }
-                        else
-                        {
+            //            }
+            //            else
+            //            {
 
-                            CommonGrid._GridMethod(CommonGrid);//普盤 生成盤面
-                        }
+            //                CommonGrid._GridMethod(CommonGrid);//普盤 生成盤面
+            //            }
 
-                        //int WinCoin = _Idate.Win_Coin;
+            //            //int WinCoin = _Idate.Win_Coin;
 
-                        _Ide.WInChack(_Idate.PrizeDate, CommonGrid._grids[CommonGrid._girdcount - 1],_Idate.Win_Coin);
+            //            _Ide.WInChack(_Idate.PrizeDate, CommonGrid._grids[CommonGrid._girdcount - 1],_Idate.Win_Coin);
 
-                        if (_Idate.BonusCount == FreeGameCount)//如果有Bonus獎
-                        {
-                            BonusShow = true;
+            //            if (_Idate.BonusCount == FreeGameCount)//如果有Bonus獎
+            //            {
+            //                BonusShow = true;
 
-                            for (int i = 0; i < BonusGrid._girdcount; i++) //Bonus 各個盤面的兌獎
-                            {
+            //                for (int i = 0; i < BonusGrid._girdcount; i++) //Bonus 各個盤面的兌獎
+            //                {
 
-                                //int BonusWin = _Idate.BonusWinCoin[i];
+            //                    //int BonusWin = _Idate.BonusWinCoin[i];
 
-                                _Ide.WInChack(_Idate.PrizeDate, BonusGrid._grids[i], _Idate.BonusWinCoin[i]);
+            //                    _Ide.WInChack(_Idate.PrizeDate, BonusGrid._grids[i], _Idate.BonusWinCoin[i]);
 
-                            }
+            //                }
 
-                            for (int i = 0; i < _Idate.BonusWinCoin.Count; i++)//將各個盤面的Bonus獎的中獎金額總和起來
-                            {
+            //                for (int i = 0; i < _Idate.BonusWinCoin.Count; i++)//將各個盤面的Bonus獎的中獎金額總和起來
+            //                {
 
-                                _Idate.Total_BonusWinCoin += _Idate.BonusWinCoin[i];
+            //                    _Idate.Total_BonusWinCoin += _Idate.BonusWinCoin[i];
 
-                            }
+            //                }
 
-                        }
+            //            }
 
-                        _Ide.DateSave(CommonGrid, BonusGrid); //資料儲存
+            //            _Ide.DateSave(CommonGrid, BonusGrid); //資料儲存
 
-                        B_Slot_timeOut = true;
+            //            B_Slot_timeOut = true;
 
-                        //Start_Slot = true;
+            //            //Start_Slot = true;
 
-                        //Debug.Log("是否開始滾動：" + Start_Slot);
+            //            //Debug.Log("是否開始滾動：" + Start_Slot);
 
-                        St_Roll = true;
+            //            St_Roll = true;
 
-                        yield return new WaitForSeconds(1f);
+            //            yield return new WaitForSeconds(1f);
 
-                        Debug.Log("Wait");
+            //            Debug.Log("Wait");
 
-                        _CoAll_Slot_Roll = CoAll_Slot_Roll(CommonGrid._grids[0]);
+            //            _CoAll_Slot_Roll = CoAll_Slot_Roll(CommonGrid._grids[0]);
 
-                        StartCoroutine(_CoAll_Slot_Roll);
+            //            StartCoroutine(_CoAll_Slot_Roll);
 
-                        _Idate.CycleCount += 1;
+            //            _Idate.CycleCount += 1;
 
-                        _Idate.AutoSurplus -= 1;
+            //            _Idate.AutoSurplus -= 1;
 
-                        _IUIMethod.Auto_text.text = _Idate.AutoSurplus.ToString();
+            //            _IUIMethod.Auto_text.text = _Idate.AutoSurplus.ToString();
 
-                        _Idate.PlayerCoin -= _Idate.Bet_Coin;
+            //            _Idate.PlayerCoin -= _Idate.Bet_Coin;
 
-                        _IUIMethod.PlayerCoin_Text.text = "Money:" + _Idate.PlayerCoin;
+            //            _IUIMethod.PlayerCoin_Text.text = "Money:" + _Idate.PlayerCoin;
 
-                        Debug.Log(_Idate.CycleCount + "已循環次數");
+            //            Debug.Log(_Idate.CycleCount + "已循環次數");
 
-                        _Ide.DateSave(CommonGrid,BonusGrid);
+            //            _Ide.DateSave(CommonGrid,BonusGrid);
 
-                        //Debug.Log("Win_Mpney_Temp" + Win_Money_Temp);
+            //            //Debug.Log("Win_Mpney_Temp" + Win_Money_Temp);
 
-                        StCoShow = true;
+            //            StCoShow = true;
 
-                        StRecover = false;
+            //            StRecover = false;
 
-                        ShowOver = true;
+            //            ShowOver = true;
 
-                        FreeGameCount = 0;
+            //            FreeGameCount = 0;
 
-                    }
+            //        }
 
-                }
+            //    }
 
-                else
-                {
+            //    else
+            //    {
 
-                    Debug.Log("各輪盤滾動完畢");
+            //        Debug.Log("各輪盤滾動完畢");
 
-                    Debug.Log("是否開始滾動：" + Start_Slot);
+            //        Debug.Log("是否開始滾動：" + Start_Slot);
 
-                    _Idate.AutoCount = 1;
+            //        _Idate.AutoCount = 1;
 
-                    if (CoinShowOK == true)
-                    {
-                        for (int i = 0; i < _Reel_Moves.Length; i++)
-                        {
-                            _Reel_Moves[i].tempi = 0;
+            //        if (CoinShowOK == true)
+            //        {
+            //            for (int i = 0; i < _Reel_Moves.Length; i++)
+            //            {
+            //                _Reel_Moves[i].tempi = 0;
 
-                            _Reel_Moves[i].Date_Temp = 0;
+            //                _Reel_Moves[i].Date_Temp = 0;
 
-                            Debug.Log(string.Format("輪調{0}內滾動次數{1}", i, _Reel_Moves[i].tempi));
+            //                Debug.Log(string.Format("輪調{0}內滾動次數{1}", i, _Reel_Moves[i].tempi));
 
-                        }
+            //            }
 
-                        Start_Slot = false;
+            //            Start_Slot = false;
 
-                        St_Roll = true;
+            //            St_Roll = true;
 
-                       // _Ishow.UiShow.Clear(); //目前先關起來 測試表演
+            //           // _Ishow.UiShow.Clear(); //目前先關起來 測試表演
 
-                        StCoShow = true;
+            //            StCoShow = true;
 
-                        FreeGameCount = 0;
+            //            FreeGameCount = 0;
 
-                        _Idate.CycleCount = 1;
+            //            _Idate.CycleCount = 1;
 
-                        _Idate.AutoSurplus = 0;
+            //            _Idate.AutoSurplus = 0;
 
-                    }
+            //        }
 
-                }
+            //    }
 
-            }
+            //}
 
         }
 
