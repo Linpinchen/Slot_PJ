@@ -8,6 +8,7 @@ public interface IShow
 {
     int TempWinCoin { get; set; }
     bool StRecover { get; set; }
+    bool CoinShow_Bool { get; set; }
     Image[] WinCoins { get; set; }
     Sprite[] Numbers { get; set; }
     List<List<bool>> BonusDrawLineOk { get; set; }
@@ -43,7 +44,7 @@ public interface IShow
     IEnumerator StartDrawLine(List<GameObject> StayDrawLine, List<bool> _ShowOk);
     void ListShiny(Reel_Move[] _ReelMove, int Number, List<Transform> ReadyShow);
     IEnumerator ShinyShow(List<Transform> ReadyShow);
-    IEnumerator CoinShow(int Coin,int FreeGameCount);
+    IEnumerator CoinShow(int Coin);
 
    
 }

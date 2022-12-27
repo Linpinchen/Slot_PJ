@@ -11,6 +11,9 @@ public class ShowScript : MonoBehaviour,IShow
     IUIControlMethod _IUIMethod;
 
     [SerializeField]
+    bool _CoinShow_Bool;
+
+    [SerializeField]
     Sprite[] _Numbers;
 
     [SerializeField]
@@ -87,6 +90,8 @@ public class ShowScript : MonoBehaviour,IShow
 
     public bool StRecover { get { return _StRecover; } set { StRecover = value; }  }
 
+    public bool CoinShow_Bool { get { return _CoinShow_Bool; }set { _CoinShow_Bool = value; } }
+
     public RectTransform[] StartPoint { get{ return _StartPoint; } }
 
     public Queue<GameObject> DrawLinePool { get {return _DrawLinePool; } set { _DrawLinePool = value; } }
@@ -124,6 +129,16 @@ public class ShowScript : MonoBehaviour,IShow
     public VideoClip EndShowVideoClip { get { return _EndShowVideoClip; } set { _EndShowVideoClip = value; } }
 
     public RawImage VideoImage { get { return _VideoImage; } set { _VideoImage = value; } }
+
+
+
+
+    public void Init(IDate _Idate,IUIControlMethod _Iui)
+    {
+        this._IDate = _Idate;
+        this._IUIMethod = _Iui;
+        _CoinShow_Bool = true;
+    }
 
 
     /// <summary>
@@ -397,6 +412,9 @@ public class ShowScript : MonoBehaviour,IShow
 
         DrawAllBool = _SHowOk.Contains(true);//確認Lineder都跑完了沒
 
+        //Debug.Log(_SHowOk.Contains(true));
+
+
         if (StayDrawLine.Count != 0)//LineRenderOutPool.childCount != 0
         {
 
@@ -409,7 +427,7 @@ public class ShowScript : MonoBehaviour,IShow
 
                 for (int i = 0; i < StayDrawLine.Count; i++)
                 {
-                    //Debug.Log("_SHowOk[i] 持續更新");
+                   // Debug.Log("_SHowOk[i] 持續更新");
 
                     _SHowOk[i] = StayDrawLine[i].GetComponent<DrawLine>().StDrawLine;
 
@@ -437,7 +455,7 @@ public class ShowScript : MonoBehaviour,IShow
 
                     //Debug.Log("------------PrepareDrawLine.Count :------------" + PrepareDrawLine.Count);
 
-                    StRecover = true;
+                 
 
                 }
 
@@ -475,16 +493,19 @@ public class ShowScript : MonoBehaviour,IShow
     /// <param name="Coin"></param>
     /// <param name="FreeGameCount"></param>
     /// <returns></returns>
-    public IEnumerator CoinShow(int Coin,int FreeGameCount)
+    public IEnumerator CoinShow( int Coin)
     {
+        _CoinShow_Bool = false;
 
-        while (TempWinCoin < Coin)
+        while (_TempWinCoin <= Coin)
         {
+            Debug.Log("開始CoinShow 迴圈");
 
-            if (TempWinCoin <= Coin)
+            if (_TempWinCoin <= Coin)
             {
+                Debug.Log("開始CoinShow 數字換圖");
 
-                string SWinCoin = TempWinCoin.ToString();
+                string SWinCoin = _TempWinCoin.ToString();
 
                 //Debug.Log("SWinCoin(暫存金額) ：" + SWinCoin);
 
@@ -507,48 +528,39 @@ public class ShowScript : MonoBehaviour,IShow
 
                 yield return null;
 
-            }
-            else if (TempWinCoin >= Coin)
-            {
-                yield return new WaitForSeconds(1f);
-
-                int Win_All_Coin_Temp;
-
-                yield return new WaitForSeconds(0.2f);
-
-                for (int i = 0; i < WinCoins.Length; i++)
+                if (_TempWinCoin >= Coin)
                 {
+                    Debug.Log("開始CoinShow 迴圈 ： 已到目標 表演金額");
 
-                    WinCoins[i].gameObject.SetActive(false);
+                    yield return new WaitForSeconds(1f);
+
+                    int Win_All_Coin_Temp;
+
+                    yield return new WaitForSeconds(0.5f);
+
+                    for (int i = 0; i < WinCoins.Length; i++)
+                    {
+
+                        WinCoins[i].gameObject.SetActive(false);
+
+                    }
+
+                    _TempWinCoin = 0;
+
+                    Win_All_Coin_Temp = _IDate.PlayerCoin + Coin;
+
+                    _IDate.PlayerCoin = Win_All_Coin_Temp;
+
+                    _IUIMethod.PlayerCoin_Text.text = "Money:" + Win_All_Coin_Temp.ToString();
+
+                     Coin = 0;
+
+                    _CoinShow_Bool = true;
 
                 }
-
-                TempWinCoin = 0;
-
-                Win_All_Coin_Temp = _IDate.PlayerCoin + Coin;
-
-                _IDate.PlayerCoin = Win_All_Coin_Temp;
-
-                _IUIMethod.PlayerCoin_Text.text = "Money:" + Win_All_Coin_Temp.ToString();
-
-                if (_IDate.BonusCount==3)
-                {
-
-                    _IDate.BonusWinCoin[FreeGameCount] = 0;
-
-                }
-                else
-                {
-
-                    _IDate.Win_Coin = 0;
-
-                }
-
-                yield return new WaitForSeconds(0.5f);
-
 
             }
-
+          
             if (Coin - TempWinCoin < 50)
             {
                 TempWinCoin += 1;
@@ -567,58 +579,6 @@ public class ShowScript : MonoBehaviour,IShow
         }
 
     }
-
-
-
-
-    //public Transform GetPoint(char FirstNumber, char EndNumber)
-    //{
-    //    Transform Sprites;
-
-    //    switch(FirstNumber)
-    //    {
-    //        case '1':
-    //            {
-    //                Sprites = _StartPoint[0];
-    //                break;
-    //            }
-    //        case '2':
-    //            {
-    //                Sprites = _StartPoint[1];
-    //                break;
-    //            }
-    //        case '3':
-    //            {
-    //                Sprites = _StartPoint[2];
-    //                break;
-    //            }
-    //    }
-
-    //    switch (EndNumber)
-    //    {
-    //        case '1':
-    //            {
-    //                Sprites = _StartPoint[3];
-    //                break;
-    //            }
-    //        case '2':
-    //            {
-    //                Sprites = _StartPoint[4];
-    //                break;
-    //            }
-    //        case '3':
-    //            {
-    //                Sprites = _StartPoint[5];
-    //                break;
-    //            }
-    //    }
-
-
-    //    return Sprites;
-
-    //}
-
-
 
 }
 

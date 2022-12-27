@@ -9,30 +9,43 @@ public class Slot_data :IDate ,IDateEvent{
     IUIControlMethod IUICM;
    
     Reel_Move[] _Reelmove;
+
     [SerializeField]
     List<int>_Temp ;
+
     [SerializeField]
     int[] _PrizeDate;
+
     [SerializeField]
     int Coin;//玩家擁有的錢
+
     [SerializeField]
     int bet_Coin;//押注的錢
+
     [SerializeField]
     int WinCoin;//普通盤面贏的錢
+
     [SerializeField]
     int leastBetCount;//最小押注數
+
     [SerializeField]
     List<int> BonusWin;//Bonus每盤各贏得錢
+
     [SerializeField]
     int totalBonusWin;//Bonus共贏多少
+
     [SerializeField]
     int _AutoCount;//Auto循環次數
+
     [SerializeField]
     int _CycleCount;//以轉動次數
+
     [SerializeField]
     int _AutoSurplus;//尚未循環次數
+
     [SerializeField]
     int Bonus_count;//當前 Bonus圖片出現的數量（用來算每個輪條[2][3][4]Bonus圖片出現幾次）
+
     public Sprite[] Sprite_Pool;//圖片庫
     public Slot_SeveDate _Slot_SeverDate;
 	public Slot_SeveDate GetSlotDate;
@@ -68,9 +81,15 @@ public class Slot_data :IDate ,IDateEvent{
 
 	public int LeastBetCount { get { return leastBetCount; } set { leastBetCount = value; } }
 
-    #endregion
+	#endregion
 
-    public void Init(IUIControlMethod _IUICM ,Reel_Move[] _ReelMoves)
+	#region 初始化方法
+	/// <summary>
+	/// 初始化方法
+	/// </summary>
+	/// <param name="_IUICM"></param>
+	/// <param name="_ReelMoves"></param>
+	public void Init(IUIControlMethod _IUICM ,Reel_Move[] _ReelMoves)
     {
 
         this.IUICM = _IUICM;
@@ -82,6 +101,7 @@ public class Slot_data :IDate ,IDateEvent{
         Temp = new List<int>();
 
     }
+    #endregion
 
     #region 初始化時 將盤面的圖灌好 跟資料無關只是顯示圖片
     /// <summary>
@@ -656,904 +676,6 @@ public class Slot_data :IDate ,IDateEvent{
 
         return WinMoneys;
 	}
-
-    #endregion
-
-    #region (舊)連線判斷
-    /// <summary>
-    /// 連線判斷
-    /// </summary>
-    /// <param name="Date"></param>
-    //public void Win_Line(GridIntS _Gridints, List<Transform> ShinyReadyShow, ref int Win_Money, Transform _LRStayOutPool, List<GameObject> _LRStayDrawLine)
-    //{
-    //    //33
-    //    if ((_Gridints._Grids[0]._GridInt[3] == _Gridints._Grids[1]._GridInt[3] || _Gridints._Grids[1]._GridInt[3] == Pool_Images.Universal_Sprite) && _Gridints._Grids[0]._GridInt[3] != Pool_Images.Bonus)
-    //    {
-    //        Pool_Images _PoolImages = _Gridints._Grids[0]._GridInt[3];//最左的初始中獎圖
-
-    //        //333
-    //        if (_Gridints._Grids[2]._GridInt[3] == Pool_Images.Universal_Sprite || _PoolImages == _Gridints._Grids[2]._GridInt[3])
-    //        {
-
-    //            if ((_PoolImages == _Gridints._Grids[3]._GridInt[3] || _Gridints._Grids[3]._GridInt[3] == Pool_Images.Universal_Sprite)
-    //                &&
-    //               (_PoolImages == _Gridints._Grids[4]._GridInt[3] || _Gridints._Grids[4]._GridInt[3] == Pool_Images.Universal_Sprite))//33333
-
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("33333");
-    //                int Line_count = 5;
-    //                Win_Sprite( _PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-
-    //            else if (_PoolImages == _Gridints._Grids[3]._GridInt[3] || _Gridints._Grids[3]._GridInt[3] == Pool_Images.Universal_Sprite)//3333
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("3333");
-    //                int Line_count = 4;
-    //                Win_Sprite( _PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-
-    //            else//333
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("333");
-    //                int Line_count = 3;
-    //                Win_Sprite( _PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-
-
-
-    //            int[] RoolWinNumber;
-    //            RoolWinNumber = new int[] { 3, 3, 3, 3, 3 };
-    //            List<Transform> _GetRoolWinImg;
-    //            _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
-    //            _Ishow.ObjectPool(_Ishow.StartPoint[2], _GetRoolWinImg, _Ishow.StartPoint[5], _LRStayOutPool, _LRStayDrawLine);
-    //            _Ishow. ListShiny(_GetRoolWinImg, ShinyReadyShow);
-                
-
-    //        }
-
-    //        //332
-    //        if (_PoolImages == _Gridints._Grids[2]._GridInt[2] || _Gridints._Grids[2]._GridInt[2] == Pool_Images.Universal_Sprite)
-    //        {
-
-    //            if ((_PoolImages == _Gridints._Grids[3]._GridInt[1] || _Gridints._Grids[3]._GridInt[1] == Pool_Images.Universal_Sprite)
-    //                &&
-    //                (_PoolImages == _Gridints._Grids[4]._GridInt[1] || _Gridints._Grids[4]._GridInt[1] == Pool_Images.Universal_Sprite))//33211
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("33211");
-    //                int Line_count = 5;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            else if (_PoolImages == _Gridints._Grids[3]._GridInt[1] || _Gridints._Grids[3]._GridInt[1] == Pool_Images.Universal_Sprite)//3321
-    //            {
-
-    //                Debug.Log("Win");
-    //                Debug.Log("3321");
-    //                int Line_count = 4;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-    //            else//332
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("332");
-    //                int Line_count = 3;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-
-
-    //            int[] RoolWinNumber;
-    //            RoolWinNumber = new int[] { 3, 3, 2, 1, 1 };
-    //            List<Transform> _GetRoolWinImg;
-    //            _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
-    //            _Ishow.ObjectPool(_Ishow.StartPoint[2], _GetRoolWinImg, _Ishow.StartPoint[3], _LRStayOutPool, _LRStayDrawLine);
-    //            _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
-
-
-    //        }
-    //        //331
-    //        if (_PoolImages == _Gridints._Grids[2]._GridInt[1] || _Gridints._Grids[2]._GridInt[1] ==Pool_Images.Universal_Sprite)
-    //        {
-
-    //            if ((_PoolImages == _Gridints._Grids[3]._GridInt[3] || _Gridints._Grids[3]._GridInt[3] == Pool_Images.Universal_Sprite)
-    //                &&
-    //                (_PoolImages == _Gridints._Grids[4]._GridInt[3] || _Gridints._Grids[4]._GridInt[3] == Pool_Images.Universal_Sprite))//33133
-    //            {
-
-    //                Debug.Log("Win");
-    //                Debug.Log("33133");
-    //                int Line_count = 5;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-    //            else if (_PoolImages == _Gridints._Grids[3]._GridInt[3] || _Gridints._Grids[3]._GridInt[3] == Pool_Images.Universal_Sprite)//3313
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("3313");
-    //                int Line_count = 4;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            else//331
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("331");
-    //                int Line_count = 3;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-
-    //            int[] RoolWinNumber;
-    //            RoolWinNumber = new int[] { 3, 3, 1, 3, 3 };
-    //            List<Transform> _GetRoolWinImg;
-    //            _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
-    //            _Ishow.ObjectPool(_Ishow.StartPoint[2], _GetRoolWinImg, _Ishow.StartPoint[5], _LRStayOutPool, _LRStayDrawLine);
-    //            _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
-    //        }
-
-
-    //    }
-    //    //32
-    //    if ((_Gridints._Grids[0]._GridInt[3] == _Gridints._Grids[1]._GridInt[2] || _Gridints._Grids[1]._GridInt[2] == Pool_Images.Universal_Sprite) && _Gridints._Grids[0]._GridInt[3] != Pool_Images.Bonus)
-    //    {
-    //        Pool_Images _PoolImages = _Gridints._Grids[0]._GridInt[3];//最左的初始中獎圖
-    //                                                      //321
-    //        if (_PoolImages == _Gridints._Grids[2]._GridInt[1] || _Gridints._Grids[2]._GridInt[1] == Pool_Images.Universal_Sprite)//321
-    //        {
-    //            if ((_PoolImages == _Gridints._Grids[3]._GridInt[2] || _Gridints._Grids[3]._GridInt[2] == Pool_Images.Universal_Sprite)
-    //                &&
-    //                (_PoolImages == _Gridints._Grids[4]._GridInt[3] || _Gridints._Grids[4]._GridInt[3] == Pool_Images.Universal_Sprite))//32123
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("32123");
-    //                int Line_count = 5;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-    //            else if( _PoolImages == _Gridints._Grids[3]._GridInt[2] || _Gridints._Grids[3]._GridInt[2] == Pool_Images.Universal_Sprite)//3212
-    //            {
-
-    //                Debug.Log("Win");
-    //                Debug.Log("3212");
-    //                int Line_count = 4;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-    //            else//321
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("321");
-    //                int Line_count = 3;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-
-    //            int[] RoolWinNumber;
-    //            RoolWinNumber = new int[] { 3, 2, 1, 2, 3 };
-    //            List<Transform> _GetRoolWinImg;
-    //            _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
-    //            _Ishow.ObjectPool(_Ishow.StartPoint[2], _GetRoolWinImg, _Ishow.StartPoint[5], _LRStayOutPool, _LRStayDrawLine);
-    //            _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
-
-    //        }
-    //        //322
-    //        if (_PoolImages == _Gridints._Grids[2]._GridInt[2] || _Gridints._Grids[2]._GridInt[2] == Pool_Images.Universal_Sprite)
-    //        {
-    //            if ((_PoolImages == _Gridints._Grids[3]._GridInt[2] || _Gridints._Grids[3]._GridInt[2] ==Pool_Images.Universal_Sprite)
-    //                &&
-    //                (_PoolImages == _Gridints._Grids[4]._GridInt[3] || _Gridints._Grids[4]._GridInt[3] == Pool_Images.Universal_Sprite))//32223
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("32223");
-    //                int Line_count = 5;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            else if (_PoolImages == _Gridints._Grids[3]._GridInt[2] || _Gridints._Grids[3]._GridInt[2] == Pool_Images.Universal_Sprite)//3222
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("3222");
-    //                int Line_count = 4;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-    //            else//322
-    //            {
-
-    //                Debug.Log("Win");
-    //                Debug.Log("322");
-    //                int Line_count = 3;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-
-    //            int[] RoolWinNumber;
-    //            RoolWinNumber = new int[] { 3, 2, 2, 2, 3 };
-    //            List<Transform> _GetRoolWinImg;
-    //            _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
-    //            _Ishow.ObjectPool(_Ishow.StartPoint[2], _GetRoolWinImg, _Ishow.StartPoint[5], _LRStayOutPool, _LRStayDrawLine);
-    //            _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
-
-    //        }
-    //        //323
-    //        if (_PoolImages == _Gridints._Grids[2]._GridInt[3] || _Gridints._Grids[2]._GridInt[3] == Pool_Images.Universal_Sprite)
-    //        {
-    //            if ((_PoolImages == _Gridints._Grids[3]._GridInt[2] || _Gridints._Grids[3]._GridInt[2] == Pool_Images.Universal_Sprite)
-    //                &&
-    //                (_PoolImages == _Gridints._Grids[4]._GridInt[3] || _Gridints._Grids[4]._GridInt[3] == Pool_Images.Universal_Sprite))//32323
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("32323");
-    //                int Line_count = 5;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            else if (_PoolImages == _Gridints._Grids[3]._GridInt[2] || _Gridints._Grids[3]._GridInt[2] == Pool_Images.Universal_Sprite)//3232
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("3232");
-    //                int Line_count = 4;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-    //            else//323
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("323");
-    //                int Line_count = 3;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-
-    //            int[] RoolWinNumber;
-    //            RoolWinNumber = new int[] { 3, 2, 3, 2, 3 };
-    //            List<Transform> _GetRoolWinImg;
-    //            _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
-    //            _Ishow.ObjectPool(_Ishow.StartPoint[2], _GetRoolWinImg, _Ishow.StartPoint[5], _LRStayOutPool, _LRStayDrawLine);
-    //            _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
-    //        }
-    //    }
-    //    //23
-    //    if ((_Gridints._Grids[0]._GridInt[2] == _Gridints._Grids[1]._GridInt[3] || _Gridints._Grids[1]._GridInt[3] == Pool_Images.Universal_Sprite) && _Gridints._Grids[0]._GridInt[2] != Pool_Images.Universal_Sprite)
-    //    {
-    //        Pool_Images _PoolImages = _Gridints._Grids[0]._GridInt[2];//最左的初始中獎圖
-
-    //        //233
-    //        if (_PoolImages == _Gridints._Grids[2]._GridInt[3] || _Gridints._Grids[2]._GridInt[3] == Pool_Images.Universal_Sprite)
-    //        {
-    //            if ((_PoolImages == _Gridints._Grids[3]._GridInt[3] || _Gridints._Grids[3]._GridInt[3] == Pool_Images.Universal_Sprite)
-    //                &&
-    //                (_PoolImages == _Gridints._Grids[4]._GridInt[2] || _Gridints._Grids[4]._GridInt[2] ==Pool_Images.Universal_Sprite))//23332
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("23332");
-    //                int Line_count = 5;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            else if ( _PoolImages == _Gridints._Grids[3]._GridInt[3] || _Gridints._Grids[3]._GridInt[3] == Pool_Images.Universal_Sprite)//2333
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("2333");
-    //                int Line_count = 4;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            else//233
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("233");
-    //                int Line_count = 3;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-
-    //            int[] RoolWinNumber;
-    //            RoolWinNumber = new int[] { 2, 3, 3, 3, 2 };
-    //            List<Transform> _GetRoolWinImg;
-    //            _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
-    //            _Ishow.ObjectPool(_Ishow.StartPoint[1], _GetRoolWinImg, _Ishow.StartPoint[4], _LRStayOutPool, _LRStayDrawLine);
-    //            _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
-
-
-    //        }
-    //        //232
-    //        if (_PoolImages == _Gridints._Grids[2]._GridInt[2] || _Gridints._Grids[2]._GridInt[2] == Pool_Images.Universal_Sprite)
-    //        {
-    //            if ((_PoolImages == _Gridints._Grids[3]._GridInt[1] || _Gridints._Grids[3]._GridInt[1] == Pool_Images.Universal_Sprite)
-    //                &&
-    //                (_PoolImages == _Gridints._Grids[4]._GridInt[2] || _Gridints._Grids[4]._GridInt[2] == Pool_Images.Universal_Sprite))//23212
-    //            {
-
-    //                Debug.Log("Win");
-    //                Debug.Log("23212");
-    //                int Line_count = 5;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            else if (_PoolImages == _Gridints._Grids[3]._GridInt[1] || _Gridints._Grids[3]._GridInt[1] == Pool_Images.Universal_Sprite)//2321
-    //            {
-
-    //                Debug.Log("Win");
-    //                Debug.Log("2321");
-    //                int Line_count = 4;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-    //            else
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("232");
-    //                int Line_count = 3;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            int[] RoolWinNumber;
-    //            RoolWinNumber = new int[] { 2, 3, 2, 1, 2 };
-    //            List<Transform> _GetRoolWinImg;
-    //            _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
-    //            _Ishow.ObjectPool(_Ishow.StartPoint[1], _GetRoolWinImg, _Ishow.StartPoint[4], _LRStayOutPool, _LRStayDrawLine);
-    //            _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
-
-    //        }
-    //        //231
-    //        if (_PoolImages == _Gridints._Grids[2]._GridInt[1] || _Gridints._Grids[2]._GridInt[1] == Pool_Images.Universal_Sprite)
-    //        {
-    //            if ((_PoolImages == _Gridints._Grids[3]._GridInt[3] || _Gridints._Grids[3]._GridInt[3] == Pool_Images.Universal_Sprite)
-    //                &&
-    //                (_PoolImages == _Gridints._Grids[4]._GridInt[2] || _Gridints._Grids[4]._GridInt[2] == Pool_Images.Universal_Sprite))//23132
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("23132");
-    //                int Line_count = 5;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            else if (_PoolImages == _Gridints._Grids[3]._GridInt[3] || _Gridints._Grids[3]._GridInt[3] == Pool_Images.Universal_Sprite)//2313
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("2313");
-    //                int Line_count = 4;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            else
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("231");
-    //                int Line_count = 3;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-
-    //            int[] RoolWinNumber;
-    //            RoolWinNumber = new int[] { 2, 3, 1, 3, 2 };
-    //            List<Transform> _GetRoolWinImg;
-    //            _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
-    //            _Ishow.ObjectPool(_Ishow.StartPoint[1], _GetRoolWinImg, _Ishow.StartPoint[4], _LRStayOutPool, _LRStayDrawLine);
-    //            _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
-
-    //        }
-
-
-
-
-    //    }
-    //    //22
-    //    if ((_Gridints._Grids[0]._GridInt[2] == _Gridints._Grids[1]._GridInt[2] || _Gridints._Grids[1]._GridInt[2] == Pool_Images.Universal_Sprite) && _Gridints._Grids[0]._GridInt[2] != Pool_Images.Bonus)
-    //    {
-    //        Pool_Images _PoolImages = _Gridints._Grids[0]._GridInt[2];//最左的初始中獎圖
-    //                                                      //223
-    //        if (_PoolImages == _Gridints._Grids[2]._GridInt[3] || _Gridints._Grids[2]._GridInt[3] == Pool_Images.Universal_Sprite)
-    //        {
-    //            if ((_PoolImages == _Gridints._Grids[3]._GridInt[2] || _Gridints._Grids[3]._GridInt[2] == Pool_Images.Universal_Sprite)
-    //                &&
-    //                (_PoolImages == _Gridints._Grids[4]._GridInt[2] || _Gridints._Grids[4]._GridInt[2] == Pool_Images.Universal_Sprite))//22322
-    //            {
-
-    //                Debug.Log("Win");
-    //                Debug.Log("22322");
-    //                int Line_count = 5;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            else if (_PoolImages == _Gridints._Grids[3]._GridInt[2] || _Gridints._Grids[3]._GridInt[2] == Pool_Images.Universal_Sprite)
-    //            {
-
-    //                Debug.Log("Win");
-    //                Debug.Log("2232");
-    //                int Line_count = 4;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            else
-    //            {
-
-    //                Debug.Log("Win");
-    //                Debug.Log("223");
-    //                int Line_count = 3;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-
-    //            int[] RoolWinNumber;
-    //            RoolWinNumber = new int[] { 2, 2, 3, 2, 2 };
-    //            List<Transform> _GetRoolWinImg;
-    //            _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
-    //            _Ishow.ObjectPool(_Ishow.StartPoint[1], _GetRoolWinImg, _Ishow.StartPoint[4], _LRStayOutPool, _LRStayDrawLine);
-    //            _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
-
-    //        }
-    //        //222
-    //        if (_PoolImages == _Gridints._Grids[2]._GridInt[2] || _Gridints._Grids[2]._GridInt[2] == Pool_Images.Universal_Sprite)
-    //        {
-
-    //            if ((_PoolImages == _Gridints._Grids[3]._GridInt[2] || _Gridints._Grids[3]._GridInt[2] == Pool_Images.Universal_Sprite)
-    //                &&
-    //                (_PoolImages == _Gridints._Grids[4]._GridInt[2] || _Gridints._Grids[4]._GridInt[2] == Pool_Images.Universal_Sprite))//22222
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("22222");
-    //                int Line_count = 5;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            else if (_PoolImages == _Gridints._Grids[3]._GridInt[2] || _Gridints._Grids[3]._GridInt[2] == Pool_Images.Universal_Sprite)//2222
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("2222");
-    //                int Line_count = 4;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            else//222
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("222");
-    //                int Line_count = 3;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            int[] RoolWinNumber;
-    //            RoolWinNumber = new int[] { 2, 2, 2, 2, 2 };
-    //            List<Transform> _GetRoolWinImg;
-    //            _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
-    //            _Ishow.ObjectPool(_Ishow.StartPoint[1], _GetRoolWinImg, _Ishow.StartPoint[4], _LRStayOutPool, _LRStayDrawLine);
-    //            _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
-
-    //        }
-    //        //221
-    //        if (_PoolImages == _Gridints._Grids[2]._GridInt[1] || _Gridints._Grids[2]._GridInt[1] == Pool_Images.Universal_Sprite)
-    //        {
-    //            if ((_PoolImages == _Gridints._Grids[3]._GridInt[2] || _Gridints._Grids[3]._GridInt[2] == Pool_Images.Universal_Sprite)
-    //                &&
-    //                (_PoolImages == _Gridints._Grids[4]._GridInt[2] || _Gridints._Grids[4]._GridInt[2] == Pool_Images.Universal_Sprite))//22122
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("22122");
-    //                int Line_count = 5;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            else if (_PoolImages == _Gridints._Grids[3]._GridInt[2] || _Gridints._Grids[3]._GridInt[2] == Pool_Images.Universal_Sprite)//2212
-    //            {
-
-    //                Debug.Log("Win");
-    //                Debug.Log("2212");
-    //                int Line_count = 4;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            else//221
-    //            {
-
-    //                Debug.Log("Win");
-    //                Debug.Log("221");
-    //                int Line_count = 3;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-
-    //            int[] RoolWinNumber;
-    //            RoolWinNumber = new int[] { 2, 2, 1, 2, 2 };
-    //            List<Transform> _GetRoolWinImg;
-    //            _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
-    //            _Ishow.ObjectPool(_Ishow.StartPoint[1], _GetRoolWinImg, _Ishow.StartPoint[4], _LRStayOutPool, _LRStayDrawLine);
-    //            _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
-
-    //        }
-
-    //    }
-    //    //21
-    //    if ((_Gridints._Grids[0]._GridInt[2] == _Gridints._Grids[1]._GridInt[1] || _Gridints._Grids[1]._GridInt[1] == Pool_Images.Universal_Sprite) && _Gridints._Grids[0]._GridInt[2] != Pool_Images.Bonus)
-    //    {
-    //        Pool_Images _PoolImages = _Gridints._Grids[0]._GridInt[2];//最左的初始中獎圖
-    //                                                      //212
-    //        if (_PoolImages == _Gridints._Grids[2]._GridInt[2] || _Gridints._Grids[2]._GridInt[2] == Pool_Images.Universal_Sprite)
-    //        {
-    //            if ((_PoolImages == _Gridints._Grids[3]._GridInt[3] || _Gridints._Grids[3]._GridInt[3] == Pool_Images.Universal_Sprite)
-    //                &&
-    //                (_PoolImages == _Gridints._Grids[4]._GridInt[2] || _Gridints._Grids[4]._GridInt[2] == Pool_Images.Universal_Sprite))//21232
-    //            {
-
-    //                Debug.Log("Win");
-    //                Debug.Log("21232");
-    //                int Line_count = 5;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            else if (_PoolImages == _Gridints._Grids[3]._GridInt[3] || _Gridints._Grids[3]._GridInt[3] == Pool_Images.Universal_Sprite)//2123
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("2123");
-    //                int Line_count = 4;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            else//212
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("212");
-    //                int Line_count = 3;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-
-    //            int[] RoolWinNumber;
-    //            RoolWinNumber = new int[] { 2, 1, 2, 3, 2 };
-    //            List<Transform> _GetRoolWinImg;
-    //            _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
-    //            _Ishow.ObjectPool(_Ishow.StartPoint[1], _GetRoolWinImg, _Ishow.StartPoint[4], _LRStayOutPool, _LRStayDrawLine);
-    //            _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
-
-    //        }
-    //        //211
-    //        if (_PoolImages == _Gridints._Grids[2]._GridInt[1] || _Gridints._Grids[2]._GridInt[1] == Pool_Images.Universal_Sprite)
-    //        {
-    //            if ((_PoolImages == _Gridints._Grids[3]._GridInt[1] || _Gridints._Grids[3]._GridInt[1] == Pool_Images.Universal_Sprite)
-    //                &&
-    //                (_PoolImages == _Gridints._Grids[4]._GridInt[2] || _Gridints._Grids[4]._GridInt[2] == Pool_Images.Universal_Sprite))//21112
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("21112");
-    //                int Line_count = 5;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            else if (_PoolImages == _Gridints._Grids[3]._GridInt[1] || _Gridints._Grids[3]._GridInt[1] == Pool_Images.Universal_Sprite)//2111
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("2111");
-    //                int Line_count = 4;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            else//211
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("211");
-    //                int Line_count = 3;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-
-    //            int[] RoolWinNumber;
-    //            RoolWinNumber = new int[] { 2, 1, 1, 1, 2 };
-    //            List<Transform> _GetRoolWinImg;
-    //            _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
-    //            _Ishow.ObjectPool(_Ishow.StartPoint[1], _GetRoolWinImg, _Ishow.StartPoint[4], _LRStayOutPool, _LRStayDrawLine);
-    //            _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
-
-    //        }
-
-
-    //    }
-    //    //12
-    //    if ((_Gridints._Grids[0]._GridInt[1] == _Gridints._Grids[1]._GridInt[2] || _Gridints._Grids[1]._GridInt[2] == Pool_Images.Universal_Sprite) && _Gridints._Grids[0]._GridInt[1] != Pool_Images.Bonus)
-    //    {
-    //        Pool_Images _PoolImages = _Gridints._Grids[0]._GridInt[1];//最左的初始中獎圖
-    //                                                      //123
-    //        if (_PoolImages == _Gridints._Grids[2]._GridInt[3] || _Gridints._Grids[2]._GridInt[3] == Pool_Images.Universal_Sprite)
-    //        {
-
-    //            if ((_PoolImages == _Gridints._Grids[3]._GridInt[2] || _Gridints._Grids[3]._GridInt[2] == Pool_Images.Universal_Sprite)
-    //                &&
-    //                (_PoolImages == _Gridints._Grids[4]._GridInt[1] || _Gridints._Grids[4]._GridInt[1] == Pool_Images.Universal_Sprite))//12321
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("12321");
-    //                int Line_count = 5;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            else if (_PoolImages == _Gridints._Grids[3]._GridInt[2] || _Gridints._Grids[3]._GridInt[2] == Pool_Images.Universal_Sprite)
-    //            {
-
-    //                Debug.Log("Win");
-    //                Debug.Log("1232");
-    //                int Line_count = 4;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            else//123
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("123");
-    //                int Line_count = 3;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-
-    //            int[] RoolWinNumber;
-    //            RoolWinNumber = new int[] { 1, 2, 3, 2, 1 };
-    //            List<Transform> _GetRoolWinImg;
-    //            _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
-    //            _Ishow.ObjectPool(_Ishow.StartPoint[0], _GetRoolWinImg, _Ishow.StartPoint[3], _LRStayOutPool, _LRStayDrawLine);
-    //            _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
-
-    //        }
-    //        //122
-    //        if (_PoolImages == _Gridints._Grids[2]._GridInt[2] || _Gridints._Grids[2]._GridInt[2] == Pool_Images.Universal_Sprite)
-    //        {
-    //            if ((_PoolImages == _Gridints._Grids[3]._GridInt[2] || _Gridints._Grids[3]._GridInt[2] == Pool_Images.Universal_Sprite)
-    //                &&
-    //                (_PoolImages == _Gridints._Grids[4]._GridInt[1] || _Gridints._Grids[4]._GridInt[1] == Pool_Images.Universal_Sprite))//12221
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("12221");
-    //                int Line_count = 5;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            else if (_PoolImages == _Gridints._Grids[3]._GridInt[2] || _Gridints._Grids[3]._GridInt[2] == Pool_Images.Universal_Sprite)
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("1222");
-    //                int Line_count = 4;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-    //            else
-    //            {
-
-    //                Debug.Log("Win");
-    //                Debug.Log("122");
-    //                int Line_count = 3;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-
-    //            int[] RoolWinNumber;
-    //            RoolWinNumber = new int[] { 1, 2, 2, 2, 1 };
-    //            List<Transform> _GetRoolWinImg;
-    //            _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
-    //            _Ishow.ObjectPool(_Ishow.StartPoint[0], _GetRoolWinImg, _Ishow.StartPoint[3], _LRStayOutPool, _LRStayDrawLine);
-    //            _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
-
-    //        }
-    //        //121
-    //        if (_PoolImages == _Gridints._Grids[2]._GridInt[1] || _Gridints._Grids[2]._GridInt[1] == Pool_Images.Universal_Sprite)
-    //        {
-    //            if ((_PoolImages == _Gridints._Grids[3]._GridInt[2] || _Gridints._Grids[3]._GridInt[2] == Pool_Images.Universal_Sprite)
-    //                &&
-    //                (_PoolImages == _Gridints._Grids[4]._GridInt[1] || _Gridints._Grids[4]._GridInt[1] == Pool_Images.Universal_Sprite))//12121
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("12121");
-    //                int Line_count = 5;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            else if (_PoolImages == _Gridints._Grids[3]._GridInt[2] || _Gridints._Grids[3]._GridInt[2] == Pool_Images.Universal_Sprite)//1212
-    //            {
-
-    //                Debug.Log("Win");
-    //                Debug.Log("1212");
-    //                int Line_count = 4;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-    //            else//121
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("121");
-    //                int Line_count = 3;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-
-    //            int[] RoolWinNumber;
-    //            RoolWinNumber = new int[] { 1, 2, 1, 2, 1 };
-    //            List<Transform> _GetRoolWinImg;
-    //            _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
-    //            _Ishow.ObjectPool(_Ishow.StartPoint[0], _GetRoolWinImg, _Ishow.StartPoint[3], _LRStayOutPool, _LRStayDrawLine);
-    //            _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
-
-    //        }
-
-    //    }
-    //    //11
-    //    if ((_Gridints._Grids[0]._GridInt[1] == _Gridints._Grids[1]._GridInt[1] || _Gridints._Grids[1]._GridInt[1] == Pool_Images.Universal_Sprite) && _Gridints._Grids[0]._GridInt[1] != Pool_Images.Bonus)
-    //    {
-    //        Pool_Images _PoolImages = _Gridints._Grids[0]._GridInt[1];//最左的初始中獎圖
-
-    //        //113
-    //        if (_PoolImages == _Gridints._Grids[2]._GridInt[3] || _Gridints._Grids[2]._GridInt[3] == Pool_Images.Universal_Sprite)
-    //        {
-    //            if ((_PoolImages == _Gridints._Grids[3]._GridInt[1] || _Gridints._Grids[3]._GridInt[1] == Pool_Images.Universal_Sprite)
-    //                &&
-    //                (_PoolImages == _Gridints._Grids[4]._GridInt[1] || _Gridints._Grids[4]._GridInt[1] == Pool_Images.Universal_Sprite))
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("11311");
-    //                int Line_count = 5;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-    //            else if (_PoolImages == _Gridints._Grids[3]._GridInt[1] || _Gridints._Grids[3]._GridInt[1] == Pool_Images.Universal_Sprite)//1131
-    //            {
-
-    //                Debug.Log("Win");
-    //                Debug.Log("1131");
-    //                int Line_count = 4;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-    //            else
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("113");
-    //                int Line_count = 3;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-
-    //            }
-
-    //            int[] RoolWinNumber;
-    //            RoolWinNumber = new int[] { 1, 1, 3, 1, 1 };
-    //            List<Transform> _GetRoolWinImg;
-    //            _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
-    //            _Ishow.ObjectPool(_Ishow.StartPoint[0], _GetRoolWinImg, _Ishow.StartPoint[3], _LRStayOutPool, _LRStayDrawLine);
-    //            _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
-
-    //        }
-    //        //112
-    //        if (_PoolImages == _Gridints._Grids[2]._GridInt[2] || _Gridints._Grids[2]._GridInt[2] ==Pool_Images.Universal_Sprite)
-    //        {
-    //            if ((_PoolImages == _Gridints._Grids[3]._GridInt[3] || _Gridints._Grids[3]._GridInt[3] == Pool_Images.Universal_Sprite)
-    //                &&
-    //                (_PoolImages == _Gridints._Grids[4]._GridInt[3] || _Gridints._Grids[4]._GridInt[3] == Pool_Images.Universal_Sprite))
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("11233");
-    //                int Line_count = 5;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-    //            else if (_PoolImages == _Gridints._Grids[3]._GridInt[3] || _Gridints._Grids[3]._GridInt[3] == Pool_Images.Universal_Sprite)//1123
-    //            {
-
-    //                Debug.Log("Win");
-    //                Debug.Log("1123");
-    //                int Line_count = 4;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-    //            else
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("112");
-    //                int Line_count = 3;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-
-
-    //            int[] RoolWinNumber;
-    //            RoolWinNumber = new int[] { 1, 1, 2, 3, 3 };
-    //            List<Transform> _GetRoolWinImg;
-    //            _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
-    //            _Ishow.ObjectPool(_Ishow.StartPoint[0], _GetRoolWinImg, _Ishow.StartPoint[5], _LRStayOutPool, _LRStayDrawLine);
-    //            _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
-
-    //        }
-
-    //        //111
-    //        if (_PoolImages == _Gridints._Grids[2]._GridInt[1] || _Gridints._Grids[2]._GridInt[1] == Pool_Images.Universal_Sprite)
-    //        {
-    //            if ((_PoolImages == _Gridints._Grids[3]._GridInt[1] || _Gridints._Grids[3]._GridInt[1] == Pool_Images.Universal_Sprite)
-    //                &&
-    //                (_PoolImages == _Gridints._Grids[4]._GridInt[1] || _Gridints._Grids[4]._GridInt[1] == Pool_Images.Universal_Sprite))//11111
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("11111");
-    //                int Line_count = 5;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-    //            else if (_PoolImages == _Gridints._Grids[3]._GridInt[1] || _Gridints._Grids[3]._GridInt[1] == Pool_Images.Universal_Sprite)
-    //            {
-
-    //                Debug.Log("Win");
-    //                Debug.Log("1111");
-    //                int Line_count = 4;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-
-    //            else//111
-    //            {
-    //                Debug.Log("Win");
-    //                Debug.Log("111");
-    //                int Line_count = 3;
-    //                Win_Sprite(_PoolImages, Line_count, ref Win_Money);
-    //                Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
-    //            }
-
-
-    //            int[] RoolWinNumber;
-    //            RoolWinNumber = new int[] { 1, 1, 1, 1, 1 };
-    //            List<Transform> _GetRoolWinImg;
-    //            _GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
-    //            _Ishow.ObjectPool(_Ishow.StartPoint[0], _GetRoolWinImg, _Ishow.StartPoint[3], _LRStayOutPool, _LRStayDrawLine);
-    //            _Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
-
-    //        }
-
-    //    }
-
-    //    if (Bonus_count == 3)
-    //    {
-
-    //        Debug.Log("恭喜中大獎");
-
-
-    //    }
-
-
-
-
-    //}
     #endregion
 
     #region 資料的儲存以及讀取
@@ -1626,9 +748,6 @@ public class Slot_data :IDate ,IDateEvent{
        
     }
     #endregion
-
-
-
 
     #region (新) 連線判斷
     /// <summary>
@@ -1710,15 +829,6 @@ public class Slot_data :IDate ,IDateEvent{
 
                     }
 
-                    //int[] RoolWinNumber;
-                    //RoolWinNumber = new int[] { 3, 3, 3, 3, 3 };
-                    //List<Transform> _GetRoolWinImg;
-                    //_GetRoolWinImg = _Ishow.GetRoolWinImg(_Reelmove, RoolWinNumber);
-                    //_Ishow.ObjectPool(_Ishow.StartPoint[2], _GetRoolWinImg, _Ishow.StartPoint[5], _LRStayOutPool, _LRStayDrawLine);
-                    //_Ishow.ListShiny(_GetRoolWinImg, ShinyReadyShow);
-
-                    
-
                     Temp.Add(PrizeDate[i]);
                 }
 
@@ -1754,7 +864,6 @@ public class Slot_SeveDate
 }
 #endregion
 
-
 #region 圖片種類的Enum
 public enum Pool_Images
 {
@@ -1770,7 +879,6 @@ public enum Pool_Images
 
 }
 #endregion
-
 
 #region 盤面儲存用可以在畫面上看到的 多維陣列
 [System.Serializable]
