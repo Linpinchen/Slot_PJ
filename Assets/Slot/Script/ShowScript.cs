@@ -23,7 +23,7 @@ public class ShowScript : MonoBehaviour,IShow
     int _TempWinCoin;
 
     [SerializeField]
-    bool _StRecover;
+    bool _AddCoin;
 
     [SerializeField]
     RectTransform[] _StartPoint;
@@ -88,7 +88,7 @@ public class ShowScript : MonoBehaviour,IShow
 
     public int TempWinCoin { get { return _TempWinCoin; }set { _TempWinCoin = value; } }
 
-    public bool StRecover { get { return _StRecover; } set { StRecover = value; }  }
+    public bool AddCoin { get { return _AddCoin; } set { _AddCoin = value; }  }
 
     public bool CoinShow_Bool { get { return _CoinShow_Bool; }set { _CoinShow_Bool = value; } }
 
@@ -547,12 +547,17 @@ public class ShowScript : MonoBehaviour,IShow
 
                     _TempWinCoin = 0;
 
-                    Win_All_Coin_Temp = _IDate.PlayerCoin + Coin;
+                    if (AddCoin)
+                    {
 
-                    _IDate.PlayerCoin = Win_All_Coin_Temp;
+                        Win_All_Coin_Temp = _IDate.PlayerCoin + Coin;
 
-                    _IUIMethod.PlayerCoin_Text.text = "Money:" + Win_All_Coin_Temp.ToString();
+                        _IDate.PlayerCoin = Win_All_Coin_Temp;
 
+                        _IUIMethod.PlayerCoin_Text.text = "Money:" + Win_All_Coin_Temp.ToString();
+
+                    }
+                 
                      Coin = 0;
 
                     _CoinShow_Bool = true;
@@ -563,6 +568,7 @@ public class ShowScript : MonoBehaviour,IShow
           
             if (Coin - TempWinCoin < 50)
             {
+
                 TempWinCoin += 1;
 
                 yield return new WaitForSeconds(0.01f);
@@ -574,6 +580,7 @@ public class ShowScript : MonoBehaviour,IShow
                 TempWinCoin += 21;
 
                 yield return new WaitForSeconds(0.01f);
+
             }
 
         }

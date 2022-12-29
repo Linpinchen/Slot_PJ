@@ -106,10 +106,11 @@ public class PlayerControl
         {
             if (!_Manager.Start_Slot)
             {
+             
                 _UIMethod.BetPlus();
 
             }
-
+          
         });
 
         //押注 - 減注 - 按鈕
@@ -117,7 +118,9 @@ public class PlayerControl
         {
             if (!_Manager.Start_Slot)
             {
+
                 _UIMethod.BetReduce();
+
             }
             
         });
@@ -151,16 +154,24 @@ public class PlayerControl
         //Auto - 循環次數增加 - 按鈕
         Auto_Plus_Button.onClick.AddListener(delegate
         {
+            if (!_Manager.Start_Slot)
+            {
 
-            _UIMethod.AutoPlus();
+                _UIMethod.AutoPlus();
+
+            }
 
         });
 
         //Auto - 循環次數減少加 - 按鈕
         Auto_Reduce_Button.onClick.AddListener(delegate
         {
+            if (!_Manager.Start_Slot)
+            {
 
-            _UIMethod.AutoReduce();
+                _UIMethod.AutoReduce();
+
+            }
 
         });
 

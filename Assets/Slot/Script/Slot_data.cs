@@ -688,8 +688,6 @@ public class Slot_data :IDate ,IDateEvent{
         if (Bonus_count == 3)
         {
 
-            int i = BonusGrid._girdcount - 1;
-
             DateTypeChange(BonusGrid);
 
         }
@@ -756,9 +754,12 @@ public class Slot_data :IDate ,IDateEvent{
     /// <param name="PrizeDate"></param>
     /// <param name="_Gridints"></param>
     /// <param name="Win_Money"></param>
-    public int WInChack(int[] PrizeDate, GridIntS _Gridints,int Win_Money)
-    {
-        List<int> Tempi = new List<int>();
+    public int WInChack(int[] PrizeDate, GridIntS _Gridints)
+	{
+		int Win_Money = 0;
+
+
+		List<int> Tempi = new List<int>();
 
         for (int i = 0; i < PrizeDate.Length; i++)
         {

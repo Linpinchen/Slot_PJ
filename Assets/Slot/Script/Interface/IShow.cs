@@ -7,7 +7,7 @@ public interface IShow
 
 {
     int TempWinCoin { get; set; }
-    bool StRecover { get; set; }
+    bool AddCoin { get; set; }
     bool CoinShow_Bool { get; set; }
     Image[] WinCoins { get; set; }
     Sprite[] Numbers { get; set; }
