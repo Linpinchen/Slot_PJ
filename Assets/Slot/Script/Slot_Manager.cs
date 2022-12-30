@@ -636,8 +636,8 @@ public class Slot_Manager : MonoBehaviour
         }
         else
         {
-
-            CommonGrid._GridMethod(CommonGrid);//普盤 生成盤面
+            CommonGrid.CreatGrid();
+            //CommonGrid._GridMethod(CommonGrid);//普盤 生成盤面
 
         }
 
@@ -659,7 +659,8 @@ public class Slot_Manager : MonoBehaviour
         if (_IDate.BonusCount == FreeGameCount)//如果有Bonus獎
         {
 
-            BonusGrid._GridMethod(BonusGrid);//Bonus盤 生成盤面
+            // BonusGrid._GridMethod(BonusGrid);//Bonus盤 生成盤面
+            BonusGrid.CreatGrid();
 
             for (int i = 0; i < BonusGrid._girdcount; i++) //Bonus 各個盤面的兌獎
             {
