@@ -6,7 +6,6 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Slot_data :IDate ,IDateEvent{
 
-    IUIControlMethod IUICM;
    
     Reel_Move[] _Reelmove;
 
@@ -89,15 +88,11 @@ public class Slot_data :IDate ,IDateEvent{
 	/// </summary>
 	/// <param name="_IUICM"></param>
 	/// <param name="_ReelMoves"></param>
-	public void Init(IUIControlMethod _IUICM ,Reel_Move[] _ReelMoves)
+	public void Init(Reel_Move[] _ReelMoves)
     {
 
-        this.IUICM = _IUICM;
-
         this._Reelmove = _ReelMoves;
-
         _Date = new List<intCount>();
-
         Temp = new List<int>();
 
     }
@@ -111,9 +106,7 @@ public class Slot_data :IDate ,IDateEvent{
     public void Initialization_Slot_Sprite()
     {
         //Debug.Log("依＿Reel_Sprite_Date資料設置圖片");
-
         int Tempi;
-
         Tempi = Sprite_Pool.Length - 2;//不要特殊圖
 
         for (int i = 0; i < _Reelmove.Length; i++)
@@ -123,11 +116,8 @@ public class Slot_data :IDate ,IDateEvent{
             {
 
                 int Changei;
-
                 Changei = Random.Range(0, Tempi);
-
                 _Reelmove[i].transform.GetChild(j).GetComponent<Image>().sprite = Sprite_Pool[Changei];
-
                 //Debug.Log(string.Format("第{0}個輪條的第{1}張圖片,圖片名稱{2}",i,j,_Reel_Moves[i].transform.GetChild(j).GetComponent<Image>().sprite.name));
 
             }
@@ -154,14 +144,12 @@ public class Slot_data :IDate ,IDateEvent{
 			{
 				// 需要灌入的圖片資料
 				List<Pool_Images> LM = new List<Pool_Images>();
-
 				foreach (Pool_Images p in System.Enum.GetValues(typeof(Pool_Images)))
 				{
 					LM.Add(p);
 				}
 
 				LM.RemoveAt((int)Pool_Images.Universal_Sprite);//輪條1不會有連線共同圖
-
 				int _One_Sprite_pool_Temp = LM.Count - 1;//第一輪用的陣列少掉Bonus圖
 
 				for (int j = 0; j < Temp; j++)
@@ -170,9 +158,7 @@ public class Slot_data :IDate ,IDateEvent{
 					if (slotGrid._grids[GridCount]._Grids[i]._GridInt.Contains(Pool_Images.Bonus))//已經有Bonus圖的話 就不要再出現Bonus圖了
 					{
 						int Temp_B;
-
 						Temp_B = Random.Range(0,_One_Sprite_pool_Temp);
-
 						slotGrid._grids[GridCount]._Grids[i]._GridInt[j] = LM[Temp_B];
 
 					}
@@ -180,7 +166,6 @@ public class Slot_data :IDate ,IDateEvent{
 					{
 						
 						int Tempj = Random.Range(0, LM.Count);
-
 						slotGrid._grids[GridCount]._Grids[i]._GridInt[j] = LM[Tempj];
 
 					}
@@ -195,7 +180,6 @@ public class Slot_data :IDate ,IDateEvent{
 				{
 
 					int Pool_Temp;
-
 					Pool_Temp = System.Enum.GetNames(typeof(Pool_Images)).Length - 1;//圖庫的圖數量減1,填入的圖會少了Bonus圖
 
 					//檢查陣列裡有沒有Bonus圖了
@@ -203,7 +187,6 @@ public class Slot_data :IDate ,IDateEvent{
 					{
 						
 						int Tempj = Random.Range(0, Pool_Temp);
-
 						slotGrid._grids[GridCount]._Grids[i]._GridInt[j] = (Pool_Images)Tempj;//填入的圖會少了Bonus圖
 
 					}
@@ -211,7 +194,6 @@ public class Slot_data :IDate ,IDateEvent{
 					{
 
 						int Tempj = Random.Range(0, System.Enum.GetNames(typeof(Pool_Images)).Length);
-
 						slotGrid._grids[GridCount]._Grids[i]._GridInt[j] = (Pool_Images)Tempj;//完整的圖庫
 
 					}
@@ -262,11 +244,8 @@ public class Slot_data :IDate ,IDateEvent{
 
 						int Tempcount;
 						int SpriteCountTemp;
-
 						Tempcount = System.Enum.GetNames(typeof(Pool_Images)).Length - SpecialCount;
-
 						SpriteCountTemp = Random.Range(0, Tempcount);
-
 						slotGrid._grids[i]._Grids[j]._GridInt[SpriteCount] = (Pool_Images)SpriteCountTemp;
 
 					}
@@ -280,11 +259,8 @@ public class Slot_data :IDate ,IDateEvent{
 
 						int Tempcount;
 						int SpriteCountTemp;
-
 						Tempcount = Sprite_Pool.Length - 1;
-
 						SpriteCountTemp = Random.Range(0, Tempcount);
-
 						slotGrid._grids[i]._Grids[j]._GridInt[SpriteCount] = (Pool_Images)SpriteCountTemp;
 
 					}
@@ -314,9 +290,7 @@ public class Slot_data :IDate ,IDateEvent{
 			for (int i = 0; i < _SlotGrid.reelcount; i++)
 			{
 				int Gridcount = _SlotGrid._girdcount-1;
-
 				int Temp = _SlotGrid.imagecount[i];
-
 				int _One_Sprite_pool_Temp = System.Enum.GetNames(typeof(Pool_Images)).Length - SPecialImgCount;//第一輪用的陣列少掉特殊圖
 				
 				if (i == 0)
@@ -335,9 +309,7 @@ public class Slot_data :IDate ,IDateEvent{
 						{
 
 							int Temp_B;
-
 							Temp_B = Random.Range(0, _One_Sprite_pool_Temp);
-
 							_SlotGrid._grids[Gridcount]._Grids[i]._GridInt[j] = (Pool_Images)Temp_B;
 
 						}
@@ -361,9 +333,7 @@ public class Slot_data :IDate ,IDateEvent{
 						{
 
 							int Temp_B;
-
 							Temp_B = Random.Range(0, _One_Sprite_pool_Temp);
-
 							_SlotGrid._grids[Gridcount]._Grids[i]._GridInt[j] = (Pool_Images)Temp_B;
 
 						}
@@ -401,9 +371,7 @@ public class Slot_data :IDate ,IDateEvent{
 					{
 
 						int Temp_B;
-
 						Temp_B = Random.Range(0, _One_Sprite_pool_Temp);
-
 						_SlotGrid._grids[Gridcount]._Grids[i]._GridInt[j] = (Pool_Images)Temp_B;
 
 					}
@@ -428,9 +396,7 @@ public class Slot_data :IDate ,IDateEvent{
 	{
 
 		int Reelcount;
-
 		Reelcount = _SlotGrid.reelcount;//有多少輪條
-
 		int GridCount = _SlotGrid._girdcount - 1;//最後的盤面在List中的值
 
 		for (int i=0;i< Reelcount; i++)
@@ -441,7 +407,6 @@ public class Slot_data :IDate ,IDateEvent{
 			{
 
 			    //把_SlotGrid的Enum資料轉成Int放進_Date
-
 			    _Date[i]._IntCount[j] = (int)_SlotGrid._grids[GridCount]._Grids[i]._GridInt[j];
 			
 			}
@@ -682,10 +647,10 @@ public class Slot_data :IDate ,IDateEvent{
     /// <summary>
     /// 將資料轉成Jason並且儲存
     /// </summary>
-    public void DateSave(SlotGrid CommonGrid,SlotGrid BonusGrid)//
+    public void DateSave(SlotGrid CommonGrid,SlotGrid BonusGrid,int FreeGamecount)
     {
 
-        if (Bonus_count == 3)
+        if (Bonus_count == FreeGamecount)
         {
 
             DateTypeChange(BonusGrid);
@@ -699,52 +664,23 @@ public class Slot_data :IDate ,IDateEvent{
         }
 
         _Slot_SeverDate.Bet_Coin =bet_Coin;
-
         _Slot_SeverDate.Auto_HasRollcount = _AutoSurplus;
-
         _Slot_SeverDate.Auto_PlayerSet = _AutoCount;
-
         _Slot_SeverDate.Auto_NotYet = _CycleCount;
-
         _Slot_SeverDate.Player_Coin = Coin;
-
         _Slot_SeverDate.BonusCoin = Total_BonusWinCoin;
-
         _Slot_SeverDate.Win_Coin = WinCoin;
-
         _Slot_SeverDate.Data = _Date;
-
         string SaveDateToJason;
-
         SaveDateToJason = JsonUtility.ToJson(_Slot_SeverDate);
-
         PlayerPrefs.SetString("遊戲資料", SaveDateToJason);
-
         PlayerPrefs.Save();
-
         Debug.Log("資料儲存完成");
-
         Debug.Log("資料內容 ：" + SaveDateToJason);
-
         Debug.Log("目前是否有儲存到資料 ：" + PlayerPrefs.HasKey("遊戲資料")); ;
 
     }
 
-    /// <summary>
-    /// 將資料讀取
-    /// </summary>
-    public void GetDateSave()
-    {
-        Debug.Log("有無遊戲資料 ：" + PlayerPrefs.HasKey("遊戲資料"));
-
-        if (PlayerPrefs.HasKey("遊戲資料"))
-        {
-
-            IUICM.Options.SetActive(true);
-
-        }
-       
-    }
     #endregion
 
     #region (新) 連線判斷
@@ -757,8 +693,6 @@ public class Slot_data :IDate ,IDateEvent{
     public int WInChack(int[] PrizeDate, GridIntS _Gridints)
 	{
 		int Win_Money = 0;
-
-
 		List<int> Tempi = new List<int>();
 
         for (int i = 0; i < PrizeDate.Length; i++)
@@ -770,9 +704,7 @@ public class Slot_data :IDate ,IDateEvent{
             for (int j = 0; j < NumCount; j++)
             {
                 int TempValu;//用字串處理 取的 Win_Money_Temp各個位數的值
-
                 TempValu = int.Parse(number.Substring(j, 1));
-
                 Tempi.Add(TempValu);
 
             }
@@ -781,8 +713,7 @@ public class Slot_data :IDate ,IDateEvent{
             {
 
                 Pool_Images _PoolImages = _Gridints._Grids[0]._GridInt[Tempi[0]];//最左的初始中獎圖
-
-                //333
+ 
                 if (_Gridints._Grids[2]._GridInt[Tempi[2]] == Pool_Images.Universal_Sprite || _PoolImages == _Gridints._Grids[2]._GridInt[Tempi[2]])
                 {
 
@@ -792,40 +723,30 @@ public class Slot_data :IDate ,IDateEvent{
                     {
 
                         Debug.Log("Win");
-
                         Debug.Log(PrizeDate[i]);
-
                         int Line_count = 5;
-
                         Win_Money = Win_Sprite(_PoolImages, Line_count,  Win_Money);
-
                         Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
 
                     }
 
                     else if (_PoolImages == _Gridints._Grids[3]._GridInt[Tempi[3]] || _Gridints._Grids[3]._GridInt[Tempi[3]] == Pool_Images.Universal_Sprite)//3333
                     {
+
                         Debug.Log("Win");
-
                         Debug.Log(string.Format("{0},{1},{2},{3}", Tempi[0], Tempi[1], Tempi[2], Tempi[3]));
-
                         int Line_count = 4;
-
                         Win_Money = Win_Sprite(_PoolImages, Line_count, Win_Money);
-
                         Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
+
                     }
 
-                    else//333
+                    else
                     {
                         Debug.Log("Win");
-
                         Debug.Log(string.Format("{0},{1},{2}", Tempi[0], Tempi[1], Tempi[2]));
-
                         int Line_count = 3;
-
                         Win_Money =Win_Sprite(_PoolImages, Line_count,  Win_Money);
-
                         Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
 
                     }
@@ -928,20 +849,13 @@ public class SlotGrid
 	GridContentFun<SlotGrid> GridMethod;
 	
 
-	public SlotGrid(int _Girdocunt,int _ReelCount,List<int> _ImageCount,GridContentFun<SlotGrid> Enm)
+	public SlotGrid(int _Girdocunt,int _ReelCount,List<int> _ImageCount,GridContentFun<SlotGrid> GridMethod)
 	{
 		this.Girdcount = _Girdocunt;
-
 		this.Reelcount = _ReelCount;
-
-		//ImageCount = new List<int>();
-
 		this.ImageCount = _ImageCount;
-
 		Grid = new List<GridIntS>();
-
-		this.GridMethod = Enm;
-
+		this.GridMethod = GridMethod;
 		Reel_Initialization();
 
 	}
@@ -950,9 +864,9 @@ public class SlotGrid
 
 	public int _girdcount
 	{
+
 		get { return Girdcount; }
 
-		//set { Girdcount = value; }
 	}
 
 	public int reelcount
@@ -992,13 +906,11 @@ public class SlotGrid
 		for (int k=0;k<Girdcount;k++)
 		{
 			Grid.Add(new GridIntS());
-
 			Grid[k]._Grids = new List<GridInt>();
 
 			for (int i = 0; i < Reelcount; i++)
 			{
 				Grid[k]._Grids.Add(new GridInt());
-
 				Grid[k]._Grids[i]._GridInt = new List<Pool_Images>();
 
 				for (int j = 0; j < ImageCount[i]; j++)

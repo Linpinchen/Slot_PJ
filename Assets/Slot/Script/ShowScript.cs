@@ -20,6 +20,9 @@ public class ShowScript : MonoBehaviour,IShow
     Image[] _WinCoins;
 
     [SerializeField]
+    Image _BonusWinBackSprite;
+
+    [SerializeField]
     int _TempWinCoin;
 
     [SerializeField]
@@ -56,9 +59,6 @@ public class ShowScript : MonoBehaviour,IShow
     Transform _BonusLineRenderOutPool;// Bonus盤用的預置物放置在Hierarchy 待表演 顯示的位置
 
     [SerializeField]
-    GameObject _BonusLineRenderChildPool;
-
-    [SerializeField]
     List<Transform> _UiShow;//普盤 裝等待Shiny表演的
 
     [SerializeField]
@@ -83,6 +83,8 @@ public class ShowScript : MonoBehaviour,IShow
     RawImage _VideoImage;
 
     public Sprite[] Numbers { get { return _Numbers; }set { _Numbers = value; } }
+
+    public Image BonusWinBackSprite { get { return _BonusWinBackSprite; }set { BonusWinBackSprite = value; } }
 
     public Image[] WinCoins { get { return _WinCoins; } set { _WinCoins = value; } }
 
@@ -111,8 +113,6 @@ public class ShowScript : MonoBehaviour,IShow
     public Transform LineRenderOutPool { get { return _LineRenderOutPool; } set { _LineRenderOutPool=value; } }
 
     public Transform BonusLineRenderOutPool { get { return _BonusLineRenderOutPool; } set { _BonusLineRenderOutPool=value; } }
-
-    public GameObject BonusLineRenderChildPool { get { return _BonusLineRenderChildPool; } set { _BonusLineRenderChildPool = value; } }
 
     public List<Transform> UiShow { get { return _UiShow; } set { _UiShow = value; } }
 
@@ -152,17 +152,13 @@ public class ShowScript : MonoBehaviour,IShow
         string SNumber;
         List<RectTransform> VVVs;
         VVVs = new List<RectTransform>();
-
         SNumber = SlotSequence.ToString();
 
         for (int i = 0; i < _ReelMove.Length; i++)
         {
             char Number = SNumber[i];
-
             int Inumber = int.Parse(Number.ToString());
-
             VVVs.Add(_ReelMove[i].Reel_images[Inumber].rectTransform);
-
             //Debug.Log(VVVs[i]);
         }
 
@@ -178,7 +174,6 @@ public class ShowScript : MonoBehaviour,IShow
     {
 
         Debug.Log("ListShiny");
-
         List<RectTransform> GetTrans = GetRoolWinImg(_ReelMove, Number);//取得RectTransform
 
         for (int i = 0; i < GetTrans.Count; i++)
@@ -188,7 +183,6 @@ public class ShowScript : MonoBehaviour,IShow
             {
 
                 Debug.Log("ListShiny . ADD");
-
                 ReadyShow.Add(GetTrans[i]);
 
             }
@@ -206,9 +200,7 @@ public class ShowScript : MonoBehaviour,IShow
         {
 
             Animator Amo;
-
             Amo = ReadyShow[i].GetComponent<Animator>();
-
             Amo.SetTrigger("StShiny");
 
         }
@@ -234,20 +226,14 @@ public class ShowScript : MonoBehaviour,IShow
             Reuse.GetComponent<DrawLine>().Taget_Point.Add(PointPosition[i].transform);
 
         }
+
         Reuse.GetComponent<DrawLine>().Temp_point = new List<Transform>();
-
         Reuse.GetComponent<DrawLine>().Temp_point.Add(OrangePoint);
-
         Reuse.GetComponent<DrawLine>().Temp_point.Add(Reuse.GetComponent<DrawLine>().gameObject.transform);
-
         Reuse.GetComponent<DrawLine>().Temp_VV = Reuse.GetComponent<DrawLine>().Taget_Point[0].transform;//PointPosition[0];
-
         Reuse.GetComponent<DrawLine>().Orange_point = OrangePoint.gameObject;
-
         Reuse.GetComponent<DrawLine>().Taget_Point.Add(EndPoint);
-
         //Debug.Log("Manager__ Temp_point.Count : " + Reuse.GetComponent<DrawLine>().Temp_point.Count);
-
         //Debug.Log("Manager__Taget_Point.Count : " + Reuse.GetComponent<DrawLine>().Taget_Point.Count);
 
     }
@@ -319,13 +305,9 @@ public class ShowScript : MonoBehaviour,IShow
         {
 
             Reuse = DrawLinePool.Dequeue();//取出DrawLinePool的預制物
-
             Reuse.transform.position = First.position;//設置預制物的位置
-
             InstObjectInitialization(Reuse, First, GetRoolWinImg(_ReelMove, Number), End);
-
             Reuse.transform.parent = StayOutpool;
-
             StayDrawLine.Add(Reuse);//放進去等待啟動
 
         }
@@ -333,15 +315,10 @@ public class ShowScript : MonoBehaviour,IShow
         {
 
             Reuse = Instantiate(GBDrawLine, StayOutpool);
-
             Reuse.transform.position = First.position;
-
             InstObjectInitialization(Reuse, First, GetRoolWinImg(_ReelMove, Number), End);
-
             Reuse.SetActive(false);
-
             StayDrawLine.Add(Reuse);//放進去等待啟動
-
 
         }
 
@@ -353,19 +330,14 @@ public class ShowScript : MonoBehaviour,IShow
     public void ObjectPoolInitialization()
     {
         int InitailSize = 5;
-
         DrawLinePool = new Queue<GameObject>();
 
         for (int i = 0; i < InitailSize; i++)
         {
             GameObject InstGb;
-
             InstGb = Instantiate(GBDrawLine, InLineRenderPool);//預制物生成
-
             DrawLinePool.Enqueue(InstGb);//將生成的預制物方進DrawLinePool這個Queue裡
-
             InstGb.SetActive(false);
-
             Debug.Log("DrawLinePool.Count:" + DrawLinePool.Count);
 
         }
@@ -384,15 +356,10 @@ public class ShowScript : MonoBehaviour,IShow
         if (!Stb)
         {
             Debug.Log("---------------------------Start_Recover :------------------------");
-
             recover.GetComponent<DrawLine>().LI.positionCount = 0;
-
             recover.GetComponent<DrawLine>().LI.positionCount = 2;
-
             DrawLinePool.Enqueue(recover);
-
             recover.transform.parent = InLineRenderPool;
-
             recover.SetActive(false);
 
         }
@@ -409,17 +376,13 @@ public class ShowScript : MonoBehaviour,IShow
     {
 
         bool DrawAllBool;
-
         DrawAllBool = _SHowOk.Contains(true);//確認Lineder都跑完了沒
-
         //Debug.Log(_SHowOk.Contains(true));
-
 
         if (StayDrawLine.Count != 0)//LineRenderOutPool.childCount != 0
         {
 
             //Debug.Log("----------------LineRenderOutPool.childCount : ----------------------"+ LineRenderOutPool.childCount);
-
             //Debug.Log("StayDrawLine.Count :" + StayDrawLine.Count);
 
             if (_SHowOk.Count != 0 && StayDrawLine.Count != 0)//持續更新裡面的bool
@@ -428,7 +391,6 @@ public class ShowScript : MonoBehaviour,IShow
                 for (int i = 0; i < StayDrawLine.Count; i++)
                 {
                    // Debug.Log("_SHowOk[i] 持續更新");
-
                     _SHowOk[i] = StayDrawLine[i].GetComponent<DrawLine>().StDrawLine;
 
                 }
@@ -450,12 +412,8 @@ public class ShowScript : MonoBehaviour,IShow
                 {
 
                     StayDrawLine.Clear();
-
                     _SHowOk.Clear();
-
                     //Debug.Log("------------PrepareDrawLine.Count :------------" + PrepareDrawLine.Count);
-
-                 
 
                 }
 
@@ -477,9 +435,7 @@ public class ShowScript : MonoBehaviour,IShow
         {
 
             StayDrawLine[i].SetActive(true);
-
             StayDrawLine[i].GetComponent<DrawLine>().StDrawLine = true;
-
             _ShowOk.Add(StayDrawLine[i].GetComponent<DrawLine>().StDrawLine);//把DrawLine的Bool放進陣列統一判斷是否結束
 
         }
@@ -504,24 +460,17 @@ public class ShowScript : MonoBehaviour,IShow
             if (_TempWinCoin <= Coin)
             {
                 Debug.Log("開始CoinShow 數字換圖");
-
                 string SWinCoin = _TempWinCoin.ToString();
-
                 //Debug.Log("SWinCoin(暫存金額) ：" + SWinCoin);
-
                 int ImgCount = SWinCoin.Length;//取得幾位數
-
                 //Debug.Log("本局Win金額 ＝ " + ImgCount + "位數");
 
                 for (int i = 0; i < ImgCount; i++)
                 {
 
                     int TempValu;//用字串處理 取的 Win_Money_Temp各個位數的值
-
                     TempValu = int.Parse(SWinCoin.Substring(i, 1));
-
                     WinCoins[i].gameObject.SetActive(true);
-
                     WinCoins[i].sprite = Numbers[TempValu];
 
                 }
@@ -530,12 +479,10 @@ public class ShowScript : MonoBehaviour,IShow
 
                 if (_TempWinCoin >= Coin)
                 {
+
                     Debug.Log("開始CoinShow 迴圈 ： 已到目標 表演金額");
-
                     yield return new WaitForSeconds(1f);
-
                     int Win_All_Coin_Temp;
-
                     yield return new WaitForSeconds(0.5f);
 
                     for (int i = 0; i < WinCoins.Length; i++)
@@ -551,15 +498,12 @@ public class ShowScript : MonoBehaviour,IShow
                     {
 
                         Win_All_Coin_Temp = _IDate.PlayerCoin + Coin;
-
                         _IDate.PlayerCoin = Win_All_Coin_Temp;
-
                         _IUIMethod.PlayerCoin_Text.text = "Money:" + Win_All_Coin_Temp.ToString();
 
                     }
                  
                      Coin = 0;
-
                     _CoinShow_Bool = true;
 
                 }
@@ -570,7 +514,6 @@ public class ShowScript : MonoBehaviour,IShow
             {
 
                 TempWinCoin += 1;
-
                 yield return new WaitForSeconds(0.01f);
 
             }
@@ -578,7 +521,6 @@ public class ShowScript : MonoBehaviour,IShow
             {
 
                 TempWinCoin += 21;
-
                 yield return new WaitForSeconds(0.01f);
 
             }

@@ -16,15 +16,19 @@ public class Button_EventTrigger : EventTrigger {
 	public IEnumerator _Wait_Bet;
 	public bool b;
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		
 		b_Start = false;
 		Button_Down = false;
 		Return_Valu = 0;
+
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
+
 		if (Button_Down)//判斷按鈕是否按下
         {
 			if (gameObject.tag == "Bet")
@@ -42,29 +46,22 @@ public class Button_EventTrigger : EventTrigger {
 
 					}
 
-
 				}
-
 
 			}
 
-
-
 		}
-
-
-		
-
 
 	}
 
     public override void OnPointerEnter(PointerEventData eventData)
     {
+
 		if (gameObject.tag=="UiEnlarge")
 		{
+
 			Ami = gameObject.GetComponent<Animator>();
 			Ami.SetBool("StEnlarge",true);
-
 
 		}
 
@@ -73,41 +70,43 @@ public class Button_EventTrigger : EventTrigger {
 
     public override void OnPointerExit(PointerEventData eventData)
     {
+
 		if (gameObject.tag=="UiEnlarge")
 		{
 
 			Ami = gameObject.GetComponent<Animator>();
 			Ami.SetBool("StEnlarge",false);
 
-
 		}
+
     }
 
 
     public override void OnPointerDown(PointerEventData eventData)
     {
 
-		
-
-
 		if (gameObject.tag == "Bet")
 		{
+
 			Down_Time = 0;
 			Return_Valu = 0;
 			_Wait_Bet = Wait_Bet();
 			Button_Down = true;
 			Debug.Log("Down-True");
-		}
 
+		}
 
     }
     public override void OnPointerUp(PointerEventData eventData)
     {
 		if (gameObject.tag == "Bet")
 		{
+
 			Debug.Log("Down-false");
 			Rest();
+
 		}
+
 	}
 
 
@@ -119,17 +118,16 @@ public class Button_EventTrigger : EventTrigger {
 		yield return new WaitForSeconds(0.5f);//等待1秒
         if (b_Start)
         {
+
             Return_BetCoin();//Return值為100
 			b = true;
             Return_Valu = Return_BetCoin(); //累積加值
-
             Debug.Log("Return_Valu:" + Return_Valu);
+
         }
-		
 		
 		b_Start = false;//從新開啟條件
 		_Wait_Bet = Wait_Bet();//重新賦予任務
-
 
 	}
 
@@ -137,19 +135,16 @@ public class Button_EventTrigger : EventTrigger {
 	public int Return_BetCoin()
 	{
 
-		
 		return 1;//回傳1的值
 		
 	}
 
 	public void Rest()
 	{
+
 		Button_Down = false;
-		
 		b_Start = false;
 		
-
 	}
-
 
 }

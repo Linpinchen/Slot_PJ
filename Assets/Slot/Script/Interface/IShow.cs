@@ -9,6 +9,7 @@ public interface IShow
     int TempWinCoin { get; set; }
     bool AddCoin { get; set; }
     bool CoinShow_Bool { get; set; }
+    Image BonusWinBackSprite { get; set; }
     Image[] WinCoins { get; set; }
     Sprite[] Numbers { get; set; }
     List<List<bool>> BonusDrawLineOk { get; set; }
@@ -21,7 +22,6 @@ public interface IShow
     Transform InLineRenderPool { get; set; }
     Transform LineRenderOutPool { get; set; }
     Transform BonusLineRenderOutPool { get; set; }
-    GameObject BonusLineRenderChildPool { get; set; }
     List<Transform> UiShow { get; set; }
     List<List<Transform>> BonusUiShow { get; set; }
     Animator Amr_WinShow { get; set; }
