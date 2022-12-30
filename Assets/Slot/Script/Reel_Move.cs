@@ -3,22 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Reel_Move : MonoBehaviour {
+public class Reel_Move : MonoBehaviour,IMove {
    
-    public bool strool;//是否要滾動
-    public Vector2 originalv2;//原始座標
-    public RectTransform ReelV2;//移動用的座標
-    public List<Image> Reel_images; //掛著這個腳本的物件 的 子物件Image
-    public int tempi;//計算換圖次數
-    public float Speed;
-    public int Date_Temp;
-    public int Roolcount;
-    public Sprite[] Sprites;
-    public List<int> ChangeSprite;
+    bool _strool;//是否要滾動
+    Vector2 _originalv2;//原始座標
+    RectTransform _ReelV2;//移動用的座標
+    List<Image> _Reel_images; //掛著這個腳本的物件 的 子物件Image
+    int _tempi;//計算換圖次數
+    float _Speed;
+    int _Date_Temp;
+    int _Roolcount;
+    Sprite[] _Sprites;
+    List<int> _ChangeSprite;
+    GameObject _Self;
 
 
- 
+    public bool strool { get {return _strool; } set { _strool = value; } }
+    public Vector2 originalv2 { get { return _originalv2; } set { _originalv2=value; } }
+    public RectTransform ReelV2 { get { return _ReelV2; } set { _ReelV2 = value; } }
+    public List<Image> Reel_images { get { return _Reel_images; } set { _Reel_images = value; } }
+    public int tempi { get { return _tempi;  } set { _tempi = value; } }
+    public float Speed { get { return _Speed; } set { _Speed = value; } }
+    public int Date_Temp { get { return _Date_Temp; } set { _Date_Temp = value; } }
+    public int Roolcount { get { return _Roolcount; } set { _Roolcount = value; } }
+    public Sprite[] Sprites { get { return _Sprites; } set { _Sprites = value; } }
+    public List<int> ChangeSprite { get { return _ChangeSprite; } set { _ChangeSprite = value; } }
+    public GameObject Self { get { return _Self; } set { _Self = value; } }
     void Start() {
+
         
         Date_Temp = 0;
         originalv2 = gameObject.GetComponent<RectTransform>().anchoredPosition;//取得原始座標
@@ -37,7 +49,34 @@ public class Reel_Move : MonoBehaviour {
    
     void Update() {
 
-        if (tempi < Roolcount && strool == true)
+
+
+        Move();
+
+
+
+    }
+
+    public void Init(int Roolcount, Sprite[] sprites, float Speed)
+    {
+        _Self = this.gameObject;
+        this.Roolcount = Roolcount;
+        this.Sprites = sprites;
+        this.Speed = Speed;
+        ChangeSprite = new List<int>();
+
+        for (int i=0;i<this.transform.childCount;i++)
+        {
+
+            ChangeSprite.Add(0);
+
+        }
+
+    }
+
+    public void Move()
+    {
+        if (tempi < Roolcount && _strool == true)
         {
             int Date_Chang_Count = Roolcount - gameObject.transform.childCount;//換圖次數-子物件數＝隨機換圖次數 ,（因為最後要留單輪條子物件數來灌入Date的盤面資料）
             ReelV2.anchoredPosition += new Vector2(0, -5) * Speed * Time.deltaTime;
@@ -61,6 +100,7 @@ public class Reel_Move : MonoBehaviour {
 
                     else//最後一張圖要隨機給圖 如果到需要灌入Date資料的次數時
                     {
+
                         if (tempi >= Date_Chang_Count)
                         {
 
@@ -69,22 +109,24 @@ public class Reel_Move : MonoBehaviour {
                             Date_Temp++;
                             //Debug.Log("tempi:" + tempi + "Roolcount" + Roolcount + "Sprites :" + ChangeSprite[i]);
 
-                            if (tempi==Roolcount)//這裡做重置的動作
+                            if (tempi == Roolcount)//這裡做重置的動作
                             {
+
                                 strool = false;
                                 //tempi = 0;
                                 Date_Temp = 0;
+
                             }
 
                         }
                         else
                         {
+
                             Reel_images[i].sprite = Sprites[ri];
                             tempi++;
                             // Debug.Log("tempi:" + tempi + "Roolcount" + Roolcount);
 
                         }
-
 
                     }
 
@@ -96,21 +138,4 @@ public class Reel_Move : MonoBehaviour {
 
     }
 
-    public void Init(int Roolcount, Sprite[] sprites, float Speed)
-    {
-
-        this.Roolcount = Roolcount;
-        this.Sprites = sprites;
-        this.Speed = Speed;
-        ChangeSprite = new List<int>();
-
-        for (int i=0;i<this.transform.childCount;i++)
-        {
-
-            ChangeSprite.Add(0);
-
-        }
-
-    }
- 
 }

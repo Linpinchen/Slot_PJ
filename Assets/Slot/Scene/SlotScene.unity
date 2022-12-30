@@ -1248,16 +1248,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 613ac374944504b1db2a834cf330c71e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strool: 0
-  originalv2: {x: 0, y: 0}
-  ReelV2: {fileID: 0}
-  Reel_images: []
-  tempi: 0
-  Speed: 0
-  Date_Temp: 0
-  Roolcount: 0
-  Sprites: []
-  ChangeSprite: 
 --- !u!1 &140686179
 GameObject:
   m_ObjectHideFlags: 0
@@ -3932,16 +3922,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 613ac374944504b1db2a834cf330c71e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strool: 0
-  originalv2: {x: 0, y: 0}
-  ReelV2: {fileID: 0}
-  Reel_images: []
-  tempi: 0
-  Speed: 0
-  Date_Temp: 0
-  Roolcount: 0
-  Sprites: []
-  ChangeSprite: 
 --- !u!1 &482751834
 GameObject:
   m_ObjectHideFlags: 0
@@ -6365,16 +6345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 613ac374944504b1db2a834cf330c71e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strool: 0
-  originalv2: {x: 0, y: 0}
-  ReelV2: {fileID: 0}
-  Reel_images: []
-  tempi: 0
-  Speed: 0
-  Date_Temp: 0
-  Roolcount: 0
-  Sprites: []
-  ChangeSprite: 
 --- !u!1 &849999067
 GameObject:
   m_ObjectHideFlags: 0
@@ -10915,16 +10885,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 613ac374944504b1db2a834cf330c71e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strool: 0
-  originalv2: {x: 0, y: 0}
-  ReelV2: {fileID: 0}
-  Reel_images: []
-  tempi: 0
-  Speed: 0
-  Date_Temp: 0
-  Roolcount: 0
-  Sprites: []
-  ChangeSprite: 
 --- !u!1 &1532987427
 GameObject:
   m_ObjectHideFlags: 0
@@ -13081,16 +13041,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 613ac374944504b1db2a834cf330c71e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strool: 0
-  originalv2: {x: 0, y: 0}
-  ReelV2: {fileID: 0}
-  Reel_images: []
-  tempi: 0
-  Speed: 0
-  Date_Temp: 0
-  Roolcount: 0
-  Sprites: []
-  ChangeSprite: 
 --- !u!1 &1876450630
 GameObject:
   m_ObjectHideFlags: 0

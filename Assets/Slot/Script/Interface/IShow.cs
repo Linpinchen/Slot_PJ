@@ -36,13 +36,13 @@ public interface IShow
 
 
     void ObjectPoolInitialization();
-    void ObjectPool(Reel_Move[] _ReelMove, int Number, Transform StayOutpool, List<GameObject> StayDrawLine);
+    void ObjectPool( int Number, Transform StayOutpool, List<GameObject> StayDrawLine);
     void Recover(GameObject recover, bool Stb);
     void InstObjectInitialization(GameObject Reuse, RectTransform OrangePoint, List<RectTransform> PointPosition, RectTransform EndPoint);
     void RecoverComply(Transform OutPool, List<GameObject> StayDrawLine, List<bool> _SHowOk);
-    List<RectTransform> GetRoolWinImg(Reel_Move[] _ReelMove, int SlotSequence);
+    List<RectTransform> GetRoolWinImg( int SlotSequence);
     IEnumerator StartDrawLine(List<GameObject> StayDrawLine, List<bool> _ShowOk);
-    void ListShiny(Reel_Move[] _ReelMove, int Number, List<Transform> ReadyShow);
+    void ListShiny( int Number, List<Transform> ReadyShow);
     IEnumerator ShinyShow(List<Transform> ReadyShow);
     IEnumerator CoinShow(int Coin);
 

@@ -9,6 +9,8 @@ public class ShowScript : MonoBehaviour,IShow
 
     IDate _IDate;
     IUIControlMethod _IUIMethod;
+    IMove[] _ReelMove;
+
 
     [SerializeField]
     bool _CoinShow_Bool;
@@ -133,8 +135,9 @@ public class ShowScript : MonoBehaviour,IShow
 
 
 
-    public void Init(IDate _Idate,IUIControlMethod _Iui)
+    public void Init(IDate _Idate,IUIControlMethod _Iui,IMove[] _ReelMove)
     {
+        this._ReelMove = _ReelMove;
         this._IDate = _Idate;
         this._IUIMethod = _Iui;
         _CoinShow_Bool = true;
@@ -147,7 +150,7 @@ public class ShowScript : MonoBehaviour,IShow
     /// <param name="Date"></param>
     /// <param name="SlotSequence"></param>
     /// <returns></returns>
-    public List<RectTransform> GetRoolWinImg(Reel_Move[] _ReelMove, int SlotSequence)
+    public List<RectTransform> GetRoolWinImg( int SlotSequence)
     {
         string SNumber;
         List<RectTransform> VVVs;
@@ -170,11 +173,11 @@ public class ShowScript : MonoBehaviour,IShow
     /// 將要表演的圖片放入List
     /// </summary>
     /// <param name="_GetRoolWinImg"></param>
-    public void ListShiny(Reel_Move[] _ReelMove,int Number, List<Transform> ReadyShow)
+    public void ListShiny(int Number, List<Transform> ReadyShow)
     {
 
         Debug.Log("ListShiny");
-        List<RectTransform> GetTrans = GetRoolWinImg(_ReelMove, Number);//取得RectTransform
+        List<RectTransform> GetTrans = GetRoolWinImg( Number);//取得RectTransform
 
         for (int i = 0; i < GetTrans.Count; i++)
         {
@@ -245,7 +248,7 @@ public class ShowScript : MonoBehaviour,IShow
     /// <param name="initalPosition"></param>
     /// <param name="PointPosition"></param>
     /// <param name="EndPoint"></param>
-    public void ObjectPool(Reel_Move[] _ReelMove, int Number, Transform StayOutpool, List<GameObject> StayDrawLine)//起點,中間位置群,終點,畫面上要放進等待表演的父物件,等待要表演的陣列
+    public void ObjectPool( int Number, Transform StayOutpool, List<GameObject> StayDrawLine)//起點,中間位置群,終點,畫面上要放進等待表演的父物件,等待要表演的陣列
     {
 
         string Snumber = Number.ToString();
@@ -306,7 +309,7 @@ public class ShowScript : MonoBehaviour,IShow
 
             Reuse = DrawLinePool.Dequeue();//取出DrawLinePool的預制物
             Reuse.transform.position = First.position;//設置預制物的位置
-            InstObjectInitialization(Reuse, First, GetRoolWinImg(_ReelMove, Number), End);
+            InstObjectInitialization(Reuse, First, GetRoolWinImg( Number), End);
             Reuse.transform.parent = StayOutpool;
             StayDrawLine.Add(Reuse);//放進去等待啟動
 
@@ -316,7 +319,7 @@ public class ShowScript : MonoBehaviour,IShow
 
             Reuse = Instantiate(GBDrawLine, StayOutpool);
             Reuse.transform.position = First.position;
-            InstObjectInitialization(Reuse, First, GetRoolWinImg(_ReelMove, Number), End);
+            InstObjectInitialization(Reuse, First, GetRoolWinImg( Number), End);
             Reuse.SetActive(false);
             StayDrawLine.Add(Reuse);//放進去等待啟動
 

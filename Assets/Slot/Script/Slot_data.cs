@@ -6,8 +6,9 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Slot_data :IDate ,IDateEvent{
 
-   
-    Reel_Move[] _Reelmove;
+	public IMove[] ReelMoves;
+
+	//Reel_Move[] _Reelmove;
 
     [SerializeField]
     List<int>_Temp ;
@@ -47,7 +48,6 @@ public class Slot_data :IDate ,IDateEvent{
 
     public Sprite[] Sprite_Pool;//圖片庫
     public Slot_SeveDate _Slot_SeverDate;
-	public Slot_SeveDate GetSlotDate;
 	public List<intCount> _Date;
 
 
@@ -88,10 +88,10 @@ public class Slot_data :IDate ,IDateEvent{
 	/// </summary>
 	/// <param name="_IUICM"></param>
 	/// <param name="_ReelMoves"></param>
-	public void Init(Reel_Move[] _ReelMoves)
+	public void Init( IMove[] ReelMoves)
     {
-
-        this._Reelmove = _ReelMoves;
+		this.ReelMoves = ReelMoves;
+        //this._Reelmove = _ReelMoves;
         _Date = new List<intCount>();
         Temp = new List<int>();
 
@@ -109,15 +109,15 @@ public class Slot_data :IDate ,IDateEvent{
         int Tempi;
         Tempi = Sprite_Pool.Length - 2;//不要特殊圖
 
-        for (int i = 0; i < _Reelmove.Length; i++)
+        for (int i = 0; i < ReelMoves.Length; i++)
         {
 
-            for (int j = 0; j < _Reelmove[i].transform.childCount; j++)
+            for (int j = 0; j < ReelMoves[i].Self.transform.childCount; j++)
             {
 
                 int Changei;
                 Changei = Random.Range(0, Tempi);
-                _Reelmove[i].transform.GetChild(j).GetComponent<Image>().sprite = Sprite_Pool[Changei];
+				ReelMoves[i].Self.transform.GetChild(j).GetComponent<Image>().sprite = Sprite_Pool[Changei];
                 //Debug.Log(string.Format("第{0}個輪條的第{1}張圖片,圖片名稱{2}",i,j,_Reel_Moves[i].transform.GetChild(j).GetComponent<Image>().sprite.name));
 
             }
