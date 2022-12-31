@@ -13,9 +13,9 @@ public class Reel_Move : MonoBehaviour,IMove {
     float _Speed;
     int _Date_Temp;
     int _Roolcount;
-    Sprite[] _Sprites;
-    List<int> _ChangeSprite;
-    GameObject _Self;
+    Sprite[] _Sprites;//圖庫
+    List<int> _ChangeSprite;//要換的圖片資料
+    GameObject _Self;//自己本身這個物件
 
 
     public bool strool { get {return _strool; } set { _strool = value; } }
@@ -63,12 +63,12 @@ public class Reel_Move : MonoBehaviour,IMove {
         this.Roolcount = Roolcount;
         this.Sprites = sprites;
         this.Speed = Speed;
-        ChangeSprite = new List<int>();
+        _ChangeSprite = new List<int>();
 
         for (int i=0;i<this.transform.childCount;i++)
         {
 
-            ChangeSprite.Add(0);
+            _ChangeSprite.Add(0);
 
         }
 
@@ -104,7 +104,7 @@ public class Reel_Move : MonoBehaviour,IMove {
                         if (tempi >= Date_Chang_Count)
                         {
 
-                            Reel_images[i].sprite = Sprites[ChangeSprite[Date_Temp]];
+                            Reel_images[i].sprite = Sprites[_ChangeSprite[Date_Temp]];
                             tempi++;
                             Date_Temp++;
                             //Debug.Log("tempi:" + tempi + "Roolcount" + Roolcount + "Sprites :" + ChangeSprite[i]);

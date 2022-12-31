@@ -18,6 +18,7 @@ public class Slot_Manager : MonoBehaviour
 
     public Button_EventTrigger _ButtonPlus_EventTrigger;
     public Button_EventTrigger _ButtonReduce_EventTrigger;
+
     public Texture2D[] MIcon;
     public float RollSpeed;//輪條移動速度
     public int Loopcount;//循環次數
@@ -416,6 +417,8 @@ public class Slot_Manager : MonoBehaviour
 
             }
 
+            yield return new WaitUntil(()=>_Ishow.VideoImage.GetComponent<RawImage>().enabled == false);
+
             if (_IDate.CycleCount < _IDate.AutoCount && _IDate.PlayerCoin > _IDate.Bet_Coin)//循環次數未到 而且 玩家金額不小於下注金額
             {
 
@@ -593,23 +596,27 @@ public class Slot_Manager : MonoBehaviour
     /// <returns></returns>
     public IEnumerator Coin_EndShow(IShow _Ishow, IDate _IDate)
     {
-        WinShowOk = false;
-        Debug.Log(" 開始Bonus最後的金錢表演 ： WinShowOk :" + WinShowOk);
+        if (_IDate.Total_BonusWinCoin!=0)
+        {
+            WinShowOk = false;
+            Debug.Log(" 開始Bonus最後的金錢表演 ： WinShowOk :" + WinShowOk);
 
-        IEnumerator Show;
-        Show = _Ishow.CoinShow(_IDate.Total_BonusWinCoin);
+            IEnumerator Show;
+            Show = _Ishow.CoinShow(_IDate.Total_BonusWinCoin);
 
-        _Ishow.AddCoin = false;//不要做加錢動作 單純展示
+            _Ishow.AddCoin = false;//不要做加錢動作 單純展示
 
-        StartCoroutine(Show);
-        _Ishow.BonusWinBackSprite.gameObject.SetActive(true);
+            StartCoroutine(Show);
+            _Ishow.BonusWinBackSprite.gameObject.SetActive(true);
 
-        yield return new WaitUntil(() => _Ishow.CoinShow_Bool == true);
+            yield return new WaitUntil(() => _Ishow.CoinShow_Bool == true);
 
-        _Ishow.BonusWinBackSprite.gameObject.SetActive(false);
-        _IDate.Total_BonusWinCoin = 0;
-        WinShowOk = true;
-        Debug.Log(" 結束Bonus最後的金錢表演 ： WinShowOk :" + WinShowOk);
+            _Ishow.BonusWinBackSprite.gameObject.SetActive(false);
+            _IDate.Total_BonusWinCoin = 0;
+            WinShowOk = true;
+            Debug.Log(" 結束Bonus最後的金錢表演 ： WinShowOk :" + WinShowOk);
+        }
+       
 
     }
 
@@ -693,7 +700,9 @@ public class Slot_Manager : MonoBehaviour
 
 
         _IDateEvent.DateSave(CommonGrid, BonusGrid, FreeGameCount);
+
         St_Roll = true;
+
         Debug.Log("是否開始滾動：" + Start_Slot);
 
     }
@@ -702,6 +711,7 @@ public class Slot_Manager : MonoBehaviour
     #region UPdate執行內容
     public void UpdateMethod(IShow _IShow,IDate _IDate,IDateEvent _Ide,IUIControlMethod _IUIMethod,IMove[] _ReelMoves, SlotGrid CommonGrid, SlotGrid BonusGrid)
     {
+
         if (Input.GetMouseButtonDown(0))
         {
 
@@ -710,6 +720,7 @@ public class Slot_Manager : MonoBehaviour
             //Debug.Log("Mouse : Down");
 
         }
+
         if (Input.GetMouseButtonUp(0))
         {
 
@@ -785,14 +796,6 @@ public class Slot_Manager : MonoBehaviour
     /// </summary>
     public void GetAnimatiorStayInfo()
     {
-
-        //這裡應該可以改成一個方法 透過Manager的 變數  我去更換 它 = 的內容（StateInfo）還有Animater是哪一個  跟一個 String （動畫裡面開關的 名字） 
-        //來去作用
-
-        //Manager 宣告一個 Animator  在動畫表演方法 寫說 Animator  ＝ 什麼
-        
-        //Manager 宣告一個 字串 AnimatorName  在動畫表演方法 寫說 BonusStateInfo ＝ 什麼
-        // 然後 動畫的每個控制的Bool 名字都要依樣 
 
         if (BonusStateInfo_B)
         {

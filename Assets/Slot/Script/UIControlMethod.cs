@@ -162,7 +162,9 @@ public class UIControlMethod : IUIControlMethod{
         }
 
     }
-
+    /// <summary>
+    /// Auto數 減少
+    /// </summary>
     public void AutoReduce()
     {
         if (_IDate.AutoCount > 0)
@@ -174,7 +176,9 @@ public class UIControlMethod : IUIControlMethod{
         }
 
     }
-
+    /// <summary>
+    /// Auto數 清除
+    /// </summary>
     public void Auto_Clear()
     {
         if (_IDate.AutoCount > 1)
@@ -185,14 +189,18 @@ public class UIControlMethod : IUIControlMethod{
 
         }
     }
-
+    /// <summary>
+    /// Auto數 暫停
+    /// </summary>
     public void Auto_pause()
     {
 
         _IDate.AutoCount = 1;
 
     }
-
+    /// <summary>
+    /// Bet 數 加注
+    /// </summary>
     public void BetPlus()
     {
 
@@ -216,7 +224,9 @@ public class UIControlMethod : IUIControlMethod{
         }
 
     }
-
+    /// <summary>
+    /// Bet 數 減少押注
+    /// </summary>
     public void BetReduce()
     {
         if (_IDate.Bet_Coin >= _IDate.LeastBetCount)
@@ -234,6 +244,9 @@ public class UIControlMethod : IUIControlMethod{
 
     }
 
+    /// <summary>
+    /// 說明畫面向左換圖
+    /// </summary>
     public void InfoLeft()
     {
         int i = System.Array.IndexOf(InFoSprites, Img_Introduction.sprite);
@@ -249,6 +262,9 @@ public class UIControlMethod : IUIControlMethod{
 
     }
 
+    /// <summary>
+    /// 說明畫面向右換圖
+    /// </summary>
     public void InfoRight()
     {
         int i = System.Array.IndexOf(InFoSprites, Img_Introduction.sprite);
@@ -265,6 +281,9 @@ public class UIControlMethod : IUIControlMethod{
 
     }
 
+    /// <summary>
+    /// 打開說明畫面
+    /// </summary>
     public void OpenINFO()
     {
 
@@ -273,13 +292,18 @@ public class UIControlMethod : IUIControlMethod{
   
     }
 
+    /// <summary>
+    /// 離開說明畫面
+    /// </summary>
     public void OutInfo()
     {
 
         _InfoBackSprite.gameObject.SetActive(false);
 
     }
-
+    /// <summary>
+    /// 最大押注
+    /// </summary>
     public void Bet_MaxCoin()
     {
   
