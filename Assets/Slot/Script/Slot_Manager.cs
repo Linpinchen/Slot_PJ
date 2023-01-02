@@ -26,6 +26,7 @@ public class Slot_Manager : MonoBehaviour
     public int FreeGameCount;//小遊戲要玩的次數
     public int NowFreeCount;//當前遊玩次數
     public bool Start_Slot;
+    public bool CurrentReel_B;
     bool BonusStateInfo_B;
     bool B_Slot_timeOut;//讓_Slot_timeOut只會執行一次
     bool WinShowOk;//表演是否完成
@@ -96,6 +97,7 @@ public class Slot_Manager : MonoBehaviour
         StCoShow = true;
         St_Roll = false;
         Start_Slot = false;
+        CurrentReel_B = false;
 
         _SlotDate.Init( _Reel_Moves);//SlotDate 給變數的 Interface 指定是誰 
         _UIControlMethod.UIControlInit(_IDate,_ButtonPlus_EventTrigger,_ButtonReduce_EventTrigger);//UIControlMethod 給變數的 Interface 指定是誰 
@@ -328,9 +330,18 @@ public class Slot_Manager : MonoBehaviour
   
     public IEnumerator Co_Slot_timeOut(IDate _IDate, IShow _Ishow, IDateEvent _IDateEvent, IUIControlMethod _IUIMethod,IMove[] _ReelMoves, SlotGrid CommonGrid, SlotGrid BonusGrid)
     {
-        
-        if (_ReelMoves[Slot_mantissa].tempi == Loopcount)//如果最後一個輪條達到滾動次數
+
+        if (_ReelMoves[Slot_mantissa].tempi == _ReelMoves[Slot_mantissa].Roolcount)//如果最後一個輪條達到滾動次數
         {
+            int CurrentCount = _IDate.CurrentReel + 1;
+            for (int i = CurrentCount; i < _Reel_Moves.Length; i++)
+            {
+                _Reel_Moves[i].transform.parent.GetChild(1).gameObject.SetActive(false);
+                _ReelMoves[i].Roolcount = Loopcount;
+            }
+
+            _IDate.CurrentReel = 0;
+
             Debug.Log("啟動Co_Slot_timeOut");
 
             if (StCoShow)
@@ -347,6 +358,12 @@ public class Slot_Manager : MonoBehaviour
 
             if (_IDate.BonusCount== FreeGameCount && NowFreeCount<FreeGameCount)//如果_IDate.BonusCount 等於設定的 免費遊戲數
             {
+                
+                for (int i = 0; i < _Reel_Moves.Length; i++)
+                {
+                    _Reel_Moves[i].transform.parent.GetChild(1).gameObject.SetActive(true);
+
+                }
 
                 Debug.Log("開啟Bonus開場表演");
                 TempAnimator = _Ishow.BonusAnimator;
@@ -408,6 +425,11 @@ public class Slot_Manager : MonoBehaviour
                 BonusStateInfo_B = true;
                 _Ishow.BonusEndShow.SetBool("ShowBool", true);//開啟揮拳動畫
                 yield return new WaitUntil(() => _Ishow.BonusEndShow.GetBool("ShowBool") == false);//等待揮拳動畫結束
+                for (int i = 0; i < _Reel_Moves.Length; i++)
+                {
+                    _Reel_Moves[i].transform.parent.GetChild(1).gameObject.SetActive(false);
+
+                }
                 _Ishow.VideoImage.gameObject.SetActive(true);
                 _Ishow.VideoImage.GetComponent<VideoPlayer>().Play();
                 yield return new WaitForSeconds(0.5f);
@@ -632,7 +654,7 @@ public class Slot_Manager : MonoBehaviour
     /// <param name="_Ishow"></param>
     public void GridCreat_Event(IDate _IDate,IUIControlMethod _IUIMethod, IDateEvent _IDateEvent, IShow _Ishow, SlotGrid CommonGrid,SlotGrid BonusGrid)
     {
-
+        _IDate.CurrentReel = 0;
         _IDate.BonusCount = 0;//預設大獎中獎圖數為0
 
         if (_IUIMethod.StAddBonusDate)//如果有按下 直接中大獎按鈕
@@ -703,6 +725,11 @@ public class Slot_Manager : MonoBehaviour
 
         St_Roll = true;
 
+        if (_IDate.BonusCount >= 2)
+        {
+            CurrentReel_B = true;
+        }
+
         Debug.Log("是否開始滾動：" + Start_Slot);
 
     }
@@ -731,10 +758,24 @@ public class Slot_Manager : MonoBehaviour
         }
 
 
+
+        if (CurrentReel_B && _Reel_Moves[_IDate.CurrentReel].tempi==Loopcount && _IDate.CurrentReel!=0)
+        {
+            CurrentReel_B = false;
+            int CurrentCount = _IDate.CurrentReel + 1;
+            for (int i =CurrentCount ; i<_Reel_Moves.Length;i++)
+            {
+                _Reel_Moves[i].transform.parent.GetChild(1).gameObject.SetActive(true);
+                _ReelMoves[i].Roolcount = Loopcount*10;
+            }
+
+        }
+
+
         GetAnimatiorStayInfo();
 
 
-        if (B_Slot_timeOut == true && _ReelMoves[Slot_mantissa].tempi == Loopcount)
+        if (B_Slot_timeOut == true && _ReelMoves[Slot_mantissa].tempi == _ReelMoves[Slot_mantissa].Roolcount)
         {
             Debug.Log("執行 Co_Slot_timeOut ");
             B_Slot_timeOut = false;

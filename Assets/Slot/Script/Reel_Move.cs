@@ -9,9 +9,11 @@ public class Reel_Move : MonoBehaviour,IMove {
     Vector2 _originalv2;//原始座標
     RectTransform _ReelV2;//移動用的座標
     List<Image> _Reel_images; //掛著這個腳本的物件 的 子物件Image
+    [SerializeField]
     int _tempi;//計算換圖次數
     float _Speed;
     int _Date_Temp;
+    [SerializeField]
     int _Roolcount;
     Sprite[] _Sprites;//圖庫
     List<int> _ChangeSprite;//要換的圖片資料

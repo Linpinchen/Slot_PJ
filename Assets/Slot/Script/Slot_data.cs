@@ -13,6 +13,9 @@ public class Slot_data :IDate ,IDateEvent{
     [SerializeField]
     List<int>_Temp ;
 
+	[SerializeField]
+	int _CurrentReel;
+
     [SerializeField]
     int[] _PrizeDate;
 
@@ -57,6 +60,8 @@ public class Slot_data :IDate ,IDateEvent{
     public int[] PrizeDate { get { return _PrizeDate; } }
 
     public List<int> Temp { get { return _Temp; } set { _Temp = value; } }
+
+	public int CurrentReel { get { return _CurrentReel; }set { _CurrentReel = value; } }
 
     public int PlayerCoin { get{ return Coin; } set{ Coin = value; }}
 
@@ -208,6 +213,11 @@ public class Slot_data :IDate ,IDateEvent{
 				if (slotGrid._grids[GridCount]._Grids[i]._GridInt[Slot_i] == Pool_Images.Bonus)
 				{
 					Bonus_count++;//有出現Bonus圖就++
+					if (Bonus_count==2)
+					{
+						_CurrentReel = i;
+
+					}
 					Debug.Log("大獎數量 ：" + Bonus_count);
 
 				}
@@ -381,7 +391,7 @@ public class Slot_data :IDate ,IDateEvent{
 			}
 
 			Bonus_count = 3;
-
+			_CurrentReel = 1;
 		}
 
 	}
