@@ -766,7 +766,7 @@ public class Slot_Manager : MonoBehaviour
             for (int i =CurrentCount ; i<_Reel_Moves.Length;i++)
             {
                 _Reel_Moves[i].transform.parent.GetChild(1).gameObject.SetActive(true);
-                _ReelMoves[i].Roolcount = Loopcount*10;
+                _ReelMoves[i].Roolcount = Loopcount*4;
             }
 
         }
