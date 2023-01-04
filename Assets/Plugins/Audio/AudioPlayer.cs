@@ -4,7 +4,8 @@ using UnityEngine;
 using baseSys.Audio.Sources;
 using baseSys.Audio.Method;
 
-public class AudioPlayer : MonoBehaviour {
+public class AudioPlayer //: MonoBehaviour
+{
 
 
 
@@ -15,7 +16,7 @@ public class AudioPlayer : MonoBehaviour {
 
     //這個播放器 會需要用到 播放方法 也就是 “ PlayMethod ”
 
-    PlayMethod _player; 
+    PlayMethod _player;
 
     /// <summary>
     /// 初始化播放清單
@@ -33,20 +34,19 @@ public class AudioPlayer : MonoBehaviour {
     /// 播放聲音檔
     /// </summary>
     /// <param name="name"></param>
-    public void Play(string name)
+    public void Play(string name,int ClipCount)
     {
-        _player.NextPlay(name);
+        _player.NextPlay(name, ClipCount);
     }
-
 
 
     /// <summary>
     /// 播放聲音檔（多個物件循環利用版）
     /// </summary>
     /// <param name="name"></param>
-    public void AddPlay(string name)
+    public void AddPlay(string name, int ClipCount)
     {
-        _player.ADDPlay(name);
+        _player.ADDPlay(name, ClipCount);
     }
 
 

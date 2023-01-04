@@ -47,30 +47,16 @@ public class Slot_Manager : MonoBehaviour
     void Start()
     {
 
+        AudioManager.inst.PlayBGM("Lobby_Main",0);
+        AudioManager.inst.SlotReset(1);
         Slot_Initialization(_SlotDate,_SlotDate,_ShowScript,_UIControlMethod);
         SlotGridCreat(_Reel_Moves);
         Debug.Log("_ShowScript.BonusPrepareDrawline.Count" + _ShowScript.BonusPrepareDrawline.Count);
-        for (int i=0;i< _ShowScript.BonusPrepareDrawline.Count;i++)
-        {
-
-            if (_ShowScript.BonusPrepareDrawline[i] != null)
-            {
-
-                Debug.Log(string.Format("_ShowScript.BonusPrepareDrawline[{0}], 不是空得,當前數量：{1}", i, _ShowScript.BonusPrepareDrawline[i].Count));
-
-            }
-            else
-            {
-
-                Debug.Log(string.Format("_ShowScript.BonusPrepareDrawline[{0}], !是空得!",i));
-
-            }
-
-        }
+        
 
     }
 
-    [System.Obsolete]
+   
     void Update()
     {
 
@@ -158,6 +144,27 @@ public class Slot_Manager : MonoBehaviour
         _IuiMethod.PlayerCoin_Text.text = "Money :" + _IDate.PlayerCoin.ToString();
         Slot_mantissa = _Reel_Moves.Length - 1;//紀錄陣列的最大編號
 
+
+        for (int i = 0; i < _ShowScript.BonusPrepareDrawline.Count; i++)
+        {
+
+            if (_ShowScript.BonusPrepareDrawline[i] != null)
+            {
+
+                Debug.Log(string.Format("_ShowScript.BonusPrepareDrawline[{0}], 不是空得,當前數量：{1}", i, _ShowScript.BonusPrepareDrawline[i].Count));
+
+            }
+            else
+            {
+
+                Debug.Log(string.Format("_ShowScript.BonusPrepareDrawline[{0}], !是空得!", i));
+
+            }
+
+        }
+
+
+
         if (!PlayerPrefs.HasKey("遊戲資料"))
         {
 
@@ -224,6 +231,7 @@ public class Slot_Manager : MonoBehaviour
                 }
 
                 // Debug.Log("CoAll_Slot_Roll() :迴圈");
+                AudioManager.inst.PlayAddSlot("Rool",0);
                 _ReelMoves[i].strool = true;
                 Debug.Log(string.Format("輪條編號：{0},是否開啟{1}", i, _ReelMoves[i].strool));
                 yield return new WaitForSeconds(0.5f);
@@ -333,6 +341,14 @@ public class Slot_Manager : MonoBehaviour
 
         if (_ReelMoves[Slot_mantissa].tempi == _ReelMoves[Slot_mantissa].Roolcount)//如果最後一個輪條達到滾動次數
         {
+           
+            if (_IDate.BonusCount!=FreeGameCount)
+            {
+                AudioManager.inst.BGMReset(0.5f);
+                AudioManager.inst.SFXStop();
+            }
+           
+
             int CurrentCount = _IDate.CurrentReel + 1;
             for (int i = CurrentCount; i < _Reel_Moves.Length; i++)
             {
@@ -358,7 +374,8 @@ public class Slot_Manager : MonoBehaviour
 
             if (_IDate.BonusCount== FreeGameCount && NowFreeCount<FreeGameCount)//如果_IDate.BonusCount 等於設定的 免費遊戲數
             {
-                
+               
+
                 for (int i = 0; i < _Reel_Moves.Length; i++)
                 {
                     _Reel_Moves[i].transform.parent.GetChild(1).gameObject.SetActive(true);
@@ -407,6 +424,8 @@ public class Slot_Manager : MonoBehaviour
 
                 }
 
+               
+
                 UseBonus = false;
                 StCoShow = true;
 
@@ -420,6 +439,9 @@ public class Slot_Manager : MonoBehaviour
                 }
 
                 yield return new WaitUntil(() => WinShowOk == true);//等待金錢動畫結束
+                AudioManager.inst.BGMReset(0);
+                AudioManager.inst.SFXStop("SFX");
+
                 TempAnimator = _Ishow.BonusEndShow;
                 Animator_Name = "BonusEndShow";
                 BonusStateInfo_B = true;
@@ -430,6 +452,8 @@ public class Slot_Manager : MonoBehaviour
                     _Reel_Moves[i].transform.parent.GetChild(1).gameObject.SetActive(false);
 
                 }
+               
+
                 _Ishow.VideoImage.gameObject.SetActive(true);
                 _Ishow.VideoImage.GetComponent<VideoPlayer>().Play();
                 yield return new WaitForSeconds(0.5f);
@@ -440,6 +464,8 @@ public class Slot_Manager : MonoBehaviour
             }
 
             yield return new WaitUntil(()=>_Ishow.VideoImage.GetComponent<RawImage>().enabled == false);
+
+            
 
             if (_IDate.CycleCount < _IDate.AutoCount && _IDate.PlayerCoin > _IDate.Bet_Coin)//循環次數未到 而且 玩家金額不小於下注金額
             {
@@ -759,10 +785,14 @@ public class Slot_Manager : MonoBehaviour
 
 
 
-        if (CurrentReel_B && _Reel_Moves[_IDate.CurrentReel].tempi==Loopcount && _IDate.CurrentReel!=0)
+        if (CurrentReel_B && _Reel_Moves[_IDate.CurrentReel].tempi==Loopcount && _IDate.CurrentReel!= Slot_mantissa)
         {
             CurrentReel_B = false;
             int CurrentCount = _IDate.CurrentReel + 1;
+
+            AudioManager.inst.BGMReset(0.05f);
+            AudioManager.inst.PlayAddSFX("SFX",0);
+
             for (int i =CurrentCount ; i<_Reel_Moves.Length;i++)
             {
                 _Reel_Moves[i].transform.parent.GetChild(1).gameObject.SetActive(true);
@@ -806,7 +836,7 @@ public class Slot_Manager : MonoBehaviour
             if (_IShow.VideoImage.gameObject.activeInHierarchy)//判斷播影片是否開啟
             {
 
-                Debug.Log("VideoImage.gameObject.active :" + _IShow.VideoImage.gameObject.activeInHierarchy);
+                //Debug.Log("VideoImage.gameObject.active :" + _IShow.VideoImage.gameObject.activeInHierarchy);
 
                 if (_IShow.EndShowPlayer.frame != 0 && _IShow.EndShowPlayer.frameCount != 0)
                 {
@@ -819,7 +849,8 @@ public class Slot_Manager : MonoBehaviour
                         _IShow.VideoImage.gameObject.SetActive(false);//關掉RawImage
                         StEndShow = false;
                         _IDate.Total_BonusWinCoin = 0;
-                    
+                       
+                        AudioManager.inst.BGMReset(0.5f);
                     }
 
                 }
@@ -841,9 +872,9 @@ public class Slot_Manager : MonoBehaviour
         if (BonusStateInfo_B)
         {
 
-            Debug.Log("BonusStateInfo_B :" + BonusStateInfo_B);
+            //Debug.Log("BonusStateInfo_B :" + BonusStateInfo_B);
             BonusStateInfo = TempAnimator.GetCurrentAnimatorStateInfo(0);//階層為0
-            Debug.Log("BonusStateInfo.normalizedTime " + BonusStateInfo.normalizedTime);
+            //Debug.Log("BonusStateInfo.normalizedTime " + BonusStateInfo.normalizedTime);
 
             if (BonusStateInfo.normalizedTime >= 1.0f && BonusStateInfo.IsName(Animator_Name))
             {

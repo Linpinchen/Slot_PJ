@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using baseSys.Audio.Sources;//這裡利用namespace 來使用Source的東西
 using DG.Tweening;//這裡有用到 DoTween
 
-namespace baseSys.Audio.Method {
-    public class PlayMethod {
+namespace baseSys.Audio.Method
+{
+    public class PlayMethod
+    {
         /// <summary>
         /// 播放清單
         /// </summary>
@@ -84,7 +86,7 @@ namespace baseSys.Audio.Method {
             //---------------------------------------------------------------------------------
 
 
-            
+
             //替換新音量較正值
             FixValue = newValue; //而這個 從新給值的用意在於 讓未播放的 在要播放時 抓到的是我們重新設定過的
 
@@ -94,9 +96,10 @@ namespace baseSys.Audio.Method {
         /// 靜音
         /// </summary>
         /// <param name="setAct"></param>
-        public void OnMute(bool setAct) {
+        public void OnMute(bool setAct)
+        {
             _mute = setAct;
-            for(int i=0; i< _nowPlayer.Count; ++i)//把所有現在正在播放的物件的mute（是否禁音）來做設定 ㄧ樣禁音是指聲音為0 但是還是有在做播放
+            for (int i = 0; i < _nowPlayer.Count; ++i)//把所有現在正在播放的物件的mute（是否禁音）來做設定 ㄧ樣禁音是指聲音為0 但是還是有在做播放
             {
                 var playlist = _nowPlayer[i];
                 playlist.GetComponent<AudioSource>().mute = _mute;
@@ -108,13 +111,13 @@ namespace baseSys.Audio.Method {
         /// 一般播放
         /// </summary>
         /// <param name="name"></param>
-        public void NextPlay(string name)
+        public void NextPlay(string name , int ClipCount)
         {
 
             //如果播放清單有
             if (_list.ContainsKey(name))//_list內有很多的Souce 然後 用一個Key去尋找_list 有沒有 這個Key 的Valu
             {
-                nextPlay(name);//有的話就執行 ,這個播放功能是 只有一個物件 去替換播放內容
+                nextPlay(name, ClipCount);//有的話就執行 ,這個播放功能是 只有一個物件 去替換播放內容
             }
             else
             {
@@ -126,12 +129,12 @@ namespace baseSys.Audio.Method {
         /// 產生播放器
         /// </summary>
         /// <param name="name"></param>
-        public void ADDPlay(string name)
+        public void ADDPlay(string name,int ClipCount)
         {
             //如果播放清單有
             if (_list.ContainsKey(name))
             {
-                play(name);//這裡用的就是另一種播放功能（多個物件用得,播完就回收）
+                play(name, ClipCount);//這裡用的就是另一種播放功能（多個物件用得,播完就回收）
             }
             else
             {
@@ -145,7 +148,7 @@ namespace baseSys.Audio.Method {
         public void StopAll()
         {
 
-            for(int i=0; i< _nowPlayer.Count; ++i)
+            for (int i = 0; i < _nowPlayer.Count; ++i)
             {
                 var stop = _nowPlayer[i];
                 recover(stop);
@@ -163,7 +166,7 @@ namespace baseSys.Audio.Method {
             {
                 var stop = _nowPlayer[i];
                 if (stop.name == name)
-                recover(stop);
+                    recover(stop);
             }
         }
 
@@ -180,7 +183,7 @@ namespace baseSys.Audio.Method {
             if (tsf.childCount > 0)
             {
 
-                obj = tsf.GetChild(0).gameObject;                
+                obj = tsf.GetChild(0).gameObject;
             }
 
             else
@@ -197,7 +200,7 @@ namespace baseSys.Audio.Method {
                 obj.AddComponent<AudioSource>();
 
             }
-                
+
 
             obj.transform.SetParent(playerObject.transform, false);
 
@@ -225,14 +228,14 @@ namespace baseSys.Audio.Method {
         /// 播放功能
         /// </summary>
         /// <param name="name"></param>
-        void play(string name)
+        void play(string name,int ClipCount)
         {
             //取得物件
             GameObject obj = create();
             AudioSource aos = obj.GetComponent<AudioSource>();
             obj.name = name;
 
-            bool retrigger = set(_list[name], ref aos);
+            bool retrigger = set(_list[name], ref aos, ClipCount);
             obj.SetActive(true);
             aos.Play();
 
@@ -241,9 +244,11 @@ namespace baseSys.Audio.Method {
             float life = aos.clip.length;
 
             //判斷是否循環播放，或者重複觸發
-            if (!retrigger) {
-                
-                if (!_list[name].Loop) {
+            if (!retrigger)
+            {
+
+                if (!_list[name].Loop)
+                {
 
                     Sequence _delayCallback;
                     _delayCallback = DOTween.Sequence();
@@ -263,7 +268,7 @@ namespace baseSys.Audio.Method {
                 _delayCallback = DOTween.Sequence();
                 _delayCallback.InsertCallback(life, delegate
                 {
-                    play(name);
+                    play(name, ClipCount);
                 });
             }
 
@@ -276,15 +281,16 @@ namespace baseSys.Audio.Method {
         /// 同個播放器，播放下一首
         /// </summary>
         /// <param name="name"></param>
-        void nextPlay(string name) {
+        void nextPlay(string name, int ClipCount)
+        {
 
             int playerCount = _nowPlayer.Count;//目前正在播放中的有幾個
 
             //取得物件
             GameObject obj;
             AudioSource aos;
-        //-------------------------------------------------
-                   //這裡就是物件池的應用 有就取出沒有就生成
+            //-------------------------------------------------
+            //這裡就是物件池的應用 有就取出沒有就生成
             //如果有正在播放
             if (playerCount > 0)
             {
@@ -299,11 +305,11 @@ namespace baseSys.Audio.Method {
                 aos = _nowPlayer[0].GetComponent<AudioSource>();
 
             }
-        //-------------------------------------------------
+            //-------------------------------------------------
 
 
-        //-------------------------------------------------
-                    //這是在說 DoTween的東西
+            //-------------------------------------------------
+            //這是在說 DoTween的東西
             //移除Delay
             if (_delayNextPlay != null)
             {
@@ -314,8 +320,8 @@ namespace baseSys.Audio.Method {
             {
                 obj.name = name;
             }
-        //-------------------------------------------------
-            
+            //-------------------------------------------------
+
             //是否重置播放時間
             float time;
             if (!_list[name].ResetTime)//如果_list裡面的 name 的 ResetTime 是False 就是不要重制 要繼續播放
@@ -330,7 +336,7 @@ namespace baseSys.Audio.Method {
             //載入設定檔&播放
             bool retrigger;
             retrigger =
-            set(_list[name], ref aos);
+            set(_list[name], ref aos,ClipCount);
 
             aos.time = time;//這裡就重新給時間 看是要重來還是繼續播這樣（播放到哪裡的這件事）
             aos.Play();//然後播放
@@ -348,7 +354,7 @@ namespace baseSys.Audio.Method {
                 //當音樂播完就回來執行nextPlay(name)
                 _delayNextPlay.InsertCallback(life, delegate
                 {
-                    nextPlay(name);
+                    nextPlay(name, ClipCount);
                 });
 
             }
@@ -361,7 +367,7 @@ namespace baseSys.Audio.Method {
         /// <param name="setting"></param>
         /// <param name="player"></param>
         /// <returns></returns>
-        bool set(Source setting, ref AudioSource player)
+        bool set(Source setting, ref AudioSource player,int ClipCount)
         {
             bool reTrigger;
 
@@ -375,15 +381,15 @@ namespace baseSys.Audio.Method {
             }
 
             //取得播放歌曲
-            AudioClip clip = getClip(setting.Clip);//取得Source的AudioClip
+            AudioClip clip = getClip(setting.Clip, ClipCount);//取得Source的AudioClip
 
             float volume = getVol(setting.Volume);
 
             float pitch = getPitch(setting.Pitch);
 
 
-        //-------------------------------------------------
-                //這裡就把要的內容 放進AudioSource做設定
+            //-------------------------------------------------
+            //這裡就把要的內容 放進AudioSource做設定
 
             player.clip = clip;
             player.loop = setting.Loop;
@@ -404,13 +410,13 @@ namespace baseSys.Audio.Method {
 
             }
 
-        //-------------------------------------------------
+            //-------------------------------------------------
 
             if (_mute)
             {
                 player.mute = _mute;//這裏的靜音 指的事音效還在播放 只是聲音大小為0
             }
-               
+
 
             return reTrigger;
         }
@@ -420,7 +426,7 @@ namespace baseSys.Audio.Method {
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        AudioClip getClip(AudioClip[] data)
+        AudioClip getClip(AudioClip[] data,int ClipCount)
         {
             //這裡要取得 Source 的 clip 陣列內的歌
 
@@ -428,22 +434,28 @@ namespace baseSys.Audio.Method {
             int rang = data.Length;//取得長度
 
             //陣列範圍0
-            if(rang == 1)
+            if (rang == 1)
             {
                 clip = data[0];
             }
             //若陣列大於，則亂數選取播放
-            else if(rang > 1)
+            //else if (rang > 1)
+            //{
+            //    System.Random ptr = new System.Random(System.Guid.NewGuid().GetHashCode());//這是Ｃ＃的亂數隨機 可以換成熟悉的Unity的Radom.Range
+            //    int num = ptr.Next(rang);
+            //    clip = data[num];
+            //}
+            else if (rang>1)
             {
-                System.Random ptr = new System.Random(System.Guid.NewGuid().GetHashCode());//這是Ｃ＃的亂數隨機 可以換成熟悉的Unity的Radom.Range
-                int num = ptr.Next(rang);
-                clip = data[num];
+
+                clip = data[ClipCount];
+
             }
             else
             {
                 clip = null;
                 Debug.LogError("out of rang! AudioClip...");
-            }            
+            }
 
             return clip;//回傳 AudioClip
         }
@@ -496,4 +508,3 @@ namespace baseSys.Audio.Method {
     }
 
 }
-    

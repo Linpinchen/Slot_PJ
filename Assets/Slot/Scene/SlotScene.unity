@@ -331,7 +331,6 @@ GameObject:
   - component: {fileID: 51653734}
   - component: {fileID: 51653737}
   - component: {fileID: 51653736}
-  - component: {fileID: 51653735}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -375,13 +374,6 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
---- !u!81 &51653735
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 51653733}
-  m_Enabled: 1
 --- !u!124 &51653736
 Behaviour:
   m_ObjectHideFlags: 0
@@ -12381,6 +12373,159 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1662850826}
+--- !u!1001 &1668253527
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 114000011550523854, guid: 5528b87a94fb0cf41ac5b99b33ff4502,
+        type: 2}
+      propertyPath: SlotSetting.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011550523854, guid: 5528b87a94fb0cf41ac5b99b33ff4502,
+        type: 2}
+      propertyPath: BGMSetting.Array.data[0].Clip.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011550523854, guid: 5528b87a94fb0cf41ac5b99b33ff4502,
+        type: 2}
+      propertyPath: SFXSetting.Array.data[0].Clip.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011550523854, guid: 5528b87a94fb0cf41ac5b99b33ff4502,
+        type: 2}
+      propertyPath: SlotSetting.Array.data[0].Clip.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012667617292, guid: 5528b87a94fb0cf41ac5b99b33ff4502, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012667617292, guid: 5528b87a94fb0cf41ac5b99b33ff4502, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012667617292, guid: 5528b87a94fb0cf41ac5b99b33ff4502, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012667617292, guid: 5528b87a94fb0cf41ac5b99b33ff4502, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012667617292, guid: 5528b87a94fb0cf41ac5b99b33ff4502, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012667617292, guid: 5528b87a94fb0cf41ac5b99b33ff4502, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012667617292, guid: 5528b87a94fb0cf41ac5b99b33ff4502, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000012667617292, guid: 5528b87a94fb0cf41ac5b99b33ff4502, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011550523854, guid: 5528b87a94fb0cf41ac5b99b33ff4502,
+        type: 2}
+      propertyPath: BGMSetting.Array.data[0].Volume.Volume
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011550523854, guid: 5528b87a94fb0cf41ac5b99b33ff4502,
+        type: 2}
+      propertyPath: BGMSetting.Array.data[0].Clip.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d83a4960d1c54aa0a54ad3f5fc76094, type: 3}
+    - target: {fileID: 114000011550523854, guid: 5528b87a94fb0cf41ac5b99b33ff4502,
+        type: 2}
+      propertyPath: SFXSetting.Array.data[0].Clip.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9a163f037f15443d1967f1e95419276f, type: 3}
+    - target: {fileID: 114000011550523854, guid: 5528b87a94fb0cf41ac5b99b33ff4502,
+        type: 2}
+      propertyPath: SFXSetting.Array.data[0].Volume.Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011550523854, guid: 5528b87a94fb0cf41ac5b99b33ff4502,
+        type: 2}
+      propertyPath: BGMSetting.Array.data[0].Clip.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9a163f037f15443d1967f1e95419276f, type: 3}
+    - target: {fileID: 114000011550523854, guid: 5528b87a94fb0cf41ac5b99b33ff4502,
+        type: 2}
+      propertyPath: SFXSetting.Array.data[0].Clip.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 27a99529f171d458ea84695d88bf261b, type: 3}
+    - target: {fileID: 114000011550523854, guid: 5528b87a94fb0cf41ac5b99b33ff4502,
+        type: 2}
+      propertyPath: SFXSetting.Array.data[0].Clip.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: d825a8daf3055a6469b2adf50ff04eb0, type: 3}
+    - target: {fileID: 114000011550523854, guid: 5528b87a94fb0cf41ac5b99b33ff4502,
+        type: 2}
+      propertyPath: SFXSetting.Array.data[0].Clip.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: f76d1d322a50b40f6a78ddd3e4dc0e6b, type: 3}
+    - target: {fileID: 114000011550523854, guid: 5528b87a94fb0cf41ac5b99b33ff4502,
+        type: 2}
+      propertyPath: BGMSetting.Array.data[0].ResetTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011550523854, guid: 5528b87a94fb0cf41ac5b99b33ff4502,
+        type: 2}
+      propertyPath: SlotSetting.Array.data[0].Name
+      value: Rool
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011550523854, guid: 5528b87a94fb0cf41ac5b99b33ff4502,
+        type: 2}
+      propertyPath: SlotSetting.Array.data[0].Clip.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 27a99529f171d458ea84695d88bf261b, type: 3}
+    - target: {fileID: 114000011550523854, guid: 5528b87a94fb0cf41ac5b99b33ff4502,
+        type: 2}
+      propertyPath: SlotSetting.Array.data[0].Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011550523854, guid: 5528b87a94fb0cf41ac5b99b33ff4502,
+        type: 2}
+      propertyPath: SlotSetting.Array.data[0].ResetTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011550523854, guid: 5528b87a94fb0cf41ac5b99b33ff4502,
+        type: 2}
+      propertyPath: SlotSetting.Array.data[0].Volume.Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011550523854, guid: 5528b87a94fb0cf41ac5b99b33ff4502,
+        type: 2}
+      propertyPath: SlotSetting.Array.data[0].MixerGroup
+      value: 
+      objectReference: {fileID: 24310216, guid: c3600fc3feaac3f458220849880b6289,
+        type: 2}
+    - target: {fileID: 114000011550523854, guid: 5528b87a94fb0cf41ac5b99b33ff4502,
+        type: 2}
+      propertyPath: SlotSetting.Array.data[0].Volume.Max
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011550523854, guid: 5528b87a94fb0cf41ac5b99b33ff4502,
+        type: 2}
+      propertyPath: SlotSetting.Array.data[0].Volume.Min
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011550523854, guid: 5528b87a94fb0cf41ac5b99b33ff4502,
+        type: 2}
+      propertyPath: SlotSetting.Array.data[0].Pitch.Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 5528b87a94fb0cf41ac5b99b33ff4502, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1697793284
 GameObject:
   m_ObjectHideFlags: 0

@@ -458,11 +458,11 @@ public class ShowScript : MonoBehaviour,IShow
 
         while (_TempWinCoin <= Coin)
         {
-            Debug.Log("開始CoinShow 迴圈");
+            //Debug.Log("開始CoinShow 迴圈");
 
             if (_TempWinCoin <= Coin)
             {
-                Debug.Log("開始CoinShow 數字換圖");
+                //Debug.Log("開始CoinShow 數字換圖");
                 string SWinCoin = _TempWinCoin.ToString();
                 //Debug.Log("SWinCoin(暫存金額) ：" + SWinCoin);
                 int ImgCount = SWinCoin.Length;//取得幾位數
@@ -483,7 +483,7 @@ public class ShowScript : MonoBehaviour,IShow
                 if (_TempWinCoin >= Coin)
                 {
 
-                    Debug.Log("開始CoinShow 迴圈 ： 已到目標 表演金額");
+                    //Debug.Log("開始CoinShow 迴圈 ： 已到目標 表演金額");
                     yield return new WaitForSeconds(1f);
                     int Win_All_Coin_Temp;
                     yield return new WaitForSeconds(0.5f);

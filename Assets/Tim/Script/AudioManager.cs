@@ -3,7 +3,8 @@ using System;
 using baseSys.Audio;
 using baseSys.Audio.Sources;
 
-public class AudioManager : MonoBehaviour {
+public class AudioManager : MonoBehaviour
+{
 
     public static AudioManager inst; //單例
 
@@ -23,6 +24,13 @@ public class AudioManager : MonoBehaviour {
     [SerializeField]
     Source[] SFXSetting;
 
+
+    /// <summary>
+    /// 音樂資源設定
+    /// </summary>
+    [SerializeField]
+    Source[] SlotSetting;
+
     /// <summary>
     /// 音樂播放器
     /// </summary>
@@ -34,10 +42,23 @@ public class AudioManager : MonoBehaviour {
     AudioPlayer SFX;
 
     /// <summary>
+    /// 音效播放器
+    /// </summary>
+    AudioPlayer Slot;
+
+
+    /// <summary>
     /// 音樂音量較正值
     /// </summary>
     [Range(0, 1)]
     float BGMValue = 0.5f;
+
+
+    /// <summary>
+    /// 音樂音量較正值
+    /// </summary>
+    [Range(0, 1)]
+    float SlotValue = 0.5f;
 
     /// <summary>
     /// 音效音量較正值
@@ -51,13 +72,16 @@ public class AudioManager : MonoBehaviour {
 
         BGM = new AudioPlayer(gameObject, "BGMPlayer", BGMSetting, BGMValue);//gameObject 就是自己當前得這個物件
         SFX = new AudioPlayer(gameObject, "SFXPlayer", SFXSetting, SFXValue);
+        Slot = new AudioPlayer(gameObject,"SlotPlayer",SlotSetting,SlotValue);
+
     }
 
-    void Start ()
+    void Start()
     {
         //清空省記憶體
         BGMSetting = null;
-        SFXSetting = null;    
+        SFXSetting = null;
+        SlotSetting = null;
     }
 
     #region [BGM播放]
@@ -65,9 +89,9 @@ public class AudioManager : MonoBehaviour {
     /// 播放設定BGM
     /// </summary>
     /// <param name="name"></param>
-    public void PlayBGM(string name)
+    public void PlayBGM(string name,int ClipCount)
     {
-        BGM.Play(name);
+        BGM.Play(name, ClipCount);
     }
 
     /// <summary>
@@ -102,9 +126,9 @@ public class AudioManager : MonoBehaviour {
     /// 播放音效
     /// </summary>
     /// <param name="name"></param>
-    public void PlaySFX(string name)
+    public void PlaySFX(string name,int ClipCount)
     {
-        SFX.Play(name);
+        SFX.Play(name, ClipCount);
     }
 
 
@@ -113,10 +137,10 @@ public class AudioManager : MonoBehaviour {
     /// 播放音效(多個物件循環利用版)
     /// </summary>
     /// <param name="name"></param>
-    public void PlayAddSFX(string name)
+    public void PlayAddSFX(string name,int ClipCount)
     {
 
-        SFX.AddPlay(name);
+        SFX.AddPlay(name,ClipCount);
 
     }
 
@@ -155,8 +179,48 @@ public class AudioManager : MonoBehaviour {
     /// </summary>
     /// <param name="setAct"></param>
     public void Mute(bool setAct)
-    {        
+    {
         BGM.Mute(setAct);
         SFX.Mute(setAct);
     }
+
+
+
+    /// <summary>
+    /// 播放音效(多個物件循環利用版)
+    /// </summary>
+    /// <param name="name"></param>
+    public void PlayAddSlot(string name, int ClipCount)
+    {
+
+        Slot.AddPlay(name, ClipCount);
+
+    }
+
+    /// <summary>
+    /// StopAll
+    /// </summary>
+    public void SlotStop()
+    {
+        Slot.StopAll();
+    }
+
+    /// <summary>
+    /// Stop Name
+    /// </summary>
+    /// <param name="name"></param>
+    public void SlotStop(string name)
+    {
+        Slot.Stop(name);
+    }
+
+    /// <summary>
+    /// 重設音量
+    /// </summary>
+    /// <param name="value"></param>
+    public void SlotReset(float value)
+    {
+        Slot.ResetValue(value);
+    }
+
 }
