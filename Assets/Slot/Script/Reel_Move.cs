@@ -19,7 +19,7 @@ public class Reel_Move : MonoBehaviour,IMove {
     List<int> _ChangeSprite;//要換的圖片資料
     GameObject _Self;//自己本身這個物件
 
-
+    #region 介面實作內容
     public bool strool { get {return _strool; } set { _strool = value; } }
     public Vector2 originalv2 { get { return _originalv2; } set { _originalv2=value; } }
     public RectTransform ReelV2 { get { return _ReelV2; } set { _ReelV2 = value; } }
@@ -31,7 +31,10 @@ public class Reel_Move : MonoBehaviour,IMove {
     public Sprite[] Sprites { get { return _Sprites; } set { _Sprites = value; } }
     public List<int> ChangeSprite { get { return _ChangeSprite; } set { _ChangeSprite = value; } }
     public GameObject Self { get { return _Self; } set { _Self = value; } }
-    void Start() {
+    #endregion
+
+    void Start()
+    {
 
         
         Date_Temp = 0;
@@ -49,7 +52,8 @@ public class Reel_Move : MonoBehaviour,IMove {
     }
 
    
-    void Update() {
+    void Update()
+    {
 
 
 
@@ -58,7 +62,13 @@ public class Reel_Move : MonoBehaviour,IMove {
 
 
     }
-
+    #region 初始設定方法
+    /// <summary>
+    /// 輪條初始設定方法
+    /// </summary>
+    /// <param name="Roolcount"></param>
+    /// <param name="sprites"></param>
+    /// <param name="Speed"></param>
     public void Init(int Roolcount, Sprite[] sprites, float Speed)
     {
         _Self = this.gameObject;
@@ -75,15 +85,17 @@ public class Reel_Move : MonoBehaviour,IMove {
         }
 
     }
+    #endregion
 
+    #region 移動方法
     public void Move()
     {
         if (tempi < Roolcount && _strool == true)
         {
             int Date_Chang_Count = Roolcount - gameObject.transform.childCount;//換圖次數-子物件數＝隨機換圖次數 ,（因為最後要留單輪條子物件數來灌入Date的盤面資料）
-            ReelV2.anchoredPosition += new Vector2(0, -5) * Speed * Time.deltaTime;
+            ReelV2.anchoredPosition += new Vector2(0, -2.5f * Speed * Time.deltaTime) /* * Speed * Time.deltaTime*/;
 
-            if (ReelV2.anchoredPosition.y <= -170)
+            if (ReelV2.anchoredPosition.y <= -180)
             {
 
                 ReelV2.anchoredPosition = originalv2;//回歸初始座標
@@ -139,5 +151,5 @@ public class Reel_Move : MonoBehaviour,IMove {
         }
 
     }
-
+    #endregion
 }

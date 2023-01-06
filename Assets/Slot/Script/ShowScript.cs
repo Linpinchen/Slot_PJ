@@ -84,6 +84,8 @@ public class ShowScript : MonoBehaviour,IShow
     [SerializeField]
     RawImage _VideoImage;
 
+
+    #region 介面實作
     public Sprite[] Numbers { get { return _Numbers; }set { _Numbers = value; } }
 
     public Image BonusWinBackSprite { get { return _BonusWinBackSprite; }set { BonusWinBackSprite = value; } }
@@ -132,9 +134,15 @@ public class ShowScript : MonoBehaviour,IShow
 
     public RawImage VideoImage { get { return _VideoImage; } set { _VideoImage = value; } }
 
+    #endregion
 
-
-
+    #region 表演的初始化方法
+    /// <summary>
+    /// 表演的初始化方法
+    /// </summary>
+    /// <param name="_Idate"></param>
+    /// <param name="_Iui"></param>
+    /// <param name="_ReelMove"></param>
     public void Init(IDate _Idate,IUIControlMethod _Iui,IMove[] _ReelMove)
     {
         this._ReelMove = _ReelMove;
@@ -142,8 +150,9 @@ public class ShowScript : MonoBehaviour,IShow
         this._IUIMethod = _Iui;
         _CoinShow_Bool = true;
     }
+    #endregion
 
-
+    #region 取得連線時輪條上中獎的圖 並裝進陣列回傳
     /// <summary>
     /// 取得連線時輪條上中獎的圖 並裝進陣列回傳
     /// </summary>
@@ -168,7 +177,9 @@ public class ShowScript : MonoBehaviour,IShow
         return VVVs;
 
     }
+    #endregion
 
+    #region 將要表演的圖片放入List
     /// <summary>
     /// 將要表演的圖片放入List
     /// </summary>
@@ -185,7 +196,7 @@ public class ShowScript : MonoBehaviour,IShow
             if (!ReadyShow.Contains(GetTrans[i]))//檢測ReadyShow 有沒有相同內容
             {
 
-                Debug.Log("ListShiny . ADD");
+                //Debug.Log("ListShiny . ADD");
                 ReadyShow.Add(GetTrans[i]);
 
             }
@@ -193,7 +204,9 @@ public class ShowScript : MonoBehaviour,IShow
         }
 
     }
+    #endregion
 
+    #region 打開Uishow陣列內物件的Animator的Trigger
     /// <summary>
     /// 打開Uishow陣列內物件的Animator的Trigger
     /// </summary>
@@ -210,8 +223,9 @@ public class ShowScript : MonoBehaviour,IShow
 
         yield return null;
     }
+    #endregion
 
-
+    #region 預制物初始化
     /// <summary>
     /// 預制物初始化
     /// </summary>
@@ -240,8 +254,9 @@ public class ShowScript : MonoBehaviour,IShow
         //Debug.Log("Manager__Taget_Point.Count : " + Reuse.GetComponent<DrawLine>().Taget_Point.Count);
 
     }
+    #endregion
 
-
+    #region 物件池 （判斷物件池內有無物件 有就取出 無就生成）
     /// <summary>
     /// 物件池 （判斷物件池內有無物件 有就取出 無就生成）
     /// </summary>
@@ -326,7 +341,9 @@ public class ShowScript : MonoBehaviour,IShow
         }
 
     }
+    #endregion
 
+    #region 物件池生成設定
     /// <summary>
     /// 物件池生成設定
     /// </summary>
@@ -346,7 +363,9 @@ public class ShowScript : MonoBehaviour,IShow
         }
 
     }
+    #endregion
 
+    #region 物件用完回收物件池
     /// <summary>
     /// 物件用完回收物件池
     /// </summary>
@@ -368,7 +387,9 @@ public class ShowScript : MonoBehaviour,IShow
         }
 
     }
+    #endregion
 
+    #region 判斷DrawLine完了沒 ,結束後執行回收（執行Recover）
     /// <summary>
     /// /判斷DrawLine完了沒 ,結束後執行回收（執行Recover）
     /// </summary>
@@ -407,7 +428,7 @@ public class ShowScript : MonoBehaviour,IShow
                 for (int i = 0; i < OutPool.childCount; i++)
                 {
 
-                    Recover(OutPool.transform.GetChild(i).gameObject, DrawAllBool); //這裡因為Bonus每個盤面生成的物件都放這 所以出了問題
+                    Recover(OutPool.transform.GetChild(i).gameObject, DrawAllBool); 
 
                 }
 
@@ -425,7 +446,9 @@ public class ShowScript : MonoBehaviour,IShow
         }
 
     }
+    #endregion
 
+    #region 啟動畫線
     /// <summary>
     /// 啟動畫線
     /// </summary>
@@ -445,7 +468,9 @@ public class ShowScript : MonoBehaviour,IShow
 
         yield return null;
     }
+    #endregion
 
+    #region 金錢表演
     /// <summary>
     /// 金錢表演
     /// </summary>
@@ -531,6 +556,7 @@ public class ShowScript : MonoBehaviour,IShow
         }
 
     }
+#endregion
 
 }
 

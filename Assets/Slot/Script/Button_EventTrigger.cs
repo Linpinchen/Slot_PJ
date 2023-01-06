@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class Button_EventTrigger : EventTrigger {
 
-	//在這裏 長按按鈕 會＋＝100 將這裡得到的值傳給 Manager 讓Manager當中間人 把這裡傳出去的值跟ＤＡＴＥ 做溝通  （注意！ 這裡一直長按會一直傳值 但是Manager 那裡加值最大只會加到 玩家總金額的上限 遭過就算一直傳值也不加）
+	//在這裏 長按按鈕會＋1 將這裡得到的值傳給 Manager 讓Manager當中間人 把這裡傳出去的值跟ＤＡＴＥ 做溝通  （注意！ 這裡一直長按會一直傳值 但是Manager 那裡加值最大只會加到 玩家總金額的上限 遭過就算一直傳值也不加）
 
 	public Animator Ami;
 	public bool Button_Down;//判斷按鈕是否按下

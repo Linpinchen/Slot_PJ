@@ -8,8 +8,6 @@ public class Slot_data :IDate ,IDateEvent{
 
 	public IMove[] ReelMoves;
 
-	//Reel_Move[] _Reelmove;
-
     [SerializeField]
     List<int>_Temp ;
 
@@ -96,7 +94,6 @@ public class Slot_data :IDate ,IDateEvent{
 	public void Init( IMove[] ReelMoves)
     {
 		this.ReelMoves = ReelMoves;
-        //this._Reelmove = _ReelMoves;
         _Date = new List<intCount>();
         Temp = new List<int>();
 
@@ -772,6 +769,8 @@ public class Slot_data :IDate ,IDateEvent{
 
         return Win_Money;
     }
+
+    
     #endregion
 
 }

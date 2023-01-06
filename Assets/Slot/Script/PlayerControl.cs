@@ -8,7 +8,6 @@ public class PlayerControl
     public delegate void StartGameMethod();
 
     public StartGameMethod startGameMethod;
-    public StartGameMethod BonusDateCreat;
     public StartGameMethod Option_Yes;
     public StartGameMethod Option_No;
 

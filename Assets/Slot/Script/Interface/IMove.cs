@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public interface IMove
 {
 
-
     bool strool { get; set; }
     Vector2 originalv2 { get; set; }
     RectTransform ReelV2 { get; set; }

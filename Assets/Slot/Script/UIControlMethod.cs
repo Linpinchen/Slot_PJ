@@ -72,7 +72,7 @@ public class UIControlMethod : IUIControlMethod{
 
 
 
-
+    #region AddBonus 的 Bool 開關
     /// <summary>
     ///  AddBonus 的 Bool 開關
     /// </summary>
@@ -92,8 +92,9 @@ public class UIControlMethod : IUIControlMethod{
         }
 
     }
+    #endregion
 
-
+    #region Bet小視窗開關
     /// <summary>
     /// Bet小視窗開關
     /// </summary>
@@ -120,6 +121,9 @@ public class UIControlMethod : IUIControlMethod{
         }
  
     }
+    #endregion
+
+    #region Auto小視窗開關
     /// <summary>
     /// Auto小視窗開關
     /// </summary>
@@ -146,6 +150,9 @@ public class UIControlMethod : IUIControlMethod{
         }
 
     }
+    #endregion
+
+    #region  Auto次數增加
     /// <summary>
     /// Auto次數增加
     /// </summary>
@@ -162,12 +169,15 @@ public class UIControlMethod : IUIControlMethod{
         }
 
     }
+    #endregion
+
+    #region Auto數 減少
     /// <summary>
     /// Auto數 減少
     /// </summary>
     public void AutoReduce()
     {
-        if (_IDate.AutoCount > 0)
+        if (_IDate.AutoCount > 1)
         {
             _IDate.AutoCount--;
             _IDate.AutoSurplus = _IDate.AutoCount;
@@ -176,11 +186,15 @@ public class UIControlMethod : IUIControlMethod{
         }
 
     }
+    #endregion
+
+    #region Auto數 清除
     /// <summary>
     /// Auto數 清除
     /// </summary>
     public void Auto_Clear()
     {
+
         if (_IDate.AutoCount > 1)
         {
             _IDate.AutoCount = 1;
@@ -188,7 +202,11 @@ public class UIControlMethod : IUIControlMethod{
             Auto_text.text = _IDate.AutoSurplus.ToString();
 
         }
+
     }
+    #endregion
+
+    #region Auto數 暫停
     /// <summary>
     /// Auto數 暫停
     /// </summary>
@@ -198,6 +216,9 @@ public class UIControlMethod : IUIControlMethod{
         _IDate.AutoCount = 1;
 
     }
+    #endregion
+
+    #region Bet 數 加注
     /// <summary>
     /// Bet 數 加注
     /// </summary>
@@ -224,6 +245,9 @@ public class UIControlMethod : IUIControlMethod{
         }
 
     }
+    #endregion
+
+    #region Bet 數 減少押注
     /// <summary>
     /// Bet 數 減少押注
     /// </summary>
@@ -243,7 +267,9 @@ public class UIControlMethod : IUIControlMethod{
         }
 
     }
+    #endregion
 
+    #region 說明畫面向左換圖
     /// <summary>
     /// 說明畫面向左換圖
     /// </summary>
@@ -261,7 +287,9 @@ public class UIControlMethod : IUIControlMethod{
         }
 
     }
+    #endregion
 
+    #region 說明畫面向右換圖
     /// <summary>
     /// 說明畫面向右換圖
     /// </summary>
@@ -280,7 +308,9 @@ public class UIControlMethod : IUIControlMethod{
         }
 
     }
+    #endregion
 
+    #region 打開說明畫面
     /// <summary>
     /// 打開說明畫面
     /// </summary>
@@ -291,7 +321,9 @@ public class UIControlMethod : IUIControlMethod{
         Img_Introduction.sprite = InFoSprites[0];
   
     }
+    #endregion
 
+    #region 離開說明畫面
     /// <summary>
     /// 離開說明畫面
     /// </summary>
@@ -301,6 +333,9 @@ public class UIControlMethod : IUIControlMethod{
         _InfoBackSprite.gameObject.SetActive(false);
 
     }
+    #endregion
+
+    #region 最大押注
     /// <summary>
     /// 最大押注
     /// </summary>
@@ -316,7 +351,15 @@ public class UIControlMethod : IUIControlMethod{
         _BetMenu_Text.text = _Bet_Text.text;
 
     }
+    #endregion
 
+    #region 介面操作初始化方法
+    /// <summary>
+    /// 介面操作初始化方法
+    /// </summary>
+    /// <param name="Idate"></param>
+    /// <param name="EventPlus"></param>
+    /// <param name="EventReduce"></param>
     public void UIControlInit(IDate Idate, Button_EventTrigger EventPlus,Button_EventTrigger EventReduce)
     {
 
@@ -325,8 +368,9 @@ public class UIControlMethod : IUIControlMethod{
         this.EventReduce = EventReduce;
 
     }
+    #endregion
 
-
+    #region 將資料讀取
     /// <summary>
     /// 將資料讀取
     /// </summary>
@@ -342,5 +386,5 @@ public class UIControlMethod : IUIControlMethod{
         }
 
     }
-
+    #endregion
 }
