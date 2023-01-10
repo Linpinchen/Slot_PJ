@@ -45,6 +45,8 @@ public class UIControlMethod : IUIControlMethod{
     [SerializeField]
     Image _Img_Introduction;
 
+    [SerializeField]
+    Image _Img_Operational;
 
     public bool StAddBonusDate { get { return _StAddBonusDate; } set { _StAddBonusDate = value; } }
 
@@ -68,6 +70,7 @@ public class UIControlMethod : IUIControlMethod{
 
     public Image Img_Introduction { get { return _Img_Introduction; } }
 
+    public Image Img_Operational { get { return _Img_Operational; } }
 
 
 

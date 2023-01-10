@@ -26,7 +26,7 @@ public class Slot_Manager : MonoBehaviour
     public bool Start_Slot;
     public bool CurrentReel_B;
     bool BonusStateInfo_B;
-    bool B_Slot_timeOut;//讓_Slot_timeOut只會執行一次
+    public bool B_Slot_timeOut;//讓_Slot_timeOut只會執行一次
     bool WinShowOk;//表演是否完成
     bool St_Roll;//是否開始轉輪
     bool StCoShow;//確保CoShow只有一個
@@ -41,7 +41,8 @@ public class Slot_Manager : MonoBehaviour
     public SlotGrid CommonGrid;
     public SlotGrid BonusGrid;
 
-
+   
+  
     void Start()
     {
 
@@ -69,6 +70,11 @@ public class Slot_Manager : MonoBehaviour
 
     public void Slot_Initialization(IDate _IDate,IDateEvent _IDateEvent,IShow _Ishow,IUIControlMethod _IuiMethod)
     {
+
+        Operational(_IuiMethod);
+
+        
+
         FreeGameCount = 3;
         B_Slot_timeOut = true;
         WinShowOk = true;
@@ -109,6 +115,8 @@ public class Slot_Manager : MonoBehaviour
 
             _Reel_Moves[i].Sprites = _IDate.SpritePool;
 
+          
+            
         }
        
         _IDate.BonusWinCoin = new List<int>();
@@ -169,6 +177,8 @@ public class Slot_Manager : MonoBehaviour
             _IuiMethod.GetDateSave();
 
         }
+
+      
 
 
         Debug.Log("是否開始滾動：" + Start_Slot);
@@ -331,20 +341,31 @@ public class Slot_Manager : MonoBehaviour
     public IEnumerator Co_Slot_timeOut(IDate _IDate, IShow _Ishow, IDateEvent _IDateEvent, IUIControlMethod _IUIMethod,IMove[] _ReelMoves, SlotGrid CommonGrid, SlotGrid BonusGrid)
     {
 
-        if (_ReelMoves[Slot_mantissa].tempi == _ReelMoves[Slot_mantissa].Roolcount)//如果最後一個輪條達到滾動次數
+        if (_ReelMoves[Slot_mantissa].tempi == _ReelMoves[Slot_mantissa].Roolcount )//如果最後一個輪條達到滾動次數
         {
-           
-            if (_IDate.BonusCount!=FreeGameCount)
-            {
-                AudioManager.inst.BGMReset(0.5f);
-                AudioManager.inst.SFXStop();
-            }
-           
+
             int CurrentCount = _IDate.CurrentReel + 1;
             for (int i = CurrentCount; i < _Reel_Moves.Length; i++)
             {
                 _Reel_Moves[i].transform.parent.GetChild(1).gameObject.SetActive(false);
                 _ReelMoves[i].Roolcount = Loopcount;
+            }
+
+            if (_IDate.BonusCount != FreeGameCount)
+            {
+                AudioManager.inst.BGMReset(0.5f);
+                AudioManager.inst.SFXStop();
+            }
+
+
+            for (int j = 0; j < _ReelMoves.Length; j++)//輪條轉動次數初始化
+            {
+                _ReelMoves[j].tempi = 0;
+
+                _ReelMoves[j].Date_Temp = 0;
+
+                Debug.Log(string.Format("輪調{0}內滾動次數{1}", j, _ReelMoves[j].tempi));
+
             }
 
             _IDate.CurrentReel = 0;
@@ -383,6 +404,14 @@ public class Slot_Manager : MonoBehaviour
 
                 for (int i=0;i<FreeGameCount;i++)
                 {
+                    StCoShow = true;
+                    UseBonus = true;
+                    St_Roll = true;
+
+                    _CoAll_Slot_Roll = CoAll_Slot_Roll(BonusGrid._grids[NowFreeCount], _ReelMoves);
+                    StartCoroutine(_CoAll_Slot_Roll);
+                    yield return new WaitUntil(()=> _ReelMoves[Slot_mantissa].tempi == Loopcount);
+
 
                     for (int j = 0; j < _ReelMoves.Length; j++)//輪條轉動次數初始化
                     {
@@ -393,14 +422,6 @@ public class Slot_Manager : MonoBehaviour
                         Debug.Log(string.Format("輪調{0}內滾動次數{1}", j, _ReelMoves[j].tempi));
 
                     }
-
-                    StCoShow = true;
-                    UseBonus = true;
-                    St_Roll = true;
-
-                    _CoAll_Slot_Roll = CoAll_Slot_Roll(BonusGrid._grids[NowFreeCount], _ReelMoves);
-                    StartCoroutine(_CoAll_Slot_Roll);
-                    yield return new WaitUntil(()=> _ReelMoves[Slot_mantissa].tempi == Loopcount);
 
                     if (StCoShow)
                     {
@@ -466,16 +487,6 @@ public class Slot_Manager : MonoBehaviour
                 NowFreeCount=0;
                 Debug.Log("-----------------------------開始轉動-------------------------");
 
-                for (int i = 0; i < _ReelMoves.Length; i++)//輪條轉動次數初始化
-                {
-
-                    _ReelMoves[i].tempi = 0;
-                    _ReelMoves[i].Date_Temp = 0;
-                    Debug.Log(string.Format("輪調{0}內滾動次數{1}", i, _ReelMoves[i].tempi));
-
-                }
-
-
                 if (_ReelMoves[Slot_mantissa].tempi == 0) //這裡重新生成盤面資料 兌獎 設定預制物 
                 {
 
@@ -504,16 +515,6 @@ public class Slot_Manager : MonoBehaviour
                 Debug.Log("各輪盤滾動完畢");
                 Debug.Log("是否開始滾動：" + Start_Slot);
                 _IDate.AutoCount = 1;
-
-                for (int i = 0; i < _ReelMoves.Length; i++)
-                {
-
-                    _ReelMoves[i].tempi = 0;
-                    _ReelMoves[i].Date_Temp = 0;
-                    //Debug.Log(string.Format("輪調{0}內滾動次數{1}", i, _ReelMoves[i].tempi));
-
-                }
-
                 Start_Slot = false;
                 St_Roll = true;
                 StCoShow = true;
@@ -798,8 +799,10 @@ public class Slot_Manager : MonoBehaviour
         GetAnimatiorStayInfo();
 
 
+
         if (B_Slot_timeOut == true && _ReelMoves[Slot_mantissa].tempi == _ReelMoves[Slot_mantissa].Roolcount)
         {
+
             Debug.Log("執行 Co_Slot_timeOut ");
             B_Slot_timeOut = false;
             _Slot_timeOut = Co_Slot_timeOut(_IDate, _IShow, _Ide, _IUIMethod, _ReelMoves, CommonGrid, BonusGrid);
@@ -977,6 +980,52 @@ public class Slot_Manager : MonoBehaviour
 
     #endregion
 
+    #region 平台偵測
+    /// <summary>
+    /// 平台偵測
+    /// </summary>
+    /// <param name="_IuiMethod"></param>
+    public void Operational(IUIControlMethod _IuiMethod)
+    {
+        #if UNITY_STANDALONE_OSX
+            GetDeviceInformation(_IuiMethod);
+            Debug.Log("UNITY_STANDALONE_OSX");
+        #endif
+
+        #if UNITY_STANDALONE_WIN
+            GetDeviceInformation(_IuiMethod);
+            Debug.Log("Stand Alone Windows");
+        #endif
 
 
+        #if UNITY_ANDROID
+            GetDeviceInformation(_IuiMethod);
+            Debug.Log("Android");
+        #endif
+
+        #if UNITY_IOS
+            GetDeviceInformation(_IuiMethod);
+            Debug.Log("Iphone");
+        #endif
+
+    }
+
+    #region 詳細設備資訊
+    /// <summary>
+    /// 詳細設備資訊
+    /// </summary>
+    public void GetDeviceInformation(IUIControlMethod _IuiMethod)
+    {
+
+        _IuiMethod.Img_Operational.transform.GetChild(0).GetComponent<Text>().text = "設備型號 ：" + SystemInfo.deviceModel;
+        _IuiMethod.Img_Operational.transform.GetChild(1).GetComponent<Text>().text = "設備名稱 ：" + SystemInfo.deviceName;
+        _IuiMethod.Img_Operational.transform.GetChild(2).GetComponent<Text>().text = "操作系統 ：" + SystemInfo.operatingSystem;
+        _IuiMethod.Img_Operational.transform.GetChild(3).GetComponent<Text>().text = "設備類型 ：" + SystemInfo.deviceType;
+        _IuiMethod.Img_Operational.transform.GetChild(4).GetComponent<Text>().text = "顯存大小（單位：ＭＢ） ：" + SystemInfo.graphicsMemorySize;
+        _IuiMethod.Img_Operational.transform.GetChild(5).GetComponent<Text>().text = "系統內存大小(單位：ＭＢ) ：" + SystemInfo.systemMemorySize;
+
+    }
+    #endregion
+
+    #endregion
 }

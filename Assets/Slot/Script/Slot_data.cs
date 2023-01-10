@@ -898,14 +898,6 @@ public class SlotGrid
 
 	}
 
-	//public GridContentFun<SlotGrid> _GridMethod
-	//{
-
-	//	get { return GridMethod; }
-
-	//}
-
-
 	public void CreatGrid()
 	{
 

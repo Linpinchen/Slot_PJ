@@ -55,13 +55,11 @@ public class Reel_Move : MonoBehaviour,IMove {
     void Update()
     {
 
-
-
         Move();
 
-
-
     }
+
+
     #region 初始設定方法
     /// <summary>
     /// 輪條初始設定方法

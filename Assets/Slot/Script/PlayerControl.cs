@@ -28,7 +28,8 @@ public class PlayerControl
     public Button ButtonRight_Button;
     public Button Options_Yes_Button;
     public Button Options_No_Button;
-
+    public Button OpenOperational;
+    public Button OutOperational;
 
     public void PlayerControl_Init(IUIControlMethod _UIMethod,Slot_Manager _Manager)
 	{
@@ -192,6 +193,21 @@ public class PlayerControl
         {
             AudioManager.inst.PlayAddSFX("SFX", 2);
             _UIMethod.InfoRight();
+
+        });
+
+        OpenOperational.onClick.AddListener(delegate()
+        {
+
+            AudioManager.inst.PlayAddSFX("SFX", 2);
+            _UIMethod.Img_Operational.gameObject.SetActive(true);
+
+        });
+
+        OutOperational.onClick.AddListener(delegate()
+        {
+            AudioManager.inst.PlayAddSFX("SFX", 2);
+            _UIMethod.Img_Operational.gameObject.SetActive(false);
 
         });
 
