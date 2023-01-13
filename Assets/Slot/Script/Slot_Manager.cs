@@ -837,8 +837,12 @@ public class Slot_Manager : MonoBehaviour
                 if (_IShow.EndShowPlayer.frame != 0 && _IShow.EndShowPlayer.frameCount != 0)
                 {
 
-                    if ((ulong)_IShow.EndShowPlayer.frame >= _IShow.EndShowPlayer.frameCount)
+                    Debug.Log("_IShow.EndShowPlayer.frame :" + _IShow.EndShowPlayer.frame);
+                    Debug.Log("_IShow.EndShowPlayer.frameCount :" + _IShow.EndShowPlayer.frameCount);
+
+                    if ((ulong)_IShow.EndShowPlayer.frame >= _IShow.EndShowPlayer.frameCount-1)
                     {
+                       
                         _IShow.EndShowPlayer.Pause();//暫停影片
                         Debug.Log("暫停影片");
                         

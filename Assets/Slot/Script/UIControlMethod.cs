@@ -75,6 +75,25 @@ public class UIControlMethod : IUIControlMethod{
 
 
 
+
+
+    #region 介面操作初始化方法
+    /// <summary>
+    /// 介面操作初始化方法
+    /// </summary>
+    /// <param name="Idate"></param>
+    /// <param name="EventPlus"></param>
+    /// <param name="EventReduce"></param>
+    public void UIControlInit(IDate Idate, Button_EventTrigger EventPlus, Button_EventTrigger EventReduce)
+    {
+
+        this._IDate = Idate;
+        this.EventPlus = EventPlus;
+        this.EventReduce = EventReduce;
+
+    }
+    #endregion
+
     #region AddBonus 的 Bool 開關
     /// <summary>
     ///  AddBonus 的 Bool 開關
@@ -356,22 +375,6 @@ public class UIControlMethod : IUIControlMethod{
     }
     #endregion
 
-    #region 介面操作初始化方法
-    /// <summary>
-    /// 介面操作初始化方法
-    /// </summary>
-    /// <param name="Idate"></param>
-    /// <param name="EventPlus"></param>
-    /// <param name="EventReduce"></param>
-    public void UIControlInit(IDate Idate, Button_EventTrigger EventPlus,Button_EventTrigger EventReduce)
-    {
-
-        this._IDate = Idate;
-        this.EventPlus = EventPlus;
-        this.EventReduce = EventReduce;
-
-    }
-    #endregion
 
     #region 將資料讀取
     /// <summary>
