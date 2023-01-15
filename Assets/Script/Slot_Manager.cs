@@ -41,7 +41,7 @@ public class Slot_Manager : MonoBehaviour
     public SlotGrid CommonGrid;
     public SlotGrid BonusGrid;
 
-    
+   
 
     void Start()
     {
@@ -844,10 +844,11 @@ public class Slot_Manager : MonoBehaviour
                     Debug.Log("_IShow.EndShowPlayer.frame :" + _IShow.EndShowPlayer.frame);
                     Debug.Log("_IShow.EndShowPlayer.frameCount :" + _IShow.EndShowPlayer.frameCount);
 
-
+                   
 
                     if (_IShow.EndShowPlayer.frame >= (long)_IShow.EndShowPlayer.frameCount - 2)
                     {
+
 
                         _IShow.EndShowPlayer.Pause();//暫停影片
                         Debug.Log("暫停影片");

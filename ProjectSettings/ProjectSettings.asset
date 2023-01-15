@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: SlotPJ
   productName: SlotPJ
-  defaultCursor: {fileID: 0}
+  defaultCursor: {fileID: 2800000, guid: 000fd0aa0473c404da850b35f605a766, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
@@ -149,7 +149,7 @@ PlayerSettings:
       v2Signing: 0
     enable360StereoCapture: 0
   protectGraphicsMemory: 0
-  enableFrameTimingStats: 0
+  enableFrameTimingStats: 1
   useHDRDisplay: 0
   m_ColorGamuts: 00000000
   targetPixelDensity: 30
@@ -266,7 +266,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 0}
+      m_Icon: {fileID: 2800000, guid: 5e4f55c5b601f4a2db08539973b95a78, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
