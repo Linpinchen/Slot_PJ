@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 99f1856054c6f4f0ba13e9b85c29566e
+timeCreated: 1667151843
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Fisherman Book
+  fontNames:
+  - Fisherman Book
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

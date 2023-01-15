@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: ca0d87b78a7bf447d9f3b5d9fed86ece
+timeCreated: 1667145471
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: 00 Starmap Truetype
+  fontNames:
+  - 00 Starmap Truetype
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
