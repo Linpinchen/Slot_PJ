@@ -121,7 +121,7 @@ public class Slot_data : IDate, IDateEvent
 				int Changei;
 				Changei = Random.Range(0, Tempi);
 				ReelMoves[i].Self.transform.GetChild(j).GetComponent<Image>().sprite = Sprite_Pool[Changei];
-				//Debug.Log(string.Format("第{0}個輪條的第{1}張圖片,圖片名稱{2}",i,j,_Reel_Moves[i].transform.GetChild(j).GetComponent<Image>().sprite.name));
+				Debuger.Log(string.Format("第{0}個輪條的第{1}張圖片,圖片名稱{2}",i,j, ReelMoves[i].Self.transform.GetChild(j).GetComponent<Image>().sprite.name));
 
 			}
 
@@ -146,30 +146,30 @@ public class Slot_data : IDate, IDateEvent
 			if (i == 0)//第一個輪條  
 			{
 				// 需要灌入的圖片資料
-				List<Pool_Images> LM = new List<Pool_Images>();
+				List<Pool_Images> _PoolImages = new List<Pool_Images>();
 				foreach (Pool_Images p in System.Enum.GetValues(typeof(Pool_Images)))
 				{
-					LM.Add(p);
+					_PoolImages.Add(p);
 				}
 
-				LM.RemoveAt((int)Pool_Images.Universal_Sprite);//輪條1不會有連線共同圖
-				int _One_Sprite_pool_Temp = LM.Count - 1;//第一輪用的陣列少掉Bonus圖
+				_PoolImages.RemoveAt((int)Pool_Images.Universal_Sprite);//輪條1不會有連線共同圖
+				int _One_Sprite_pool_Temp = _PoolImages.Count - 1;//第一輪用的陣列少掉Bonus圖
 
 				for (int j = 0; j < Temp; j++)
 				{
 
 					if (slotGrid._grids[GridCount]._Grids[i]._GridInt.Contains(Pool_Images.Bonus))//已經有Bonus圖的話 就不要再出現Bonus圖了
 					{
-						int Temp_B;
-						Temp_B = Random.Range(0, _One_Sprite_pool_Temp);
-						slotGrid._grids[GridCount]._Grids[i]._GridInt[j] = LM[Temp_B];
+						int Temp_NoBonus;
+						Temp_NoBonus = Random.Range(0, _One_Sprite_pool_Temp);
+						slotGrid._grids[GridCount]._Grids[i]._GridInt[j] = _PoolImages[Temp_NoBonus];
 
 					}
 					else
 					{
 
-						int Tempj = Random.Range(0, LM.Count);
-						slotGrid._grids[GridCount]._Grids[i]._GridInt[j] = LM[Tempj];
+						int Tempj = Random.Range(0, _PoolImages.Count);
+						slotGrid._grids[GridCount]._Grids[i]._GridInt[j] = _PoolImages[Tempj];
 
 					}
 
@@ -186,7 +186,7 @@ public class Slot_data : IDate, IDateEvent
 					Pool_Temp = System.Enum.GetNames(typeof(Pool_Images)).Length - 1;//圖庫的圖數量減1,填入的圖會少了Bonus圖
 
 					//檢查陣列裡有沒有Bonus圖了
-					if (slotGrid._grids[GridCount]._Grids[i]._GridInt.Contains(Pool_Images.Bonus) || Bonus_count >= 3)//已經有Bonus圖的話 就不要再出現Bonus圖了
+					if (slotGrid._grids[GridCount]._Grids[i]._GridInt.Contains(Pool_Images.Bonus) || Bonus_count >= 3)//已經有Bonus圖的話或是盤面上已經有3個Bonus 就不要再出現Bonus圖了,
 					{
 
 						int Tempj = Random.Range(0, Pool_Temp);
@@ -216,7 +216,7 @@ public class Slot_data : IDate, IDateEvent
 						_CurrentReel = i;
 
 					}
-					Debug.Log("大獎數量 ：" + Bonus_count);
+					Debuger.Log("大獎數量 ：" + Bonus_count);
 
 				}
 
@@ -464,11 +464,11 @@ public class Slot_data : IDate, IDateEvent
 
 			}
 
-			Debug.Log("Win_Sprite.name:" + _poolimage.ToString() + "連線數" + Line_Count);
+			Debuger.Log("Win_Sprite.name:" + _poolimage.ToString() + "連線數" + Line_Count);
 
-			Debug.Log(string.Format("玩家下注的錢:{0},玩家贏的錢：{1}", bet_Coin, Win_temp));
+			Debuger.Log(string.Format("玩家下注的錢:{0},玩家贏的錢：{1}", bet_Coin, Win_temp));
 
-			Debug.Log("當前贏多少錢" + WinMoneys);
+			Debuger.Log("當前贏多少錢" + WinMoneys);
 
 		}
 		if (_poolimage == Pool_Images.Apple)
@@ -500,11 +500,11 @@ public class Slot_data : IDate, IDateEvent
 
 			}
 
-			Debug.Log("Win_Sprite.name:" + _poolimage.ToString() + "連線數" + Line_Count);
+			Debuger.Log("Win_Sprite.name:" + _poolimage.ToString() + "連線數" + Line_Count);
 
-			Debug.Log(string.Format("玩家下注的錢:{0},玩家贏的錢：{1}", bet_Coin, Win_temp));
+			Debuger.Log(string.Format("玩家下注的錢:{0},玩家贏的錢：{1}", bet_Coin, Win_temp));
 
-			Debug.Log("當前贏多少錢" + WinMoneys);
+			Debuger.Log("當前贏多少錢" + WinMoneys);
 
 		}
 		if (_poolimage == Pool_Images.Beer)
@@ -536,11 +536,11 @@ public class Slot_data : IDate, IDateEvent
 
 			}
 
-			Debug.Log("Win_Sprite.name:" + _poolimage.ToString() + "連線數" + Line_Count);
+			Debuger.Log("Win_Sprite.name:" + _poolimage.ToString() + "連線數" + Line_Count);
 
-			Debug.Log(string.Format("玩家下注的錢:{0},玩家贏的錢：{1}", bet_Coin, Win_temp));
+			Debuger.Log(string.Format("玩家下注的錢:{0},玩家贏的錢：{1}", bet_Coin, Win_temp));
 
-			Debug.Log("當前贏多少錢" + WinMoneys);
+			Debuger.Log("當前贏多少錢" + WinMoneys);
 
 		}
 		if (_poolimage == Pool_Images.Cheese)
@@ -572,11 +572,11 @@ public class Slot_data : IDate, IDateEvent
 
 			}
 
-			Debug.Log("Win_Sprite.name:" + _poolimage.ToString() + "連線數" + Line_Count);
+			Debuger.Log("Win_Sprite.name:" + _poolimage.ToString() + "連線數" + Line_Count);
 
-			Debug.Log(string.Format("玩家下注的錢:{0},玩家贏的錢：{1}", bet_Coin, Win_temp));
+			Debuger.Log(string.Format("玩家下注的錢:{0},玩家贏的錢：{1}", bet_Coin, Win_temp));
 
-			Debug.Log("當前贏多少錢" + WinMoneys);
+			Debuger.Log("當前贏多少錢" + WinMoneys);
 
 		}
 		if (_poolimage == Pool_Images.Eggs)
@@ -605,11 +605,11 @@ public class Slot_data : IDate, IDateEvent
 
 			}
 
-			Debug.Log("Win_Sprite.name:" + _poolimage.ToString() + "連線數" + Line_Count);
+			Debuger.Log("Win_Sprite.name:" + _poolimage.ToString() + "連線數" + Line_Count);
 
-			Debug.Log(string.Format("玩家下注的錢:{0},玩家贏的錢：{1}", bet_Coin, Win_temp));
+			Debuger.Log(string.Format("玩家下注的錢:{0},玩家贏的錢：{1}", bet_Coin, Win_temp));
 
-			Debug.Log("當前贏多少錢" + WinMoneys);
+			Debuger.Log("當前贏多少錢" + WinMoneys);
 
 		}
 		if (_poolimage == Pool_Images.Cherry)
@@ -639,11 +639,11 @@ public class Slot_data : IDate, IDateEvent
 
 			}
 
-			Debug.Log("Win_Sprite.name:" + _poolimage.ToString() + "連線數" + Line_Count);
+			Debuger.Log("Win_Sprite.name:" + _poolimage.ToString() + "連線數" + Line_Count);
 
-			Debug.Log(string.Format("玩家下注的錢:{0},玩家贏的錢：{1}", bet_Coin, Win_temp));
+			Debuger.Log(string.Format("玩家下注的錢:{0},玩家贏的錢：{1}", bet_Coin, Win_temp));
 
-			Debug.Log("當前贏多少錢" + WinMoneys);
+			Debuger.Log("當前贏多少錢" + WinMoneys);
 
 		}
 
@@ -683,9 +683,9 @@ public class Slot_data : IDate, IDateEvent
 		SaveDateToJason = JsonUtility.ToJson(_Slot_SeverDate);
 		PlayerPrefs.SetString("遊戲資料", SaveDateToJason);
 		PlayerPrefs.Save();
-		Debug.Log("資料儲存完成");
-		Debug.Log("資料內容 ：" + SaveDateToJason);
-		Debug.Log("目前是否有儲存到資料 ：" + PlayerPrefs.HasKey("遊戲資料")); ;
+		Debuger.Log("資料儲存完成");
+		Debuger.Log("資料內容 ：" + SaveDateToJason);
+		Debuger.Log("目前是否有儲存到資料 ：" + PlayerPrefs.HasKey("遊戲資料")); ;
 
 	}
 
@@ -730,32 +730,32 @@ public class Slot_data : IDate, IDateEvent
 					   (_PoolImages == _Gridints._Grids[4]._GridInt[Tempi[4]] || _Gridints._Grids[4]._GridInt[Tempi[4]] == Pool_Images.Universal_Sprite))//33333
 					{
 
-						Debug.Log("Win");
-						Debug.Log(PrizeDate[i]);
+						Debuger.Log("Win");
+						Debuger.Log(PrizeDate[i]);
 						int Line_count = 5;
 						Win_Money = Win_Sprite(_PoolImages, Line_count, Win_Money);
-						Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
+						Debuger.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
 
 					}
 
 					else if (_PoolImages == _Gridints._Grids[3]._GridInt[Tempi[3]] || _Gridints._Grids[3]._GridInt[Tempi[3]] == Pool_Images.Universal_Sprite)//3333
 					{
 
-						Debug.Log("Win");
-						Debug.Log(string.Format("{0},{1},{2},{3}", Tempi[0], Tempi[1], Tempi[2], Tempi[3]));
+						Debuger.Log("Win");
+						Debuger.Log(string.Format("{0},{1},{2},{3}", Tempi[0], Tempi[1], Tempi[2], Tempi[3]));
 						int Line_count = 4;
 						Win_Money = Win_Sprite(_PoolImages, Line_count, Win_Money);
-						Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
+						Debuger.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
 
 					}
 
 					else
 					{
-						Debug.Log("Win");
-						Debug.Log(string.Format("{0},{1},{2}", Tempi[0], Tempi[1], Tempi[2]));
+						Debuger.Log("Win");
+						Debuger.Log(string.Format("{0},{1},{2}", Tempi[0], Tempi[1], Tempi[2]));
 						int Line_count = 3;
 						Win_Money = Win_Sprite(_PoolImages, Line_count, Win_Money);
-						Debug.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
+						Debuger.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
 
 					}
 
@@ -932,7 +932,7 @@ public class SlotGrid
 
 				}
 
-				//Debug.Log(string.Format("盤面資料生成,輪條數：{0},各輪條內圖片數量：{1}", Grid[k]._Grids.Count, ImageCount));
+				Debuger.Log(string.Format("盤面資料生成,輪條數：{0},各輪條內圖片數量：{1}", Grid[k]._Grids.Count, ImageCount));
 
 			}
 

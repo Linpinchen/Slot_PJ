@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using DG.Tweening;
 public class Reel_Move : MonoBehaviour, IMove
 {
 
@@ -20,6 +20,8 @@ public class Reel_Move : MonoBehaviour, IMove
     List<int> _ChangeSprite;//要換的圖片資料
     GameObject _Self;//自己本身這個物件
 
+    Tweener tweener;
+   
     #region 介面實作內容
     public bool strool { get { return _strool; } set { _strool = value; } }
     public Vector2 originalv2 { get { return _originalv2; } set { _originalv2 = value; } }
@@ -37,6 +39,7 @@ public class Reel_Move : MonoBehaviour, IMove
     void Start()
     {
 
+       
 
         Date_Temp = 0;
         originalv2 = gameObject.GetComponent<RectTransform>().anchoredPosition;//取得原始座標
@@ -49,6 +52,11 @@ public class Reel_Move : MonoBehaviour, IMove
             Reel_images.Add(gameObject.transform.GetChild(i).GetComponent<Image>());
 
         }
+
+        tweener = _ReelV2.DOLocalMoveY(0, 1);
+        tweener.SetEase(Ease.OutElastic);
+        tweener.SetAutoKill(false);
+        tweener.Pause();
 
     }
 
@@ -86,6 +94,72 @@ public class Reel_Move : MonoBehaviour, IMove
     }
     #endregion
 
+    //#region 移動方法
+    //public void Move()
+    //{
+    //    if (tempi < Roolcount && _strool == true)
+    //    {
+    //        int Date_Chang_Count = Roolcount - gameObject.transform.childCount;//換圖次數-子物件數＝隨機換圖次數 ,（因為最後要留單輪條子物件數來灌入Date的盤面資料）
+    //        ReelV2.anchoredPosition += new Vector2(0, -2.5f * Speed * Time.deltaTime) /* * Speed * Time.deltaTime*/;
+
+    //        if (ReelV2.anchoredPosition.y <= -180)
+    //        {
+
+    //            ReelV2.anchoredPosition = originalv2;//回歸初始座標
+    //            int ri;
+    //            ri = Random.Range(0, Sprites.Length);//換圖用隨機值
+
+    //            for (int i = 0; i < gameObject.transform.childCount; i++)
+    //            {
+
+    //                if (i < gameObject.transform.childCount - 1)//這裡做前四張圖 換成各自的上一個位置的圖片
+    //                {
+
+    //                    Reel_images[i].sprite = Reel_images[i + 1].sprite;//n的圖片換成n+1的
+
+    //                }
+
+    //                else//最後一張圖要隨機給圖 如果到需要灌入Date資料的次數時
+    //                {
+
+    //                    if (tempi >= Date_Chang_Count)
+    //                    {
+
+    //                        Reel_images[i].sprite = Sprites[_ChangeSprite[Date_Temp]];
+    //                        tempi++;
+    //                        Date_Temp++;
+    //                        //Debug.Log("tempi:" + tempi + "Roolcount" + Roolcount + "Sprites :" + ChangeSprite[i]);
+
+    //                        if (tempi == Roolcount)//這裡做重置的動作
+    //                        {
+
+    //                            strool = false;
+    //                            //tempi = 0;
+    //                            Date_Temp = 0;
+
+    //                        }
+
+    //                    }
+    //                    else
+    //                    {
+
+    //                        Reel_images[i].sprite = Sprites[ri];
+    //                        tempi++;
+    //                        // Debug.Log("tempi:" + tempi + "Roolcount" + Roolcount);
+
+    //                    }
+
+    //                }
+
+    //            }
+
+    //        }
+
+    //    }
+
+    //}
+    //#endregion
+
     #region 移動方法
     public void Move()
     {
@@ -96,8 +170,16 @@ public class Reel_Move : MonoBehaviour, IMove
 
             if (ReelV2.anchoredPosition.y <= -180)
             {
+                if (tempi != Roolcount - 1)
+                {
+                    ReelV2.anchoredPosition = originalv2;//回歸初始座標
 
-                ReelV2.anchoredPosition = originalv2;//回歸初始座標
+                }
+                else
+                {
+                    tweener.Restart();
+
+                }
                 int ri;
                 ri = Random.Range(0, Sprites.Length);//換圖用隨機值
 
@@ -124,10 +206,11 @@ public class Reel_Move : MonoBehaviour, IMove
 
                             if (tempi == Roolcount)//這裡做重置的動作
                             {
-
+                                Debuger.Log("-----------------------重置-------------------------------------------------------");
                                 strool = false;
                                 //tempi = 0;
                                 Date_Temp = 0;
+                                
 
                             }
 
@@ -151,4 +234,6 @@ public class Reel_Move : MonoBehaviour, IMove
 
     }
     #endregion
+
+
 }

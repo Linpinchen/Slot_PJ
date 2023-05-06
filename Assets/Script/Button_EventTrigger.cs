@@ -36,7 +36,7 @@ public class Button_EventTrigger : EventTrigger
 			{
 
 				Down_Time += Time.deltaTime;
-				Debug.Log("Down_Time:" + Down_Time);
+				Debuger.Log("Down_Time:" + Down_Time);
 
 				if (Down_Time >= 1f)//Down_Time為長按的時間
 				{
@@ -93,7 +93,7 @@ public class Button_EventTrigger : EventTrigger
 			Return_Valu = 0;
 			_Wait_Bet = Wait_Bet();
 			Button_Down = true;
-			Debug.Log("Down-True");
+			Debuger.Log("Down-True");
 
 		}
 
@@ -103,7 +103,7 @@ public class Button_EventTrigger : EventTrigger
 		if (gameObject.tag == "Bet")
 		{
 
-			Debug.Log("Down-false");
+			Debuger.Log("Down-false");
 			Rest();
 
 		}
@@ -123,7 +123,7 @@ public class Button_EventTrigger : EventTrigger
 			Return_BetCoin();//Return值為100
 			b = true;
 			Return_Valu = Return_BetCoin(); //累積加值
-			Debug.Log("Return_Valu:" + Return_Valu);
+			Debuger.Log("Return_Valu:" + Return_Valu);
 
 		}
 

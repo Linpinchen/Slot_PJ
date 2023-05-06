@@ -88,7 +88,7 @@ public class UIControlMethod : IUIControlMethod
     public void UIControlInit(IDate Idate, Button_EventTrigger EventPlus, Button_EventTrigger EventReduce)
     {
 
-        Debug.Log("XX");
+        Debuger.Log("UIControlInit");
         this._IDate = Idate;
         this.EventPlus = EventPlus;
         this.EventReduce = EventReduce;
@@ -249,7 +249,7 @@ public class UIControlMethod : IUIControlMethod
     public void BetPlus()
     {
 
-        Debug.Log("_IDate.PlayerCoin:" + _IDate.PlayerCoin);
+        Debuger.Log("_IDate.PlayerCoin:" + _IDate.PlayerCoin);
         int tx;
         int coin_temp;
         tx = _IDate.PlayerCoin % _IDate.LeastBetCount;//總金額除最小下注數的餘數
@@ -304,7 +304,7 @@ public class UIControlMethod : IUIControlMethod
         if (i > 0)
         {
 
-            //Debug.Log(i);
+            //Debuger.Log(i);
             i -= 1;
             _Img_Introduction.sprite = _InFoSprites[i];
 
@@ -325,7 +325,7 @@ public class UIControlMethod : IUIControlMethod
 
         if (i < SPLength)
         {
-            //Debug.Log(i);
+            //Debuger.Log(i);
             i += 1;
             _Img_Introduction.sprite = _InFoSprites[i];
 
@@ -384,7 +384,7 @@ public class UIControlMethod : IUIControlMethod
     /// </summary>
     public void GetDateSave()
     {
-        Debug.Log("有無遊戲資料 ：" + PlayerPrefs.HasKey("遊戲資料"));
+        Debuger.Log("有無遊戲資料 ：" + PlayerPrefs.HasKey("遊戲資料"));
 
         if (PlayerPrefs.HasKey("遊戲資料"))
         {

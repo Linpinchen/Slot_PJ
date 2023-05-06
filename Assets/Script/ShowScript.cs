@@ -187,7 +187,7 @@ public class ShowScript : MonoBehaviour, IShow
     public void ListShiny(int Number, List<Transform> ReadyShow)
     {
 
-        Debug.Log("ListShiny");
+        Debuger.Log("ListShiny");
         List<RectTransform> GetTrans = GetRoolWinImg(Number);//取得RectTransform
 
         for (int i = 0; i < GetTrans.Count; i++)
@@ -250,8 +250,8 @@ public class ShowScript : MonoBehaviour, IShow
         Reuse.GetComponent<DrawLine>().Temp_VV = Reuse.GetComponent<DrawLine>().Taget_Point[0].transform;//PointPosition[0];
         Reuse.GetComponent<DrawLine>().Orange_point = OrangePoint.gameObject;
         Reuse.GetComponent<DrawLine>().Taget_Point.Add(EndPoint);
-        //Debug.Log("Manager__ Temp_point.Count : " + Reuse.GetComponent<DrawLine>().Temp_point.Count);
-        //Debug.Log("Manager__Taget_Point.Count : " + Reuse.GetComponent<DrawLine>().Taget_Point.Count);
+        //Debuger.Log("Manager__ Temp_point.Count : " + Reuse.GetComponent<DrawLine>().Temp_point.Count);
+        //Debuger.Log("Manager__Taget_Point.Count : " + Reuse.GetComponent<DrawLine>().Taget_Point.Count);
 
     }
     #endregion
@@ -358,7 +358,7 @@ public class ShowScript : MonoBehaviour, IShow
             InstGb = Instantiate(GBDrawLine, InLineRenderPool);//預制物生成
             DrawLinePool.Enqueue(InstGb);//將生成的預制物方進DrawLinePool這個Queue裡
             InstGb.SetActive(false);
-            Debug.Log("DrawLinePool.Count:" + DrawLinePool.Count);
+            Debuger.Log("DrawLinePool.Count:" + DrawLinePool.Count);
 
         }
 
@@ -377,7 +377,7 @@ public class ShowScript : MonoBehaviour, IShow
 
         if (!Stb)
         {
-            Debug.Log("---------------------------Start_Recover :------------------------");
+            Debuger.Log("---------------------------Start_Recover :------------------------");
             recover.GetComponent<DrawLine>().LI.positionCount = 0;
             recover.GetComponent<DrawLine>().LI.positionCount = 2;
             DrawLinePool.Enqueue(recover);
@@ -401,13 +401,13 @@ public class ShowScript : MonoBehaviour, IShow
 
         bool DrawAllBool;
         DrawAllBool = _SHowOk.Contains(true);//確認Lineder都跑完了沒
-        //Debug.Log(_SHowOk.Contains(true));
+        //Debuger.Log(_SHowOk.Contains(true));
 
         if (StayDrawLine.Count != 0)//LineRenderOutPool.childCount != 0
         {
 
-            //Debug.Log("----------------LineRenderOutPool.childCount : ----------------------"+ LineRenderOutPool.childCount);
-            //Debug.Log("StayDrawLine.Count :" + StayDrawLine.Count);
+            //Debuger.Log("----------------LineRenderOutPool.childCount : ----------------------"+ LineRenderOutPool.childCount);
+            //Debuger.Log("StayDrawLine.Count :" + StayDrawLine.Count);
 
             if (_SHowOk.Count != 0 && StayDrawLine.Count != 0)//持續更新裡面的bool
             {
@@ -421,7 +421,7 @@ public class ShowScript : MonoBehaviour, IShow
 
             }
 
-            //Debug.Log("--------------DrawStop :--------"+ DrawStop);
+            //Debuger.Log("--------------DrawStop :--------"+ DrawStop);
 
             if (!DrawAllBool && _SHowOk.Count != 0)//DrawLine 全部線都表演完
             {
@@ -437,7 +437,7 @@ public class ShowScript : MonoBehaviour, IShow
 
                     StayDrawLine.Clear();
                     _SHowOk.Clear();
-                    //Debug.Log("------------PrepareDrawLine.Count :------------" + PrepareDrawLine.Count);
+                    //Debuger.Log("------------PrepareDrawLine.Count :------------" + PrepareDrawLine.Count);
 
                 }
 
@@ -483,15 +483,15 @@ public class ShowScript : MonoBehaviour, IShow
 
         while (_TempWinCoin <= Coin)
         {
-            //Debug.Log("開始CoinShow 迴圈");
+            //Debuger.Log("開始CoinShow 迴圈");
 
             if (_TempWinCoin <= Coin)
             {
-                //Debug.Log("開始CoinShow 數字換圖");
+                Debuger.Log("開始CoinShow 數字換圖");
                 string SWinCoin = _TempWinCoin.ToString();
-                //Debug.Log("SWinCoin(暫存金額) ：" + SWinCoin);
+                Debuger.Log("SWinCoin(暫存金額) ：" + SWinCoin);
                 int ImgCount = SWinCoin.Length;//取得幾位數
-                //Debug.Log("本局Win金額 ＝ " + ImgCount + "位數");
+                Debuger.Log("本局Win金額 ＝ " + ImgCount + "位數");
 
                 for (int i = 0; i < ImgCount; i++)
                 {
@@ -508,7 +508,7 @@ public class ShowScript : MonoBehaviour, IShow
                 if (_TempWinCoin >= Coin)
                 {
 
-                    //Debug.Log("開始CoinShow 迴圈 ： 已到目標 表演金額");
+                    //Debuger.Log("開始CoinShow 迴圈 ： 已到目標 表演金額");
                     yield return new WaitForSeconds(1f);
                     int Win_All_Coin_Temp;
                     yield return new WaitForSeconds(0.5f);
