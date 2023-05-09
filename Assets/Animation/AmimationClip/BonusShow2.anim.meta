@@ -1,9 +1,8 @@
 fileFormatVersion: 2
 guid: 00a85d5381b7747e48b0aa9d7c37d5a0
-timeCreated: 1667463198
-licenseType: Free
 NativeFormatImporter:
+  externalObjects: {}
   mainObjectFileID: 7400000
   userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+  assetBundleName: an_bonusshow
+  assetBundleVariant: clip

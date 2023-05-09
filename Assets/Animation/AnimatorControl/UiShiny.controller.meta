@@ -1,9 +1,8 @@
 fileFormatVersion: 2
 guid: 550b5f2ff6f5f46deaae601b9b271bf0
-timeCreated: 1666678157
-licenseType: Free
 NativeFormatImporter:
+  externalObjects: {}
   mainObjectFileID: 9100000
   userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+  assetBundleName: an_uishiny
+  assetBundleVariant: control

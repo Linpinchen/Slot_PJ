@@ -1,8 +1,7 @@
 fileFormatVersion: 2
 guid: 8d83a4960d1c54aa0a54ad3f5fc76094
-timeCreated: 1672818732
-licenseType: Free
 AudioImporter:
+  externalObjects: {}
   serializedVersion: 6
   defaultSettings:
     loadType: 0
@@ -16,7 +15,8 @@ AudioImporter:
   normalize: 1
   preloadAudioData: 1
   loadInBackground: 0
+  ambisonic: 0
   3D: 1
   userData: 
-  assetBundleName: 
+  assetBundleName: audio_jojobgm
   assetBundleVariant: 

@@ -31,12 +31,15 @@ public class PlayerControl
     public Button OpenOperational;
     public Button OutOperational;
 
+
+    // 按鈕透過素材腳本拿取
+
     public void PlayerControl_Init(IUIControlMethod _UIMethod, Slot_Manager _Manager)
     {
         //遊戲開始按鈕
         StartGame_Button.onClick.AddListener(delegate
         {
-            AudioManager.inst.PlayAddSFX("SFX", 2);
+            AudioManager.inst.PlayAddSFX("SFX", 1);
             startGameMethod();
 
         });
@@ -44,7 +47,7 @@ public class PlayerControl
         //遊戲資料 - 確定讀取 按鈕
         Options_Yes_Button.onClick.AddListener(delegate
         {
-            AudioManager.inst.PlayAddSFX("SFX", 2);
+            AudioManager.inst.PlayAddSFX("SFX", 1);
             Option_Yes();
 
         });
@@ -52,7 +55,7 @@ public class PlayerControl
         //遊戲資料 - 不要讀取 按鈕
         Options_No_Button.onClick.AddListener(delegate
         {
-            AudioManager.inst.PlayAddSFX("SFX", 2);
+            AudioManager.inst.PlayAddSFX("SFX", 1);
             Option_No();
 
         });
@@ -69,7 +72,7 @@ public class PlayerControl
         //開啟 - 押注小視窗 - 按鈕
         Bet_Button.onClick.AddListener(delegate
         {
-            AudioManager.inst.PlayAddSFX("SFX", 2);
+            AudioManager.inst.PlayAddSFX("SFX", 1);
             _UIMethod.BetMenuSwitch();
 
         });
@@ -77,7 +80,7 @@ public class PlayerControl
         //開啟 - Auto小視窗 - 按鈕
         Auto_Button.onClick.AddListener(delegate
         {
-            AudioManager.inst.PlayAddSFX("SFX", 2);
+            AudioManager.inst.PlayAddSFX("SFX", 1);
             _UIMethod.AutoMenuSwitch();
 
         });
@@ -85,7 +88,7 @@ public class PlayerControl
         //押注 - 加注 - 按鈕
         Bet_Plus_Button.onClick.AddListener(delegate
         {
-            AudioManager.inst.PlayAddSFX("SFX", 2);
+            AudioManager.inst.PlayAddSFX("SFX", 1);
             if (!_Manager.Start_Slot)
             {
 
@@ -98,7 +101,7 @@ public class PlayerControl
         //押注 - 減注 - 按鈕
         Bet_Reduce_Button.onClick.AddListener(delegate
         {
-            AudioManager.inst.PlayAddSFX("SFX", 2);
+            AudioManager.inst.PlayAddSFX("SFX", 1);
             if (!_Manager.Start_Slot)
             {
 
@@ -111,7 +114,7 @@ public class PlayerControl
         //押注 - 最大押注 - 按鈕
         Bet_MaxCoin_Button.onClick.AddListener(delegate
         {
-            AudioManager.inst.PlayAddSFX("SFX", 2);
+            AudioManager.inst.PlayAddSFX("SFX", 1);
             if (!_Manager.Start_Slot)
             {
                 _UIMethod.Bet_MaxCoin();
@@ -122,7 +125,7 @@ public class PlayerControl
         //Auto - 清除循環次數 - 按鈕
         Auto_Clear_Button.onClick.AddListener(delegate
         {
-            AudioManager.inst.PlayAddSFX("SFX", 2);
+            AudioManager.inst.PlayAddSFX("SFX", 1);
             _UIMethod.Auto_Clear();
 
         });
@@ -130,7 +133,7 @@ public class PlayerControl
         //Auto - 停止循環 - 按鈕
         Auto_pause_Button.onClick.AddListener(delegate
         {
-            AudioManager.inst.PlayAddSFX("SFX", 2);
+            AudioManager.inst.PlayAddSFX("SFX", 1);
             _UIMethod.Auto_pause();
 
         });
@@ -138,7 +141,7 @@ public class PlayerControl
         //Auto - 循環次數增加 - 按鈕
         Auto_Plus_Button.onClick.AddListener(delegate
         {
-            AudioManager.inst.PlayAddSFX("SFX", 2);
+            AudioManager.inst.PlayAddSFX("SFX", 1);
             if (!_Manager.Start_Slot)
             {
 
@@ -151,7 +154,7 @@ public class PlayerControl
         //Auto - 循環次數減少加 - 按鈕
         Auto_Reduce_Button.onClick.AddListener(delegate
         {
-            AudioManager.inst.PlayAddSFX("SFX", 2);
+            AudioManager.inst.PlayAddSFX("SFX", 1);
             if (!_Manager.Start_Slot)
             {
 
@@ -164,7 +167,7 @@ public class PlayerControl
         //遊戲介紹視窗開啟
         InFoButton_Button.onClick.AddListener(delegate
         {
-            AudioManager.inst.PlayAddSFX("SFX", 2);
+            AudioManager.inst.PlayAddSFX("SFX", 1);
             if (!_Manager.Start_Slot)
             {
                 _UIMethod.OpenINFO();
@@ -175,7 +178,7 @@ public class PlayerControl
         //遊戲介紹視窗 - 離開視窗
         InfoOutButton_Button.onClick.AddListener(delegate
         {
-            AudioManager.inst.PlayAddSFX("SFX", 2);
+            AudioManager.inst.PlayAddSFX("SFX", 1);
             _UIMethod.OutInfo();
 
         });
@@ -183,7 +186,7 @@ public class PlayerControl
         //遊戲介紹視窗 - 向左換圖
         ButtonLeft_Button.onClick.AddListener(delegate
         {
-            AudioManager.inst.PlayAddSFX("SFX", 2);
+            AudioManager.inst.PlayAddSFX("SFX", 1);
             _UIMethod.InfoLeft();
 
         });
@@ -191,7 +194,7 @@ public class PlayerControl
         //遊戲介紹視窗 - 向右換圖
         ButtonRight_Button.onClick.AddListener(delegate
         {
-            AudioManager.inst.PlayAddSFX("SFX", 2);
+            AudioManager.inst.PlayAddSFX("SFX", 1);
             _UIMethod.InfoRight();
 
         });
@@ -199,14 +202,14 @@ public class PlayerControl
         OpenOperational.onClick.AddListener(delegate ()
         {
 
-            AudioManager.inst.PlayAddSFX("SFX", 2);
+            AudioManager.inst.PlayAddSFX("SFX", 1);
             _UIMethod.Img_Operational.gameObject.SetActive(true);
 
         });
 
         OutOperational.onClick.AddListener(delegate ()
         {
-            AudioManager.inst.PlayAddSFX("SFX", 2);
+            AudioManager.inst.PlayAddSFX("SFX", 1);
             _UIMethod.Img_Operational.gameObject.SetActive(false);
 
         });

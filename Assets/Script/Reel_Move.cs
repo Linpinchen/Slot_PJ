@@ -80,7 +80,7 @@ public class Reel_Move : MonoBehaviour, IMove
     {
         _Self = this.gameObject;
         this.Roolcount = Roolcount;
-        this.Sprites = sprites;
+        this._Sprites = sprites;
         this.Speed = Speed;
         _ChangeSprite = new List<int>();
 
@@ -181,7 +181,7 @@ public class Reel_Move : MonoBehaviour, IMove
 
                 }
                 int ri;
-                ri = Random.Range(0, Sprites.Length);//換圖用隨機值
+                ri = Random.Range(0, _Sprites.Length);//換圖用隨機值
 
                 for (int i = 0; i < gameObject.transform.childCount; i++)
                 {
@@ -199,7 +199,7 @@ public class Reel_Move : MonoBehaviour, IMove
                         if (tempi >= Date_Chang_Count)
                         {
 
-                            Reel_images[i].sprite = Sprites[_ChangeSprite[Date_Temp]];
+                            Reel_images[i].sprite = _Sprites[_ChangeSprite[Date_Temp]];
                             tempi++;
                             Date_Temp++;
                             //Debug.Log("tempi:" + tempi + "Roolcount" + Roolcount + "Sprites :" + ChangeSprite[i]);
@@ -218,7 +218,7 @@ public class Reel_Move : MonoBehaviour, IMove
                         else
                         {
 
-                            Reel_images[i].sprite = Sprites[ri];
+                            Reel_images[i].sprite = _Sprites[ri];
                             tempi++;
                             // Debug.Log("tempi:" + tempi + "Roolcount" + Roolcount);
 

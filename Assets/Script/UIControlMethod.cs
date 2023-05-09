@@ -23,7 +23,7 @@ public class UIControlMethod : IUIControlMethod
     private GameObject _Auto_Menu;
 
     [SerializeField]
-    private GameObject _Options;
+    private GameObject _Options;//遊戲紀錄是否繼承畫面
 
     [SerializeField]
     private Text _Bet_Text;

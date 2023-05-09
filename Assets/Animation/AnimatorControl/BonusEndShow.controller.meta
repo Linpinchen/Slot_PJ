@@ -1,9 +1,8 @@
 fileFormatVersion: 2
 guid: 9ec62cbb8fd834c339ed1d45e685d4bc
-timeCreated: 1668764248
-licenseType: Free
 NativeFormatImporter:
+  externalObjects: {}
   mainObjectFileID: 9100000
   userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+  assetBundleName: an_bonusendshow
+  assetBundleVariant: control

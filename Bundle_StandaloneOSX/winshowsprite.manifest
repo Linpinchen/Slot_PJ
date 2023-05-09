@@ -1,0 +1,25 @@
+ManifestFileVersion: 0
+CRC: 4062184574
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 1764711312d23cbe825a71ac9bd6467c
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ea5a42e0fd8ea905efa7aa926a3b8944
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/SpriteResources/Show/WinShow/Streamer.png
+- Assets/Resources/SpriteResources/Show/WinShow/Shield.png
+- Assets/Resources/SpriteResources/Show/WinShow/Star.png
+- Assets/Resources/SpriteResources/Show/WinShow/Back.png
+- Assets/Resources/SpriteResources/Show/WinShow/Win_i.png
+- Assets/Resources/SpriteResources/Show/WinShow/Win_N.png
+- Assets/Resources/SpriteResources/Show/WinShow/Wing.png
+- Assets/Resources/SpriteResources/Show/WinShow/Win_W.png
+Dependencies: []

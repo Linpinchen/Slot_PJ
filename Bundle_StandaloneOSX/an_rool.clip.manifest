@@ -1,0 +1,21 @@
+ManifestFileVersion: 0
+CRC: 2020299461
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 220535a81f22e1b122f05e0df637a9fe
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 134a1382576c3b67e1a4b693c9d7165d
+HashAppended: 0
+ClassTypes:
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Animation/AmimationClip/Rool.anim
+Dependencies:
+- /Users/PinChenLin/Desktop/Slot_PJ/Bundle_StandaloneOSX/roolshow

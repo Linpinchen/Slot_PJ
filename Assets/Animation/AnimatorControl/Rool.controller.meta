@@ -1,9 +1,8 @@
 fileFormatVersion: 2
 guid: 910f9518e0cc34e14ab867da074a9fbe
-timeCreated: 1672506327
-licenseType: Free
 NativeFormatImporter:
+  externalObjects: {}
   mainObjectFileID: 9100000
   userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+  assetBundleName: an_rool
+  assetBundleVariant: control

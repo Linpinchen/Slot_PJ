@@ -1,9 +1,8 @@
 fileFormatVersion: 2
 guid: 95c3bc1af3131497881a21963e7d7cf5
-timeCreated: 1666945249
-licenseType: Free
 NativeFormatImporter:
+  externalObjects: {}
   mainObjectFileID: 9100000
   userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+  assetBundleName: an_winshow
+  assetBundleVariant: control

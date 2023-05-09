@@ -1,0 +1,110 @@
+ManifestFileVersion: 0
+CRC: 3342164958
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: rawimage
+      Dependencies: {}
+    Info_1:
+      Name: myvideo
+      Dependencies: {}
+    Info_2:
+      Name: pregameobject.drawline
+      Dependencies: {}
+    Info_3:
+      Name: numbers
+      Dependencies: {}
+    Info_4:
+      Name: backimg
+      Dependencies: {}
+    Info_5:
+      Name: roolshow
+      Dependencies: {}
+    Info_6:
+      Name: infoback
+      Dependencies: {}
+    Info_7:
+      Name: scoreboard
+      Dependencies: {}
+    Info_8:
+      Name: winshowsprite
+      Dependencies: {}
+    Info_9:
+      Name: pointimage
+      Dependencies: {}
+    Info_10:
+      Name: abcsprite
+      Dependencies: {}
+    Info_11:
+      Name: imginfo
+      Dependencies: {}
+    Info_12:
+      Name: slotsprite
+      Dependencies: {}
+    Info_13:
+      Name: bonusshow2
+      Dependencies: {}
+    Info_14:
+      Name: bonusshow1
+      Dependencies: {}
+    Info_15:
+      Name: bonusendshow
+      Dependencies: {}
+    Info_16:
+      Name: controlui.button
+      Dependencies: {}
+    Info_17:
+      Name: controlui.moneyback
+      Dependencies: {}
+    Info_18:
+      Name: an_bonusendshow.control
+      Dependencies:
+        Dependency_0: an_bonusendshow.clip
+    Info_19:
+      Name: an_bonusendshow.clip
+      Dependencies: {}
+    Info_20:
+      Name: an_bonusshow.control
+      Dependencies:
+        Dependency_0: an_bonusshow.clip
+    Info_21:
+      Name: an_rool.control
+      Dependencies:
+        Dependency_0: an_rool.clip
+    Info_22:
+      Name: an_rool.clip
+      Dependencies:
+        Dependency_0: roolshow
+    Info_23:
+      Name: an_uienlarge.control
+      Dependencies:
+        Dependency_0: an_uienlarge.clip
+    Info_24:
+      Name: an_uienlarge.clip
+      Dependencies: {}
+    Info_25:
+      Name: an_uishiny.control
+      Dependencies:
+        Dependency_0: an_uishiny.clip
+    Info_26:
+      Name: an_uishiny.clip
+      Dependencies: {}
+    Info_27:
+      Name: an_winshow.control
+      Dependencies:
+        Dependency_0: an_winshow.clip
+    Info_28:
+      Name: an_winshow.clip
+      Dependencies: {}
+    Info_29:
+      Name: an_bonusshow.clip
+      Dependencies: {}
+    Info_30:
+      Name: audio_jojobgm
+      Dependencies: {}
+    Info_31:
+      Name: audio_sfx
+      Dependencies: {}
+    Info_32:
+      Name: audio_rool
+      Dependencies: {}

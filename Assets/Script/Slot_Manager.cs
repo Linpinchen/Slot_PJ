@@ -41,7 +41,7 @@ public class Slot_Manager : MonoBehaviour
     public SlotGrid CommonGrid;
     public SlotGrid BonusGrid;
 
-
+    
 
     public bool isLog;
 
@@ -463,7 +463,7 @@ public class Slot_Manager : MonoBehaviour
                 BonusStateInfo_B = true;
                 _Ishow.BonusEndShow.SetBool("ShowBool", true);//開啟揮拳動畫
 
-                AudioManager.inst.PlayAddSFX("SFX", 4);
+                AudioManager.inst.PlayAddSFX("SFX", 3);
 
                 yield return new WaitUntil(() => _Ishow.BonusEndShow.GetBool("ShowBool") == false);//等待揮拳動畫結束
 
@@ -574,7 +574,7 @@ public class Slot_Manager : MonoBehaviour
             _Ishow.AddCoin = true;//要做加錢動作
 
             StartCoroutine(Show);
-            AudioManager.inst.PlayAddSFX("SFX", 3);
+            AudioManager.inst.PlayAddSFX("SFX", 2);
             _Ishow.UiShow.Clear();//清除UiShow資料
             yield return new WaitUntil(() => _Ishow.CoinShow_Bool == true);
             _Ishow.Amr_WinShow.SetBool("ShowBool", false);//關閉動畫
@@ -622,7 +622,7 @@ public class Slot_Manager : MonoBehaviour
             Debuger.Log("執行普盤表演的： _Ishow.CoinShow");
             _Ishow.BonusUiShow[NowFreeCount].Clear();//清除閃爍 資料
             _Ishow.Amr_WinShow.SetBool("ShowBool", true);//開啟動畫
-            AudioManager.inst.PlayAddSFX("SFX", 3);
+            AudioManager.inst.PlayAddSFX("SFX", 2);
             StartCoroutine(Show);
 
             yield return new WaitUntil(() => _Ishow.CoinShow_Bool == true);
@@ -655,7 +655,7 @@ public class Slot_Manager : MonoBehaviour
             Show = _Ishow.CoinShow(_IDate.Total_BonusWinCoin);
 
             _Ishow.AddCoin = false;//不要做加錢動作 單純展示
-            AudioManager.inst.PlayAddSFX("SFX", 3);
+            AudioManager.inst.PlayAddSFX("SFX", 2);
             StartCoroutine(Show);
             _Ishow.BonusWinBackSprite.gameObject.SetActive(true);
 
@@ -1006,26 +1006,26 @@ public class Slot_Manager : MonoBehaviour
     /// <param name="_IuiMethod"></param>
     public void Operational(IUIControlMethod _IuiMethod)
     {
-#if UNITY_STANDALONE_OSX
-        GetDeviceInformation(_IuiMethod);
-        Debuger.Log("UNITY_STANDALONE_OSX");
-#endif
+        #if UNITY_STANDALONE_OSX
+                GetDeviceInformation(_IuiMethod);
+                Debuger.Log("UNITY_STANDALONE_OSX");
+        #endif
 
-#if UNITY_STANDALONE_WIN
-            GetDeviceInformation(_IuiMethod);
-            Debuger.Log("Stand Alone Windows");
-#endif
+        #if UNITY_STANDALONE_WIN
+                    GetDeviceInformation(_IuiMethod);
+                    Debuger.Log("Stand Alone Windows");
+        #endif
 
 
-#if UNITY_ANDROID
-            GetDeviceInformation(_IuiMethod);
-            Debuger.Log("Android");
-#endif
+        #if UNITY_ANDROID
+                    GetDeviceInformation(_IuiMethod);
+                    Debuger.Log("Android");
+        #endif
 
-#if UNITY_IOS
-            GetDeviceInformation(_IuiMethod);
-            Debuger.Log("Iphone");
-#endif
+        #if UNITY_IOS
+                    GetDeviceInformation(_IuiMethod);
+                    Debuger.Log("Iphone");
+        #endif
 
     }
 

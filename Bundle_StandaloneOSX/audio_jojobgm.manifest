@@ -1,0 +1,17 @@
+ManifestFileVersion: 0
+CRC: 1092073284
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 7d5dc0c516a164d4524e10b74b7c58c0
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 3f7d0c5e0986ec71841622bcb2f9be1c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+Assets:
+- Assets/Standard Assets/Audio/BGM/STAND PROUD (JoJo OP 3) - Piano Tutorial_Audio
+  Trimmer.mp3
+Dependencies: []

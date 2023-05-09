@@ -1,0 +1,21 @@
+ManifestFileVersion: 0
+CRC: 563402872
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: b3f84d0186627d17dd54468034749327
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ea5a42e0fd8ea905efa7aa926a3b8944
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/SpriteResources/ControlUI/StartButton.png
+- Assets/Resources/SpriteResources/ControlUI/ButtonSprite1.png
+- Assets/Resources/SpriteResources/ControlUI/ButtonSprite2.png
+- Assets/Resources/SpriteResources/ControlUI/ButtonSprite3.png
+Dependencies: []

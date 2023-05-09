@@ -1,9 +1,8 @@
 fileFormatVersion: 2
 guid: 2a4ba9e29f73e4c63b6e04e3c9b99bee
-timeCreated: 1666950667
-licenseType: Free
 NativeFormatImporter:
+  externalObjects: {}
   mainObjectFileID: 7400000
   userData: 
-  assetBundleName: 
-  assetBundleVariant: 
+  assetBundleName: an_winshow
+  assetBundleVariant: clip
