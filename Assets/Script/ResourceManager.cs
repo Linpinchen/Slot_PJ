@@ -23,8 +23,6 @@ public class ResourceManager : MonoBehaviour
 
     //-----------------遊戲畫面加按鈕-------------------
 
-    public Image SlotBack;//遊戲背景圖
-
     public Button StartGame_Button;
     public Button Bet_Button;
     public Button Auto_Button;
@@ -92,13 +90,25 @@ public class ResourceManager : MonoBehaviour
     }
 
 
-    public ResourceManager(string TxtUrl)
+    //public ResourceManager(string TxtUrl)
+    //{
+
+    //    _CSAComper = new CASCompare(TxtUrl);
+
+
+    //}
+
+
+    public void init(CASCompare _CSAComper)
     {
 
-        _CSAComper = new CASCompare(TxtUrl);
+
+        this._CSAComper = _CSAComper;
+
 
 
     }
+
 
 
 
