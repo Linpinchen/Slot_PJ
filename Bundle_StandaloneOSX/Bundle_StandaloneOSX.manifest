@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 3342164958
+CRC: 2302903544
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -107,4 +107,44 @@ AssetBundleManifest:
       Dependencies: {}
     Info_32:
       Name: audio_rool
+      Dependencies: {}
+    Info_33:
+      Name: prefb_rool
+      Dependencies:
+        Dependency_0: roolshow
+        Dependency_1: an_rool.control
+    Info_34:
+      Name: prefb_point
+      Dependencies:
+        Dependency_0: pointimage
+    Info_35:
+      Name: prefb_bonusendshow
+      Dependencies:
+        Dependency_0: bonusendshow
+        Dependency_1: an_bonusendshow.control
+    Info_36:
+      Name: prefb_bonusshow
+      Dependencies:
+        Dependency_0: abcsprite
+        Dependency_1: bonusshow2
+        Dependency_2: bonusshow1
+        Dependency_3: an_bonusshow.control
+    Info_37:
+      Name: prefb_winshow
+      Dependencies:
+        Dependency_0: winshowsprite
+        Dependency_1: an_winshow.control
+    Info_38:
+      Name: prefb_image_bonusend
+      Dependencies:
+        Dependency_0: scoreboard
+        Dependency_1: abcsprite
+    Info_39:
+      Name: image_inforight
+      Dependencies: {}
+    Info_40:
+      Name: image_infoout
+      Dependencies: {}
+    Info_41:
+      Name: image_infoleft
       Dependencies: {}

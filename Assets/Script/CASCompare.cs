@@ -46,6 +46,9 @@ public class CASCompare : MonoBehaviour
     public Dictionary<string, ClientBundleDate> Di_BundleDate;
 
 
+    public SeverBundleDate[] bundleDate;
+
+
     public IEnumerator _CopySeverDate;
 
     string TxtURL;
@@ -101,7 +104,7 @@ public class CASCompare : MonoBehaviour
 
             }
             Debuger.Log("Lines.Length:" + Lines.Length);
-            SeverBundleDate[] bundleDate = new SeverBundleDate[Lines.Length];
+            bundleDate = new SeverBundleDate[Lines.Length];
 
             for (int i = 0; i < Lines.Length; i++)
             {
