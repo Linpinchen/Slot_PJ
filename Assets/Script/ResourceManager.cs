@@ -244,12 +244,6 @@ public class ResourceManager : MonoBehaviour
 
         AssetBundle An_UiEnlargeControl = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[3].Name[2]].CLPath);
         RuntimeAnimatorController _An_UiEnlargeControl = An_UiEnlargeControl.LoadAsset<RuntimeAnimatorController>("UiEnlarge");
-        An_UiEnlargeControl.Unload(false);
-        Debug.Log("Load- An_UiEnlargeControl");
-
-
-        AssetBundle An_UiEnlargeClip = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[4].Name[2]].CLPath);
-        AnimationClip _An_UiEnlargeClip = An_UiEnlargeClip.LoadAsset<AnimationClip>("UiEnlargeClip");
 
         StartGame_Button.GetComponent<Animator>().runtimeAnimatorController = _An_UiEnlargeControl;
 
@@ -258,6 +252,13 @@ public class ResourceManager : MonoBehaviour
         Auto_Button.GetComponent<Animator>().runtimeAnimatorController = _An_UiEnlargeControl;
 
         InFoButton_Button.GetComponent<Animator>().runtimeAnimatorController = _An_UiEnlargeControl;
+
+        An_UiEnlargeControl.Unload(false);
+        Debug.Log("Load- An_UiEnlargeControl");
+
+
+        AssetBundle An_UiEnlargeClip = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[4].Name[2]].CLPath);
+        AnimationClip _An_UiEnlargeClip = An_UiEnlargeClip.LoadAsset<AnimationClip>("UiEnlargeClip");
 
         An_UiEnlargeClip.Unload(false);
         Debug.Log("Load- An_UiEnlargeClip");

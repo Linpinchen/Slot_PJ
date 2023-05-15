@@ -297,7 +297,7 @@ public class CASCompare : MonoBehaviour
             foreach (var key in Di_BundleDate.Keys)
             {
 
-                Debug.Log(string.Format("Name : {0},Di_BundleDatey字典是否有Key : {1} , Value中的本地Path ：{2},Value中的version ：{3} , Value中的 類型 ：{4}", key, Di_BundleDate.ContainsKey(key), Di_BundleDate[key].CLPath, Di_BundleDate[key].Version, Di_BundleDate[key].ObjectType));
+                Debuger.Log(string.Format("Name : {0},Di_BundleDatey字典是否有Key : {1} , Value中的本地Path ：{2},Value中的version ：{3} , Value中的 類型 ：{4}", key, Di_BundleDate.ContainsKey(key), Di_BundleDate[key].CLPath, Di_BundleDate[key].Version, Di_BundleDate[key].ObjectType));
 
 
             }

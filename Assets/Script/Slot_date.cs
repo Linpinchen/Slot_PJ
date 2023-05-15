@@ -15,10 +15,10 @@ public class Slot_data : IDate, IDateEvent
 	List<int> _Temp;
 
 	[SerializeField]
-	int _CurrentReel;
+	int _CurrentReel;//當前輪條
 
 	[SerializeField]
-	int[] _PrizeDate;
+	int[] _PrizeDate;//連線資料
 
 	[SerializeField]
 	int Coin;//玩家擁有的錢
@@ -102,7 +102,9 @@ public class Slot_data : IDate, IDateEvent
 		this.ReelMoves = ReelMoves;
 		this._ResourceManager = _ResourceManager;
 		_Date = new List<intCount>();
-		Temp = new List<int>();
+		_Slot_SeverDate = new Slot_SeveDate();
+		_Slot_SeverDate.Data = new List<intCount>();
+		_Temp = new List<int>();
 		BonusWin = new List<int>();
 		_PrizeDate = new int[]
 		{
@@ -670,6 +672,7 @@ public class Slot_data : IDate, IDateEvent
 	/// </summary>
 	public void DateSave(SlotGrid CommonGrid, SlotGrid BonusGrid, int FreeGamecount)
 	{
+		Debuger.Log("執行DateSave 資料儲存,");
 
 		if (Bonus_count == FreeGamecount)
 		{
@@ -713,6 +716,8 @@ public class Slot_data : IDate, IDateEvent
 	/// <param name="Win_Money"></param>
 	public int WInChack( GridIntS _Gridints)
 	{
+
+		Debuger.Log("執行WinCheck , 遊戲中設定的中獎連線數有多少條 ：" + _PrizeDate.Length);
 		int Win_Money = 0;
 		List<int> Tempi = new List<int>();
 
@@ -726,7 +731,7 @@ public class Slot_data : IDate, IDateEvent
 			{
 				int TempValu;//用字串處理 取的 Win_Money_Temp各個位數的值
 				TempValu = int.Parse(number.Substring(j, 1));
-				Tempi.Add(TempValu);
+				Tempi.Add(TempValu);//將設定得中獎連線從字串拆分裝進陣列 做盤面位置的圖的比對
 
 			}
 
@@ -772,7 +777,7 @@ public class Slot_data : IDate, IDateEvent
 
 					}
 
-					Temp.Add(_PrizeDate[i]);
+					_Temp.Add(_PrizeDate[i]);//紀錄本局中了哪幾條線
 				}
 
 			}
@@ -945,7 +950,7 @@ public class SlotGrid
 
 				}
 
-				Debuger.Log(string.Format("盤面資料生成,輪條數：{0},各輪條內圖片數量：{1}", Grid[k]._Grids.Count, ImageCount));
+				Debuger.Log(string.Format("盤面資料生成,輪條數：{0},各輪條內圖片數量：{1}", Grid[k]._Grids.Count, ImageCount.Count));
 
 			}
 

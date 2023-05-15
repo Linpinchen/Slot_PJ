@@ -55,7 +55,7 @@ public class Slot_Manager : MonoBehaviour
     void Start()
     {
 
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
 
         Debuger.Enable = isLog;
 
@@ -69,19 +69,7 @@ public class Slot_Manager : MonoBehaviour
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-        //AudioManager.inst.PlayBGM("Lobby_Main", 0);
+        AudioManager.inst.PlayBGM("Lobby_Main", 0);
 
         //Slot_Initialization();
         //SlotGridCreat();
@@ -121,7 +109,7 @@ public class Slot_Manager : MonoBehaviour
         //_ShowScript = new ShowScript(_SlotDate, _ResourceManager, _Reel_Moves);
         _UIControlMethod = new UIControlMethod(_SlotDate, _ButtonPlus_EventTrigger, _ButtonReduce_EventTrigger, _ResourceManager);
 
-
+        _PlayerControl = new PlayerControl();
 
         yield return StartCoroutine(CheckBundleLoad());
 
@@ -154,12 +142,13 @@ public class Slot_Manager : MonoBehaviour
         for (int i = 0; i < _Reel_Moves.Length; i++)
         {
             _SlotDate.Date.Add(new intCount());
+            _SlotDate.Slot_SeverDate.Data.Add(new intCount());
 
             for (int j = 0; j < _Reel_Moves[i].transform.childCount; j++)
             {
 
                 _SlotDate.Date[i]._IntCount.Add(0);
-
+                _SlotDate.Slot_SeverDate.Data[i]._IntCount.Add(0);
             }
 
             _Reel_Moves[i].Sprites = _ResourceManager.Sprite_Pool;
@@ -183,6 +172,7 @@ public class Slot_Manager : MonoBehaviour
         _SlotDate.CycleCount = 1;
         _SlotDate.PlayerCoin = 1099;
         _SlotDate.AutoCount = 1;
+        _SlotDate.LeastBetCount = 100;
         Debuger.Log("Player_coin" + _SlotDate.PlayerCoin);
         _ResourceManager._PlayerCoin_Text.text = "Money :" + _SlotDate.PlayerCoin.ToString();
         Slot_mantissa = _Reel_Moves.Length - 1;//紀錄陣列的最大編號
@@ -227,7 +217,7 @@ public class Slot_Manager : MonoBehaviour
 
 
 
-        AudioManager.inst.PlayBGM("Lobby_Main", 0);
+        //AudioManager.inst.PlayBGM("Lobby_Main", 0);
 
 
         SlotGridCreat();
@@ -252,7 +242,7 @@ public class Slot_Manager : MonoBehaviour
         Reelcount = _Reel_Moves.Length;
         List<int> ImageQuantity = new List<int>();
 
-        for (int i = 0; i < _Reel_Moves.Length; i++)
+        for (int i = 0; i < Reelcount; i++)
         {
             int Chcount = _Reel_Moves[i].Self.transform.childCount;
             ImageQuantity.Add(Chcount);
@@ -690,13 +680,30 @@ public class Slot_Manager : MonoBehaviour
         else
         {
             CommonGrid.CreatGrid();//普盤 生成盤面
+            for (int i =0;i<CommonGrid._grids.Count;i++)
+            {
+                for (int j=0;j< CommonGrid.reelcount;j++)
+                {
+                    for (int k =0; k< CommonGrid.imagecount[j];k++)
+                    {
+
+                        Debuger.Log(string.Format("普盤生成盤面,第幾個盤面{0},第幾個輪條{1},第幾張圖{2},圖片名字{3}",i,j,k, CommonGrid._grids[i]._Grids[j]._GridInt[k]));
+
+
+                    }
+
+                }
+                
+
+            }
+            
             
         }
 
-        _SlotDate.Win_Coin = _SlotDateEvent.WInChack(CommonGrid._grids[CommonGrid._girdcount - 1]);
+        _SlotDate.Win_Coin = _SlotDateEvent.WInChack(CommonGrid._grids[CommonGrid._girdcount - 1]);//普盤地0個盤面對獎
         Debuger.Log("_IDate.Win_Coin :" + _SlotDate.Win_Coin);
 
-        for (int i = 0; i < _SlotDate.Temp.Count; i++)
+        for (int i = 0; i < _SlotDate.Temp.Count; i++)//取得_SlotDate.Temp.Count（將中了哪幾條線拿來使用 ）
         {
 
            _ShowScript.ObjectPool(_SlotDate.Temp[i], _ResourceManager._LineRenderOutPool, _ShowScript.PrepareDrawLine);
@@ -707,7 +714,7 @@ public class Slot_Manager : MonoBehaviour
         _SlotDate.Temp.Clear();
         Debuger.Log(string.Format("普盤預制物生成完畢： _Ishow.LineRenderOutPool名字：{0} , _Ishow.PrepareDrawLine 內容數量：{1}", _ResourceManager._LineRenderOutPool.gameObject.name, _ShowScript.PrepareDrawLine.Count));
         Debuger.Log(string.Format("單圖閃爍已放進陣列等待表演：_Ishow.UiShow : 當前數量 {0} 張圖", _ShowScript.UiShow.Count));
-
+        Debuger.Log(string.Format("Bonus圖在盤面的數量：{0}",_SlotDate.BonusCount));
         if (_SlotDate.BonusCount == FreeGameCount)//如果有Bonus獎
         {
 

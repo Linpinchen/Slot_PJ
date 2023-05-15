@@ -37,6 +37,9 @@ public class PlayerControl
 
     public void PlayerControl_Init(IUIControlMethod _UIMethod, Slot_Manager _Manager,ResourceManager _ResourceManager)
     {
+
+        Debug.Log("PlayerControl_Init");
+
         //遊戲開始按鈕
         _ResourceManager.StartGame_Button.onClick.AddListener(delegate
         {

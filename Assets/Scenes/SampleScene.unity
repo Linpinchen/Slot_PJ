@@ -2207,7 +2207,7 @@ MonoBehaviour:
   _Amr_WinShow: {fileID: 0}
   _BonusAnimator: {fileID: 0}
   _BonusEndShow: {fileID: 0}
-  _EndShowPlayer: {fileID: 0}
+  _EndShowPlayer: {fileID: 1193688607}
   _EndShowVideoClip: {fileID: 0}
   _VideoImage: {fileID: 1193688608}
   Parent_WinShow: {fileID: 2033877388}
