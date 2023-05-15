@@ -2191,27 +2191,31 @@ MonoBehaviour:
   OpenOperational: {fileID: 1457996769}
   OutOperational: {fileID: 942212696}
   _Numbers: []
-  _WinCoins: []
+  _WinCoins:
+  - {fileID: 996700975}
+  - {fileID: 224960410}
+  - {fileID: 1999419346}
+  - {fileID: 1071238415}
+  - {fileID: 1311658616}
+  - {fileID: 1435632146}
   _BonusWinBackSprite: {fileID: 0}
   _StartPoint: []
-  _PrepareDrawLine: []
   _GBDrawLine: {fileID: 0}
-  _InLineRenderPool: {fileID: 0}
-  _LineRenderOutPool: {fileID: 0}
-  _BonusLineRenderOutPool: {fileID: 0}
-  _UiShow: []
+  _InLineRenderPool: {fileID: 1182147906}
+  _LineRenderOutPool: {fileID: 973238900}
+  _BonusLineRenderOutPool: {fileID: 1103754104}
   _Amr_WinShow: {fileID: 0}
   _BonusAnimator: {fileID: 0}
   _BonusEndShow: {fileID: 0}
   _EndShowPlayer: {fileID: 0}
   _EndShowVideoClip: {fileID: 0}
-  _VideoImage: {fileID: 0}
-  Parent_WinSHow: {fileID: 0}
-  Parent_PointImage: {fileID: 0}
-  Parent_BonusEnd: {fileID: 0}
-  Parent_BonusShow: {fileID: 0}
-  Parent_BonusEndShow: {fileID: 0}
-  _CSAComper: {fileID: 0}
+  _VideoImage: {fileID: 1193688608}
+  Parent_WinShow: {fileID: 2033877388}
+  Parent_PointImage: {fileID: 2058038654}
+  Parent_ImageBonusEnd: {fileID: 2146623440}
+  Parent_BonusShow: {fileID: 1075899710}
+  Parent_BonusEndShow: {fileID: 1745841379}
+  _CSAComper: {fileID: 372199965}
 --- !u!4 &317753136
 Transform:
   m_ObjectHideFlags: 0
@@ -2531,6 +2535,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 351831533}
   m_CullTransparentMesh: 0
+--- !u!1 &372199964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 372199966}
+  - component: {fileID: 372199965}
+  m_Layer: 0
+  m_Name: CASCompare
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &372199965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372199964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acd07698f46f749cabcda2fcb219b594, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &372199966
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372199964}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.910049, y: 9.682034, z: 762.50085}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &428655299
 GameObject:
   m_ObjectHideFlags: 0
@@ -2829,6 +2876,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 473249825}
   m_CullTransparentMesh: 0
+--- !u!1 &508075568
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 508075570}
+  - component: {fileID: 508075569}
+  m_Layer: 0
+  m_Name: ShowScript
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &508075569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508075568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fde55b3090971414da39f6e2f05d78e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _CoinShow_Bool: 0
+  _TempWinCoin: 0
+  _AddCoin: 0
+  _PrepareDrawLine: []
+  _DrawLineOk: 
+  _UiShow: []
+--- !u!4 &508075570
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508075568}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.910049, y: 9.682034, z: 762.50085}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &526280451
 GameObject:
   m_ObjectHideFlags: 0
@@ -4203,92 +4299,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 802477423}
   m_CullTransparentMesh: 0
---- !u!1 &813948836
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 813948838}
-  - component: {fileID: 813948837}
-  m_Layer: 0
-  m_Name: ShowScript
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &813948837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 813948836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fde55b3090971414da39f6e2f05d78e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _CoinShow_Bool: 0
-  _Numbers:
-  - {fileID: 21300000, guid: e5682854fbf694e9e9f8e0015d24d781, type: 3}
-  - {fileID: 21300000, guid: 64d4cde571de846b3929fb66403f8c04, type: 3}
-  - {fileID: 21300000, guid: f6b414135fde44e1594545747bea66e3, type: 3}
-  - {fileID: 21300000, guid: e64c05509f2a74650b048b1ca577b50a, type: 3}
-  - {fileID: 21300000, guid: 1e19581e8587e4660b599fe2ad2b1ecd, type: 3}
-  - {fileID: 21300000, guid: 19f51dd27e32845d08e0d17c46bced7f, type: 3}
-  - {fileID: 21300000, guid: 67a7f11b4b98c4243a9e9fd6a7acd341, type: 3}
-  - {fileID: 21300000, guid: eb3cbd75d76b54a79b397a08c7fc27fa, type: 3}
-  - {fileID: 21300000, guid: 8fa474852d7804d8883380c76fb5fbf2, type: 3}
-  - {fileID: 21300000, guid: 815a6289727d1413991340dc3f16f1eb, type: 3}
-  _WinCoins:
-  - {fileID: 996700975}
-  - {fileID: 224960410}
-  - {fileID: 1999419346}
-  - {fileID: 1071238415}
-  - {fileID: 1311658616}
-  - {fileID: 1435632146}
-  _BonusWinBackSprite: {fileID: 0}
-  _TempWinCoin: 0
-  _AddCoin: 0
-  _StartPoint:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  _PrepareDrawLine: []
-  _DrawLineOk: 
-  _GBDrawLine: {fileID: 1019079738700271910, guid: 4e5857d84f1f14a9a83e362ed41b03e4,
-    type: 3}
-  _InLineRenderPool: {fileID: 1182147906}
-  _LineRenderOutPool: {fileID: 973238900}
-  _BonusLineRenderOutPool: {fileID: 1103754104}
-  _UiShow: []
-  _Amr_WinShow: {fileID: 0}
-  _BonusAnimator: {fileID: 0}
-  _BonusEndShow: {fileID: 0}
-  _EndShowPlayer: {fileID: 1193688607}
-  _EndShowVideoClip: {fileID: 32900000, guid: e383d47dc23b047149bf24df656b3af8, type: 3}
-  _VideoImage: {fileID: 1193688608}
---- !u!4 &813948838
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 813948836}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.906055, y: -11.794809, z: 157.64566}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &830912292
 GameObject:
   m_ObjectHideFlags: 0
@@ -5066,7 +5076,7 @@ RectTransform:
   - {fileID: 658710555}
   - {fileID: 1621129560}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5642,7 +5652,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1071238411
 GameObject:
@@ -8961,85 +8971,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a7fb8341cc63499183b6e6bf2c936d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SlotDate:
-    _Temp: 
-    _CurrentReel: 0
-    _PrizeDate: 35820000bb8100006d8100007b7d0000df7d0000437e0000245b0000ac5a00005c5a000032570000ce5600006a560000f05200007852000021300000bd2f0000592f00002f2c0000e12b0000672b0000
-    Coin: 0
-    bet_Coin: 0
-    WinCoin: 0
-    leastBetCount: 100
-    BonusWin: 
-    totalBonusWin: 0
-    _AutoCount: 0
-    _CycleCount: 0
-    _AutoSurplus: 0
-    Bonus_count: 0
-    Sprite_Pool:
-    - {fileID: 21300000, guid: 814074e3de7b549e8888201ab3664d79, type: 3}
-    - {fileID: 21300000, guid: c22de691c9a0b4c818e6f290b546ca2f, type: 3}
-    - {fileID: 21300000, guid: 598ee62696add424cbc78bec38667616, type: 3}
-    - {fileID: 21300000, guid: a46d679b763e241de8c17b32a479ea76, type: 3}
-    - {fileID: 21300000, guid: 7b4d3c7fae92a445399845cf7f1d30d3, type: 3}
-    - {fileID: 21300000, guid: f164005461f5048058f5a759b7c49258, type: 3}
-    - {fileID: 21300000, guid: aae534f73625d4b46bdc2b062459fbcf, type: 3}
-    - {fileID: 21300000, guid: 6a88eafb6de254fa0ab202f373e95daf, type: 3}
-    _Slot_SeverDate:
-      Win_Coin: 0
-      BonusCoin: 0
-      Bet_Coin: 0
-      Player_Coin: 0
-      Auto_HasRollcount: 0
-      Auto_NotYet: 0
-      Auto_PlayerSet: 0
-      Data: []
-    _Date: []
+  _ResourceManager: {fileID: 317753135}
   _Reel_Moves:
   - {fileID: 1853935702}
   - {fileID: 167841934}
   - {fileID: 830912294}
   - {fileID: 912025594}
   - {fileID: 21185757}
-  _ShowScript: {fileID: 813948837}
-  _UIControlMethod:
-    _StAddBonusDate: 0
-    _Bet_Menu: {fileID: 1748989546}
-    _Auto_Menu: {fileID: 105060198}
-    _Options: {fileID: 644487043}
-    _Bet_Text: {fileID: 1445732860}
-    _BetMenu_Text: {fileID: 290615091}
-    _Auto_text: {fileID: 1290995717}
-    _PlayerCoin_Text: {fileID: 321355321}
-    _InFoSprites:
-    - {fileID: 21300000, guid: cecd12c1e7c0644df8405c0d93eca5b8, type: 3}
-    - {fileID: 21300000, guid: d7af7ca5bc88b4d069c19cda1a4371e0, type: 3}
-    - {fileID: 21300000, guid: c4db684d29e4d4bedbe7cb1cc59430fd, type: 3}
-    - {fileID: 21300000, guid: d6bfd8207ba944e6eb05ca3673cd8f26, type: 3}
-    _InfoBackSprite: {fileID: 1515598632}
-    _Img_Introduction: {fileID: 802477425}
-    _Img_Operational: {fileID: 1621129561}
-  _PlayerControl:
-    StartGame_Button: {fileID: 1239515608}
-    Bet_Button: {fileID: 727534744}
-    Auto_Button: {fileID: 1521252318}
-    Bet_Plus_Button: {fileID: 770506905}
-    Bet_Reduce_Button: {fileID: 117331736}
-    Bet_MaxCoin_Button: {fileID: 164355617}
-    Auto_Clear_Button: {fileID: 637577083}
-    Auto_pause_Button: {fileID: 16434368}
-    Auto_Plus_Button: {fileID: 1007057241}
-    Auto_Reduce_Button: {fileID: 1604190120}
-    BonusDateCreat_Button: {fileID: 274052404}
-    InFoButton_Button: {fileID: 1950097581}
-    InfoOutButton_Button: {fileID: 216613813}
-    ButtonLeft_Button: {fileID: 720912838}
-    ButtonRight_Button: {fileID: 1770213907}
-    Options_Yes_Button: {fileID: 2109846534}
-    Options_No_Button: {fileID: 1865149520}
-    OpenOperational: {fileID: 1457996769}
-    OutOperational: {fileID: 942212696}
   _ButtonPlus_EventTrigger: {fileID: 770506908}
   _ButtonReduce_EventTrigger: {fileID: 117331739}
+  showScript: {fileID: 508075569}
   MIcon:
   - {fileID: 2800000, guid: 000fd0aa0473c404da850b35f605a766, type: 3}
   - {fileID: 2800000, guid: 84c667ec209854e4e9766f9951c599a9, type: 3}
@@ -9056,6 +8997,7 @@ MonoBehaviour:
   BonusGrid:
     Grid: []
   isLog: 0
+  LoadOK: 0
 --- !u!1 &1604190118
 GameObject:
   m_ObjectHideFlags: 0
@@ -9992,7 +9934,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012667617292, guid: 5528b87a94fb0cf41ac5b99b33ff4502, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4000012667617292, guid: 5528b87a94fb0cf41ac5b99b33ff4502, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

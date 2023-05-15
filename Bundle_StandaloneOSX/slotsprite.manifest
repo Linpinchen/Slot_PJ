@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3546551471
+CRC: 308237990
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ed4604af73b5220c1e4e7abd0f7e3c84
+    Hash: 2e61137fd8b32faea1239ce1c69734fb
   TypeTreeHash:
     serializedVersion: 2
     Hash: ea5a42e0fd8ea905efa7aa926a3b8944
@@ -14,12 +14,12 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
-- Assets/Resources/SpriteResources/SlotSprite/Apple.jpg
-- Assets/Resources/SpriteResources/SlotSprite/Fish.jpg
-- Assets/Resources/SpriteResources/SlotSprite/Cherry.jpg
-- Assets/Resources/SpriteResources/SlotSprite/Beer.jpg
-- Assets/Resources/SpriteResources/SlotSprite/Universal_Sprite.jpg
-- Assets/Resources/SpriteResources/SlotSprite/Cheese.jpg
-- Assets/Resources/SpriteResources/SlotSprite/Bonus.jpg
-- Assets/Resources/SpriteResources/SlotSprite/Eggs.jpg
+- Assets/Resources/SpriteResources/SlotSprite/SlotSprite1.jpg
+- Assets/Resources/SpriteResources/SlotSprite/SlotSprite0.jpg
+- Assets/Resources/SpriteResources/SlotSprite/SlotSprite5.jpg
+- Assets/Resources/SpriteResources/SlotSprite/SlotSprite2.jpg
+- Assets/Resources/SpriteResources/SlotSprite/SlotSprite6.jpg
+- Assets/Resources/SpriteResources/SlotSprite/SlotSprite3.jpg
+- Assets/Resources/SpriteResources/SlotSprite/SlotSprite7.jpg
+- Assets/Resources/SpriteResources/SlotSprite/SlotSprite4.jpg
 Dependencies: []

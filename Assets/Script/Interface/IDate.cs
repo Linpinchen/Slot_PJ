@@ -17,6 +17,7 @@ public interface IDate
     int CycleCount { get; set; }
     int AutoSurplus { get; set; }
     int BonusCount { get; set; }
-    Sprite[] SpritePool { get; set; }
+    List<intCount> Date { get; set; }
+    Slot_SeveDate Slot_SeverDate { get; set; }
 
 }

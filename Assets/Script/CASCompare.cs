@@ -54,7 +54,7 @@ public class CASCompare : MonoBehaviour
     string TxtURL;
 
 
-    public CASCompare(string TxtURL)
+    public void init(string TxtURL)
     {
         //Manager 設一個String 利用平台偵測 來改變 String 要給予的Txt網址
         this.TxtURL = TxtURL;
@@ -75,7 +75,7 @@ public class CASCompare : MonoBehaviour
         if (request.isNetworkError)
         {
 
-            Debuger.Log(request.error);
+            Debug.Log(request.error);
 
         }
         else
@@ -89,7 +89,7 @@ public class CASCompare : MonoBehaviour
             {
 
                 Directory.CreateDirectory(folderpath);
-                Debuger.Log("建立資料夾");
+                Debug.Log("建立資料夾");
             }
 
 
@@ -98,12 +98,12 @@ public class CASCompare : MonoBehaviour
             string[] Lines = s.Split(new string[] { "[DateEnd]" }, System.StringSplitOptions.RemoveEmptyEntries);//每個分段做切割放進陣列
             for (int l = 0; l < Lines.Length; l++)
             {
-                Debuger.Log(Lines[l]);
+                Debug.Log(Lines[l]);
                 Lines[l] = Lines[l].Trim('\n');
-                Debuger.Log("Trim('\n') :" + Lines[l]);
+                Debug.Log("Trim('\n') :" + Lines[l]);
 
             }
-            Debuger.Log("Lines.Length:" + Lines.Length);
+            Debug.Log("Lines.Length:" + Lines.Length);
             bundleDate = new SeverBundleDate[Lines.Length];
 
             for (int i = 0; i < Lines.Length; i++)
@@ -120,29 +120,29 @@ public class CASCompare : MonoBehaviour
 
                     if (k % 3 == 1)
                     {
-                        Debuger.Log("k" + k);
+                        Debug.Log("k" + k);
                         string name = chi_Lines[k].Remove(0, 7);
                         bundleDate[i].Name[j] = name;
-                        Debuger.Log(bundleDate[i].Name[j]);
+                        Debug.Log(bundleDate[i].Name[j]);
                        
                     }
                     else if (k % 3 == 2)
                     {
-                        Debuger.Log("k" + k);
+                        Debug.Log("k" + k);
                         string ss = chi_Lines[k].Remove(0, 6);
                         string s2 = ss.Trim('"');
-                        Debuger.Log("S2 :" + s2);
+                        Debug.Log("S2 :" + s2);
                         bundleDate[i].URL[j] = s2;
-                        Debuger.Log(bundleDate[i].URL[j]);
+                        Debug.Log(bundleDate[i].URL[j]);
                     }
                     else
                     {
-                        Debuger.Log("k" + k);
+                        Debug.Log("k" + k);
                         string ss = chi_Lines[k].Remove(0, 10);
                         string s3 = ss.Trim('"');
-                        Debuger.Log("S3 :" + s3);
+                        Debug.Log("S3 :" + s3);
                         bundleDate[i].Version[j] = s3;
-                        Debuger.Log(bundleDate[i].Version[j]);
+                        Debug.Log(bundleDate[i].Version[j]);
                         j++;
 
                     }
@@ -153,11 +153,11 @@ public class CASCompare : MonoBehaviour
                 for (int ii = 0; ii < bundleDate[i].Name.Length; ii++)
                 {
 
-                    Debuger.Log("bundleDate.Name:" + bundleDate[i].Name[ii]);
+                    Debug.Log("bundleDate.Name:" + bundleDate[i].Name[ii]);
 
-                    Debuger.Log(" bundleDate.URL:" + bundleDate[i].URL[ii]);
+                    Debug.Log(" bundleDate.URL:" + bundleDate[i].URL[ii]);
 
-                    Debuger.Log(" bundleDate.Version:" + bundleDate[i].Version[ii]);
+                    Debug.Log(" bundleDate.Version:" + bundleDate[i].Version[ii]);
                 }
 
 
@@ -169,7 +169,7 @@ public class CASCompare : MonoBehaviour
             string playerPrefs_Key = "Date_Playerprefs";
             if (PlayerPrefs.HasKey(playerPrefs_Key))
             {
-                Debuger.Log("PlayerPrefs有字典資料");
+                Debug.Log("PlayerPrefs有字典資料");
                 //如果有 讀取PlayerPrefs的字串資料 將字串資料返回Json 利用字典來接收資料
 
 
@@ -184,7 +184,7 @@ public class CASCompare : MonoBehaviour
 
                         if (Di_BundleDate.ContainsKey(bundleDate[k].Name[i]))//判斷字典內 是否有 bundleDate.Name第i個值 這個名稱的Key
                         {
-                            Debuger.Log("字典內有對應Key");
+                            Debug.Log("字典內有對應Key");
                            
                             string CL_Verson = Di_BundleDate[bundleDate[k].Name[i]].Version;
                             string SE_Version = bundleDate[k].Version[i];
@@ -194,7 +194,7 @@ public class CASCompare : MonoBehaviour
                             if (CL_Verson == SE_Version)//如果兩者相同
                             {
 
-                                Debuger.Log("字典內有對應Key,且版號相同");
+                                Debug.Log("字典內有對應Key,且版號相同");
                                 continue;
 
                             }
@@ -202,8 +202,8 @@ public class CASCompare : MonoBehaviour
                             {
                                 //1.將本地（字典內）的Version 更新成  雲端（Txt拆解獲得）得Version
                                 //2.覆蓋掉本地舊的 AssetBundle資料
-                                Debuger.Log("字典內指定Key的Value中 , Version與雲端資料不同 開始更新Version以及更新本地AssetBundle資料");
-                                Debuger.Log(Di_BundleDate[bundleDate[k].Name[i]].Version);
+                                Debug.Log("字典內指定Key的Value中 , Version與雲端資料不同 開始更新Version以及更新本地AssetBundle資料");
+                                Debug.Log(Di_BundleDate[bundleDate[k].Name[i]].Version);
 
                                 
                                 Di_BundleDate[bundleDate[k].Name[i]].Version = bundleDate[k].Version[i];//將本地（字典內）的Version 更新成  雲端（Txt拆解獲得）得Version
@@ -222,7 +222,7 @@ public class CASCompare : MonoBehaviour
                         else//字典內 沒有 bundleDate.Name[i] 這個值 的Key
                         {
 
-                            Debuger.Log("字典內無對應Key ,開始新增字典資料");
+                            Debug.Log("字典內無對應Key ,開始新增字典資料");
 
                             //字典新增資料
                             //複製 雲端上 AssetBundle的 檔案到 本地
@@ -258,7 +258,7 @@ public class CASCompare : MonoBehaviour
             }
             else //如果PlayerPrefs沒有 AssetBundle的 字串資料 這裡讀取雲端上的Txt檔 然後利用迴圈 將讀取的檔案分段寫入 BundleURl 這個Class 然後 AssetBundle的名字當Key Class當Value寫入字典
             {
-                Debuger.Log("PlayerPrefs無字典資料 ,開始新增字典資料");
+                Debug.Log("PlayerPrefs無字典資料 ,開始新增字典資料");
 
                 //Di_BundleDate = new Dictionary<string, BundleURl>();
                 for (int k = 0; k < bundleDate.Length; k++)
@@ -297,7 +297,7 @@ public class CASCompare : MonoBehaviour
             foreach (var key in Di_BundleDate.Keys)
             {
 
-                Debuger.Log(string.Format("Name : {0},Di_BundleDatey字典是否有Key : {1} , Value中的本地Path ：{2},Value中的version ：{3} , Value中的 類型 ：{4}", key, Di_BundleDate.ContainsKey(key), Di_BundleDate[key].CLPath, Di_BundleDate[key].Version, Di_BundleDate[key].ObjectType));
+                Debug.Log(string.Format("Name : {0},Di_BundleDatey字典是否有Key : {1} , Value中的本地Path ：{2},Value中的version ：{3} , Value中的 類型 ：{4}", key, Di_BundleDate.ContainsKey(key), Di_BundleDate[key].CLPath, Di_BundleDate[key].Version, Di_BundleDate[key].ObjectType));
 
 
             }
@@ -307,12 +307,14 @@ public class CASCompare : MonoBehaviour
             //這裡判斷字典內容是否有做修改
             if (Change_Date)//有做修改
             {
-                Debuger.Log("更新字典內容");
+                Debug.Log("更新字典內容");
                 string str = JsonUtility.ToJson(new DictionaryToJson<string, ClientBundleDate>(Di_BundleDate));
-                Debuger.Log("Json資料 ： " + str);
+                Debug.Log("Json資料 ： " + str);
                 PlayerPrefs.SetString(playerPrefs_Key, str);// PlayerPrefs儲存 接Json的字串
 
                 PlayerPrefs.Save();//保持好習慣,手動儲存,以防萬一
+
+
 
             }
 

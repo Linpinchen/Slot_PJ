@@ -8,6 +8,8 @@ public class Slot_data : IDate, IDateEvent
 {
 
 	public IMove[] ReelMoves;
+	public Slot_SeveDate _Slot_SeverDate;
+
 
 	[SerializeField]
 	List<int> _Temp;
@@ -48,9 +50,10 @@ public class Slot_data : IDate, IDateEvent
 	[SerializeField]
 	int Bonus_count;//當前 Bonus圖片出現的數量（用來算每個輪條[2][3][4]Bonus圖片出現幾次）
 
-	public Sprite[] Sprite_Pool;//圖片庫
-	public Slot_SeveDate _Slot_SeverDate;
+	
+	
 	public List<intCount> _Date;
+	ResourceManager _ResourceManager;
 
 
 
@@ -80,9 +83,11 @@ public class Slot_data : IDate, IDateEvent
 
 	public int BonusCount { get { return Bonus_count; } set { Bonus_count = value; } }
 
-	public Sprite[] SpritePool { get { return Sprite_Pool; } set { Sprite_Pool = value; } }
-
 	public int LeastBetCount { get { return leastBetCount; } set { leastBetCount = value; } }
+
+	public List<intCount> Date { get { return _Date; } set { _Date = value; } }
+
+	public Slot_SeveDate Slot_SeverDate { get { return _Slot_SeverDate; } set { _Slot_SeverDate = value; } }
 
 	#endregion
 
@@ -92,11 +97,19 @@ public class Slot_data : IDate, IDateEvent
 	/// </summary>
 	/// <param name="_IUICM"></param>
 	/// <param name="_ReelMoves"></param>
-	public void Init(IMove[] ReelMoves)
+	public Slot_data(IMove[] ReelMoves, ResourceManager _ResourceManager)
 	{
 		this.ReelMoves = ReelMoves;
+		this._ResourceManager = _ResourceManager;
 		_Date = new List<intCount>();
 		Temp = new List<int>();
+		BonusWin = new List<int>();
+		_PrizeDate = new int[]
+		{
+			33333,33211,33133,32123,32223,32323,
+			23332,23212,23132,22322,22222,22122,21232,21112,
+			12321,12221,12121,11311,11233,11111
+		};
 
 	}
 	#endregion
@@ -110,7 +123,7 @@ public class Slot_data : IDate, IDateEvent
 	{
 		//Debug.Log("依＿Reel_Sprite_Date資料設置圖片");
 		int Tempi;
-		Tempi = Sprite_Pool.Length - 2;//不要特殊圖
+		Tempi = _ResourceManager.Sprite_Pool.Length - 2;//不要特殊圖
 
 		for (int i = 0; i < ReelMoves.Length; i++)
 		{
@@ -120,7 +133,7 @@ public class Slot_data : IDate, IDateEvent
 
 				int Changei;
 				Changei = Random.Range(0, Tempi);
-				ReelMoves[i].Self.transform.GetChild(j).GetComponent<Image>().sprite = Sprite_Pool[Changei];
+				ReelMoves[i].Self.transform.GetChild(j).GetComponent<Image>().sprite = _ResourceManager.Sprite_Pool[Changei];
 				Debuger.Log(string.Format("第{0}個輪條的第{1}張圖片,圖片名稱{2}",i,j, ReelMoves[i].Self.transform.GetChild(j).GetComponent<Image>().sprite.name));
 
 			}
@@ -267,7 +280,7 @@ public class Slot_data : IDate, IDateEvent
 
 						int Tempcount;
 						int SpriteCountTemp;
-						Tempcount = Sprite_Pool.Length - 1;
+						Tempcount = _ResourceManager.Sprite_Pool.Length - 1;
 						SpriteCountTemp = Random.Range(0, Tempcount);
 						slotGrid._grids[i]._Grids[j]._GridInt[SpriteCount] = (Pool_Images)SpriteCountTemp;
 
@@ -698,15 +711,15 @@ public class Slot_data : IDate, IDateEvent
 	/// <param name="PrizeDate"></param>
 	/// <param name="_Gridints"></param>
 	/// <param name="Win_Money"></param>
-	public int WInChack(int[] PrizeDate, GridIntS _Gridints)
+	public int WInChack( GridIntS _Gridints)
 	{
 		int Win_Money = 0;
 		List<int> Tempi = new List<int>();
 
-		for (int i = 0; i < PrizeDate.Length; i++)
+		for (int i = 0; i < _PrizeDate.Length; i++)
 		{
 
-			string number = PrizeDate[i].ToString();
+			string number = _PrizeDate[i].ToString();
 			int NumCount = number.Length;//取得幾位數
 
 			for (int j = 0; j < NumCount; j++)
@@ -731,7 +744,7 @@ public class Slot_data : IDate, IDateEvent
 					{
 
 						Debuger.Log("Win");
-						Debuger.Log(PrizeDate[i]);
+						Debuger.Log(_PrizeDate[i]);
 						int Line_count = 5;
 						Win_Money = Win_Sprite(_PoolImages, Line_count, Win_Money);
 						Debuger.Log("Win_Line方法上顯示的錢 ：" + Win_Money);
@@ -759,7 +772,7 @@ public class Slot_data : IDate, IDateEvent
 
 					}
 
-					Temp.Add(PrizeDate[i]);
+					Temp.Add(_PrizeDate[i]);
 				}
 
 			}

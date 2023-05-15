@@ -23,7 +23,7 @@ public class Button_EventTrigger : EventTrigger
 		b_Start = false;
 		Button_Down = false;
 		Return_Valu = 0;
-
+		Ami = gameObject.GetComponent<Animator>();
 	}
 
 	// Update is called once per frame
@@ -61,7 +61,6 @@ public class Button_EventTrigger : EventTrigger
 		if (gameObject.tag == "UiEnlarge")
 		{
 
-			Ami = gameObject.GetComponent<Animator>();
 			Ami.SetBool("StEnlarge", true);
 
 		}
@@ -74,8 +73,7 @@ public class Button_EventTrigger : EventTrigger
 
 		if (gameObject.tag == "UiEnlarge")
 		{
-
-			Ami = gameObject.GetComponent<Animator>();
+ 
 			Ami.SetBool("StEnlarge", false);
 
 		}

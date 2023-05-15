@@ -6,17 +6,7 @@ public interface IUIControlMethod
 
 {
     bool StAddBonusDate { get; set; }
-    GameObject Bet_Menu { get; }
-    GameObject Auto_Menu { get; }
-    GameObject Options { get; }
-    Text Bet_Text { get; }
-    Text BetMenu_Text { get; }
-    Text Auto_text { get; }
-    Sprite[] InFoSprites { get; }
-    Image InfoBackSprite { get; }
-    Image Img_Introduction { get; }
-    Image Img_Operational { get; }
-    Text PlayerCoin_Text { get; }
+    
 
     void AddBonus();
 
@@ -47,4 +37,8 @@ public interface IUIControlMethod
     void InfoLeft();
 
     void GetDateSave();
+
+    void Button_PressAndHold();
+
+    void Button_Reduce_Press();
 }

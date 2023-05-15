@@ -8,30 +8,17 @@ public class ShowScript : MonoBehaviour, IShow
 {
 
     IDate _IDate;
-    IUIControlMethod _IUIMethod;
     IMove[] _ReelMove;
-
+    ResourceManager _ResourceManager;
 
     [SerializeField]
     private bool _CoinShow_Bool;
-
-    [SerializeField]
-    private Sprite[] _Numbers;
-
-    [SerializeField]
-    private Image[] _WinCoins;
-
-    [SerializeField]
-    private Image _BonusWinBackSprite;
 
     [SerializeField]
     private int _TempWinCoin;
 
     [SerializeField]
     private bool _AddCoin;
-
-    [SerializeField]
-    private RectTransform[] _StartPoint;
 
     [SerializeField]
     private Queue<GameObject> _DrawLinePool;//預置物放置取出的位置
@@ -49,56 +36,18 @@ public class ShowScript : MonoBehaviour, IShow
     private List<bool> _DrawLineOk;//確認每個Linerender都到最後
 
     [SerializeField]
-    private GameObject _GBDrawLine;//預置物
-
-    [SerializeField]
-    private Transform _InLineRenderPool;//預置物放置在Hierarchy 顯示的位置
-
-    [SerializeField]
-    private Transform _LineRenderOutPool;// 普盤用的預置物放置在Hierarchy 待表演 顯示的位置
-
-    [SerializeField]
-    private Transform _BonusLineRenderOutPool;// Bonus盤用的預置物放置在Hierarchy 待表演 顯示的位置
-
-    [SerializeField]
     private List<Transform> _UiShow;//普盤 裝等待Shiny表演的
 
     [SerializeField]
     private List<List<Transform>> _BonusUiShow;//Bonus盤 裝等待Shiny表演的
 
-    [SerializeField]
-    private Animator _Amr_WinShow;//跳錢得背景動畫
-
-    [SerializeField]
-    private Animator _BonusAnimator;//Bonus開頭的動畫表演
-
-    [SerializeField]
-    private Animator _BonusEndShow;//Bonus最後的總跳錢背景動畫
-
-    [SerializeField]
-    private VideoPlayer _EndShowPlayer;
-
-    [SerializeField]
-    private VideoClip _EndShowVideoClip;
-
-    [SerializeField]
-    private RawImage _VideoImage;
-
-
     #region 介面實作
-    public Sprite[] Numbers { get { return _Numbers; } set { _Numbers = value; } }
-
-    public Image BonusWinBackSprite { get { return _BonusWinBackSprite; } set { BonusWinBackSprite = value; } }
-
-    public Image[] WinCoins { get { return _WinCoins; } set { _WinCoins = value; } }
-
+    
     public int TempWinCoin { get { return _TempWinCoin; } set { _TempWinCoin = value; } }
 
     public bool AddCoin { get { return _AddCoin; } set { _AddCoin = value; } }
 
     public bool CoinShow_Bool { get { return _CoinShow_Bool; } set { _CoinShow_Bool = value; } }
-
-    public RectTransform[] StartPoint { get { return _StartPoint; } }
 
     public Queue<GameObject> DrawLinePool { get { return _DrawLinePool; } set { _DrawLinePool = value; } }
 
@@ -110,29 +59,9 @@ public class ShowScript : MonoBehaviour, IShow
 
     public List<bool> DrawLineOK { get { return _DrawLineOk; } set { _DrawLineOk = value; } }
 
-    public GameObject GBDrawLine { get { return _GBDrawLine; } set { _GBDrawLine = value; } }
-
-    public Transform InLineRenderPool { get { return _InLineRenderPool; } set { _InLineRenderPool = value; } }
-
-    public Transform LineRenderOutPool { get { return _LineRenderOutPool; } set { _LineRenderOutPool = value; } }
-
-    public Transform BonusLineRenderOutPool { get { return _BonusLineRenderOutPool; } set { _BonusLineRenderOutPool = value; } }
-
     public List<Transform> UiShow { get { return _UiShow; } set { _UiShow = value; } }
 
     public List<List<Transform>> BonusUiShow { get { return _BonusUiShow; } set { _BonusUiShow = value; } }
-
-    public Animator Amr_WinShow { get { return _Amr_WinShow; } set { _Amr_WinShow = value; } }
-
-    public Animator BonusAnimator { get { return _BonusAnimator; } set { _BonusAnimator = value; } }
-
-    public Animator BonusEndShow { get { return _BonusEndShow; } set { _BonusEndShow = value; } }
-
-    public VideoPlayer EndShowPlayer { get { return _EndShowPlayer; } set { _EndShowPlayer = value; } }
-
-    public VideoClip EndShowVideoClip { get { return _EndShowVideoClip; } set { _EndShowVideoClip = value; } }
-
-    public RawImage VideoImage { get { return _VideoImage; } set { _VideoImage = value; } }
 
     #endregion
 
@@ -143,12 +72,20 @@ public class ShowScript : MonoBehaviour, IShow
     /// <param name="_Idate"></param>
     /// <param name="_Iui"></param>
     /// <param name="_ReelMove"></param>
-    public void Init(IDate _Idate, IUIControlMethod _Iui, IMove[] _ReelMove)
+    public void Init(IDate _Idate, ResourceManager _ResourceManager, IMove[] _ReelMove)
     {
         this._ReelMove = _ReelMove;
         this._IDate = _Idate;
-        this._IUIMethod = _Iui;
+        this._ResourceManager = _ResourceManager;
         _CoinShow_Bool = true;
+
+        _BonusUiShow = new List<List<Transform>>();
+        _BonusPrepareDrawline = new List<List<GameObject>>();
+        _BonusDrawLineOk = new List<List<bool>>();
+        _UiShow = new List<Transform>();
+        _DrawLineOk = new List<bool>();
+        _PrepareDrawLine = new List<GameObject>();
+
     }
     #endregion
 
@@ -277,19 +214,19 @@ public class ShowScript : MonoBehaviour, IShow
         {
             case '1':
                 {
-                    First = _StartPoint[0];
+                    First = _ResourceManager._StartPoint[0];
                     break;
 
                 }
             case '2':
                 {
-                    First = _StartPoint[1];
+                    First = _ResourceManager._StartPoint[1];
                     break;
 
                 }
             case '3':
                 {
-                    First = _StartPoint[2];
+                    First = _ResourceManager._StartPoint[2];
                     break;
 
                 }
@@ -300,29 +237,29 @@ public class ShowScript : MonoBehaviour, IShow
         {
             case '1':
                 {
-                    End = _StartPoint[3];
+                    End = _ResourceManager._StartPoint[3];
                     break;
 
                 }
             case '2':
                 {
-                    End = _StartPoint[4];
+                    End = _ResourceManager._StartPoint[4];
                     break;
 
                 }
             case '3':
                 {
-                    End = _StartPoint[5];
+                    End = _ResourceManager._StartPoint[5];
                     break;
 
                 }
 
         }
 
-        if (DrawLinePool.Count > 0)//如果有DrawLinePool裡有預制物就取出來用
+        if (_DrawLinePool.Count > 0)//如果有_DrawLinePool裡有預制物就取出來用
         {
 
-            Reuse = DrawLinePool.Dequeue();//取出DrawLinePool的預制物
+            Reuse = _DrawLinePool.Dequeue();//取出_DrawLinePool的預制物
             Reuse.transform.position = First.position;//設置預制物的位置
             InstObjectInitialization(Reuse, First, GetRoolWinImg(Number), End);
             Reuse.transform.parent = StayOutpool;
@@ -332,7 +269,7 @@ public class ShowScript : MonoBehaviour, IShow
         else
         {
 
-            Reuse = Instantiate(GBDrawLine, StayOutpool);
+            Reuse = Instantiate(_ResourceManager._GBDrawLine, StayOutpool);
             Reuse.transform.position = First.position;
             InstObjectInitialization(Reuse, First, GetRoolWinImg(Number), End);
             Reuse.SetActive(false);
@@ -350,15 +287,15 @@ public class ShowScript : MonoBehaviour, IShow
     public void ObjectPoolInitialization()
     {
         int InitailSize = 5;
-        DrawLinePool = new Queue<GameObject>();
+        _DrawLinePool = new Queue<GameObject>();
 
         for (int i = 0; i < InitailSize; i++)
         {
             GameObject InstGb;
-            InstGb = Instantiate(GBDrawLine, InLineRenderPool);//預制物生成
-            DrawLinePool.Enqueue(InstGb);//將生成的預制物方進DrawLinePool這個Queue裡
+            InstGb = Instantiate(_ResourceManager._GBDrawLine, _ResourceManager._InLineRenderPool);//預制物生成
+            _DrawLinePool.Enqueue(InstGb);//將生成的預制物方進_DrawLinePool這個Queue裡
             InstGb.SetActive(false);
-            Debuger.Log("DrawLinePool.Count:" + DrawLinePool.Count);
+            Debuger.Log("_DrawLinePool.Count:" + _DrawLinePool.Count);
 
         }
 
@@ -380,8 +317,8 @@ public class ShowScript : MonoBehaviour, IShow
             Debuger.Log("---------------------------Start_Recover :------------------------");
             recover.GetComponent<DrawLine>().LI.positionCount = 0;
             recover.GetComponent<DrawLine>().LI.positionCount = 2;
-            DrawLinePool.Enqueue(recover);
-            recover.transform.parent = InLineRenderPool;
+            _DrawLinePool.Enqueue(recover);
+            recover.transform.parent = _ResourceManager._InLineRenderPool;
             recover.SetActive(false);
 
         }
@@ -498,8 +435,8 @@ public class ShowScript : MonoBehaviour, IShow
 
                     int TempValu;//用字串處理 取的 Win_Money_Temp各個位數的值
                     TempValu = int.Parse(SWinCoin.Substring(i, 1));
-                    WinCoins[i].gameObject.SetActive(true);
-                    WinCoins[i].sprite = Numbers[TempValu];
+                    _ResourceManager._WinCoins[i].gameObject.SetActive(true);
+                    _ResourceManager._WinCoins[i].sprite = _ResourceManager._Numbers[TempValu];
 
                 }
 
@@ -513,21 +450,21 @@ public class ShowScript : MonoBehaviour, IShow
                     int Win_All_Coin_Temp;
                     yield return new WaitForSeconds(0.5f);
 
-                    for (int i = 0; i < WinCoins.Length; i++)
+                    for (int i = 0; i < _ResourceManager._WinCoins.Length; i++)
                     {
 
-                        WinCoins[i].gameObject.SetActive(false);
+                        _ResourceManager._WinCoins[i].gameObject.SetActive(false);
 
                     }
 
                     _TempWinCoin = 0;
 
-                    if (AddCoin)
+                    if (_AddCoin)
                     {
 
                         Win_All_Coin_Temp = _IDate.PlayerCoin + Coin;
                         _IDate.PlayerCoin = Win_All_Coin_Temp;
-                        _IUIMethod.PlayerCoin_Text.text = "Money:" + Win_All_Coin_Temp.ToString();
+                        _ResourceManager._PlayerCoin_Text.text = "Money:" + Win_All_Coin_Temp.ToString();
 
                     }
 
@@ -538,17 +475,17 @@ public class ShowScript : MonoBehaviour, IShow
 
             }
 
-            if (Coin - TempWinCoin < 50)
+            if (Coin - _TempWinCoin < 50)
             {
 
-                TempWinCoin += 1;
+                _TempWinCoin += 1;
                 yield return new WaitForSeconds(0.01f);
 
             }
             else
             {
 
-                TempWinCoin += 21;
+                _TempWinCoin += 21;
                 yield return new WaitForSeconds(0.01f);
 
             }

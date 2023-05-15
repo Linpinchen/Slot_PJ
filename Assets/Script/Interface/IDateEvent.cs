@@ -12,5 +12,5 @@ public interface IDateEvent
     void DateTypeChange(SlotGrid _SlotGrid);
     int Win_Sprite(Pool_Images _poolimage, int Line_Count, int WinMoneys);
     void DateSave(SlotGrid CommonGrid, SlotGrid BonusGrid, int FreeGamecount);
-    int WInChack(int[] PrizeDate, GridIntS _Gridints);
+    int WInChack(GridIntS _Gridints);
 }

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1804491354
+CRC: 767240757
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: f150b154fa20d880f0e3e49dcba7e11e
+    Hash: 7d2a58781e2fd356d47748749e32a05a
   TypeTreeHash:
     serializedVersion: 2
     Hash: fdf6c57a251b9f6ec27bdd2fe01b033c
@@ -14,6 +14,6 @@ ClassTypes:
 - Class: 91
   Script: {instanceID: 0}
 Assets:
-- Assets/Animation/AnimatorControl/UiEnlarge 1.controller
+- Assets/Animation/AnimatorControl/UiEnlarge.controller
 Dependencies:
 - /Users/PinChenLin/Desktop/Slot_PJ/Bundle_StandaloneOSX/an_uienlarge.clip

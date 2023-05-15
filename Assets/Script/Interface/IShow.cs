@@ -9,28 +9,14 @@ public interface IShow
     int TempWinCoin { get; set; }
     bool AddCoin { get; set; }
     bool CoinShow_Bool { get; set; }
-    Image BonusWinBackSprite { get; set; }
-    Image[] WinCoins { get; set; }
-    Sprite[] Numbers { get; set; }
     List<List<bool>> BonusDrawLineOk { get; set; }
     List<bool> DrawLineOK { get; set; }
-    RectTransform[] StartPoint { get; }
     Queue<GameObject> DrawLinePool { get; set; }
     List<List<GameObject>> BonusPrepareDrawline { get; set; }
     List<GameObject> PrepareDrawLine { get; set; }
-    GameObject GBDrawLine { get; set; }
-    Transform InLineRenderPool { get; set; }
-    Transform LineRenderOutPool { get; set; }
-    Transform BonusLineRenderOutPool { get; set; }
     List<Transform> UiShow { get; set; }
     List<List<Transform>> BonusUiShow { get; set; }
-    Animator Amr_WinShow { get; set; }
-    Animator BonusAnimator { get; set; }
-    Animator BonusEndShow { get; set; }
-    VideoPlayer EndShowPlayer { get; set; }
-    VideoClip EndShowVideoClip { get; set; }
-    RawImage VideoImage { get; set; }
-
+   
 
 
 

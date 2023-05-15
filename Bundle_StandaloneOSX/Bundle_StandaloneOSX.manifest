@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 2302903544
+CRC: 4031321612
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -100,51 +100,42 @@ AssetBundleManifest:
       Name: an_bonusshow.clip
       Dependencies: {}
     Info_30:
-      Name: audio_jojobgm
-      Dependencies: {}
-    Info_31:
-      Name: audio_sfx
-      Dependencies: {}
-    Info_32:
-      Name: audio_rool
-      Dependencies: {}
-    Info_33:
       Name: prefb_rool
       Dependencies:
         Dependency_0: roolshow
         Dependency_1: an_rool.control
-    Info_34:
+    Info_31:
       Name: prefb_point
       Dependencies:
         Dependency_0: pointimage
-    Info_35:
+    Info_32:
       Name: prefb_bonusendshow
       Dependencies:
         Dependency_0: bonusendshow
         Dependency_1: an_bonusendshow.control
-    Info_36:
+    Info_33:
       Name: prefb_bonusshow
       Dependencies:
         Dependency_0: abcsprite
         Dependency_1: bonusshow2
         Dependency_2: bonusshow1
         Dependency_3: an_bonusshow.control
-    Info_37:
+    Info_34:
       Name: prefb_winshow
       Dependencies:
         Dependency_0: winshowsprite
         Dependency_1: an_winshow.control
-    Info_38:
+    Info_35:
       Name: prefb_image_bonusend
       Dependencies:
         Dependency_0: scoreboard
         Dependency_1: abcsprite
-    Info_39:
+    Info_36:
       Name: image_inforight
       Dependencies: {}
-    Info_40:
+    Info_37:
       Name: image_infoout
       Dependencies: {}
-    Info_41:
+    Info_38:
       Name: image_infoleft
       Dependencies: {}
