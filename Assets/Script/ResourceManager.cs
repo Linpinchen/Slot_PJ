@@ -504,7 +504,11 @@ public class ResourceManager : MonoBehaviour
 
         AssetBundle RawImage = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["RawImage"].CLPath);
         //AssetBundle RawImage = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[1].Name[0]].CLPath);
-        _VideoImage.texture = RawImage.LoadAsset<Texture>("VideoTexture");
+        RenderTexture MyTexture = RawImage.LoadAsset<RenderTexture>("VideoTexture");
+
+        //_VideoImage.texture = RawImage.LoadAsset<Texture>("VideoTexture");
+        _VideoImage.texture = MyTexture;
+        _EndShowPlayer.targetTexture = MyTexture;
         RawImage.Unload(false);
         Debug.Log("Load- RawImage");
 
@@ -517,7 +521,7 @@ public class ResourceManager : MonoBehaviour
         Debug.Log("Load- MyVideo");
 
 
-
+       _EndShowPlayer.Pause();
 
 
     }

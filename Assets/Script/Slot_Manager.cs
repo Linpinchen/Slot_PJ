@@ -50,6 +50,8 @@ public class Slot_Manager : MonoBehaviour
 
     public bool LoadOK;
 
+    public Button btn;
+
     void Start()
     {
 
@@ -77,7 +79,9 @@ public class Slot_Manager : MonoBehaviour
         //Debuger.Log("_ShowScript.BonusPrepareDrawline.Count" + _ShowScript.BonusPrepareDrawline.Count);
 
 
-
+       
+        
+           
 
 
 
