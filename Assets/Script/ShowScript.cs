@@ -24,10 +24,10 @@ public class ShowScript : MonoBehaviour, IShow
     private Queue<GameObject> _DrawLinePool;//預置物放置取出的位置
 
     [SerializeField]
-    private List<List<GameObject>> _BonusPrepareDrawline;
+    private List<List<GameObject>> _BonusPrepareDrawline;//放Bonus準備畫線的物件
 
     [SerializeField]
-    private List<GameObject> _PrepareDrawLine;
+    private List<GameObject> _PrepareDrawLine;//放準備畫線的物件
 
     [SerializeField]
     private List<List<bool>> _BonusDrawLineOk;//確認 Bonus每個Linerender都到最後
@@ -286,6 +286,8 @@ public class ShowScript : MonoBehaviour, IShow
     /// </summary>
     public void ObjectPoolInitialization()
     {
+
+        Debuger.Log("執行ObjectPoolInitialization");
         int InitailSize = 5;
         _DrawLinePool = new Queue<GameObject>();
 
@@ -295,7 +297,7 @@ public class ShowScript : MonoBehaviour, IShow
             InstGb = Instantiate(_ResourceManager._GBDrawLine, _ResourceManager._InLineRenderPool);//預制物生成
             _DrawLinePool.Enqueue(InstGb);//將生成的預制物方進_DrawLinePool這個Queue裡
             InstGb.SetActive(false);
-            Debuger.Log("_DrawLinePool.Count:" + _DrawLinePool.Count);
+            Debuger.Log("Queue的數量 _DrawLinePool.Count  : " + _DrawLinePool.Count);
 
         }
 

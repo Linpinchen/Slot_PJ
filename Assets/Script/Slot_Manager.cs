@@ -9,7 +9,7 @@ public class Slot_Manager : MonoBehaviour
 {
 
     public IDate _SlotDate;//玩家金錢及盤面資料腳本
-    public IDateEvent _SlotDateEvent;
+    //public IDateEvent _SlotDateEvent;
     public IShow _ShowScript;
     public IUIControlMethod _UIControlMethod;
     public ResourceManager _ResourceManager;
@@ -18,8 +18,6 @@ public class Slot_Manager : MonoBehaviour
     public Button_EventTrigger _ButtonPlus_EventTrigger;
     public Button_EventTrigger _ButtonReduce_EventTrigger;
     public ShowScript showScript;
-
-
 
     public Texture2D[] MIcon;
     public float RollSpeed;//輪條移動速度
@@ -55,6 +53,9 @@ public class Slot_Manager : MonoBehaviour
     void Start()
     {
 
+
+
+
         //PlayerPrefs.DeleteAll();
 
         Debuger.Enable = isLog;
@@ -75,7 +76,11 @@ public class Slot_Manager : MonoBehaviour
         //SlotGridCreat();
         //Debuger.Log("_ShowScript.BonusPrepareDrawline.Count" + _ShowScript.BonusPrepareDrawline.Count);
 
-        
+
+
+
+
+
     }
 
 
@@ -100,9 +105,14 @@ public class Slot_Manager : MonoBehaviour
 
         LoadOK = false;
 
+
+
+
         _SlotDate = new Slot_data(_Reel_Moves, _ResourceManager);
-        _SlotDateEvent= new Slot_data(_Reel_Moves, _ResourceManager);
-       
+
+        //_SlotDateEvent = slot_Data;
+        //_SlotDateEvent= new Slot_data(_Reel_Moves, _ResourceManager);
+
         showScript.Init(_SlotDate, _ResourceManager, _Reel_Moves);
         _ShowScript = showScript;
 
@@ -144,11 +154,14 @@ public class Slot_Manager : MonoBehaviour
             _SlotDate.Date.Add(new intCount());
             _SlotDate.Slot_SeverDate.Data.Add(new intCount());
 
+            Debuger.Log("Manager Init - _SlotDate.Date的數量 ： "+ _SlotDate.Date.Count);
+            Debuger.Log("Manager Init -  _SlotDate.Slot_SeverDate..Date的數量 ： " + _SlotDate.Slot_SeverDate.Data.Count);
+
             for (int j = 0; j < _Reel_Moves[i].transform.childCount; j++)
             {
 
                 _SlotDate.Date[i]._IntCount.Add(0);
-                _SlotDate.Slot_SeverDate.Data[i]._IntCount.Add(0);
+               _SlotDate.Slot_SeverDate.Data[i]._IntCount.Add(0);
             }
 
             _Reel_Moves[i].Sprites = _ResourceManager.Sprite_Pool;
@@ -199,7 +212,7 @@ public class Slot_Manager : MonoBehaviour
         if (!PlayerPrefs.HasKey("遊戲資料"))
         {
 
-            _SlotDateEvent.Initialization_Slot_Sprite();
+            _SlotDate.Initialization_Slot_Sprite();
 
         }
         else
@@ -249,8 +262,8 @@ public class Slot_Manager : MonoBehaviour
             Debuger.Log(string.Format("第幾輪 : {0} , 圖片數 ：{1}",i, ImageQuantity[i]));
         }
 
-        CommonGrid = new SlotGrid(1, Reelcount, ImageQuantity, _SlotDateEvent.Generate_Date_Sprite);
-        BonusGrid = new SlotGrid(FreeGameCount, Reelcount, ImageQuantity, _SlotDateEvent.GenerateBonusDate);
+        CommonGrid = new SlotGrid(1, Reelcount, ImageQuantity, _SlotDate.Generate_Date_Sprite);
+        BonusGrid = new SlotGrid(FreeGameCount, Reelcount, ImageQuantity, _SlotDate.GenerateBonusDate);
 
     }
     #endregion
@@ -304,6 +317,8 @@ public class Slot_Manager : MonoBehaviour
             Autoi = int.Parse(_ResourceManager._Auto_text.text);
             _SlotDate.AutoSurplus = Autoi;
             _SlotDate.PlayerCoin -= _SlotDate.Bet_Coin;
+            Debuger.Log("_SlotDate.Bet_Coin :"+ _SlotDate.Bet_Coin);
+
             _ResourceManager._PlayerCoin_Text.text = "Money:" + _SlotDate.PlayerCoin;
 
             if (_SlotDate.AutoSurplus > 1)
@@ -674,34 +689,18 @@ public class Slot_Manager : MonoBehaviour
         if (_UIControlMethod.StAddBonusDate)//如果有按下 直接中大獎按鈕
         {
 
-           _SlotDateEvent.Add_BonusDate(_UIControlMethod.StAddBonusDate, CommonGrid);//將普盤的盤面資料 灌成 有中Bonus的盤面
+            _SlotDate.Add_BonusDate(_UIControlMethod.StAddBonusDate, CommonGrid);//將普盤的盤面資料 灌成 有中Bonus的盤面
 
         }
         else
         {
             CommonGrid.CreatGrid();//普盤 生成盤面
-            for (int i =0;i<CommonGrid._grids.Count;i++)
-            {
-                for (int j=0;j< CommonGrid.reelcount;j++)
-                {
-                    for (int k =0; k< CommonGrid.imagecount[j];k++)
-                    {
-
-                        Debuger.Log(string.Format("普盤生成盤面,第幾個盤面{0},第幾個輪條{1},第幾張圖{2},圖片名字{3}",i,j,k, CommonGrid._grids[i]._Grids[j]._GridInt[k]));
-
-
-                    }
-
-                }
-                
-
-            }
-            
-            
+           
         }
 
-        _SlotDate.Win_Coin = _SlotDateEvent.WInChack(CommonGrid._grids[CommonGrid._girdcount - 1]);//普盤地0個盤面對獎
-        Debuger.Log("_IDate.Win_Coin :" + _SlotDate.Win_Coin);
+        _SlotDate.Win_Coin = _SlotDate.WInChack(CommonGrid._grids[CommonGrid._girdcount - 1]);//普盤地0個盤面對獎
+        Debuger.Log("_SlotDate.Win_Coin :" + _SlotDate.Win_Coin);
+        Debuger.Log("中了多少條線 ： " + _SlotDate.Temp.Count);
 
         for (int i = 0; i < _SlotDate.Temp.Count; i++)//取得_SlotDate.Temp.Count（將中了哪幾條線拿來使用 ）
         {
@@ -724,7 +723,7 @@ public class Slot_Manager : MonoBehaviour
             for (int i = 0; i < BonusGrid._girdcount; i++) //Bonus 各個盤面的兌獎
             {
 
-                _SlotDate.BonusWinCoin[i] = _SlotDateEvent.WInChack(BonusGrid._grids[i]);
+                _SlotDate.BonusWinCoin[i] = _SlotDate.WInChack(BonusGrid._grids[i]);
                 Debuger.Log(string.Format(" _IDate.BonusWinCoin[{0}] : {1}", i, _SlotDate.Win_Coin));
 
                 for (int j = 0; j < _SlotDate.Temp.Count; j++)
@@ -751,7 +750,7 @@ public class Slot_Manager : MonoBehaviour
         }
 
 
-        _SlotDateEvent.DateSave(CommonGrid, BonusGrid, FreeGameCount);
+        _SlotDate.DateSave(CommonGrid, BonusGrid, FreeGameCount);
 
         St_Roll = true;
 
@@ -926,7 +925,7 @@ public class Slot_Manager : MonoBehaviour
 
             int All_Coin;
             All_Coin = _SlotDate.Slot_SeverDate.Player_Coin + _SlotDate.Slot_SeverDate.BonusCoin + _SlotDate.Slot_SeverDate.Win_Coin;
-            _SlotDate.Bet_Coin = _SlotDate.Slot_SeverDate.Bet_Coin;
+            _SlotDate.Bet_Coin = _SlotDate.Slot_SeverDate.BetCoin;
 
             if (_SlotDate.Slot_SeverDate.Auto_PlayerSet > _SlotDate.Slot_SeverDate.Auto_NotYet)
             {
@@ -971,9 +970,9 @@ public class Slot_Manager : MonoBehaviour
     public void Options_No()
     {
 
-        PlayerPrefs.DeleteAll();
+        PlayerPrefs.DeleteKey("遊戲資料");
         Debuger.Log("是否有儲存的資料 ：" + PlayerPrefs.HasKey("遊戲資料"));
-        _SlotDateEvent.Initialization_Slot_Sprite();
+        _SlotDate.Initialization_Slot_Sprite();
         _ResourceManager._Options.SetActive(false);
 
 

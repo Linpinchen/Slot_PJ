@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2951246175
+CRC: 305808289
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: b16776ce5ee6ceb220404776a39db6e0
+    Hash: 73067dd0d171fd59059108a2353ef674
   TypeTreeHash:
     serializedVersion: 2
     Hash: 2b080481e7e2470338559f472bb306a9
@@ -24,5 +24,5 @@ ClassTypes:
 - Class: 120
   Script: {instanceID: 0}
 Assets:
-- Assets/Resources/DrawLine.prefab
+- Assets/Resources/Prefeb/DrawLine.prefab
 Dependencies: []

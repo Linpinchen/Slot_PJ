@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class Slot_data : IDate, IDateEvent
+public class Slot_data : IDate
 {
 
 	public IMove[] ReelMoves;
@@ -113,6 +113,7 @@ public class Slot_data : IDate, IDateEvent
 			12321,12221,12121,11311,11233,11111
 		};
 
+		
 	}
 	#endregion
 
@@ -144,6 +145,18 @@ public class Slot_data : IDate, IDateEvent
 
 	}
 	#endregion
+
+
+
+	public void CheckBetCoin()
+	{
+		Debug.Log("執行CheckBetCoin");
+		Debug.Log(bet_Coin);
+
+	}
+
+
+
 
 	#region 普通盤面生成灌入
 	/// <summary>
@@ -422,6 +435,23 @@ public class Slot_data : IDate, IDateEvent
 		Reelcount = _SlotGrid.reelcount;//有多少輪條
 		int GridCount = _SlotGrid._girdcount - 1;//最後的盤面在List中的值
 
+		Debug.Log("執行 DateTypeChange");
+		Debug.Log("_Date.Count :" + _Date.Count);
+		for (int k=0;k<_Date.Count;k++)
+		{
+
+			Debug.Log(string.Format("_Date[{0}]._IntCount.Count : {1}",k, _Date[k]._IntCount.Count));
+
+		}
+
+
+
+		Debug.Log(string.Format("_SlotGrid._grids 數量（盤面數）{0}  ,  輪條數 {1} ", _SlotGrid._grids.Count, _SlotGrid._grids[GridCount]._Grids.Count));
+		
+
+
+
+
 		for (int i = 0; i < Reelcount; i++)
 		{
 			int tempi = _SlotGrid.imagecount[i];
@@ -449,6 +479,7 @@ public class Slot_data : IDate, IDateEvent
 	/// <param name="Line_Count"></param>
 	public int Win_Sprite(Pool_Images _poolimage, int Line_Count, int WinMoneys)
 	{
+
 
 		if (_poolimage == Pool_Images.Fish)
 		{
@@ -687,7 +718,7 @@ public class Slot_data : IDate, IDateEvent
 
 		}
 
-		_Slot_SeverDate.Bet_Coin = bet_Coin;
+		_Slot_SeverDate.BetCoin = bet_Coin;
 		_Slot_SeverDate.Auto_HasRollcount = _AutoSurplus;
 		_Slot_SeverDate.Auto_PlayerSet = _AutoCount;
 		_Slot_SeverDate.Auto_NotYet = _CycleCount;
@@ -721,6 +752,8 @@ public class Slot_data : IDate, IDateEvent
 		int Win_Money = 0;
 		List<int> Tempi = new List<int>();
 
+		Debug.Log("玩家下注金額 "+bet_Coin);
+
 		for (int i = 0; i < _PrizeDate.Length; i++)
 		{
 
@@ -734,6 +767,8 @@ public class Slot_data : IDate, IDateEvent
 				Tempi.Add(TempValu);//將設定得中獎連線從字串拆分裝進陣列 做盤面位置的圖的比對
 
 			}
+
+			Debuger.Log("Tempi :" + Tempi.Count);
 
 			if ((_Gridints._Grids[0]._GridInt[Tempi[0]] == _Gridints._Grids[1]._GridInt[Tempi[1]] || _Gridints._Grids[1]._GridInt[Tempi[1]] == Pool_Images.Universal_Sprite) && _Gridints._Grids[0]._GridInt[Tempi[0]] != Pool_Images.Bonus)
 			{
@@ -804,7 +839,7 @@ public class Slot_SeveDate
 
 	public int Win_Coin;
 	public int BonusCoin;
-	public int Bet_Coin;
+	public int BetCoin;
 	public int Player_Coin;
 	public int Auto_HasRollcount;
 	public int Auto_NotYet;
