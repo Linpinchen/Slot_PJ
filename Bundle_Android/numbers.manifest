@@ -1,0 +1,27 @@
+ManifestFileVersion: 0
+CRC: 3242828562
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: fdef3cf66c51928adce214a2b265d4b5
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ea5a42e0fd8ea905efa7aa926a3b8944
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/SpriteResources/Show/Numbers/Number_3.png
+- Assets/Resources/SpriteResources/Show/Numbers/Number_5.png
+- Assets/Resources/SpriteResources/Show/Numbers/Number_2.png
+- Assets/Resources/SpriteResources/Show/Numbers/Number_0.png
+- Assets/Resources/SpriteResources/Show/Numbers/Number_7.png
+- Assets/Resources/SpriteResources/Show/Numbers/Number_8.png
+- Assets/Resources/SpriteResources/Show/Numbers/Number_1.png
+- Assets/Resources/SpriteResources/Show/Numbers/Number_9.png
+- Assets/Resources/SpriteResources/Show/Numbers/Number_6.png
+- Assets/Resources/SpriteResources/Show/Numbers/Number_4.png
+Dependencies: []

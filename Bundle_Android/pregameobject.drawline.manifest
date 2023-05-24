@@ -1,0 +1,28 @@
+ManifestFileVersion: 0
+CRC: 1747285258
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: fa2b0c7f061f678d57c5616830c56e22
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2b080481e7e2470338559f472bb306a9
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 07ae911c8a7d84b74956439bd0c1db5a, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 120
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/Prefeb/DrawLine.prefab
+Dependencies: []

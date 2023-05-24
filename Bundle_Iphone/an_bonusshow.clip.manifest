@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 3891928146
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 08a18c5a07370fff6bcaa90a8a9f7808
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: e9ff7947e86ac18259f8d8c6c35c7861
+HashAppended: 0
+ClassTypes:
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 115
+  Script: {instanceID: 0}
+Assets:
+- Assets/Animation/AmimationClip/BonusShow2Clip.anim
+- Assets/Animation/AmimationClip/BonusShow1Clip.anim
+Dependencies: []

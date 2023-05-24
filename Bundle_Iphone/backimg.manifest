@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 467108547
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: e4567cc621740e3833dfe2af2f70b706
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ea5a42e0fd8ea905efa7aa926a3b8944
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/SpriteResources/BackSprite.jpg
+Dependencies: []

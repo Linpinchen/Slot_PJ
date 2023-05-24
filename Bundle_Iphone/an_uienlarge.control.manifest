@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 302314645
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 185ceb6d2be8d0d8168a8616d76e4ef5
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: fdf6c57a251b9f6ec27bdd2fe01b033c
+HashAppended: 0
+ClassTypes:
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+Assets:
+- Assets/Animation/AnimatorControl/UiEnlarge.controller
+Dependencies:
+- /Users/PinChenLin/Desktop/Slot_PJ/Bundle_Iphone/an_uienlarge.clip

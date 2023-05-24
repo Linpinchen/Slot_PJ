@@ -1017,18 +1017,18 @@ public class Slot_Manager : MonoBehaviour
         #endif
 
         #if UNITY_STANDALONE_WIN
-                    GetDeviceInformation(_IuiMethod);
+                    GetDeviceInformation();
                     Debuger.Log("Stand Alone Windows");
         #endif
 
 
         #if UNITY_ANDROID
-                    GetDeviceInformation(_IuiMethod);
+                    GetDeviceInformation();
                     Debuger.Log("Android");
         #endif
 
         #if UNITY_IOS
-                    GetDeviceInformation(_IuiMethod);
+                    GetDeviceInformation();
                     Debuger.Log("Iphone");
         #endif
 

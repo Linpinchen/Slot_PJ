@@ -1,0 +1,26 @@
+ManifestFileVersion: 0
+CRC: 2993937101
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 86d3ebc3b4ce5b9c8333a998247786a6
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ea5a42e0fd8ea905efa7aa926a3b8944
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/SpriteResources/Show/BonusEndShowSprite/Break2.png
+- Assets/Resources/SpriteResources/Show/BonusEndShowSprite/Break1.png
+- Assets/Resources/SpriteResources/Show/BonusEndShowSprite/Break4.png
+- Assets/Resources/SpriteResources/Show/BonusEndShowSprite/JOJO_Hand_L5.png
+- Assets/Resources/SpriteResources/Show/BonusEndShowSprite/JOJO_Hand_R5.png
+- Assets/Resources/SpriteResources/Show/BonusEndShowSprite/JOJO_Hand_R3.png
+- Assets/Resources/SpriteResources/Show/BonusEndShowSprite/Break3.png
+- Assets/Resources/SpriteResources/Show/BonusEndShowSprite/JOJO_HAnd_L3.png
+- Assets/Resources/SpriteResources/Show/BonusEndShowSprite/Break5.png
+Dependencies: []

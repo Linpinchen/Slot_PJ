@@ -1,0 +1,125 @@
+ManifestFileVersion: 0
+CRC: 1064205826
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: rawimage
+      Dependencies: {}
+    Info_1:
+      Name: myvideo
+      Dependencies: {}
+    Info_2:
+      Name: pregameobject.drawline
+      Dependencies: {}
+    Info_3:
+      Name: numbers
+      Dependencies: {}
+    Info_4:
+      Name: backimg
+      Dependencies: {}
+    Info_5:
+      Name: infoback
+      Dependencies: {}
+    Info_6:
+      Name: scoreboard
+      Dependencies: {}
+    Info_7:
+      Name: winshowsprite
+      Dependencies: {}
+    Info_8:
+      Name: pointimage
+      Dependencies: {}
+    Info_9:
+      Name: abcsprite
+      Dependencies: {}
+    Info_10:
+      Name: imginfo
+      Dependencies: {}
+    Info_11:
+      Name: slotsprite
+      Dependencies: {}
+    Info_12:
+      Name: bonusshow2
+      Dependencies: {}
+    Info_13:
+      Name: bonusshow1
+      Dependencies: {}
+    Info_14:
+      Name: bonusendshow
+      Dependencies: {}
+    Info_15:
+      Name: controlui.button
+      Dependencies: {}
+    Info_16:
+      Name: controlui.moneyback
+      Dependencies: {}
+    Info_17:
+      Name: an_bonusendshow.control
+      Dependencies:
+        Dependency_0: an_bonusendshow.clip
+    Info_18:
+      Name: an_bonusendshow.clip
+      Dependencies: {}
+    Info_19:
+      Name: an_bonusshow.control
+      Dependencies:
+        Dependency_0: an_bonusshow.clip
+    Info_20:
+      Name: an_uienlarge.control
+      Dependencies:
+        Dependency_0: an_uienlarge.clip
+    Info_21:
+      Name: an_uienlarge.clip
+      Dependencies: {}
+    Info_22:
+      Name: an_uishiny.control
+      Dependencies:
+        Dependency_0: an_uishiny.clip
+    Info_23:
+      Name: an_uishiny.clip
+      Dependencies: {}
+    Info_24:
+      Name: an_winshow.control
+      Dependencies:
+        Dependency_0: an_winshow.clip
+    Info_25:
+      Name: an_winshow.clip
+      Dependencies: {}
+    Info_26:
+      Name: an_bonusshow.clip
+      Dependencies: {}
+    Info_27:
+      Name: prefb_point
+      Dependencies:
+        Dependency_0: pointimage
+    Info_28:
+      Name: prefb_bonusendshow
+      Dependencies:
+        Dependency_0: bonusendshow
+        Dependency_1: an_bonusendshow.control
+    Info_29:
+      Name: prefb_bonusshow
+      Dependencies:
+        Dependency_0: abcsprite
+        Dependency_1: bonusshow2
+        Dependency_2: bonusshow1
+        Dependency_3: an_bonusshow.control
+    Info_30:
+      Name: prefb_winshow
+      Dependencies:
+        Dependency_0: winshowsprite
+        Dependency_1: an_winshow.control
+    Info_31:
+      Name: prefb_image_bonusend
+      Dependencies:
+        Dependency_0: scoreboard
+        Dependency_1: abcsprite
+    Info_32:
+      Name: image_inforight
+      Dependencies: {}
+    Info_33:
+      Name: image_infoout
+      Dependencies: {}
+    Info_34:
+      Name: image_infoleft
+      Dependencies: {}

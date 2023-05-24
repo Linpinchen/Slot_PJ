@@ -1,0 +1,18 @@
+ManifestFileVersion: 0
+CRC: 3684229650
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: ab7c7f0ea13d988bac15ebf245ce3ba1
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ea5a42e0fd8ea905efa7aa926a3b8944
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/SpriteResources/Sprite_Info/IMG_InfoOut.png
+Dependencies: []

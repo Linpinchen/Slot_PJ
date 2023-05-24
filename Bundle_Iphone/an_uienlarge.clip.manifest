@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 361676209
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 6834aa3db4bc3576c40a104b004ae9c7
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: af57576da81d5d3ce45807ac11234de6
+HashAppended: 0
+ClassTypes:
+- Class: 74
+  Script: {instanceID: 0}
+Assets:
+- Assets/Animation/AmimationClip/UiEnlargeClip.anim
+Dependencies: []

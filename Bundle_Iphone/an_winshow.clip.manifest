@@ -1,0 +1,16 @@
+ManifestFileVersion: 0
+CRC: 1784626229
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 37bd0b7a269c48ee3c2bf52b49bace44
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: af57576da81d5d3ce45807ac11234de6
+HashAppended: 0
+ClassTypes:
+- Class: 74
+  Script: {instanceID: 0}
+Assets:
+- Assets/Animation/AmimationClip/WinShowClip.anim
+Dependencies: []

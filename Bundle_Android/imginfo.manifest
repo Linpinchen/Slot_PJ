@@ -1,0 +1,21 @@
+ManifestFileVersion: 0
+CRC: 790432238
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 1280a6e61e10a740cc44a251586601e2
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ea5a42e0fd8ea905efa7aa926a3b8944
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/SpriteResources/Sprite_Info/IMG_Info4.jpg
+- Assets/Resources/SpriteResources/Sprite_Info/IMG_Info1.jpg
+- Assets/Resources/SpriteResources/Sprite_Info/IMG_Info2.jpg
+- Assets/Resources/SpriteResources/Sprite_Info/IMG_Info3.jpg
+Dependencies: []

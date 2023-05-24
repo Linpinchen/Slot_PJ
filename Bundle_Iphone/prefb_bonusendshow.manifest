@@ -1,0 +1,32 @@
+ManifestFileVersion: 0
+CRC: 598942635
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 1716a39b57197afeb7d0d8877c1d6bdc
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5be29df8f4bbddc782479868884d034e
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/Prefeb/Obj_BonusEndShow.prefab
+Dependencies:
+- /Users/PinChenLin/Desktop/Slot_PJ/Bundle_Iphone/bonusendshow
+- /Users/PinChenLin/Desktop/Slot_PJ/Bundle_Iphone/an_bonusendshow.control

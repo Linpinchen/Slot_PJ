@@ -1,0 +1,25 @@
+ManifestFileVersion: 0
+CRC: 1748919700
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 35e1c4b6e13bf57c0c171835f541d636
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ea5a42e0fd8ea905efa7aa926a3b8944
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/Resources/SpriteResources/Show/BonusShow1/JOTa.png
+- Assets/Resources/SpriteResources/Show/BonusShow1/Ola2.png
+- Assets/Resources/SpriteResources/Show/BonusShow1/Ola4.png
+- Assets/Resources/SpriteResources/Show/BonusShow1/Ola.png
+- Assets/Resources/SpriteResources/Show/BonusShow1/Fool.png
+- Assets/Resources/SpriteResources/Show/BonusShow1/JOBack.png
+- Assets/Resources/SpriteResources/Show/BonusShow1/Ola3.png
+- Assets/Resources/SpriteResources/Show/BonusShow1/Dio.png
+Dependencies: []

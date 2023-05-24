@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 1253493032
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 314c3accc8815dca48452b61feff458f
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: fdf6c57a251b9f6ec27bdd2fe01b033c
+HashAppended: 0
+ClassTypes:
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+Assets:
+- Assets/Animation/AnimatorControl/BonusShow.controller
+Dependencies:
+- /Users/PinChenLin/Desktop/Slot_PJ/Bundle_Iphone/an_bonusshow.clip
