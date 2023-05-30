@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3984700671
+CRC: 630822518
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d1f5e3afee8ed7272030eddb4a205df3
+    Hash: a66792ed74f3c23ad38b09cbea1b6164
   TypeTreeHash:
     serializedVersion: 2
     Hash: ea5a42e0fd8ea905efa7aa926a3b8944
@@ -14,5 +14,5 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
-- Assets/Resources/SpriteResources/Sprite_Info/SpriteInfoBack.png
+- Assets/Editor Default Resources/Sprite_Info/SpriteInfoBack.png
 Dependencies: []

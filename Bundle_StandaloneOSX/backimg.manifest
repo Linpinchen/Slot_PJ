@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1772965329
+CRC: 1617570237
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a9c6160b1f51c3f1a40bb9f0872ec23e
+    Hash: 801dd996ef084e2501b1193382b0ff5b
   TypeTreeHash:
     serializedVersion: 2
     Hash: ea5a42e0fd8ea905efa7aa926a3b8944
@@ -14,5 +14,5 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
-- Assets/Resources/SpriteResources/BackSprite.jpg
+- Assets/Editor Default Resources/BackSprite.jpg
 Dependencies: []

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2092435387
+CRC: 2481667465
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d9a86dea5434311fbf0115b1ff177894
+    Hash: 5e28a91631d06d8e0d62e503f469c0b5
   TypeTreeHash:
     serializedVersion: 2
     Hash: ea5a42e0fd8ea905efa7aa926a3b8944
@@ -14,12 +14,12 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
-- Assets/Resources/SpriteResources/SlotSprite/SlotSprite1.jpg
-- Assets/Resources/SpriteResources/SlotSprite/SlotSprite0.jpg
-- Assets/Resources/SpriteResources/SlotSprite/SlotSprite5.jpg
-- Assets/Resources/SpriteResources/SlotSprite/SlotSprite2.jpg
-- Assets/Resources/SpriteResources/SlotSprite/SlotSprite6.jpg
-- Assets/Resources/SpriteResources/SlotSprite/SlotSprite3.jpg
-- Assets/Resources/SpriteResources/SlotSprite/SlotSprite7.jpg
-- Assets/Resources/SpriteResources/SlotSprite/SlotSprite4.jpg
+- Assets/Editor Default Resources/SlotSprite/SlotSprite1.jpg
+- Assets/Editor Default Resources/SlotSprite/SlotSprite0.jpg
+- Assets/Editor Default Resources/SlotSprite/SlotSprite5.jpg
+- Assets/Editor Default Resources/SlotSprite/SlotSprite2.jpg
+- Assets/Editor Default Resources/SlotSprite/SlotSprite6.jpg
+- Assets/Editor Default Resources/SlotSprite/SlotSprite3.jpg
+- Assets/Editor Default Resources/SlotSprite/SlotSprite7.jpg
+- Assets/Editor Default Resources/SlotSprite/SlotSprite4.jpg
 Dependencies: []

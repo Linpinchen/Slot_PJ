@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2681168757
+CRC: 1652223184
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 29875d25d048ed1540834212d97ad385
+    Hash: 6189c6b13c55ddc02d36c6fa6e662903
   TypeTreeHash:
     serializedVersion: 2
     Hash: 4c6c8fc99ead083a5f8ccf318eab7a09
@@ -12,5 +12,5 @@ ClassTypes:
 - Class: 329
   Script: {instanceID: 0}
 Assets:
-- Assets/Resources/Video/MYVIDEO.mp4
+- Assets/Editor Default Resources/Video/MYVIDEO.mp4
 Dependencies: []

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2012692258
+CRC: 1019494687
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 93c54f68485d31408938626bf4d29f51
+    Hash: 6df5d0e9c84e74c26704fe36cbbac0cf
   TypeTreeHash:
     serializedVersion: 2
     Hash: ea5a42e0fd8ea905efa7aa926a3b8944
@@ -14,5 +14,5 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
-- Assets/Resources/SpriteResources/Point.png
+- Assets/Editor Default Resources/Point.png
 Dependencies: []

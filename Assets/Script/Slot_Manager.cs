@@ -64,7 +64,7 @@ public class Slot_Manager : MonoBehaviour
 
         platformdetection();//設備檢測以載入正確Bundle
 
-        
+
 
         _ResourceManager.init(LoadPath);
 
@@ -74,14 +74,21 @@ public class Slot_Manager : MonoBehaviour
 
         AudioManager.inst.PlayBGM("Lobby_Main", 0);
 
+
+
+
+
+
+
+
         //Slot_Initialization();
         //SlotGridCreat();
         //Debuger.Log("_ShowScript.BonusPrepareDrawline.Count" + _ShowScript.BonusPrepareDrawline.Count);
 
 
-       
-        
-           
+
+
+
 
 
 

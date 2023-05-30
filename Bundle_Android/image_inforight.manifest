@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2253884356
+CRC: 1596832743
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 46e912e5a33f00ea22186bec79550de9
+    Hash: 86f313ef67b17be11fe9f83eec572216
   TypeTreeHash:
     serializedVersion: 2
     Hash: ea5a42e0fd8ea905efa7aa926a3b8944
@@ -14,5 +14,5 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
-- Assets/Resources/SpriteResources/Sprite_Info/IMG_InfoRight.png
+- Assets/Editor Default Resources/Sprite_Info/IMG_InfoRight.png
 Dependencies: []

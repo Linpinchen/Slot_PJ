@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3577344868
+CRC: 4006103443
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: fb314ed2c101be2d784f4494699a5da2
+    Hash: dca414b3975999b304c2de10f14c6761
   TypeTreeHash:
     serializedVersion: 2
     Hash: ea5a42e0fd8ea905efa7aa926a3b8944
@@ -14,13 +14,13 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
-- Assets/Resources/SpriteResources/Show/BonusEndShowSprite/Break2.png
-- Assets/Resources/SpriteResources/Show/BonusEndShowSprite/Break1.png
-- Assets/Resources/SpriteResources/Show/BonusEndShowSprite/Break4.png
-- Assets/Resources/SpriteResources/Show/BonusEndShowSprite/JOJO_Hand_L5.png
-- Assets/Resources/SpriteResources/Show/BonusEndShowSprite/JOJO_Hand_R5.png
-- Assets/Resources/SpriteResources/Show/BonusEndShowSprite/JOJO_Hand_R3.png
-- Assets/Resources/SpriteResources/Show/BonusEndShowSprite/Break3.png
-- Assets/Resources/SpriteResources/Show/BonusEndShowSprite/JOJO_HAnd_L3.png
-- Assets/Resources/SpriteResources/Show/BonusEndShowSprite/Break5.png
+- Assets/Editor Default Resources/Show/BonusEndShowSprite/Break2.png
+- Assets/Editor Default Resources/Show/BonusEndShowSprite/Break1.png
+- Assets/Editor Default Resources/Show/BonusEndShowSprite/Break4.png
+- Assets/Editor Default Resources/Show/BonusEndShowSprite/JOJO_Hand_L5.png
+- Assets/Editor Default Resources/Show/BonusEndShowSprite/JOJO_Hand_R5.png
+- Assets/Editor Default Resources/Show/BonusEndShowSprite/JOJO_Hand_R3.png
+- Assets/Editor Default Resources/Show/BonusEndShowSprite/Break3.png
+- Assets/Editor Default Resources/Show/BonusEndShowSprite/JOJO_HAnd_L3.png
+- Assets/Editor Default Resources/Show/BonusEndShowSprite/Break5.png
 Dependencies: []

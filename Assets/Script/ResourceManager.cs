@@ -9,6 +9,10 @@ public class ResourceManager : MonoBehaviour
 
     public Sprite[] img;
 
+    public Image LoadChack_Image;
+    public Text _Errortext;
+    public Text VideoText;
+
 
     //-----------------SlotDate-------------------
     public Sprite[] Sprite_Pool;//獎項圖片庫
@@ -82,7 +86,7 @@ public class ResourceManager : MonoBehaviour
     {
 
 
-        _CSAComper.init(path);
+        _CSAComper.init(path, _Errortext);
 
 
 
@@ -91,6 +95,9 @@ public class ResourceManager : MonoBehaviour
 
 
     //測試用...先從字典抓路徑來載檔案 不然Google雲端很雷
+
+
+    //預置物得部分 要改成 連圖片都載完後再生成 不然會掉圖 
     
 
     public void LoadClientAssetBundel(Reel_Move[] reel_Moves)
@@ -103,12 +110,19 @@ public class ResourceManager : MonoBehaviour
         Debug.Log("Load-DrawLine_Prefber");
 
 
+
+        AssetBundle _WinShowSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["WinShowSprites"].CLPath);
+        //AssetBundle _WinShowSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[1]].CLPath);
+        Sprite[] WinShowSprites = _WinShowSprites.LoadAllAssets<Sprite>();
+        //_WinShowSprites.Unload(false);
+        Debug.Log("Load-_WinShowSprites");
+
         AssetBundle Prefber_WinShow = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["Prefber_WinShow"].CLPath);
         //AssetBundle Prefber_WinShow = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[5].Name[1]].CLPath);
         Object obj_WinShow = Prefber_WinShow.LoadAsset("Obj_WinShow");
         GameObject _Prefber_WinShow = obj_WinShow as GameObject;
         //GameObject gameObject_WinShow = Instantiate(_Prefber_WinShow, Parent_WinShow);
-        Prefber_WinShow.Unload(false);
+        //Prefber_WinShow.Unload(false);
         Debug.Log("Load-Prefber_WinShow");
 
         AssetBundle An_WinShowControl = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["An_WinShowControl"].CLPath);
@@ -126,6 +140,8 @@ public class ResourceManager : MonoBehaviour
         GameObject gameObject_WinShow = Instantiate(_Prefber_WinShow, Parent_WinShow);
         gameObject_WinShow.GetComponent<Animator>().runtimeAnimatorController = _An_WinShowControl;
         _Amr_WinShow = gameObject_WinShow.GetComponent<Animator>();
+        _WinShowSprites.Unload(false);
+        Prefber_WinShow.Unload(false);
         //An_WinShowClip.Unload(false);
         Debug.Log("Load-An_WinShowClip");
 
@@ -239,11 +255,27 @@ public class ResourceManager : MonoBehaviour
 
 
 
+        AssetBundle _Point = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["PointImage"].CLPath);
+        //AssetBundle _Point = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[4]].CLPath);
+        Sprite Point = _Point.LoadAsset<Sprite>("Point");
+        //_Point.Unload(false);
+        Debug.Log("Load- _Point");
+
         AssetBundle Prefber_PointImage = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["Prefber_PointImage"].CLPath);
         //AssetBundle Prefber_PointImage = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[5].Name[3]].CLPath);
         Object obj_PointImage = Prefber_PointImage.LoadAsset("Images_initalPositionS");
         GameObject _Prefber_PointImage = obj_PointImage as GameObject;
-        GameObject PointImage= Instantiate(_Prefber_PointImage, Parent_PointImage);
+
+
+        //AssetBundle _Point = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["PointImage"].CLPath);
+        ////AssetBundle _Point = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[4]].CLPath);
+        //Sprite Point = _Point.LoadAsset<Sprite>("Point");
+        //_Point.Unload(false);
+        //Debug.Log("Load- _Point");
+
+
+
+        GameObject PointImage = Instantiate(_Prefber_PointImage, Parent_PointImage);
         int count = PointImage.transform.childCount;
         Debug.Log("預製物Prefber_PointImage的子物件數 ： " + count);
         _StartPoint = new RectTransform[count];
@@ -257,7 +289,31 @@ public class ResourceManager : MonoBehaviour
 
         }
         Prefber_PointImage.Unload(false);
+        _Point.Unload(false);
         Debug.Log("Load- Prefber_PointImage");
+
+
+
+
+        AssetBundle ABCSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["ABCSprites"].CLPath);
+        //AssetBundle ABCSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[17]].CLPath);
+        Sprite[] _ABCSprites = ABCSprites.LoadAllAssets<Sprite>();
+        //ABCSprites.Unload(false);
+        Debug.Log("Load-  ABCSprites");
+
+
+
+        AssetBundle _ScoreBoardSprite = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["ScoreBoardSprite"].CLPath);
+        //AssetBundle _ScoreBoardSprite = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[2]].CLPath);
+        Sprite ScoreBoardSprite = _ScoreBoardSprite.LoadAsset<Sprite>("IMG_ScoreBoard");
+        _Options.transform.GetChild(0).GetComponent<Image>().sprite = ScoreBoardSprite;
+        _Bet_Menu.GetComponent<Image>().sprite = ScoreBoardSprite;
+        _Auto_Menu.GetComponent<Image>().sprite = ScoreBoardSprite;
+        //_ScoreBoardSprite.Unload(false);
+        Debug.Log("Load-_ScoreBoardSprite");
+
+
+
 
 
 
@@ -269,7 +325,29 @@ public class ResourceManager : MonoBehaviour
         _BonusWinBackSprite = gameObject_BonusEnd.GetComponent<Image>();
         gameObject_BonusEnd.SetActive(false);
         Prefber_BonusEnd.Unload(false);
+        _ScoreBoardSprite.Unload(false);
         Debug.Log("Load- Prefber_BonusEnd");
+
+
+
+
+
+        AssetBundle BonusShow1Sprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["BonusShow1Sprites"].CLPath);
+        //AssetBundle BonusShow1Sprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[13]].CLPath);
+        Sprite[] _BonusShow1Sprites = BonusShow1Sprites.LoadAllAssets<Sprite>();
+        //BonusShow1Sprites.Unload(false);
+        Debug.Log("Load-BonusShow1Sprites");
+
+
+
+        AssetBundle BonusShow2Sprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["BonusShow2Sprites"].CLPath);
+        //AssetBundle BonusShow2Sprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[14]].CLPath);
+        Sprite[] _BonusShow2Sprites = BonusShow2Sprites.LoadAllAssets<Sprite>();
+        //BonusShow2Sprites.Unload(false);
+        Debug.Log("Load- BonusShow2Sprites");
+
+
+
 
 
         AssetBundle Prefber_BonusShow = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["Prefber_BonusShow"].CLPath);
@@ -277,7 +355,7 @@ public class ResourceManager : MonoBehaviour
         Object obj_BonusShow = Prefber_BonusShow.LoadAsset("Obj_BonusShow");
         GameObject _Prefber_BonusShow = obj_BonusShow as GameObject;
         //GameObject gameObject_BonusShow = Instantiate(_Prefber_BonusShow, Parent_BonusShow);
-        Prefber_BonusShow.Unload(false);
+        //Prefber_BonusShow.Unload(false);
         Debug.Log("Load- Prefber_BonusShow");
 
 
@@ -292,19 +370,50 @@ public class ResourceManager : MonoBehaviour
         //AssetBundle An_BonusShowClip = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[4].Name[4]].CLPath);
         AnimationClip[] _An_BonusShowClip = An_BonusShowClip.LoadAllAssets<AnimationClip>();
         An_BonusShowClip.Unload(false);
+
+
+
+        //AssetBundle BonusShow1Sprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["BonusShow1Sprites"].CLPath);
+        ////AssetBundle BonusShow1Sprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[13]].CLPath);
+        //Sprite[] _BonusShow1Sprites = BonusShow1Sprites.LoadAllAssets<Sprite>();
+        //BonusShow1Sprites.Unload(false);
+        //Debug.Log("Load-BonusShow1Sprites");
+
+
+
+        //AssetBundle BonusShow2Sprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["BonusShow2Sprites"].CLPath);
+        ////AssetBundle BonusShow2Sprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[14]].CLPath);
+        //Sprite[] _BonusShow2Sprites = BonusShow2Sprites.LoadAllAssets<Sprite>();
+        //BonusShow2Sprites.Unload(false);
+        //Debug.Log("Load- BonusShow2Sprites");
+
+
+
+
+
         GameObject gameObject_BonusShow = Instantiate(_Prefber_BonusShow, Parent_BonusShow);
         gameObject_BonusShow.GetComponent<Animator>().runtimeAnimatorController = _An_BonusShowControl;
         _BonusAnimator = gameObject_BonusShow.GetComponent<Animator>();
+        Prefber_BonusShow.Unload(false);
+        BonusShow1Sprites.Unload(false);
+        BonusShow2Sprites.Unload(false);
+        ABCSprites.Unload(false);
         //An_BonusShowClip.Unload(false);
         Debug.Log("Load- An_BonusShowClip");
 
+
+
+
+        AssetBundle BonusEndShowSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["BonusEndShowSprites"].CLPath);
+        //AssetBundle BonusEndShowSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[15]].CLPath);
+        Sprite[] _BonusEndShowSprites = BonusEndShowSprites.LoadAllAssets<Sprite>();
 
         AssetBundle Prefber_BonusEndShow = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["Prefber_BonusEndShow"].CLPath);
         //AssetBundle Prefber_BonusEndShow = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[5].Name[6]].CLPath);
         Object obj_BonusEndShow = Prefber_BonusEndShow.LoadAsset("Obj_BonusEndShow");
         GameObject _Prefber_BonusEndShow = obj_BonusEndShow as GameObject;
         //GameObject gameObject_BonusEndShow = Instantiate(_Prefber_BonusEndShow, Parent_BonusEndShow);
-        Prefber_BonusEndShow.Unload(false);
+        //Prefber_BonusEndShow.Unload(false);
         Debug.Log("Load- Prefber_BonusEndShow");
 
         AssetBundle An_BonusEndShowControl = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["An_BonusEndShowControl"].CLPath);
@@ -317,6 +426,18 @@ public class ResourceManager : MonoBehaviour
         //AssetBundle An_BonusEndShowClip = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[4].Name[5]].CLPath);
         AnimationClip _An_BonusEndShowClip = An_BonusEndShowClip.LoadAsset<AnimationClip>("BonusEndShowClip");
         An_BonusEndShowClip.Unload(false);
+
+
+        //AssetBundle BonusEndShowSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["BonusEndShowSprites"].CLPath);
+        ////AssetBundle BonusEndShowSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[15]].CLPath);
+        //Sprite[] _BonusEndShowSprites = BonusEndShowSprites.LoadAllAssets<Sprite>();
+
+        BonusEndShowSprites.Unload(false);
+        Prefber_BonusEndShow.Unload(false);
+        Debug.Log("Load- BonusEndShowSprites");
+
+
+
         GameObject gameObject_BonusEndShow = Instantiate(_Prefber_BonusEndShow, Parent_BonusEndShow);
         gameObject_BonusEndShow.GetComponent<Animator>().runtimeAnimatorController = _An_BonusEndShowControl;
         _BonusEndShow = gameObject_BonusEndShow.GetComponent<Animator>();
@@ -356,21 +477,21 @@ public class ResourceManager : MonoBehaviour
         Debug.Log("Load- _Sprite_Pool");
 
 
-        AssetBundle _WinShowSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["WinShowSprites"].CLPath);
-        //AssetBundle _WinShowSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[1]].CLPath);
-        Sprite[] WinShowSprites = _WinShowSprites.LoadAllAssets<Sprite>();
-        _WinShowSprites.Unload(false);
-        Debug.Log("Load-_WinShowSprites");
+        //AssetBundle _WinShowSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["WinShowSprites"].CLPath);
+        ////AssetBundle _WinShowSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[1]].CLPath);
+        //Sprite[] WinShowSprites = _WinShowSprites.LoadAllAssets<Sprite>();
+        //_WinShowSprites.Unload(false);
+        //Debug.Log("Load-_WinShowSprites");
 
 
-        AssetBundle _ScoreBoardSprite = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["ScoreBoardSprite"].CLPath);
-        //AssetBundle _ScoreBoardSprite = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[2]].CLPath);
-        Sprite ScoreBoardSprite = _ScoreBoardSprite.LoadAsset<Sprite>("IMG_ScoreBoard");
-        _Options.transform.GetChild(0).GetComponent<Image>().sprite = ScoreBoardSprite;
-        _Bet_Menu.GetComponent<Image>().sprite = ScoreBoardSprite;
-        _Auto_Menu.GetComponent<Image>().sprite= ScoreBoardSprite;
-        _ScoreBoardSprite.Unload(false);
-        Debug.Log("Load-_ScoreBoardSprite");
+        //AssetBundle _ScoreBoardSprite = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["ScoreBoardSprite"].CLPath);
+        ////AssetBundle _ScoreBoardSprite = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[2]].CLPath);
+        //Sprite ScoreBoardSprite = _ScoreBoardSprite.LoadAsset<Sprite>("IMG_ScoreBoard");
+        //_Options.transform.GetChild(0).GetComponent<Image>().sprite = ScoreBoardSprite;
+        //_Bet_Menu.GetComponent<Image>().sprite = ScoreBoardSprite;
+        //_Auto_Menu.GetComponent<Image>().sprite= ScoreBoardSprite;
+        //_ScoreBoardSprite.Unload(false);
+        //Debug.Log("Load-_ScoreBoardSprite");
 
 
         
@@ -383,11 +504,11 @@ public class ResourceManager : MonoBehaviour
 
 
 
-        AssetBundle _Point = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["PointImage"].CLPath);
-        //AssetBundle _Point = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[4]].CLPath);
-        Sprite Point = _Point.LoadAsset<Sprite>("Point");
-        _Point.Unload(false);
-        Debug.Log("Load- _Point");
+        //AssetBundle _Point = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["PointImage"].CLPath);
+        ////AssetBundle _Point = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[4]].CLPath);
+        //Sprite Point = _Point.LoadAsset<Sprite>("Point");
+        //_Point.Unload(false);
+        //Debug.Log("Load- _Point");
 
 
         AssetBundle _NumbersSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["NumbersSprites"].CLPath);
@@ -465,25 +586,25 @@ public class ResourceManager : MonoBehaviour
 
 
 
-        AssetBundle BonusShow1Sprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["BonusShow1Sprites"].CLPath);
-        //AssetBundle BonusShow1Sprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[13]].CLPath);
-        Sprite[] _BonusShow1Sprites= BonusShow1Sprites.LoadAllAssets<Sprite>();
-        BonusShow1Sprites.Unload(false);
-        Debug.Log("Load-BonusShow1Sprites");
+        //AssetBundle BonusShow1Sprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["BonusShow1Sprites"].CLPath);
+        ////AssetBundle BonusShow1Sprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[13]].CLPath);
+        //Sprite[] _BonusShow1Sprites= BonusShow1Sprites.LoadAllAssets<Sprite>();
+        //BonusShow1Sprites.Unload(false);
+        //Debug.Log("Load-BonusShow1Sprites");
 
 
-        AssetBundle BonusShow2Sprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["BonusShow2Sprites"].CLPath);
-        //AssetBundle BonusShow2Sprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[14]].CLPath);
-        Sprite[] _BonusShow2Sprites = BonusShow2Sprites.LoadAllAssets<Sprite>();
-        BonusShow2Sprites.Unload(false);
-        Debug.Log("Load- BonusShow2Sprites");
+        //AssetBundle BonusShow2Sprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["BonusShow2Sprites"].CLPath);
+        ////AssetBundle BonusShow2Sprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[14]].CLPath);
+        //Sprite[] _BonusShow2Sprites = BonusShow2Sprites.LoadAllAssets<Sprite>();
+        //BonusShow2Sprites.Unload(false);
+        //Debug.Log("Load- BonusShow2Sprites");
 
 
-        AssetBundle BonusEndShowSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["BonusEndShowSprites"].CLPath);
-        //AssetBundle BonusEndShowSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[15]].CLPath);
-        Sprite[] _BonusEndShowSprites = BonusEndShowSprites.LoadAllAssets<Sprite>();
-        BonusEndShowSprites.Unload(false);
-        Debug.Log("Load- BonusEndShowSprites");
+        //AssetBundle BonusEndShowSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["BonusEndShowSprites"].CLPath);
+        ////AssetBundle BonusEndShowSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[15]].CLPath);
+        //Sprite[] _BonusEndShowSprites = BonusEndShowSprites.LoadAllAssets<Sprite>();
+        //BonusEndShowSprites.Unload(false);
+        //Debug.Log("Load- BonusEndShowSprites");
 
 
         AssetBundle BackImageSprite = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["BackImageSprite"].CLPath);
@@ -495,11 +616,11 @@ public class ResourceManager : MonoBehaviour
         Debug.Log("Load- BackImageSprite");
 
 
-        AssetBundle ABCSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["ABCSprites"].CLPath);
-        //AssetBundle ABCSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[17]].CLPath);
-        Sprite[] _ABCSprites = ABCSprites.LoadAllAssets<Sprite>();
-        ABCSprites.Unload(false);
-        Debug.Log("Load-  ABCSprites");
+        //AssetBundle ABCSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["ABCSprites"].CLPath);
+        ////AssetBundle ABCSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[17]].CLPath);
+        //Sprite[] _ABCSprites = ABCSprites.LoadAllAssets<Sprite>();
+        //ABCSprites.Unload(false);
+        //Debug.Log("Load-  ABCSprites");
 
 
         AssetBundle RawImage = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["RawImage"].CLPath);
@@ -520,8 +641,46 @@ public class ResourceManager : MonoBehaviour
         MyVideo.Unload(false);
         Debug.Log("Load- MyVideo");
 
+       //_EndShowPlayer.Pause();
 
-       _EndShowPlayer.Pause();
+        LoadChack_Image.gameObject.SetActive(false);
+
+
+
+        string haveVideo = "影片得名字 :"+_VideoImage.GetComponent<VideoPlayer>().clip.name;
+        string haveTexture;
+        string EndShowVideo;
+
+
+        if (_VideoImage.texture != null)
+        {
+
+            haveTexture = "有貼圖";
+        }
+        else
+        {
+            haveTexture = "無貼圖";
+
+        }
+
+        if (_EndShowPlayer != null)
+        {
+            EndShowVideo = "VideoClip有影片 ：" + _EndShowPlayer.name;
+
+        }
+
+        else
+        {
+
+            EndShowVideo = "無影片 ：" ;
+
+        }
+
+
+        VideoText.text += haveVideo;
+        VideoText.text += haveTexture;
+        VideoText.text += EndShowVideo;
+
 
 
     }

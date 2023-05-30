@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: SlotPJ
-  productName: SlotPJ
+  companyName: SlotPJ2
+  productName: SlotPJ2
   defaultCursor: {fileID: 2800000, guid: 000fd0aa0473c404da850b35f605a766, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -158,7 +158,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.SlotPJ.SlotPJ
-    Standalone: com.SlotPJ.SlotPJ
+    Standalone: com.SlotPJ2.SlotPJ2
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16

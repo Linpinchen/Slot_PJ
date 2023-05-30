@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2627684295
+CRC: 4159879436
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 0fb010eef98fde81eb2ea6e0493c7a2c
+    Hash: e3f6e58fce6c65c2034970f75045e635
   TypeTreeHash:
     serializedVersion: 2
     Hash: ea5a42e0fd8ea905efa7aa926a3b8944
@@ -14,14 +14,14 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
-- Assets/Resources/SpriteResources/Show/Numbers/Number_3.png
-- Assets/Resources/SpriteResources/Show/Numbers/Number_5.png
-- Assets/Resources/SpriteResources/Show/Numbers/Number_2.png
-- Assets/Resources/SpriteResources/Show/Numbers/Number_0.png
-- Assets/Resources/SpriteResources/Show/Numbers/Number_7.png
-- Assets/Resources/SpriteResources/Show/Numbers/Number_8.png
-- Assets/Resources/SpriteResources/Show/Numbers/Number_1.png
-- Assets/Resources/SpriteResources/Show/Numbers/Number_9.png
-- Assets/Resources/SpriteResources/Show/Numbers/Number_6.png
-- Assets/Resources/SpriteResources/Show/Numbers/Number_4.png
+- Assets/Editor Default Resources/Show/Numbers/Number_3.png
+- Assets/Editor Default Resources/Show/Numbers/Number_5.png
+- Assets/Editor Default Resources/Show/Numbers/Number_2.png
+- Assets/Editor Default Resources/Show/Numbers/Number_0.png
+- Assets/Editor Default Resources/Show/Numbers/Number_7.png
+- Assets/Editor Default Resources/Show/Numbers/Number_8.png
+- Assets/Editor Default Resources/Show/Numbers/Number_1.png
+- Assets/Editor Default Resources/Show/Numbers/Number_9.png
+- Assets/Editor Default Resources/Show/Numbers/Number_6.png
+- Assets/Editor Default Resources/Show/Numbers/Number_4.png
 Dependencies: []

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1773585107
+CRC: 2045322309
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 9acc8f8b668bd4e81f6594906f8e5b86
+    Hash: ba0a365a19b8dc8d90e7916d57ce77b5
   TypeTreeHash:
     serializedVersion: 2
     Hash: ea5a42e0fd8ea905efa7aa926a3b8944
@@ -14,19 +14,19 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
-- Assets/Resources/SpriteResources/Show/ABC_Sprite/W.png
-- Assets/Resources/SpriteResources/Show/ABC_Sprite/M.png
-- Assets/Resources/SpriteResources/Show/ABC_Sprite/B.png
-- Assets/Resources/SpriteResources/Show/ABC_Sprite/X.png
-- Assets/Resources/SpriteResources/Show/ABC_Sprite/G.png
-- Assets/Resources/SpriteResources/Show/ABC_Sprite/N.png
-- Assets/Resources/SpriteResources/Show/ABC_Sprite/S.png
-- Assets/Resources/SpriteResources/Show/ABC_Sprite/F.png
-- Assets/Resources/SpriteResources/Show/ABC_Sprite/E.png
-- Assets/Resources/SpriteResources/Show/ABC_Sprite/U.png
-- Assets/Resources/SpriteResources/Show/ABC_Sprite/O.png
-- Assets/Resources/SpriteResources/Show/ABC_Sprite/I.png
-- Assets/Resources/SpriteResources/Show/ABC_Sprite/3.png
-- Assets/Resources/SpriteResources/Show/ABC_Sprite/R.png
-- Assets/Resources/SpriteResources/Show/ABC_Sprite/A.png
+- Assets/Editor Default Resources/Show/ABC_Sprite/W.png
+- Assets/Editor Default Resources/Show/ABC_Sprite/M.png
+- Assets/Editor Default Resources/Show/ABC_Sprite/B.png
+- Assets/Editor Default Resources/Show/ABC_Sprite/X.png
+- Assets/Editor Default Resources/Show/ABC_Sprite/G.png
+- Assets/Editor Default Resources/Show/ABC_Sprite/N.png
+- Assets/Editor Default Resources/Show/ABC_Sprite/S.png
+- Assets/Editor Default Resources/Show/ABC_Sprite/F.png
+- Assets/Editor Default Resources/Show/ABC_Sprite/E.png
+- Assets/Editor Default Resources/Show/ABC_Sprite/U.png
+- Assets/Editor Default Resources/Show/ABC_Sprite/O.png
+- Assets/Editor Default Resources/Show/ABC_Sprite/I.png
+- Assets/Editor Default Resources/Show/ABC_Sprite/3.png
+- Assets/Editor Default Resources/Show/ABC_Sprite/R.png
+- Assets/Editor Default Resources/Show/ABC_Sprite/A.png
 Dependencies: []

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 4062184574
+CRC: 1283516856
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 1764711312d23cbe825a71ac9bd6467c
+    Hash: d1e92c35719a65cdee3204d12c2c0c89
   TypeTreeHash:
     serializedVersion: 2
     Hash: ea5a42e0fd8ea905efa7aa926a3b8944
@@ -14,12 +14,12 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
-- Assets/Resources/SpriteResources/Show/WinShow/Streamer.png
-- Assets/Resources/SpriteResources/Show/WinShow/Shield.png
-- Assets/Resources/SpriteResources/Show/WinShow/Star.png
-- Assets/Resources/SpriteResources/Show/WinShow/Back.png
-- Assets/Resources/SpriteResources/Show/WinShow/Win_i.png
-- Assets/Resources/SpriteResources/Show/WinShow/Win_N.png
-- Assets/Resources/SpriteResources/Show/WinShow/Wing.png
-- Assets/Resources/SpriteResources/Show/WinShow/Win_W.png
+- Assets/Editor Default Resources/Show/WinShow/Streamer.png
+- Assets/Editor Default Resources/Show/WinShow/Shield.png
+- Assets/Editor Default Resources/Show/WinShow/Star.png
+- Assets/Editor Default Resources/Show/WinShow/Back.png
+- Assets/Editor Default Resources/Show/WinShow/Win_i.png
+- Assets/Editor Default Resources/Show/WinShow/Win_N.png
+- Assets/Editor Default Resources/Show/WinShow/Wing.png
+- Assets/Editor Default Resources/Show/WinShow/Win_W.png
 Dependencies: []

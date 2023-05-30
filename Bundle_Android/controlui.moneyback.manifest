@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 4291702195
+CRC: 3513562763
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 5c8fb1494757e13b8aa9255bed0abfcd
+    Hash: 1b8ec0397ef1a2afc3d32fc8e8120199
   TypeTreeHash:
     serializedVersion: 2
     Hash: ea5a42e0fd8ea905efa7aa926a3b8944
@@ -14,5 +14,5 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
-- Assets/Resources/SpriteResources/ControlUI/MoneyBack.png
+- Assets/Editor Default Resources/ControlUI/MoneyBack.png
 Dependencies: []

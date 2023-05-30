@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 4064371452
+CRC: 3273204238
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 546131bc07a5efa2cb9999b7bde8519d
+    Hash: b7c92b85d1c1aa7fa065d9b895d2ace6
   TypeTreeHash:
     serializedVersion: 2
     Hash: ea5a42e0fd8ea905efa7aa926a3b8944
@@ -14,7 +14,7 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
-- Assets/Resources/SpriteResources/Show/BonusShow2/JOJOStar.png
-- Assets/Resources/SpriteResources/Show/BonusShow2/JOJOBack.png
-- Assets/Resources/SpriteResources/Show/BonusShow2/JOJOJO.png
+- Assets/Editor Default Resources/Show/BonusShow2/JOJOStar.png
+- Assets/Editor Default Resources/Show/BonusShow2/JOJOBack.png
+- Assets/Editor Default Resources/Show/BonusShow2/JOJOJO.png
 Dependencies: []

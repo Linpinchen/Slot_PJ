@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 541355290
+CRC: 2850655420
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: c3341e7fb7e0e38f8c72eeb859e34fc9
+    Hash: 56d77529960be577230a2312e3472b97
   TypeTreeHash:
     serializedVersion: 2
     Hash: ea5a42e0fd8ea905efa7aa926a3b8944
@@ -14,5 +14,5 @@ ClassTypes:
 - Class: 213
   Script: {instanceID: 0}
 Assets:
-- Assets/Resources/SpriteResources/IMG_ScoreBoard.png
+- Assets/Editor Default Resources/IMG_ScoreBoard.png
 Dependencies: []
