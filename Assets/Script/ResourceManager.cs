@@ -11,7 +11,7 @@ public class ResourceManager : MonoBehaviour
 
     public Image LoadChack_Image;
     public Text _Errortext;
-    public Text VideoText;
+    //public Text VideoText;
 
 
     //-----------------SlotDate-------------------
@@ -623,63 +623,63 @@ public class ResourceManager : MonoBehaviour
         //Debug.Log("Load-  ABCSprites");
 
 
-        AssetBundle RawImage = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["RawImage"].CLPath);
-        //AssetBundle RawImage = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[1].Name[0]].CLPath);
-        RenderTexture MyTexture = RawImage.LoadAsset<RenderTexture>("VideoTexture");
+       // AssetBundle RawImage = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["RawImage"].CLPath);
+       // //AssetBundle RawImage = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[1].Name[0]].CLPath);
+       // RenderTexture MyTexture = RawImage.LoadAsset<RenderTexture>("VideoTexture");
 
-        //_VideoImage.texture = RawImage.LoadAsset<Texture>("VideoTexture");
-        _VideoImage.texture = MyTexture;
-        _EndShowPlayer.targetTexture = MyTexture;
-        RawImage.Unload(false);
-        Debug.Log("Load- RawImage");
+       // //_VideoImage.texture = RawImage.LoadAsset<Texture>("VideoTexture");
+       // _VideoImage.texture = MyTexture;
+       // _EndShowPlayer.targetTexture = MyTexture;
+       // RawImage.Unload(false);
+       // Debug.Log("Load- RawImage");
 
-        AssetBundle MyVideo = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["MyVideo"].CLPath);
-        //AssetBundle MyVideo = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[2].Name[0]].CLPath);
-        VideoClip _MyVideo = MyVideo.LoadAsset<VideoClip>("MYVIDEO");
-        _EndShowVideoClip = _MyVideo;
-        _VideoImage.GetComponent<VideoPlayer>().clip = _MyVideo;
-        MyVideo.Unload(false);
-        Debug.Log("Load- MyVideo");
+       // AssetBundle MyVideo = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["MyVideo"].CLPath);
+       // //AssetBundle MyVideo = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[2].Name[0]].CLPath);
+       // VideoClip _MyVideo = MyVideo.LoadAsset<VideoClip>("MYVIDEO");
+       // _EndShowVideoClip = _MyVideo;
+       // _VideoImage.GetComponent<VideoPlayer>().clip = _MyVideo;
+       // MyVideo.Unload(false);
+       // Debug.Log("Load- MyVideo");
 
-       //_EndShowPlayer.Pause();
+       ////_EndShowPlayer.Pause();
 
-        LoadChack_Image.gameObject.SetActive(false);
-
-
-
-        string haveVideo = "影片得名字 :"+_VideoImage.GetComponent<VideoPlayer>().clip.name;
-        string haveTexture;
-        string EndShowVideo;
+       // LoadChack_Image.gameObject.SetActive(false);
 
 
-        if (_VideoImage.texture != null)
-        {
 
-            haveTexture = "有貼圖";
-        }
-        else
-        {
-            haveTexture = "無貼圖";
-
-        }
-
-        if (_EndShowPlayer != null)
-        {
-            EndShowVideo = "VideoClip有影片 ：" + _EndShowPlayer.name;
-
-        }
-
-        else
-        {
-
-            EndShowVideo = "無影片 ：" ;
-
-        }
+        //string haveVideo = "影片得名字 :"+_VideoImage.GetComponent<VideoPlayer>().clip.name;
+        //string haveTexture;
+        //string EndShowVideo;
 
 
-        VideoText.text += haveVideo;
-        VideoText.text += haveTexture;
-        VideoText.text += EndShowVideo;
+        //if (_VideoImage.texture != null)
+        //{
+
+        //    haveTexture = "有貼圖";
+        //}
+        //else
+        //{
+        //    haveTexture = "無貼圖";
+
+        //}
+
+        //if (_EndShowPlayer != null)
+        //{
+        //    EndShowVideo = "VideoClip有影片 ：" + _EndShowPlayer.name;
+
+        //}
+
+        //else
+        //{
+
+        //    EndShowVideo = "無影片 ：" ;
+
+        //}
+
+
+        //VideoText.text += haveVideo;
+        //VideoText.text += haveTexture;
+        //VideoText.text += EndShowVideo;
 
 
 
