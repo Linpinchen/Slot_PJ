@@ -58,7 +58,7 @@ public class Slot_Manager : MonoBehaviour
 
 
 
-        //PlayerPrefs.DeleteAll();
+        // PlayerPrefs.DeleteAll();
 
         Debuger.Enable = isLog;
 

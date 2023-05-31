@@ -2289,7 +2289,6 @@ MonoBehaviour:
   img: []
   LoadChack_Image: {fileID: 1325166714}
   _Errortext: {fileID: 1191234984}
-  VideoText: {fileID: 1131242520}
   Sprite_Pool: []
   _Bet_Menu: {fileID: 1748989546}
   _Auto_Menu: {fileID: 105060198}
@@ -6868,8 +6867,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.01239, y: -116}
-  m_SizeDelta: {x: 1280, y: 92.5}
+  m_AnchoredPosition: {x: 0.0030908, y: -144.5}
+  m_SizeDelta: {x: 1280, y: 149.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1191234984
 MonoBehaviour:
@@ -8140,7 +8139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.8862745}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -10576,8 +10575,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000061035, y: -146.1}
-  m_SizeDelta: {x: 1280, y: 202.6}
+  m_AnchoredPosition: {x: -0.000075396, y: -243.6}
+  m_SizeDelta: {x: 1280, y: 349.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1767995516
 MonoBehaviour:

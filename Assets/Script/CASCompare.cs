@@ -210,6 +210,7 @@ public class CASCompare : MonoBehaviour
                 if (PlayerPrefs.HasKey(playerPrefs_Key))
                 {
                     Debug.Log("PlayerPrefs有字典資料");
+                    Errortxt.transform.GetChild(0).GetComponent<Text>().text = "PlayerPrefs有字典資料";
                     //如果有 讀取PlayerPrefs的字串資料 將字串資料返回Json 利用字典來接收資料
 
 
@@ -225,7 +226,7 @@ public class CASCompare : MonoBehaviour
                             if (Di_BundleDate.ContainsKey(bundleDate[k].Name[i]))//判斷字典內 是否有 bundleDate.Name第i個值 這個名稱的Key
                             {
                                 Debug.Log("字典內有對應Key");
-
+                                Errortxt.transform.GetChild(0).GetComponent<Text>().text += "字典內有對應Key";
                                 string CL_Verson = Di_BundleDate[bundleDate[k].Name[i]].Version;
                                 string SE_Version = bundleDate[k].Version[i];
 
@@ -235,6 +236,7 @@ public class CASCompare : MonoBehaviour
                                 {
 
                                     Debug.Log("字典內有對應Key,且版號相同");
+                                    Errortxt.transform.GetChild(0).GetComponent<Text>().text += "字典內有對應Key,且版號相同";
                                     continue;
 
                                 }
@@ -243,6 +245,7 @@ public class CASCompare : MonoBehaviour
                                     //1.將本地（字典內）的Version 更新成  雲端（Txt拆解獲得）得Version
                                     //2.覆蓋掉本地舊的 AssetBundle資料
                                     Debug.Log("字典內指定Key的Value中 , Version與雲端資料不同 開始更新Version以及更新本地AssetBundle資料");
+                                    Errortxt.transform.GetChild(0).GetComponent<Text>().text += "字典內指定Key的Value中 , Version與雲端資料不同 開始更新Version以及更新本地AssetBundle資料";
                                     Debug.Log(Di_BundleDate[bundleDate[k].Name[i]].Version);
 
 
@@ -263,6 +266,7 @@ public class CASCompare : MonoBehaviour
                             {
 
                                 Debug.Log("字典內無對應Key ,開始新增字典資料");
+                                Errortxt.transform.GetChild(0).GetComponent<Text>().text += "字典內無對應Key ,開始新增字典資料";
 
                                 //字典新增資料
                                 //複製 雲端上 AssetBundle的 檔案到 本地
@@ -299,7 +303,7 @@ public class CASCompare : MonoBehaviour
                 else //如果PlayerPrefs沒有 AssetBundle的 字串資料 這裡讀取雲端上的Txt檔 然後利用迴圈 將讀取的檔案分段寫入 BundleURl 這個Class 然後 AssetBundle的名字當Key Class當Value寫入字典
                 {
                     Debug.Log("PlayerPrefs無字典資料 ,開始新增字典資料");
-
+                    Errortxt.transform.GetChild(0).GetComponent<Text>().text += "PlayerPrefs無字典資料 ,開始新增字典資料";
                     //Di_BundleDate = new Dictionary<string, BundleURl>();
                     for (int k = 0; k < bundleDate.Length; k++)
                     {
@@ -348,6 +352,7 @@ public class CASCompare : MonoBehaviour
                 if (Change_Date)//有做修改
                 {
                     Debug.Log("更新字典內容");
+                    Errortxt.transform.GetChild(0).GetComponent<Text>().text += "更新字典內容";
                     string str = JsonUtility.ToJson(new DictionaryToJson<string, ClientBundleDate>(Di_BundleDate));
                     Debug.Log("Json資料 ： " + str);
                     PlayerPrefs.SetString(playerPrefs_Key, str);// PlayerPrefs儲存 接Json的字串

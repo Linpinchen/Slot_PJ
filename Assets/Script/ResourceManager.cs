@@ -102,20 +102,23 @@ public class ResourceManager : MonoBehaviour
 
     public void LoadClientAssetBundel(Reel_Move[] reel_Moves)
     {
+        _Errortext.text = "正在下載檔案";
+
+
         AssetBundle DrawLine_Prefber = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["DrawLine_Prefber"].CLPath);
         //AssetBundle DrawLine_Prefber = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[5].Name[0]].CLPath);
         Object obj_DrawLine = DrawLine_Prefber.LoadAsset("DrawLine");
         _GBDrawLine = obj_DrawLine as GameObject;
         DrawLine_Prefber.Unload(false);
         Debug.Log("Load-DrawLine_Prefber");
-
-
+        _Errortext.text = "正在下載檔案"+ "Load-DrawLine_Prefber";
 
         AssetBundle _WinShowSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["WinShowSprites"].CLPath);
         //AssetBundle _WinShowSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[1]].CLPath);
         Sprite[] WinShowSprites = _WinShowSprites.LoadAllAssets<Sprite>();
         //_WinShowSprites.Unload(false);
         Debug.Log("Load-_WinShowSprites");
+        _Errortext.text = "正在下載檔案" + "Load-_WinShowSprites";
 
         AssetBundle Prefber_WinShow = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["Prefber_WinShow"].CLPath);
         //AssetBundle Prefber_WinShow = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[5].Name[1]].CLPath);
@@ -124,18 +127,22 @@ public class ResourceManager : MonoBehaviour
         //GameObject gameObject_WinShow = Instantiate(_Prefber_WinShow, Parent_WinShow);
         //Prefber_WinShow.Unload(false);
         Debug.Log("Load-Prefber_WinShow");
+        _Errortext.text = "正在下載檔案" + "Load-Prefber_WinShow";
 
         AssetBundle An_WinShowControl = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["An_WinShowControl"].CLPath);
         //AssetBundle An_WinShowControl = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[3].Name[0]].CLPath);
         RuntimeAnimatorController _An_WinShowControl = An_WinShowControl.LoadAsset<RuntimeAnimatorController>("WinShow");
         An_WinShowControl.Unload(false);
         Debug.Log("Load-An_WinShowControl");
-
+        _Errortext.text = "正在下載檔案" + "Load-An_WinShowControl";
 
         AssetBundle An_WinShowClip = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["An_WinShowClip"].CLPath);
         //AssetBundle An_WinShowClip = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[4].Name[0]].CLPath);
         AnimationClip _An_WinShowClip = An_WinShowClip.LoadAsset<AnimationClip>("WinShowClip");
         An_WinShowClip.Unload(false);
+
+        _Errortext.text = "正在下載檔案" + "WinShowClip";
+
 
         GameObject gameObject_WinShow = Instantiate(_Prefber_WinShow, Parent_WinShow);
         gameObject_WinShow.GetComponent<Animator>().runtimeAnimatorController = _An_WinShowControl;
@@ -144,7 +151,7 @@ public class ResourceManager : MonoBehaviour
         Prefber_WinShow.Unload(false);
         //An_WinShowClip.Unload(false);
         Debug.Log("Load-An_WinShowClip");
-
+        _Errortext.text = "正在下載檔案" + "Load-An_WinShowClip";
 
 
         //AssetBundle Prefber_RoolImage = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["Prefber_RoolImage"].CLPath);
@@ -180,11 +187,13 @@ public class ResourceManager : MonoBehaviour
         RuntimeAnimatorController _An_UiShinyControl = An_UiShinyControl.LoadAsset<RuntimeAnimatorController>("UiShiny");
         An_UiShinyControl.Unload(false);
 
+        _Errortext.text = "正在下載檔案" + "UiShiny";
+
         AssetBundle An_UiShinyClip = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["An_UiShinyClip"].CLPath);
         AnimationClip _An_UiShinyClip = An_UiShinyClip.LoadAsset<AnimationClip>("UiShinyClip");
         An_UiShinyClip.Unload(false);
 
-
+        _Errortext.text = "正在下載檔案" + "UiShinyClip";
 
 
 
@@ -253,19 +262,20 @@ public class ResourceManager : MonoBehaviour
         Debug.Log("Load-An_RoolControl");
         Debug.Log("Load- An_RoolClip");
 
-
+        _Errortext.text = "正在下載檔案" + "Load-Prefber_RoolImage"+ "Load-An_RoolControl"+ "Load- An_RoolClip";
 
         AssetBundle _Point = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["PointImage"].CLPath);
         //AssetBundle _Point = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[4]].CLPath);
         Sprite Point = _Point.LoadAsset<Sprite>("Point");
         //_Point.Unload(false);
         Debug.Log("Load- _Point");
+        _Errortext.text = "正在下載檔案" + "Load- _Point";
 
         AssetBundle Prefber_PointImage = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["Prefber_PointImage"].CLPath);
         //AssetBundle Prefber_PointImage = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[5].Name[3]].CLPath);
         Object obj_PointImage = Prefber_PointImage.LoadAsset("Images_initalPositionS");
         GameObject _Prefber_PointImage = obj_PointImage as GameObject;
-
+        _Errortext.text = "正在下載檔案" + "Images_initalPositionS";
 
         //AssetBundle _Point = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["PointImage"].CLPath);
         ////AssetBundle _Point = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[4]].CLPath);
@@ -292,7 +302,7 @@ public class ResourceManager : MonoBehaviour
         _Point.Unload(false);
         Debug.Log("Load- Prefber_PointImage");
 
-
+        _Errortext.text = "正在下載檔案" + "Load- Prefber_PointImage";
 
 
         AssetBundle ABCSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["ABCSprites"].CLPath);
@@ -301,7 +311,7 @@ public class ResourceManager : MonoBehaviour
         //ABCSprites.Unload(false);
         Debug.Log("Load-  ABCSprites");
 
-
+        _Errortext.text = "正在下載檔案" + "Load-  ABCSprites";
 
         AssetBundle _ScoreBoardSprite = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["ScoreBoardSprite"].CLPath);
         //AssetBundle _ScoreBoardSprite = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[2]].CLPath);
@@ -312,7 +322,7 @@ public class ResourceManager : MonoBehaviour
         //_ScoreBoardSprite.Unload(false);
         Debug.Log("Load-_ScoreBoardSprite");
 
-
+        _Errortext.text = "正在下載檔案" + "Load-_ScoreBoardSprite";
 
 
 
@@ -328,8 +338,7 @@ public class ResourceManager : MonoBehaviour
         _ScoreBoardSprite.Unload(false);
         Debug.Log("Load- Prefber_BonusEnd");
 
-
-
+        _Errortext.text = "正在下載檔案" + "Load- Prefber_BonusEnd";
 
 
         AssetBundle BonusShow1Sprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["BonusShow1Sprites"].CLPath);
@@ -338,7 +347,7 @@ public class ResourceManager : MonoBehaviour
         //BonusShow1Sprites.Unload(false);
         Debug.Log("Load-BonusShow1Sprites");
 
-
+        _Errortext.text = "正在下載檔案" + "Load-BonusShow1Sprites";
 
         AssetBundle BonusShow2Sprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["BonusShow2Sprites"].CLPath);
         //AssetBundle BonusShow2Sprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[14]].CLPath);
@@ -347,7 +356,7 @@ public class ResourceManager : MonoBehaviour
         Debug.Log("Load- BonusShow2Sprites");
 
 
-
+        _Errortext.text = "正在下載檔案" + "Load- BonusShow2Sprites";
 
 
         AssetBundle Prefber_BonusShow = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["Prefber_BonusShow"].CLPath);
@@ -358,12 +367,16 @@ public class ResourceManager : MonoBehaviour
         //Prefber_BonusShow.Unload(false);
         Debug.Log("Load- Prefber_BonusShow");
 
+        _Errortext.text = "正在下載檔案" + "Load- Prefber_BonusShow";
+
 
         AssetBundle An_BonusShowControl = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["An_BonusShowControl"].CLPath);
         //AssetBundle An_BonusShowControl = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[3].Name[4]].CLPath);
         RuntimeAnimatorController _An_BonusShowControl = An_BonusShowControl.LoadAsset<RuntimeAnimatorController>("BonusShow");
         An_BonusShowControl.Unload(false);
         Debug.Log("Load- An_BonusShowControl");
+
+        _Errortext.text = "正在下載檔案" + "Load- An_BonusShowControl";
 
 
         AssetBundle An_BonusShowClip = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["An_BonusShowClip"].CLPath);
@@ -372,7 +385,7 @@ public class ResourceManager : MonoBehaviour
         An_BonusShowClip.Unload(false);
 
 
-
+        _Errortext.text = "正在下載檔案" + "An_BonusShowClip";
         //AssetBundle BonusShow1Sprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["BonusShow1Sprites"].CLPath);
         ////AssetBundle BonusShow1Sprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[13]].CLPath);
         //Sprite[] _BonusShow1Sprites = BonusShow1Sprites.LoadAllAssets<Sprite>();
@@ -401,7 +414,7 @@ public class ResourceManager : MonoBehaviour
         //An_BonusShowClip.Unload(false);
         Debug.Log("Load- An_BonusShowClip");
 
-
+        _Errortext.text = "正在下載檔案" + "Load- An_BonusShowClip";
 
 
         AssetBundle BonusEndShowSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["BonusEndShowSprites"].CLPath);
@@ -415,12 +428,15 @@ public class ResourceManager : MonoBehaviour
         //GameObject gameObject_BonusEndShow = Instantiate(_Prefber_BonusEndShow, Parent_BonusEndShow);
         //Prefber_BonusEndShow.Unload(false);
         Debug.Log("Load- Prefber_BonusEndShow");
+        _Errortext.text = "正在下載檔案" + "Load- Prefber_BonusEndShow";
 
         AssetBundle An_BonusEndShowControl = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["An_BonusEndShowControl"].CLPath);
         //AssetBundle An_BonusEndShowControl = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[3].Name[5]].CLPath);
         RuntimeAnimatorController _An_BonusEndShowControl = An_BonusEndShowControl.LoadAsset<RuntimeAnimatorController>("BonusEndShow");
         An_BonusEndShowControl.Unload(false);
         Debug.Log("Load- An_BonusEndShowControl");
+        _Errortext.text = "正在下載檔案" + "Load- An_BonusEndShowControl";
+
 
         AssetBundle An_BonusEndShowClip = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["An_BonusEndShowClip"].CLPath);
         //AssetBundle An_BonusEndShowClip = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[4].Name[5]].CLPath);
@@ -436,14 +452,14 @@ public class ResourceManager : MonoBehaviour
         Prefber_BonusEndShow.Unload(false);
         Debug.Log("Load- BonusEndShowSprites");
 
-
+        _Errortext.text = "正在下載檔案" + "Load- BonusEndShowSprites";
 
         GameObject gameObject_BonusEndShow = Instantiate(_Prefber_BonusEndShow, Parent_BonusEndShow);
         gameObject_BonusEndShow.GetComponent<Animator>().runtimeAnimatorController = _An_BonusEndShowControl;
         _BonusEndShow = gameObject_BonusEndShow.GetComponent<Animator>();
         //An_BonusEndShowClip.Unload(false);
         Debug.Log("Load- An_BonusEndShowClip");
-
+        _Errortext.text = "正在下載檔案" + "Load- An_BonusEndShowClip";
 
         AssetBundle An_UiEnlargeControl = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["An_UiEnlargeControl"].CLPath);
         //AssetBundle An_UiEnlargeControl = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[3].Name[2]].CLPath);
@@ -460,7 +476,7 @@ public class ResourceManager : MonoBehaviour
         An_UiEnlargeControl.Unload(false);
         Debug.Log("Load- An_UiEnlargeControl");
 
-
+        _Errortext.text = "正在下載檔案" + "Load- An_UiEnlargeControl";
 
         AssetBundle An_UiEnlargeClip = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["An_UiEnlargeClip"].CLPath);
         //AssetBundle An_UiEnlargeClip = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[4].Name[2]].CLPath);
@@ -469,13 +485,14 @@ public class ResourceManager : MonoBehaviour
         An_UiEnlargeClip.Unload(false);
         Debug.Log("Load- An_UiEnlargeClip");
 
+        _Errortext.text = "正在下載檔案" + "Load- An_UiEnlargeClip";
 
         AssetBundle _Sprite_Pool = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["SlotSprites"].CLPath);
         //AssetBundle _Sprite_Pool = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[0]].CLPath);
         Sprite_Pool = _Sprite_Pool.LoadAllAssets<Sprite>();
         _Sprite_Pool.Unload(false);
         Debug.Log("Load- _Sprite_Pool");
-
+        _Errortext.text = "正在下載檔案" + "Load- _Sprite_Pool";
 
         //AssetBundle _WinShowSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["WinShowSprites"].CLPath);
         ////AssetBundle _WinShowSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[1]].CLPath);
@@ -494,7 +511,7 @@ public class ResourceManager : MonoBehaviour
         //Debug.Log("Load-_ScoreBoardSprite");
 
 
-        
+
         //AssetBundle _RoolShowSprite = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["RoolShowSprite"].CLPath);
         ////AssetBundle _RoolShowSprite = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[3]].CLPath);
         //Sprite[] RoolShowSprite = _RoolShowSprite.LoadAllAssets<Sprite>();
@@ -516,49 +533,49 @@ public class ResourceManager : MonoBehaviour
         _Numbers = _NumbersSprites.LoadAllAssets<Sprite>();
         _NumbersSprites.Unload(false);
         Debug.Log("Load- _NumbersSprites");
-
+        _Errortext.text = "正在下載檔案" + "Load- _NumbersSprites";
 
         AssetBundle InfoBackSprite = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["InfoBackSprite"].CLPath);
         //AssetBundle InfoBackSprite = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[6]].CLPath);
         _InfoBackSprite.sprite = InfoBackSprite.LoadAsset<Sprite>("SpriteInfoBack");
         InfoBackSprite.Unload(false);
         Debug.Log("Load- InfoBackSprite");
-
+        _Errortext.text = "正在下載檔案" + "Load- InfoBackSprite";
 
         AssetBundle InFoSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["ImageInfoSprites"].CLPath);
         //AssetBundle InFoSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[7]].CLPath);
         _InFoSprites = InFoSprites.LoadAllAssets<Sprite>();
         InFoSprites.Unload(false);
         Debug.Log("Load- InFoSprites");
-
+        _Errortext.text = "正在下載檔案" + "Load- InFoSprites";
 
         AssetBundle Info_OutSprite = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["ImageInfo_OutSprite"].CLPath);
         //AssetBundle Info_OutSprite = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[8]].CLPath);
         _InfoBackSprite.transform.GetChild(3).GetComponent<Image>().sprite = Info_OutSprite.LoadAsset<Sprite>("IMG_InfoOut");
         Info_OutSprite.Unload(false);
         Debug.Log("Load-  Info_OutSprite");
-
+        _Errortext.text = "正在下載檔案" + "Load-  Info_OutSprite";
 
         AssetBundle Info_RightSprite = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["ImageInfo_RightSprite"].CLPath);
         //AssetBundle Info_RightSprite = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[9]].CLPath);
         _InfoBackSprite.transform.GetChild(2).GetComponent<Image>().sprite = Info_RightSprite.LoadAsset<Sprite>("IMG_InfoRight");
         Info_RightSprite.Unload(false);
         Debug.Log("Load-   Info_RightSprite");
-
+        _Errortext.text = "正在下載檔案" + "Load-   Info_RightSprite";
 
         AssetBundle Info_LeftSprite = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["ImageInfo_LeftSprite"].CLPath);
         //AssetBundle Info_LeftSprite = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[10]].CLPath);
         _InfoBackSprite.transform.GetChild(1).GetComponent<Image>().sprite = Info_LeftSprite.LoadAsset<Sprite>("IMG_InfoLeft");
         Info_LeftSprite.Unload(false);
         Debug.Log("Load-  Info_LeftSprite");
-
+        _Errortext.text = "正在下載檔案" + "Load-  Info_LeftSprite";
 
         AssetBundle ControlUi_MoneySprite = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["ControlUi_MoneySprite"].CLPath);
         //AssetBundle ControlUi_MoneySprite = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[11]].CLPath);
         _PlayerCoin_Text.transform.parent.GetComponent<Image>().sprite = ControlUi_MoneySprite.LoadAsset<Sprite>("MoneyBack");
         ControlUi_MoneySprite.Unload(false);
         Debug.Log("Load-ControlUi_MoneySprite");
-
+        _Errortext.text = "正在下載檔案" + "Load-ControlUi_MoneySprite";
 
 
         AssetBundle ControlUi_ButtonSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["ControlUi_ButtonSprites"].CLPath);
@@ -583,7 +600,7 @@ public class ResourceManager : MonoBehaviour
         InFoButton_Button.GetComponent<Image>().sprite = _ControlUi_ButtonSprites[2];
         ControlUi_ButtonSprites.Unload(false);
         Debug.Log("Load-ControlUi_ButtonSprites");
-
+        _Errortext.text = "正在下載檔案" + "Load-ControlUi_ButtonSprites";
 
 
         //AssetBundle BonusShow1Sprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["BonusShow1Sprites"].CLPath);
@@ -614,7 +631,7 @@ public class ResourceManager : MonoBehaviour
         _Options.GetComponent<Image>().sprite = _BackImageSprite;
         BackImageSprite.Unload(false);
         Debug.Log("Load- BackImageSprite");
-
+        _Errortext.text = "正在下載檔案" + "Load- BackImageSprite";
 
         //AssetBundle ABCSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["ABCSprites"].CLPath);
         ////AssetBundle ABCSprites = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[0].Name[17]].CLPath);
@@ -623,27 +640,31 @@ public class ResourceManager : MonoBehaviour
         //Debug.Log("Load-  ABCSprites");
 
 
-       // AssetBundle RawImage = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["RawImage"].CLPath);
-       // //AssetBundle RawImage = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[1].Name[0]].CLPath);
-       // RenderTexture MyTexture = RawImage.LoadAsset<RenderTexture>("VideoTexture");
+        // AssetBundle RawImage = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["RawImage"].CLPath);
+        // //AssetBundle RawImage = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[1].Name[0]].CLPath);
+        // RenderTexture MyTexture = RawImage.LoadAsset<RenderTexture>("VideoTexture");
 
-       // //_VideoImage.texture = RawImage.LoadAsset<Texture>("VideoTexture");
-       // _VideoImage.texture = MyTexture;
-       // _EndShowPlayer.targetTexture = MyTexture;
-       // RawImage.Unload(false);
-       // Debug.Log("Load- RawImage");
+        // //_VideoImage.texture = RawImage.LoadAsset<Texture>("VideoTexture");
+        // _VideoImage.texture = MyTexture;
+        // _EndShowPlayer.targetTexture = MyTexture;
+        // RawImage.Unload(false);
+        // Debug.Log("Load- RawImage");
 
-       // AssetBundle MyVideo = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["MyVideo"].CLPath);
-       // //AssetBundle MyVideo = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[2].Name[0]].CLPath);
-       // VideoClip _MyVideo = MyVideo.LoadAsset<VideoClip>("MYVIDEO");
-       // _EndShowVideoClip = _MyVideo;
-       // _VideoImage.GetComponent<VideoPlayer>().clip = _MyVideo;
-       // MyVideo.Unload(false);
-       // Debug.Log("Load- MyVideo");
+        // AssetBundle MyVideo = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate["MyVideo"].CLPath);
+        // //AssetBundle MyVideo = AssetBundle.LoadFromFile(_CSAComper.Di_BundleDate[_CSAComper.bundleDate[2].Name[0]].CLPath);
+        // VideoClip _MyVideo = MyVideo.LoadAsset<VideoClip>("MYVIDEO");
+        // _EndShowVideoClip = _MyVideo;
+        // _VideoImage.GetComponent<VideoPlayer>().clip = _MyVideo;
+        // MyVideo.Unload(false);
+        // Debug.Log("Load- MyVideo");
 
-       ////_EndShowPlayer.Pause();
+        ////_EndShowPlayer.Pause();
 
-       // LoadChack_Image.gameObject.SetActive(false);
+        _Errortext.text = "下載完成";
+
+
+
+        LoadChack_Image.gameObject.SetActive(false);
 
 
 
