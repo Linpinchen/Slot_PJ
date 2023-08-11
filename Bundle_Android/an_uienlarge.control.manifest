@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3425470537
+CRC: 4269450229
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: be980b08dcb6f5442e332d5c35f1d81c
+    Hash: 27f8b0a9c42c14cd50bed36ded487081
   TypeTreeHash:
     serializedVersion: 2
     Hash: fdf6c57a251b9f6ec27bdd2fe01b033c
@@ -14,6 +14,6 @@ ClassTypes:
 - Class: 91
   Script: {instanceID: 0}
 Assets:
-- Assets/Animation/AnimatorControl/UiEnlarge.controller
+- Assets/Editor Default Resources/Animation/AnimatorControl/UiEnlarge.controller
 Dependencies:
 - /Users/PinChenLin/Desktop/Slot_PJ/Bundle_Android/an_uienlarge.clip

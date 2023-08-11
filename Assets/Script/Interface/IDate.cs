@@ -29,8 +29,6 @@ public interface IDate
     int Win_Sprite(Pool_Images _poolimage, int Line_Count, int WinMoneys);
     void DateSave(SlotGrid CommonGrid, SlotGrid BonusGrid, int FreeGamecount);
     int WInChack(GridIntS _Gridints);
-    void CheckBetCoin();
-
-
+    
 
 }

@@ -15,7 +15,7 @@ public class Slot_data : IDate
 	List<int> _Temp;
 
 	[SerializeField]
-	int _CurrentReel;//當前輪條
+	int _CurrentReel;//當前輪條紀錄（輪條邊框閃圖用）
 
 	[SerializeField]
 	int[] _PrizeDate;//連線資料
@@ -50,10 +50,16 @@ public class Slot_data : IDate
 	[SerializeField]
 	int Bonus_count;//當前 Bonus圖片出現的數量（用來算每個輪條[2][3][4]Bonus圖片出現幾次）
 
-	
-	
+
 	public List<intCount> _Date;
 	ResourceManager _ResourceManager;
+
+
+	//------------------------新增的內容-----------
+
+	public SeverDate GetSeverDate; //接內容就 GetSeverDate = SeverScript.GridCreatEvent(bool,int);
+
+	public GridIntS GetGridIntS;//盤面就 GetGridsInts = JsonUtility.FromJson<GridIntS>(GetSeverDate.SeverJson[?]);
 
 
 
@@ -117,6 +123,7 @@ public class Slot_data : IDate
 	}
 	#endregion
 
+
 	#region 初始化時 將盤面的圖灌好 跟資料無關只是顯示圖片
 	/// <summary>
 	/// 初始化時 將盤面的圖灌成跟＿Reel_Sprite_Date資料上的一樣
@@ -145,17 +152,6 @@ public class Slot_data : IDate
 
 	}
 	#endregion
-
-
-
-	public void CheckBetCoin()
-	{
-		Debug.Log("執行CheckBetCoin");
-		Debug.Log(bet_Coin);
-
-	}
-
-
 
 
 	#region 普通盤面生成灌入
@@ -255,6 +251,7 @@ public class Slot_data : IDate
 	}
 	#endregion
 
+
 	#region Bonus 盤面資料生成灌入
 	/// <summary>
 	/// Bonus 盤面資料生成
@@ -309,6 +306,7 @@ public class Slot_data : IDate
 
 	}
 	#endregion
+
 
 	#region 測試用（指定盤面獲得Bonus獎）
 	/// <summary>
@@ -423,6 +421,7 @@ public class Slot_data : IDate
 	}
 	#endregion
 
+
 	#region 資料轉成Int儲存
 	/// <summary>
 	/// 資料轉成Int儲存
@@ -469,6 +468,7 @@ public class Slot_data : IDate
 	}
 
 	#endregion
+
 
 	#region 連線圖片種類與連線數判斷
 	/// <summary>
@@ -697,6 +697,7 @@ public class Slot_data : IDate
 	}
 	#endregion
 
+
 	#region 資料的儲存以及讀取
 	/// <summary>
 	/// 將資料轉成Jason並且儲存
@@ -705,7 +706,7 @@ public class Slot_data : IDate
 	{
 		Debuger.Log("執行DateSave 資料儲存,");
 
-		if (Bonus_count == FreeGamecount)
+		if (Bonus_count == 3)
 		{
 
 			DateTypeChange(BonusGrid);
@@ -719,9 +720,9 @@ public class Slot_data : IDate
 		}
 
 		_Slot_SeverDate.BetCoin = bet_Coin;
-		_Slot_SeverDate.Auto_HasRollcount = _AutoSurplus;
+		_Slot_SeverDate.Auto_HasRollcount = _CycleCount;
 		_Slot_SeverDate.Auto_PlayerSet = _AutoCount;
-		_Slot_SeverDate.Auto_NotYet = _CycleCount;
+		_Slot_SeverDate.Auto_NotYet = _AutoSurplus; 
 		_Slot_SeverDate.Player_Coin = Coin;
 		_Slot_SeverDate.BonusCoin = Total_BonusWinCoin;
 		_Slot_SeverDate.Win_Coin = WinCoin;
@@ -734,9 +735,14 @@ public class Slot_data : IDate
 		Debuger.Log("資料內容 ：" + SaveDateToJason);
 		Debuger.Log("目前是否有儲存到資料 ：" + PlayerPrefs.HasKey("遊戲資料")); ;
 
+		Debug.Log($"<Date>玩家要循環次數_AutoCount:{_AutoCount}");
+		Debug.Log($"<Date>未循環次數:{_AutoSurplus}");
+		Debug.Log($"<Date>已循環次數:{_CycleCount}");
+
 	}
 
 	#endregion
+
 
 	#region (新) 連線判斷
 	/// <summary>

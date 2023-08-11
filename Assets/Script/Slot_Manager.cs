@@ -193,7 +193,7 @@ public class Slot_Manager : MonoBehaviour
 
         _ShowScript.ObjectPoolInitialization();//物件池 預置物生成
 
-        _SlotDate.CycleCount = 1;
+        _SlotDate.CycleCount = 0;
         _SlotDate.PlayerCoin = 1099;
         _SlotDate.AutoCount = 1;
         _SlotDate.LeastBetCount = 100;
@@ -276,6 +276,7 @@ public class Slot_Manager : MonoBehaviour
         CommonGrid = new SlotGrid(1, Reelcount, ImageQuantity, _SlotDate.Generate_Date_Sprite);
         BonusGrid = new SlotGrid(FreeGameCount, Reelcount, ImageQuantity, _SlotDate.GenerateBonusDate);
 
+
     }
     #endregion
 
@@ -324,20 +325,20 @@ public class Slot_Manager : MonoBehaviour
         if (Start_Slot == false && _SlotDate.Bet_Coin != 0 && _SlotDate.PlayerCoin >= _SlotDate.LeastBetCount)//如果Start_Slot == false（代表按鈕有作用 現在並無作動） 而且 下注金額不等於0 而且  玩家金額要大於最低押注金額
         {
 
-            int Autoi;
-            Autoi = int.Parse(_ResourceManager._Auto_text.text);
-            _SlotDate.AutoSurplus = Autoi;
+            //int Autoi;
+            //Autoi = int.Parse(_ResourceManager._Auto_text.text);
+            //_SlotDate.AutoSurplus = Autoi;
             _SlotDate.PlayerCoin -= _SlotDate.Bet_Coin;
             Debuger.Log("_SlotDate.Bet_Coin :"+ _SlotDate.Bet_Coin);
 
             _ResourceManager._PlayerCoin_Text.text = "Money:" + _SlotDate.PlayerCoin;
 
-            if (_SlotDate.AutoSurplus > 1)
-            {
+            //if (_SlotDate.AutoSurplus > 1)
+            //{
 
-                _SlotDate.AutoCount = _SlotDate.AutoSurplus;
+            //    _SlotDate.AutoCount = _SlotDate.AutoSurplus;
 
-            }
+            //}
 
             GridCreat_Event( CommonGrid, BonusGrid);
             _CoAll_Slot_Roll = CoAll_Slot_Roll(CommonGrid._grids[0]);
@@ -509,21 +510,26 @@ public class Slot_Manager : MonoBehaviour
 
                 if (_Reel_Moves[Slot_mantissa].tempi == 0) //這裡重新生成盤面資料 兌獎 設定預制物 
                 {
-
+                    
                     GridCreat_Event(CommonGrid, BonusGrid);
                     B_Slot_timeOut = true;
                     yield return new WaitForSeconds(1f);
                     Debuger.Log("Wait");
                     _CoAll_Slot_Roll = CoAll_Slot_Roll(CommonGrid._grids[0]);
                     StartCoroutine(_CoAll_Slot_Roll);
-                    _SlotDate.CycleCount += 1;
-                    _SlotDate.AutoSurplus -= 1;
-                    _ResourceManager._Auto_text.text = _SlotDate.AutoSurplus.ToString();
+                    //_SlotDate.CycleCount += 1;
+                    //_SlotDate.AutoSurplus -= 1;
+                    //_ResourceManager._Auto_text.text = _SlotDate.AutoSurplus.ToString();
                     _SlotDate.PlayerCoin -= _SlotDate.Bet_Coin;
                     _ResourceManager._PlayerCoin_Text.text = "Money:" + _SlotDate.PlayerCoin;
                     Debuger.Log(_SlotDate.CycleCount + "已循環次數");
                     //Debug.Log("Win_Mpney_Temp" + Win_Money_Temp);
                     StCoShow = true;
+
+
+                    Debug.Log($"<Date>玩家要循環次數_AutoCount:{_SlotDate.AutoCount}");
+                    Debug.Log($"<Date>未循環次數:{_SlotDate.AutoSurplus}");
+                    Debug.Log($"<Date>已循環次數:{_SlotDate.CycleCount}");
 
                 }
 
@@ -539,8 +545,8 @@ public class Slot_Manager : MonoBehaviour
                 St_Roll = true;
                 StCoShow = true;
                 NowFreeCount = 0;
-                _SlotDate.CycleCount = 1;
-                _SlotDate.AutoSurplus = 0;
+                _SlotDate.CycleCount = 0;
+                _SlotDate.AutoSurplus = 1;
                 B_Slot_timeOut = true;
 
             }
@@ -684,6 +690,21 @@ public class Slot_Manager : MonoBehaviour
 
     #endregion
 
+
+
+
+    /*
+     * 盤面表演生成需要切開
+     * 
+     * 這裡調用SeverScript 將最終盤面生成
+     * 生成後的資料會丟給Date
+     * Date只有一個盤面（SlotGrid）
+     * 
+     * 透過 將 Date中的 Json陣列 轉換回來放近 Date的 SlotGrid 來更改盤面內容
+     */
+
+
+
     #region 盤面 表演物件生成
     /// <summary>
     /// 盤面,表演物件 生成 
@@ -759,6 +780,15 @@ public class Slot_Manager : MonoBehaviour
             }
 
         }
+
+
+        _SlotDate.CycleCount += 1;
+        _SlotDate.AutoSurplus -= 1;
+        if (_SlotDate.AutoSurplus<1)
+        {
+            _SlotDate.AutoSurplus = 1;
+        }
+        _ResourceManager._Auto_text.text = _SlotDate.AutoSurplus.ToString();
 
 
         _SlotDate.DateSave(CommonGrid, BonusGrid, FreeGameCount);
@@ -940,15 +970,23 @@ public class Slot_Manager : MonoBehaviour
 
             if (_SlotDate.Slot_SeverDate.Auto_PlayerSet > _SlotDate.Slot_SeverDate.Auto_NotYet)
             {
-                _SlotDate.AutoSurplus = _SlotDate.Slot_SeverDate.Auto_HasRollcount - 1;
 
-                _SlotDate.CycleCount = _SlotDate.Slot_SeverDate.Auto_NotYet + 1;
+                //_SlotDate.AutoSurplus = _SlotDate.Slot_SeverDate.Auto_HasRollcount - 1;
+
+                //_SlotDate.CycleCount = _SlotDate.Slot_SeverDate.Auto_NotYet + 1;
+
+                _SlotDate.AutoSurplus = _SlotDate.Slot_SeverDate.Auto_NotYet;
+                _SlotDate.CycleCount = _SlotDate.Slot_SeverDate.Auto_HasRollcount;
+                _SlotDate.AutoCount = _SlotDate.Slot_SeverDate.Auto_PlayerSet;
+
+                Debug.Log($"讀取紀錄：未循環次數:{_SlotDate.AutoSurplus},以循環次數：{_SlotDate.CycleCount},玩家設定次數:{_SlotDate.AutoCount}");
+
             }
             else
             {
-
+                Debug.Log($"else:  __ SlotDate Auto:{_SlotDate.AutoCount}, playerSte:{_SlotDate.Slot_SeverDate.Auto_PlayerSet} , AutoSurplus:{_SlotDate.AutoSurplus}, AutoNotyet :{_SlotDate.Slot_SeverDate.Auto_NotYet}, CycleCount : {_SlotDate.CycleCount} , AutoHasRpll:{_SlotDate.Slot_SeverDate.Auto_HasRollcount}");
                 _SlotDate.AutoSurplus = 1;
-                _SlotDate.CycleCount = 1;
+                _SlotDate.CycleCount = 0;
 
             }
             _SlotDate.AutoCount = _SlotDate.Slot_SeverDate.Auto_PlayerSet;
@@ -990,9 +1028,11 @@ public class Slot_Manager : MonoBehaviour
     }
     #endregion
 
-
-
-
+    #region 執行本地與雲端板號確認並載入Bundle近場景
+    /// <summary>
+    /// 執行本地與雲端板號確認並載入Bundle近場景
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator CheckBundleLoad()
     {
 
@@ -1002,14 +1042,7 @@ public class Slot_Manager : MonoBehaviour
 
 
     }
-
-
-
-
-
-
-
-
+    #endregion
 
     #region 平台偵測
     /// <summary>
@@ -1060,7 +1093,7 @@ public class Slot_Manager : MonoBehaviour
 
     #endregion
 
-
+    #region 運行平台偵測
     /// <summary>
     /// Bundle載入平台檢測
     /// </summary>
@@ -1102,7 +1135,7 @@ public class Slot_Manager : MonoBehaviour
         #endif
 
     }
-
+    #endregion
 
 
 

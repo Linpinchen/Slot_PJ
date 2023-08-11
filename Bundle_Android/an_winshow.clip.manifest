@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2574478514
+CRC: 2385069320
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 95e314c8578f5f7e50f2685ff320a959
+    Hash: d3c8da30820ae5ef3504fcbf964caf34
   TypeTreeHash:
     serializedVersion: 2
     Hash: af57576da81d5d3ce45807ac11234de6
@@ -12,5 +12,5 @@ ClassTypes:
 - Class: 74
   Script: {instanceID: 0}
 Assets:
-- Assets/Animation/AmimationClip/WinShowClip.anim
+- Assets/Editor Default Resources/Animation/AmimationClip/WinShowClip.anim
 Dependencies: []

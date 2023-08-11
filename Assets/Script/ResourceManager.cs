@@ -100,6 +100,10 @@ public class ResourceManager : MonoBehaviour
     //預置物得部分 要改成 連圖片都載完後再生成 不然會掉圖 
     
 
+    /// <summary>
+    /// 將Bundle資源 載入近來
+    /// </summary>
+    /// <param name="reel_Moves"></param>
     public void LoadClientAssetBundel(Reel_Move[] reel_Moves)
     {
         _Errortext.text = "正在下載檔案";

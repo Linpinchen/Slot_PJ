@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3626926389
+CRC: 3184851853
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 34d618a91381f57dee349b917d66028d
+    Hash: a2bf08536ad91f5e40e0e87ef604e295
   TypeTreeHash:
     serializedVersion: 2
     Hash: e9ff7947e86ac18259f8d8c6c35c7861
@@ -14,6 +14,6 @@ ClassTypes:
 - Class: 115
   Script: {instanceID: 0}
 Assets:
-- Assets/Animation/AmimationClip/BonusShow2Clip.anim
-- Assets/Animation/AmimationClip/BonusShow1Clip.anim
+- Assets/Editor Default Resources/Animation/AmimationClip/BonusShow2Clip.anim
+- Assets/Editor Default Resources/Animation/AmimationClip/BonusShow1Clip.anim
 Dependencies: []

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 529816847
+CRC: 1992856514
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: e9f2e1abfaeb21e6ea15a0f55f8c4300
+    Hash: 1d19bacb78bdeacd91e23deb4eb74cfa
   TypeTreeHash:
     serializedVersion: 2
     Hash: af57576da81d5d3ce45807ac11234de6
@@ -12,5 +12,5 @@ ClassTypes:
 - Class: 74
   Script: {instanceID: 0}
 Assets:
-- Assets/Animation/AmimationClip/UiEnlargeClip.anim
+- Assets/Editor Default Resources/Animation/AmimationClip/UiEnlargeClip.anim
 Dependencies: []

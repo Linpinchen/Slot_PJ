@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1379831752
+CRC: 1834720846
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 8a03e21789c3d66cf5162aaaecc795cf
+    Hash: e76854231b969e4caea7fe79d0c4a0a2
   TypeTreeHash:
     serializedVersion: 2
     Hash: fdf6c57a251b9f6ec27bdd2fe01b033c
@@ -14,6 +14,6 @@ ClassTypes:
 - Class: 91
   Script: {instanceID: 0}
 Assets:
-- Assets/Animation/AnimatorControl/UiShiny.controller
+- Assets/Editor Default Resources/Animation/AnimatorControl/UiShiny.controller
 Dependencies:
 - /Users/PinChenLin/Desktop/Slot_PJ/Bundle_Android/an_uishiny.clip

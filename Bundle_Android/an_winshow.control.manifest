@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 550664073
+CRC: 2641882404
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: dae82d09ee9a9bd06b40bb518d9ed307
+    Hash: 38658900198d8c16b2b709c25b39ee6a
   TypeTreeHash:
     serializedVersion: 2
     Hash: fdf6c57a251b9f6ec27bdd2fe01b033c
@@ -14,6 +14,6 @@ ClassTypes:
 - Class: 91
   Script: {instanceID: 0}
 Assets:
-- Assets/Animation/AnimatorControl/WinShow.controller
+- Assets/Editor Default Resources/Animation/AnimatorControl/WinShow.controller
 Dependencies:
 - /Users/PinChenLin/Desktop/Slot_PJ/Bundle_Android/an_winshow.clip

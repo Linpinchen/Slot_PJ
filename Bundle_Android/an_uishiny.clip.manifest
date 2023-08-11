@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1127232945
+CRC: 2147819029
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 061f5fdb5be424c292426dc4506b2816
+    Hash: 2b2813b45fa60e088e66a7a24bc89433
   TypeTreeHash:
     serializedVersion: 2
     Hash: af57576da81d5d3ce45807ac11234de6
@@ -12,5 +12,5 @@ ClassTypes:
 - Class: 74
   Script: {instanceID: 0}
 Assets:
-- Assets/Animation/AmimationClip/UiShinyClip.anim
+- Assets/Editor Default Resources/Animation/AmimationClip/UiShinyClip.anim
 Dependencies: []

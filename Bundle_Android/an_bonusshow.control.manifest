@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3656328028
+CRC: 545077947
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: aaa6ca7bf890dd667cb0cc19c2778060
+    Hash: 5305dfe593fe536d3369b5b123787ba8
   TypeTreeHash:
     serializedVersion: 2
     Hash: fdf6c57a251b9f6ec27bdd2fe01b033c
@@ -14,6 +14,6 @@ ClassTypes:
 - Class: 91
   Script: {instanceID: 0}
 Assets:
-- Assets/Animation/AnimatorControl/BonusShow.controller
+- Assets/Editor Default Resources/Animation/AnimatorControl/BonusShow.controller
 Dependencies:
 - /Users/PinChenLin/Desktop/Slot_PJ/Bundle_Android/an_bonusshow.clip

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1884699549
+CRC: 2334175869
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: dd13b7ae6a21b29e34b3721b36768be4
+    Hash: 2e386f370e543630f4c6b78da29f2670
   TypeTreeHash:
     serializedVersion: 2
     Hash: af57576da81d5d3ce45807ac11234de6
@@ -12,5 +12,5 @@ ClassTypes:
 - Class: 74
   Script: {instanceID: 0}
 Assets:
-- Assets/Animation/AmimationClip/BonusEndShowClip.anim
+- Assets/Editor Default Resources/Animation/AmimationClip/BonusEndShowClip.anim
 Dependencies: []
