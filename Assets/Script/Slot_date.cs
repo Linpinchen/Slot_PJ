@@ -8,11 +8,11 @@ public class Slot_data : IDate
 {
 
 	public IMove[] ReelMoves;
-	public Slot_SeveDate _Slot_SeverDate;
+	public Slot_Save _Slot_Save;
 
 
 	[SerializeField]
-	List<int> _Temp;
+	List<int> _Temp;//紀錄本局中了哪幾條線
 
 	[SerializeField]
 	int _CurrentReel;//當前輪條紀錄（輪條邊框閃圖用）
@@ -57,9 +57,9 @@ public class Slot_data : IDate
 
 	//------------------------新增的內容-----------
 
-	public SeverDate GetSeverDate; //接內容就 GetSeverDate = SeverScript.GridCreatEvent(bool,int);
+	public SeverDate _GetSeverDate; //接內容就 GetSeverDate = SeverScript.GridCreatEvent(bool,int);
 
-	public GridIntS GetGridIntS;//盤面就 GetGridsInts = JsonUtility.FromJson<GridIntS>(GetSeverDate.SeverJson[?]);
+	public List<GridIntS> _GetGridIntS;//盤面就 GetGridsInts = JsonUtility.FromJson<GridIntS>(GetSeverDate.SeverJson[?]);
 
 
 
@@ -93,7 +93,11 @@ public class Slot_data : IDate
 
 	public List<intCount> Date { get { return _Date; } set { _Date = value; } }
 
-	public Slot_SeveDate Slot_SeverDate { get { return _Slot_SeverDate; } set { _Slot_SeverDate = value; } }
+	public Slot_Save Slot_Save { get { return _Slot_Save; } set { _Slot_Save = value; } }
+
+	public SeverDate GetSeverDate { get { return _GetSeverDate; } set { _GetSeverDate = value; } }
+
+	public List<GridIntS> GetGridIntS { get { return _GetGridIntS; } set { _GetGridIntS = value; } }
 
 	#endregion
 
@@ -103,13 +107,13 @@ public class Slot_data : IDate
 	/// </summary>
 	/// <param name="_IUICM"></param>
 	/// <param name="_ReelMoves"></param>
-	public Slot_data(IMove[] ReelMoves, ResourceManager _ResourceManager)
+	public Slot_data(IMove[] ReelMoves, ResourceManager _ResourceManager,int FreeGameCount)
 	{
 		this.ReelMoves = ReelMoves;
 		this._ResourceManager = _ResourceManager;
 		_Date = new List<intCount>();
-		_Slot_SeverDate = new Slot_SeveDate();
-		_Slot_SeverDate.Data = new List<intCount>();
+		_Slot_Save = new Slot_Save();
+		_Slot_Save.Data = new List<intCount>();
 		_Temp = new List<int>();
 		BonusWin = new List<int>();
 		_PrizeDate = new int[]
@@ -119,6 +123,15 @@ public class Slot_data : IDate
 			12321,12221,12121,11311,11233,11111
 		};
 
+		_GetGridIntS = new List<GridIntS>();
+		for (int i=0;i<(FreeGameCount+1);i++)
+		{
+			_GetGridIntS.Add(new GridIntS());
+			
+		}
+
+		Debug.Log("Date建構子 : __GetGridIntS的數量" + _GetGridIntS.Count);
+		_GetSeverDate = new SeverDate();
 		
 	}
 	#endregion
@@ -427,13 +440,26 @@ public class Slot_data : IDate
 	/// 資料轉成Int儲存
 	/// </summary>
 	/// <param name="_ReelMove"></param>
-	public void DateTypeChange(SlotGrid _SlotGrid)
+	public void DateTypeChange()
 	{
 
-		int Reelcount;
-		Reelcount = _SlotGrid.reelcount;//有多少輪條
-		int GridCount = _SlotGrid._girdcount - 1;//最後的盤面在List中的值
+		GridIntS TempSlotGrid;
+		int SeverDateCount = _GetSeverDate.SeverJson.Count - 1;
 
+		if (Bonus_count == 3)
+		{
+			TempSlotGrid = _GetGridIntS[SeverDateCount];
+			
+		}
+		else
+		{
+			TempSlotGrid = _GetGridIntS[0];
+		
+		}
+
+		int Reelcount;
+		Reelcount = TempSlotGrid._Grids.Count;//有多少輪條
+		
 		Debug.Log("執行 DateTypeChange");
 		Debug.Log("_Date.Count :" + _Date.Count);
 		for (int k=0;k<_Date.Count;k++)
@@ -445,21 +471,22 @@ public class Slot_data : IDate
 
 
 
-		Debug.Log(string.Format("_SlotGrid._grids 數量（盤面數）{0}  ,  輪條數 {1} ", _SlotGrid._grids.Count, _SlotGrid._grids[GridCount]._Grids.Count));
-		
+		Debug.Log($"GridInts(輪盤)的輪條數 {Reelcount}");
+
+
 
 
 
 
 		for (int i = 0; i < Reelcount; i++)
 		{
-			int tempi = _SlotGrid.imagecount[i];
+			int tempi = TempSlotGrid._Grids[i]._GridInt.Count;
 
 			for (int j = 0; j < tempi; j++)
 			{
 
 				//把_SlotGrid的Enum資料轉成Int放進_Date
-				_Date[i]._IntCount[j] = (int)_SlotGrid._grids[GridCount]._Grids[i]._GridInt[j];
+				_Date[i]._IntCount[j] = (int)TempSlotGrid._Grids[i]._GridInt[j];
 
 			}
 
@@ -702,33 +729,22 @@ public class Slot_data : IDate
 	/// <summary>
 	/// 將資料轉成Jason並且儲存
 	/// </summary>
-	public void DateSave(SlotGrid CommonGrid, SlotGrid BonusGrid, int FreeGamecount)
+	public void DateSave()
 	{
 		Debuger.Log("執行DateSave 資料儲存,");
 
-		if (Bonus_count == 3)
-		{
+		DateTypeChange();
 
-			DateTypeChange(BonusGrid);
-
-		}
-		else
-		{
-
-			DateTypeChange(CommonGrid);
-
-		}
-
-		_Slot_SeverDate.BetCoin = bet_Coin;
-		_Slot_SeverDate.Auto_HasRollcount = _CycleCount;
-		_Slot_SeverDate.Auto_PlayerSet = _AutoCount;
-		_Slot_SeverDate.Auto_NotYet = _AutoSurplus; 
-		_Slot_SeverDate.Player_Coin = Coin;
-		_Slot_SeverDate.BonusCoin = Total_BonusWinCoin;
-		_Slot_SeverDate.Win_Coin = WinCoin;
-		_Slot_SeverDate.Data = _Date;
+		_Slot_Save.BetCoin = bet_Coin;
+		_Slot_Save.Auto_HasRollcount = _CycleCount;
+		_Slot_Save.Auto_PlayerSet = _AutoCount;
+		_Slot_Save.Auto_NotYet = _AutoSurplus;
+		_Slot_Save.Player_Coin = Coin;
+		_Slot_Save.BonusCoin = Total_BonusWinCoin;
+		_Slot_Save.Win_Coin = WinCoin;
+		_Slot_Save.Data = _Date;
 		string SaveDateToJason;
-		SaveDateToJason = JsonUtility.ToJson(_Slot_SeverDate);
+		SaveDateToJason = JsonUtility.ToJson(_Slot_Save);
 		PlayerPrefs.SetString("遊戲資料", SaveDateToJason);
 		PlayerPrefs.Save();
 		Debuger.Log("資料儲存完成");
@@ -751,7 +767,7 @@ public class Slot_data : IDate
 	/// <param name="PrizeDate"></param>
 	/// <param name="_Gridints"></param>
 	/// <param name="Win_Money"></param>
-	public int WInChack( GridIntS _Gridints)
+	public int WInChack(int count)
 	{
 
 		Debuger.Log("執行WinCheck , 遊戲中設定的中獎連線數有多少條 ：" + _PrizeDate.Length);
@@ -776,17 +792,17 @@ public class Slot_data : IDate
 
 			Debuger.Log("Tempi :" + Tempi.Count);
 
-			if ((_Gridints._Grids[0]._GridInt[Tempi[0]] == _Gridints._Grids[1]._GridInt[Tempi[1]] || _Gridints._Grids[1]._GridInt[Tempi[1]] == Pool_Images.Universal_Sprite) && _Gridints._Grids[0]._GridInt[Tempi[0]] != Pool_Images.Bonus)
+			if ((_GetGridIntS[count]._Grids[0]._GridInt[Tempi[0]] == _GetGridIntS[count]._Grids[1]._GridInt[Tempi[1]] || _GetGridIntS[count]._Grids[1]._GridInt[Tempi[1]] == Pool_Images.Universal_Sprite) && _GetGridIntS[count]._Grids[0]._GridInt[Tempi[0]] != Pool_Images.Bonus)
 			{
 
-				Pool_Images _PoolImages = _Gridints._Grids[0]._GridInt[Tempi[0]];//最左的初始中獎圖
+				Pool_Images _PoolImages = _GetGridIntS[count]._Grids[0]._GridInt[Tempi[0]];//最左的初始中獎圖
 
-				if (_Gridints._Grids[2]._GridInt[Tempi[2]] == Pool_Images.Universal_Sprite || _PoolImages == _Gridints._Grids[2]._GridInt[Tempi[2]])
+				if (_GetGridIntS[count]._Grids[2]._GridInt[Tempi[2]] == Pool_Images.Universal_Sprite || _PoolImages == _GetGridIntS[count]._Grids[2]._GridInt[Tempi[2]])
 				{
 
-					if ((_PoolImages == _Gridints._Grids[3]._GridInt[Tempi[3]] || _Gridints._Grids[3]._GridInt[Tempi[3]] == Pool_Images.Universal_Sprite)
+					if ((_PoolImages == _GetGridIntS[count]._Grids[3]._GridInt[Tempi[3]] || _GetGridIntS[count]._Grids[3]._GridInt[Tempi[3]] == Pool_Images.Universal_Sprite)
 						&&
-					   (_PoolImages == _Gridints._Grids[4]._GridInt[Tempi[4]] || _Gridints._Grids[4]._GridInt[Tempi[4]] == Pool_Images.Universal_Sprite))//33333
+					   (_PoolImages == _GetGridIntS[count]._Grids[4]._GridInt[Tempi[4]] || _GetGridIntS[count]._Grids[4]._GridInt[Tempi[4]] == Pool_Images.Universal_Sprite))//33333
 					{
 
 						Debuger.Log("Win");
@@ -797,7 +813,7 @@ public class Slot_data : IDate
 
 					}
 
-					else if (_PoolImages == _Gridints._Grids[3]._GridInt[Tempi[3]] || _Gridints._Grids[3]._GridInt[Tempi[3]] == Pool_Images.Universal_Sprite)//3333
+					else if (_PoolImages == _GetGridIntS[count]._Grids[3]._GridInt[Tempi[3]] || _GetGridIntS[count]._Grids[3]._GridInt[Tempi[3]] == Pool_Images.Universal_Sprite)//3333
 					{
 
 						Debuger.Log("Win");
@@ -840,7 +856,7 @@ public class Slot_data : IDate
 /// 資料儲存用的Class
 /// </summary>
 [System.Serializable]
-public class Slot_SeveDate
+public class Slot_Save
 {
 
 	public int Win_Coin;

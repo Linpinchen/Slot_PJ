@@ -86,6 +86,8 @@ public class ShowScript : MonoBehaviour, IShow
         _DrawLineOk = new List<bool>();
         _PrepareDrawLine = new List<GameObject>();
 
+       
+
     }
     #endregion
 

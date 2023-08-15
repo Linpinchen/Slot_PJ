@@ -18,17 +18,22 @@ public interface IDate
     int AutoSurplus { get; set; }
     int BonusCount { get; set; }
     List<intCount> Date { get; set; }
-    Slot_SeveDate Slot_SeverDate { get; set; }
+    Slot_Save Slot_Save { get; set; }
+    //-----新加內容--------------------
+    SeverDate GetSeverDate { get; set; }
+    List<GridIntS> GetGridIntS { get; set; }
+
+
 
 
     void Initialization_Slot_Sprite();
     void Generate_Date_Sprite(SlotGrid slotGrid);
     void GenerateBonusDate(SlotGrid slotGrid);
     void Add_BonusDate(bool BtnTrue, SlotGrid _SlotGrid);
-    void DateTypeChange(SlotGrid _SlotGrid);
+    void DateTypeChange();
     int Win_Sprite(Pool_Images _poolimage, int Line_Count, int WinMoneys);
-    void DateSave(SlotGrid CommonGrid, SlotGrid BonusGrid, int FreeGamecount);
-    int WInChack(GridIntS _Gridints);
+    void DateSave();
+    int WInChack(int count);
     
 
 }

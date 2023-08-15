@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SeverScript : MonoBehaviour
+public class SeverScript 
 {
+	//帶修改 將BonusCount (Bonus圖出現次數) 以及 ShineReel（要閃圖的輪條） 都跟著放在SeverDate這個Class 讓Sever 傳去給Date腳本接
 
+	public int  Bonus_count;//Bonus圖出現次數
 
-	public  int  Bonus_count;//Bonus圖出現次數
+	public int _GridReel;//最終盤面輪條數量
 
-	public int _CurrentReel;//最終盤面輪條數量
+	public int ShineReel;//要閃圖的輪條
 
 	public List<int> _ImageCount;//最終盤面各輪條內的圖片數量
 
@@ -22,27 +24,31 @@ public class SeverScript : MonoBehaviour
 
 
 
-	SeverScript(int _CurrentReel , List<int> _ImageCount)
+	public SeverScript(int _GridReel, List<int> _ImageCount)
 	{
 
 		
-		this._CurrentReel = _CurrentReel;
+		this._GridReel = _GridReel;
 
 		this._ImageCount = _ImageCount;
 
 		Bonus_count = 0;
 
 		SeverGrids = new GridIntS();
+		SeverGrids._Grids = new List<GridInt>();
 
-		for (int i = 0; i < _CurrentReel; i++)
+		for (int i = 0; i < _GridReel; i++)
 		{
+			
+
 			SeverGrids._Grids.Add(new GridInt());
+
 
 			SeverGrids._Grids[i]._GridInt = new List<Pool_Images>();
 
 			for (int j = 0; j < _ImageCount[i]; j++)
 			{
-
+				
 				SeverGrids._Grids[i]._GridInt.Add(Pool_Images.Fish);
 
 			}
@@ -138,7 +144,7 @@ public class SeverScript : MonoBehaviour
 					Bonus_count++;//有出現Bonus圖就++
 					if (Bonus_count == 2)
 					{
-						_CurrentReel = i;
+						ShineReel = i;
 
 					}
 					Debuger.Log("大獎數量 ：" + Bonus_count);
@@ -217,11 +223,6 @@ public class SeverScript : MonoBehaviour
 
 	}
 	#endregion
-
-
-
-
-
 
 
 
@@ -332,7 +333,7 @@ public class SeverScript : MonoBehaviour
 			}
 
 			Bonus_count = 3;
-			_CurrentReel = 1;
+			ShineReel = 1;
 		}
 
 
@@ -344,24 +345,22 @@ public class SeverScript : MonoBehaviour
 	#endregion
 
 
-
-
 	#region Sever盤面生成
 	/// <summary>
-	/// Sever 盤面生成 並回傳一個 由包含List<String>的Class轉成的Json資料
+	/// 生成Sever 盤面 並回傳一個 由包含List<String>的Class轉成的Json資料
 	/// </summary>
-	/// <param name="_IDate"></param>
-	/// <param name="_IUIMethod"></param>
-	/// <param name="_IDateEvent"></param>
-	/// <param name="_Ishow"></param>
-	public string GridCreat_Event(bool StAddBonusDate,int FreeGameCount)
+	/// <param name="StAddBonusDate"></param>
+	/// <param name="FreeGameCount"></param>
+	/// <returns></returns>
+	public string SeverGridCreat(bool StAddBonusDate,int FreeGameCount)
 	{
-		_CurrentReel = 0;
+		ShineReel = 0;
 
 		Bonus_count = 0;//預設大獎中獎圖數為0
 
 
 		_SeverDate.SeverJson.Clear();
+		
 
 
 		if (StAddBonusDate)//如果有按下 直接中大獎按鈕
@@ -385,11 +384,43 @@ public class SeverScript : MonoBehaviour
 
 		}
 
+
+
+		if (_SeverDate.SeverJson == null)
+		{
+			Debug.Log("!!!!!!!!!!  _SeverDate.SeverJson==null  !!!!!!!!!!!!!!!!!");
+
+		}
+		else
+		{
+			Debug.Log("!!!!!!!!!!  _SeverDate.SeverJson!=null  !!!!!!!!!!!!!!!!!");
+			Debug.Log("長度為 ：" + _SeverDate.SeverJson.Count);
+		}
+
+
+
 		string ret = JsonUtility.ToJson(_SeverDate);
+		
 
 		return ret;
 	}
 	#endregion
+
+	/// <summary>
+    /// 回傳當前BonusCount
+    /// </summary>
+    /// <returns></returns>
+	public int RetBonusCount()
+	{
+		return Bonus_count;
+
+	}
+	public int RetShineReel()
+	{
+
+		return ShineReel;
+	}
+
 
 
 }
