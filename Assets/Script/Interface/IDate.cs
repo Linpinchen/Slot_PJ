@@ -27,9 +27,9 @@ public interface IDate
 
 
     void Initialization_Slot_Sprite();
-    void Generate_Date_Sprite(SlotGrid slotGrid);
-    void GenerateBonusDate(SlotGrid slotGrid);
-    void Add_BonusDate(bool BtnTrue, SlotGrid _SlotGrid);
+    //void Generate_Date_Sprite(SlotGrid slotGrid);
+    //void GenerateBonusDate(SlotGrid slotGrid);
+    //void Add_BonusDate(bool BtnTrue, SlotGrid _SlotGrid);
     void DateTypeChange();
     int Win_Sprite(Pool_Images _poolimage, int Line_Count, int WinMoneys);
     void DateSave();

@@ -168,270 +168,270 @@ public class Slot_data : IDate
 
 
 	#region 普通盤面生成灌入
-	/// <summary>
-	/// 生成圖片資料
-	/// </summary>
-	public void Generate_Date_Sprite(SlotGrid slotGrid)
-	{
-		int GridCount = slotGrid._grids.Count - 1;
+	///// <summary>
+	///// 生成圖片資料
+	///// </summary>
+	//public void Generate_Date_Sprite(SlotGrid slotGrid)
+	//{
+	//	int GridCount = slotGrid._grids.Count - 1;
 
-		for (int i = 0; i < slotGrid.reelcount; i++)
-		{
+	//	for (int i = 0; i < slotGrid.reelcount; i++)
+	//	{
 
-			int Temp = slotGrid.imagecount[i];
+	//		int Temp = slotGrid.imagecount[i];
 
-			if (i == 0)//第一個輪條  
-			{
-				// 需要灌入的圖片資料
-				List<Pool_Images> _PoolImages = new List<Pool_Images>();
-				foreach (Pool_Images p in System.Enum.GetValues(typeof(Pool_Images)))
-				{
-					_PoolImages.Add(p);
-				}
+	//		if (i == 0)//第一個輪條  
+	//		{
+	//			// 需要灌入的圖片資料
+	//			List<Pool_Images> _PoolImages = new List<Pool_Images>();
+	//			foreach (Pool_Images p in System.Enum.GetValues(typeof(Pool_Images)))
+	//			{
+	//				_PoolImages.Add(p);
+	//			}
 
-				_PoolImages.RemoveAt((int)Pool_Images.Universal_Sprite);//輪條1不會有連線共同圖
-				int _One_Sprite_pool_Temp = _PoolImages.Count - 1;//第一輪用的陣列少掉Bonus圖
+	//			_PoolImages.RemoveAt((int)Pool_Images.Universal_Sprite);//輪條1不會有連線共同圖
+	//			int _One_Sprite_pool_Temp = _PoolImages.Count - 1;//第一輪用的陣列少掉Bonus圖
 
-				for (int j = 0; j < Temp; j++)
-				{
+	//			for (int j = 0; j < Temp; j++)
+	//			{
 
-					if (slotGrid._grids[GridCount]._Grids[i]._GridInt.Contains(Pool_Images.Bonus))//已經有Bonus圖的話 就不要再出現Bonus圖了
-					{
-						int Temp_NoBonus;
-						Temp_NoBonus = Random.Range(0, _One_Sprite_pool_Temp);
-						slotGrid._grids[GridCount]._Grids[i]._GridInt[j] = _PoolImages[Temp_NoBonus];
+	//				if (slotGrid._grids[GridCount]._Grids[i]._GridInt.Contains(Pool_Images.Bonus))//已經有Bonus圖的話 就不要再出現Bonus圖了
+	//				{
+	//					int Temp_NoBonus;
+	//					Temp_NoBonus = Random.Range(0, _One_Sprite_pool_Temp);
+	//					slotGrid._grids[GridCount]._Grids[i]._GridInt[j] = _PoolImages[Temp_NoBonus];
 
-					}
-					else
-					{
+	//				}
+	//				else
+	//				{
 
-						int Tempj = Random.Range(0, _PoolImages.Count);
-						slotGrid._grids[GridCount]._Grids[i]._GridInt[j] = _PoolImages[Tempj];
+	//					int Tempj = Random.Range(0, _PoolImages.Count);
+	//					slotGrid._grids[GridCount]._Grids[i]._GridInt[j] = _PoolImages[Tempj];
 
-					}
+	//				}
 
-				}
+	//			}
 
-			}
-			else//除了第一條輪條外的其他輪條
-			{
+	//		}
+	//		else//除了第一條輪條外的其他輪條
+	//		{
 
-				for (int j = 0; j < Temp; j++)//生成輪條內的圖片
-				{
+	//			for (int j = 0; j < Temp; j++)//生成輪條內的圖片
+	//			{
 
-					int Pool_Temp;
-					Pool_Temp = System.Enum.GetNames(typeof(Pool_Images)).Length - 1;//圖庫的圖數量減1,填入的圖會少了Bonus圖
+	//				int Pool_Temp;
+	//				Pool_Temp = System.Enum.GetNames(typeof(Pool_Images)).Length - 1;//圖庫的圖數量減1,填入的圖會少了Bonus圖
 
-					//檢查陣列裡有沒有Bonus圖了
-					if (slotGrid._grids[GridCount]._Grids[i]._GridInt.Contains(Pool_Images.Bonus) || Bonus_count >= 3)//已經有Bonus圖的話或是盤面上已經有3個Bonus 就不要再出現Bonus圖了,
-					{
+	//				//檢查陣列裡有沒有Bonus圖了
+	//				if (slotGrid._grids[GridCount]._Grids[i]._GridInt.Contains(Pool_Images.Bonus) || Bonus_count >= 3)//已經有Bonus圖的話或是盤面上已經有3個Bonus 就不要再出現Bonus圖了,
+	//				{
 
-						int Tempj = Random.Range(0, Pool_Temp);
-						slotGrid._grids[GridCount]._Grids[i]._GridInt[j] = (Pool_Images)Tempj;//填入的圖會少了Bonus圖
+	//					int Tempj = Random.Range(0, Pool_Temp);
+	//					slotGrid._grids[GridCount]._Grids[i]._GridInt[j] = (Pool_Images)Tempj;//填入的圖會少了Bonus圖
 
-					}
-					else
-					{
+	//				}
+	//				else
+	//				{
 
-						int Tempj = Random.Range(0, System.Enum.GetNames(typeof(Pool_Images)).Length);
-						slotGrid._grids[GridCount]._Grids[i]._GridInt[j] = (Pool_Images)Tempj;//完整的圖庫
+	//					int Tempj = Random.Range(0, System.Enum.GetNames(typeof(Pool_Images)).Length);
+	//					slotGrid._grids[GridCount]._Grids[i]._GridInt[j] = (Pool_Images)Tempj;//完整的圖庫
 
-					}
+	//				}
 
-				}
+	//			}
 
-			}
-			//檢查出現的Bonus圖是否在 輪條[1] [2] [3]的位置
-			for (int Slot_i = 1; Slot_i < 4; Slot_i++)
-			{
+	//		}
+	//		//檢查出現的Bonus圖是否在 輪條[1] [2] [3]的位置
+	//		for (int Slot_i = 1; Slot_i < 4; Slot_i++)
+	//		{
 
-				if (slotGrid._grids[GridCount]._Grids[i]._GridInt[Slot_i] == Pool_Images.Bonus)
-				{
-					Bonus_count++;//有出現Bonus圖就++
-					if (Bonus_count == 2)
-					{
-						_CurrentReel = i;
+	//			if (slotGrid._grids[GridCount]._Grids[i]._GridInt[Slot_i] == Pool_Images.Bonus)
+	//			{
+	//				Bonus_count++;//有出現Bonus圖就++
+	//				if (Bonus_count == 2)
+	//				{
+	//					_CurrentReel = i;
 
-					}
-					Debuger.Log("大獎數量 ：" + Bonus_count);
+	//				}
+	//				Debuger.Log("大獎數量 ：" + Bonus_count);
 
-				}
+	//			}
 
-			}
+	//		}
 
-		}
+	//	}
 
-	}
+	//}
 	#endregion
 
 
 	#region Bonus 盤面資料生成灌入
-	/// <summary>
-	/// Bonus 盤面資料生成
-	/// </summary>
-	/// <param name="slotGrid"></param>
-	public void GenerateBonusDate(SlotGrid slotGrid)//Bonus所有盤面生成 
-	{
-		int SpecialCount = 2;
+	///// <summary>
+	///// Bonus 盤面資料生成
+	///// </summary>
+	///// <param name="slotGrid"></param>
+	//public void GenerateBonusDate(SlotGrid slotGrid)//Bonus所有盤面生成 
+	//{
+	//	int SpecialCount = 2;
 
-		for (int i = 0; i < slotGrid._grids.Count; i++)
-		{
+	//	for (int i = 0; i < slotGrid._grids.Count; i++)
+	//	{
 
-			for (int j = 0; j < slotGrid.reelcount; j++)
-			{
+	//		for (int j = 0; j < slotGrid.reelcount; j++)
+	//		{
 
-				int tempi = slotGrid.imagecount[j];
+	//			int tempi = slotGrid.imagecount[j];
 
-				if (j == 0)//第一個輪條 不會出現共用圖
-				{
+	//			if (j == 0)//第一個輪條 不會出現共用圖
+	//			{
 
-					for (int SpriteCount = 0; SpriteCount < tempi; SpriteCount++)
-					{
+	//				for (int SpriteCount = 0; SpriteCount < tempi; SpriteCount++)
+	//				{
 
-						int Tempcount;
-						int SpriteCountTemp;
-						Tempcount = System.Enum.GetNames(typeof(Pool_Images)).Length - SpecialCount;
-						SpriteCountTemp = Random.Range(0, Tempcount);
-						slotGrid._grids[i]._Grids[j]._GridInt[SpriteCount] = (Pool_Images)SpriteCountTemp;
+	//					int Tempcount;
+	//					int SpriteCountTemp;
+	//					Tempcount = System.Enum.GetNames(typeof(Pool_Images)).Length - SpecialCount;
+	//					SpriteCountTemp = Random.Range(0, Tempcount);
+	//					slotGrid._grids[i]._Grids[j]._GridInt[SpriteCount] = (Pool_Images)SpriteCountTemp;
 
-					}
+	//				}
 
-				}
-				else
-				{
+	//			}
+	//			else
+	//			{
 
-					for (int SpriteCount = 0; SpriteCount < tempi; SpriteCount++)
-					{
+	//				for (int SpriteCount = 0; SpriteCount < tempi; SpriteCount++)
+	//				{
 
-						int Tempcount;
-						int SpriteCountTemp;
-						Tempcount = _ResourceManager.Sprite_Pool.Length - 1;
-						SpriteCountTemp = Random.Range(0, Tempcount);
-						slotGrid._grids[i]._Grids[j]._GridInt[SpriteCount] = (Pool_Images)SpriteCountTemp;
+	//					int Tempcount;
+	//					int SpriteCountTemp;
+	//					Tempcount = _ResourceManager.Sprite_Pool.Length - 1;
+	//					SpriteCountTemp = Random.Range(0, Tempcount);
+	//					slotGrid._grids[i]._Grids[j]._GridInt[SpriteCount] = (Pool_Images)SpriteCountTemp;
 
-					}
+	//				}
 
-				}
+	//			}
 
-			}
+	//		}
 
-		}
+	//	}
 
-	}
+	//}
 	#endregion
 
 
 	#region 測試用（指定盤面獲得Bonus獎）
-	/// <summary>
-	/// 測試用（直接有Bonus獎）
-	/// </summary>
-	/// <param name="BtnTrue"></param>
-	/// <param name="Generate_ReelScripts"></param>
-	public void Add_BonusDate(bool BtnTrue, SlotGrid _SlotGrid)
-	{
-		int SPecialImgCount = 2;
+	///// <summary>
+	///// 測試用（直接有Bonus獎）
+	///// </summary>
+	///// <param name="BtnTrue"></param>
+	///// <param name="Generate_ReelScripts"></param>
+	//public void Add_BonusDate(bool BtnTrue, SlotGrid _SlotGrid)
+	//{
+	//	int SPecialImgCount = 2;
 
-		if (BtnTrue)
-		{
+	//	if (BtnTrue)
+	//	{
 
-			for (int i = 0; i < _SlotGrid.reelcount; i++)
-			{
-				int Gridcount = _SlotGrid._girdcount - 1;
-				int Temp = _SlotGrid.imagecount[i];
-				int _One_Sprite_pool_Temp = System.Enum.GetNames(typeof(Pool_Images)).Length - SPecialImgCount;//第一輪用的陣列少掉特殊圖
+	//		for (int i = 0; i < _SlotGrid.reelcount; i++)
+	//		{
+	//			int Gridcount = _SlotGrid._girdcount - 1;
+	//			int Temp = _SlotGrid.imagecount[i];
+	//			int _One_Sprite_pool_Temp = System.Enum.GetNames(typeof(Pool_Images)).Length - SPecialImgCount;//第一輪用的陣列少掉特殊圖
 
-				if (i == 0)
-				{
+	//			if (i == 0)
+	//			{
 
-					for (int j = 0; j < Temp; j++)
-					{
+	//				for (int j = 0; j < Temp; j++)
+	//				{
 
-						if (j == 1)
-						{
+	//					if (j == 1)
+	//					{
 
-							_SlotGrid._grids[Gridcount]._Grids[i]._GridInt[j] = Pool_Images.Bonus;
+	//						_SlotGrid._grids[Gridcount]._Grids[i]._GridInt[j] = Pool_Images.Bonus;
 
-						}
-						else
-						{
+	//					}
+	//					else
+	//					{
 
-							int Temp_B;
-							Temp_B = Random.Range(0, _One_Sprite_pool_Temp);
-							_SlotGrid._grids[Gridcount]._Grids[i]._GridInt[j] = (Pool_Images)Temp_B;
+	//						int Temp_B;
+	//						Temp_B = Random.Range(0, _One_Sprite_pool_Temp);
+	//						_SlotGrid._grids[Gridcount]._Grids[i]._GridInt[j] = (Pool_Images)Temp_B;
 
-						}
+	//					}
 
-					}
+	//				}
 
-				}
-				else if (i == 1)
-				{
+	//			}
+	//			else if (i == 1)
+	//			{
 
-					for (int j = 0; j < Temp; j++)
-					{
+	//				for (int j = 0; j < Temp; j++)
+	//				{
 
-						if (j == 2)
-						{
+	//					if (j == 2)
+	//					{
 
-							_SlotGrid._grids[Gridcount]._Grids[i]._GridInt[j] = Pool_Images.Bonus;
+	//						_SlotGrid._grids[Gridcount]._Grids[i]._GridInt[j] = Pool_Images.Bonus;
 
-						}
-						else
-						{
+	//					}
+	//					else
+	//					{
 
-							int Temp_B;
-							Temp_B = Random.Range(0, _One_Sprite_pool_Temp);
-							_SlotGrid._grids[Gridcount]._Grids[i]._GridInt[j] = (Pool_Images)Temp_B;
+	//						int Temp_B;
+	//						Temp_B = Random.Range(0, _One_Sprite_pool_Temp);
+	//						_SlotGrid._grids[Gridcount]._Grids[i]._GridInt[j] = (Pool_Images)Temp_B;
 
-						}
+	//					}
 
-					}
+	//				}
 
-				}
-				else if (i == 2)
-				{
+	//			}
+	//			else if (i == 2)
+	//			{
 
-					for (int j = 0; j < Temp; j++)
-					{
+	//				for (int j = 0; j < Temp; j++)
+	//				{
 
-						if (j == 3)
-						{
-							_SlotGrid._grids[Gridcount]._Grids[i]._GridInt[j] = Pool_Images.Bonus;
+	//					if (j == 3)
+	//					{
+	//						_SlotGrid._grids[Gridcount]._Grids[i]._GridInt[j] = Pool_Images.Bonus;
 
-						}
-						else
-						{
-							int Temp_B;
-							Temp_B = Random.Range(0, _One_Sprite_pool_Temp);
-							_SlotGrid._grids[Gridcount]._Grids[i]._GridInt[j] = (Pool_Images)Temp_B;
+	//					}
+	//					else
+	//					{
+	//						int Temp_B;
+	//						Temp_B = Random.Range(0, _One_Sprite_pool_Temp);
+	//						_SlotGrid._grids[Gridcount]._Grids[i]._GridInt[j] = (Pool_Images)Temp_B;
 
-						}
+	//					}
 
-					}
+	//				}
 
-				}
+	//			}
 
-				else
-				{
+	//			else
+	//			{
 
-					for (int j = 0; j < Temp; j++)
-					{
+	//				for (int j = 0; j < Temp; j++)
+	//				{
 
-						int Temp_B;
-						Temp_B = Random.Range(0, _One_Sprite_pool_Temp);
-						_SlotGrid._grids[Gridcount]._Grids[i]._GridInt[j] = (Pool_Images)Temp_B;
+	//					int Temp_B;
+	//					Temp_B = Random.Range(0, _One_Sprite_pool_Temp);
+	//					_SlotGrid._grids[Gridcount]._Grids[i]._GridInt[j] = (Pool_Images)Temp_B;
 
-					}
+	//				}
 
-				}
+	//			}
 
-			}
+	//		}
 
-			Bonus_count = 3;
-			_CurrentReel = 1;
-		}
+	//		Bonus_count = 3;
+	//		_CurrentReel = 1;
+	//	}
 
-	}
+	//}
 	#endregion
 
 

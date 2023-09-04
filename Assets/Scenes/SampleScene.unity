@@ -398,8 +398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7bf76bd762b444cbaa9f0eac7f02ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tempi: 0
-  _Roolcount: 0
+  _Finaltempi: 0
 --- !u!1 &22831199
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,8 +1068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7bf76bd762b444cbaa9f0eac7f02ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tempi: 0
-  _Roolcount: 0
+  _Finaltempi: 0
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -4579,8 +4577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7bf76bd762b444cbaa9f0eac7f02ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tempi: 0
-  _Roolcount: 0
+  _Finaltempi: 0
 --- !u!1 &840288537
 GameObject:
   m_ObjectHideFlags: 0
@@ -5024,8 +5021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7bf76bd762b444cbaa9f0eac7f02ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tempi: 0
-  _Roolcount: 0
+  _Finaltempi: 0
 --- !u!1 &916000645
 GameObject:
   m_ObjectHideFlags: 0
@@ -9929,10 +9925,11 @@ MonoBehaviour:
   Slot_mantissa: 0
   FreeGameCount: 0
   NowFreeCount: 0
+  NowGridIntsIndex: 0
   Start_Slot: 0
   CurrentReel_B: 0
   B_Slot_timeOut: 1
-  isLog: 1
+  isLog: 0
   LoadOK: 0
   btn: {fileID: 0}
 --- !u!1 &1604190118
@@ -11124,8 +11121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7bf76bd762b444cbaa9f0eac7f02ce6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tempi: 0
-  _Roolcount: 0
+  _Finaltempi: 0
 --- !u!224 &1859797563 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2844607623000244582, guid: abf3efa28b21b4a79b72b1f3dcc5eb48,

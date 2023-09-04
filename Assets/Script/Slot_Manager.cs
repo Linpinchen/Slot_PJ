@@ -19,6 +19,8 @@ public class Slot_Manager : MonoBehaviour
     public Button_EventTrigger _ButtonReduce_EventTrigger;
     public ShowScript showScript;
     public SeverScript _SeverScript;
+    public ThrowPicture _ThrowPicture;
+
 
     public List<int> ReelImages;//各輪條圖片數量
     public Texture2D[] MIcon;
@@ -27,6 +29,8 @@ public class Slot_Manager : MonoBehaviour
     public int Slot_mantissa;//輪條陣列內最後的數
     public int FreeGameCount;//小遊戲要玩的次數
     public int NowFreeCount;//當前遊玩次數
+    public int NowGridIntsIndex;//當前讀取的盤面所引值
+
     public bool Start_Slot;
     public bool CurrentReel_B;
     bool BonusStateInfo_B;
@@ -36,6 +40,8 @@ public class Slot_Manager : MonoBehaviour
     bool StCoShow;//確保CoShow只有一個
     bool UseBonus; //執行Bonus的開關
     bool StEndShow; //是否開始動畫
+    List<bool> EndRool;//判斷各輪條是否停止
+
     IEnumerator _CoAll_Slot_Roll;//全輪條轉動用的協程
     IEnumerator _Show;//表演用的協程
     IEnumerator _Slot_timeOut;//判斷是否需要繼續滾動用的協程
@@ -66,18 +72,11 @@ public class Slot_Manager : MonoBehaviour
 
         platformdetection();//設備檢測以載入正確Bundle
 
-
-
         _ResourceManager.init(LoadPath);
 
         StartCoroutine(Slot_Initialization());
 
-
-
         AudioManager.inst.PlayBGM("Lobby_Main", 0);
-
-
-
 
         //Slot_Initialization();
         //SlotGridCreat();
@@ -111,6 +110,7 @@ public class Slot_Manager : MonoBehaviour
 
 
         FreeGameCount = 3;
+        NowGridIntsIndex = 0;
         B_Slot_timeOut = true;
         WinShowOk = true;
         StEndShow = false;
@@ -119,6 +119,12 @@ public class Slot_Manager : MonoBehaviour
         St_Roll = false;
         Start_Slot = false;
         CurrentReel_B = false;
+        EndRool = new List<bool>();
+        for (int i=0;i<_Reel_Moves.Length;i++)
+        {
+
+            EndRool.Add(false);
+        }
 
         ReelImages = new List<int>();
 
@@ -135,7 +141,7 @@ public class Slot_Manager : MonoBehaviour
 
         _PlayerControl = new PlayerControl();
 
-        
+        _ThrowPicture = new ThrowPicture();
 
         yield return StartCoroutine(CheckBundleLoad());
 
@@ -153,7 +159,7 @@ public class Slot_Manager : MonoBehaviour
         for (int i = 0; i < _Reel_Moves.Length; i++)// 各個_Reel_Moves 的變數設定 
         {
 
-            _Reel_Moves[i].Init(Loopcount, _ResourceManager.Sprite_Pool, RollSpeed);
+            _Reel_Moves[i].Init(_ResourceManager.Sprite_Pool, RollSpeed,i, DetectionSpriteDate,CheckEndRool);
 
             ReelImages.Add(_Reel_Moves[i].transform.childCount);
 
@@ -287,7 +293,7 @@ public class Slot_Manager : MonoBehaviour
     /// 讓各輪條開始轉動的開關
     /// </summary>
     /// <returns></returns>
-    public IEnumerator CoAll_Slot_Roll(GridIntS _Grints)
+    public IEnumerator CoAll_Slot_Roll()
     {
         if (St_Roll)
         {
@@ -297,17 +303,21 @@ public class Slot_Manager : MonoBehaviour
             for (int i = 0; i < _Reel_Moves.Length; i++)
             {
 
-                for (int j = 0; j < _Reel_Moves[i].Self.transform.childCount; j++)//記錄每輪中獎要換什麼圖片
-                {
+                //for (int j = 0; j < _Reel_Moves[i].Self.transform.childCount; j++)//記錄每輪中獎要換什麼圖片
+                //{
 
-                    _Reel_Moves[i].ChangeSprite[j] = (int)_Grints._Grids[i]._GridInt[j];
+                //    _Reel_Moves[i].RoolSprite[j] = (int)_Grints._Grids[i]._GridInt[j];
 
-                }
+                //}
 
                 // Debug.Log("CoAll_Slot_Roll() :迴圈");
+
+
+                _ThrowPicture.ThrowSpriteDate(_Reel_Moves[i].transform.childCount, _Reel_Moves[i].Sprites.Length,_Reel_Moves[i].RoolSprite);
+
                 AudioManager.inst.PlayAddSlot("Rool", 0);
-                _Reel_Moves[i].strool = true;
-                Debuger.Log(string.Format("輪條編號：{0},是否開啟{1}", i, _Reel_Moves[i].strool));
+                //_Reel_Moves[i].strool = true;//這個沒用到了
+                //Debuger.Log(string.Format("輪條編號：{0},是否開啟{1}", i, _Reel_Moves[i].strool));
                 yield return new WaitForSeconds(0.5f);
 
             }
@@ -327,23 +337,23 @@ public class Slot_Manager : MonoBehaviour
         if (Start_Slot == false && _SlotDate.Bet_Coin != 0 && _SlotDate.PlayerCoin >= _SlotDate.LeastBetCount)//如果Start_Slot == false（代表按鈕有作用 現在並無作動） 而且 下注金額不等於0 而且  玩家金額要大於最低押注金額
         {
 
-            //int Autoi;
-            //Autoi = int.Parse(_ResourceManager._Auto_text.text);
-            //_SlotDate.AutoSurplus = Autoi;
+            int Autoi;
+            Autoi = int.Parse(_ResourceManager._Auto_text.text);
+            _SlotDate.AutoSurplus = Autoi;
             _SlotDate.PlayerCoin -= _SlotDate.Bet_Coin;
             Debuger.Log("_SlotDate.Bet_Coin :"+ _SlotDate.Bet_Coin);
 
             _ResourceManager._PlayerCoin_Text.text = "Money:" + _SlotDate.PlayerCoin;
 
-            //if (_SlotDate.AutoSurplus > 1)
-            //{
+            if (_SlotDate.AutoSurplus > 1)
+            {
 
-            //    _SlotDate.AutoCount = _SlotDate.AutoSurplus;
+                _SlotDate.AutoCount = _SlotDate.AutoSurplus;
 
-            //}
+            }
 
             GridCreat_Event();
-            _CoAll_Slot_Roll = CoAll_Slot_Roll(_SlotDate.GetGridIntS[0]);
+            _CoAll_Slot_Roll = CoAll_Slot_Roll();
             StartCoroutine(_CoAll_Slot_Roll);
             Start_Slot = true;
             Debuger.Log("是否開始滾動：" + Start_Slot);
@@ -361,14 +371,15 @@ public class Slot_Manager : MonoBehaviour
     public IEnumerator Co_Slot_timeOut()
     {
 
-        if (_Reel_Moves[Slot_mantissa].tempi == _Reel_Moves[Slot_mantissa].Roolcount)//如果最後一個輪條達到滾動次數
+        if (!EndRool.Contains(false))//如果所有滾輪都停止滾動
         {
 
             int CurrentCount = _SlotDate.CurrentReel + 1;
-            for (int i = CurrentCount; i < _Reel_Moves.Length; i++)
+
+            for (int i = CurrentCount; i < _Reel_Moves.Length; i++)//關閉閃爍邊框
             {
                 _Reel_Moves[i].transform.parent.GetChild(1).gameObject.SetActive(false);
-                _Reel_Moves[i].Roolcount = Loopcount;
+                //_Reel_Moves[i].Roolcount = Loopcount;
             }
 
             if (_SlotDate.BonusCount != FreeGameCount)
@@ -378,15 +389,15 @@ public class Slot_Manager : MonoBehaviour
             }
 
 
-            for (int j = 0; j < _Reel_Moves.Length; j++)//輪條轉動次數初始化
-            {
-                _Reel_Moves[j].tempi = 0;
+            //for (int j = 0; j < _Reel_Moves.Length; j++)//輪條轉動次數初始化
+            //{
+            //    _Reel_Moves[j].tempi = 0;
 
-                _Reel_Moves[j].Date_Temp = 0;
+            //    _Reel_Moves[j].Date_Temp = 0;
 
-                Debuger.Log(string.Format("輪調{0}內滾動次數{1}", j, _Reel_Moves[j].tempi));
+            //    Debuger.Log(string.Format("輪調{0}內滾動次數{1}", j, _Reel_Moves[j].tempi));
 
-            }
+            //}
 
             _SlotDate.CurrentReel = 0;
 
@@ -402,11 +413,12 @@ public class Slot_Manager : MonoBehaviour
             }
 
             yield return new WaitUntil(() => WinShowOk == true);
+
             Debuger.Log("WinShowOk :" + WinShowOk);
 
             if (_SlotDate.BonusCount == FreeGameCount && NowFreeCount < FreeGameCount)//如果_IDate.BonusCount 等於設定的 免費遊戲數
             {
-
+                
                 for (int i = 0; i < _Reel_Moves.Length; i++)
                 {
                     _Reel_Moves[i].transform.parent.GetChild(1).gameObject.SetActive(true);
@@ -427,21 +439,30 @@ public class Slot_Manager : MonoBehaviour
                     StCoShow = true;
                     UseBonus = true;
                     St_Roll = true;
-
-                    _CoAll_Slot_Roll = CoAll_Slot_Roll(_SlotDate.GetGridIntS[(NowFreeCount+1)]); //BonusGrid._grids[NowFreeCount]
-                    StartCoroutine(_CoAll_Slot_Roll);
-                    yield return new WaitUntil(() => _Reel_Moves[Slot_mantissa].tempi == Loopcount);
+                    NowGridIntsIndex++;
 
 
-                    for (int j = 0; j < _Reel_Moves.Length; j++)//輪條轉動次數初始化
+                    for (int index=0;index<_Reel_Moves.Length;index++)
                     {
-                        _Reel_Moves[j].tempi = 0;
 
-                        _Reel_Moves[j].Date_Temp = 0;
-
-                        Debuger.Log(string.Format("輪調{0}內滾動次數{1}", j, _Reel_Moves[j].tempi));
+                        EndRool[index] = false;
 
                     }
+
+                    _CoAll_Slot_Roll = CoAll_Slot_Roll(); 
+                    StartCoroutine(_CoAll_Slot_Roll);
+                    //yield return new WaitUntil(() => _Reel_Moves[Slot_mantissa].tempi == Loopcount);
+                    yield return new WaitUntil(() => !EndRool.Contains(false));
+
+                    //for (int j = 0; j < _Reel_Moves.Length; j++)//輪條轉動次數初始化
+                    //{
+                    //    _Reel_Moves[j].tempi = 0;
+
+                    //    _Reel_Moves[j].Date_Temp = 0;
+
+                    //    Debuger.Log(string.Format("輪調{0}內滾動次數{1}", j, _Reel_Moves[j].tempi));
+
+                    //}
 
                     if (StCoShow)
                     {
@@ -453,6 +474,7 @@ public class Slot_Manager : MonoBehaviour
                         NowFreeCount++;
 
                     }
+                    //NowGridIntsIndex++;
 
                 }
 
@@ -495,7 +517,7 @@ public class Slot_Manager : MonoBehaviour
                 _ResourceManager._VideoImage.GetComponent<RawImage>().enabled = true;
                 StEndShow = true;//開啟最後得表演
                 StCoShow = true;
-
+                NowGridIntsIndex = 0;
             }
 
             
@@ -507,17 +529,51 @@ public class Slot_Manager : MonoBehaviour
             if (_SlotDate.CycleCount < _SlotDate.AutoCount && _SlotDate.PlayerCoin > _SlotDate.Bet_Coin)//循環次數未到 而且 玩家金額不小於下注金額
             {
 
+                for (int index = 0; index < _Reel_Moves.Length; index++)
+                {
+
+                    EndRool[index] = false;
+
+                }
+
                 NowFreeCount = 0;
                 Debuger.Log("-----------------------------開始轉動-------------------------");
 
-                if (_Reel_Moves[Slot_mantissa].tempi == 0) //這裡重新生成盤面資料 兌獎 設定預制物 
+                //if (_Reel_Moves[Slot_mantissa].RoolSprite.Count == 0) //這裡重新生成盤面資料 兌獎 設定預制物 
+                //{
+
+                //    GridCreat_Event();
+                //    B_Slot_timeOut = true;
+                //    yield return new WaitForSeconds(1f);
+                //    Debuger.Log("Wait");
+                //    _CoAll_Slot_Roll = CoAll_Slot_Roll();
+                //    StartCoroutine(_CoAll_Slot_Roll);
+                //    //_SlotDate.CycleCount += 1;
+                //    //_SlotDate.AutoSurplus -= 1;
+                //    //_ResourceManager._Auto_text.text = _SlotDate.AutoSurplus.ToString();
+                //    _SlotDate.PlayerCoin -= _SlotDate.Bet_Coin;
+                //    _ResourceManager._PlayerCoin_Text.text = "Money:" + _SlotDate.PlayerCoin;
+                //    Debuger.Log(_SlotDate.CycleCount + "已循環次數");
+                //    //Debug.Log("Win_Mpney_Temp" + Win_Money_Temp);
+                //    StCoShow = true;
+
+
+                //    Debug.Log($"<Date>玩家要循環次數_AutoCount:{_SlotDate.AutoCount}");
+                //    Debug.Log($"<Date>未循環次數:{_SlotDate.AutoSurplus}");
+                //    Debug.Log($"<Date>已循環次數:{_SlotDate.CycleCount}");
+
+                //}
+
+
+
+                if (!EndRool.Contains(true)) //這裡重新生成盤面資料 兌獎 設定預制物 
                 {
-                    
+
                     GridCreat_Event();
                     B_Slot_timeOut = true;
                     yield return new WaitForSeconds(1f);
                     Debuger.Log("Wait");
-                    _CoAll_Slot_Roll = CoAll_Slot_Roll(_SlotDate.GetGridIntS[0]);
+                    _CoAll_Slot_Roll = CoAll_Slot_Roll();
                     StartCoroutine(_CoAll_Slot_Roll);
                     //_SlotDate.CycleCount += 1;
                     //_SlotDate.AutoSurplus -= 1;
@@ -535,6 +591,8 @@ public class Slot_Manager : MonoBehaviour
 
                 }
 
+
+
             }
 
             else
@@ -550,6 +608,15 @@ public class Slot_Manager : MonoBehaviour
                 _SlotDate.CycleCount = 0;
                 _SlotDate.AutoSurplus = 1;
                 B_Slot_timeOut = true;
+                NowGridIntsIndex = 0;
+
+
+                for (int index = 0; index < _Reel_Moves.Length; index++)
+                {
+
+                    EndRool[index] = false;
+
+                }
 
             }
 
@@ -942,29 +1009,29 @@ public class Slot_Manager : MonoBehaviour
         }
 
 
+        ////輪條邊框閃爍開啟
+        //if (CurrentReel_B && _Reel_Moves[_SlotDate.CurrentReel].tempi == Loopcount && _SlotDate.CurrentReel != Slot_mantissa && _SlotDate.CurrentReel != 0)
+        //{
+        //    CurrentReel_B = false;
+        //    int CurrentCount = _SlotDate.CurrentReel + 1;
 
-        if (CurrentReel_B && _Reel_Moves[_SlotDate.CurrentReel].tempi == Loopcount && _SlotDate.CurrentReel != Slot_mantissa && _SlotDate.CurrentReel != 0)
-        {
-            CurrentReel_B = false;
-            int CurrentCount = _SlotDate.CurrentReel + 1;
+        //    AudioManager.inst.BGMReset(0.05f);
+        //    AudioManager.inst.PlayAddSFX("SFX", 0);
 
-            AudioManager.inst.BGMReset(0.05f);
-            AudioManager.inst.PlayAddSFX("SFX", 0);
+        //    for (int i = CurrentCount; i < _Reel_Moves.Length; i++)
+        //    {
+        //        _Reel_Moves[i].transform.parent.GetChild(1).gameObject.SetActive(true);
+        //        _Reel_Moves[i].Roolcount = Loopcount * 4;
+        //    }
 
-            for (int i = CurrentCount; i < _Reel_Moves.Length; i++)
-            {
-                _Reel_Moves[i].transform.parent.GetChild(1).gameObject.SetActive(true);
-                _Reel_Moves[i].Roolcount = Loopcount * 4;
-            }
-
-        }
+        //}
 
 
         GetAnimatiorStayInfo();
 
 
 
-        if (B_Slot_timeOut == true && _Reel_Moves[Slot_mantissa].tempi == _Reel_Moves[Slot_mantissa].Roolcount)
+        if (B_Slot_timeOut == true && !EndRool.Contains(false) && Start_Slot)// B_Slot_timeOut == true 而且輪條都停輪 就執行Co_Slot_timeOut
         {
 
             Debuger.Log("執行 Co_Slot_timeOut ");
@@ -1035,6 +1102,89 @@ public class Slot_Manager : MonoBehaviour
     }
     #endregion
 
+
+    #region 檢測是否需要加圖片資料
+    /// <summary>
+    /// 檢測是否需要加圖片資料
+    /// </summary>
+    public void DetectionSpriteDate(IMove move,int Roolindex,ref bool b)
+    {
+        if (Roolindex == move.Self.transform.childCount) //如果剩下的圖片數到了指定數量
+        {
+
+            //給與最終盤面資料
+            //並且斷需不需要加滾動圖 並啟動輪條閃爍動畫
+
+
+            //這裡是每個輪條轉到剩五張就判斷 要不要加圖跟開閃爍邊框
+            /*
+             
+                但是 重點  我希望的是 第二張Bonus圖 的輪條一停 就開啟他後面輪條的閃爍框
+            而不是第二張Bonus圖 的輪條停了 後面的輪條還要轉到自己剩五張才開
+             
+             
+             
+             */
+
+            for (int j = 0; j < move.Self.transform.childCount; j++)//記錄每輪中獎要換什麼圖片
+            {
+
+                move.FinalChangeSprite[j] = (int)_SlotDate.GetGridIntS[NowGridIntsIndex]._Grids[move.Reelnumber]._GridInt[j];
+
+            }
+
+            if ((move.Reelnumber > _SlotDate.CurrentReel)&& _SlotDate.CurrentReel!=0 )
+            {
+                Debug.Log($"------------------- 輪條編號{move.Reelnumber} ,    ");
+
+                if (move.Reelnumber == _SlotDate.CurrentReel)
+                {
+
+                    AudioManager.inst.BGMReset(0.05f);
+                    AudioManager.inst.PlayAddSFX("SFX", 0);
+
+                }
+               
+                _ThrowPicture.ThrowSpriteDate(move.Self.transform.childCount,move.Sprites.Length,move.RoolSprite);
+                move.Self.transform.parent.GetChild(1).gameObject.SetActive(true);//開啟輪條閃爍
+
+
+                b = true;
+
+                //if (!EndRool[_SlotDate.CurrentReel])
+                //{
+
+                //    move.Self.transform.parent.GetChild(1).gameObject.SetActive(true);//開啟輪條閃爍
+
+                //}
+
+
+            }
+
+           
+        }
+
+        
+
+    }
+    #endregion
+
+
+    #region 檢測輪條是否停止滾動
+    /// <summary>
+    /// 檢測輪條是否停止滾動
+    /// </summary>
+    public void CheckEndRool(IMove move)
+    {
+
+        EndRool[move.Reelnumber] = move.MoveEnd;
+
+        Debug.Log($"輪條編號 :{move.Reelnumber}, 是否停輪 (輪條的資料){move.MoveEnd} , Manager的資料{EndRool[move.Reelnumber]}");
+
+    }
+    #endregion
+
+
     #region 取得動畫的StateInfo
     /// <summary>
     /// 取得動畫的StateInfo
@@ -1061,6 +1211,7 @@ public class Slot_Manager : MonoBehaviour
 
     }
     #endregion
+
 
     #region  Options  按鈕事件
     public void Options_Yes()
@@ -1142,6 +1293,7 @@ public class Slot_Manager : MonoBehaviour
     }
     #endregion
 
+
     #region 執行本地與雲端板號確認並載入Bundle近場景
     /// <summary>
     /// 執行本地與雲端板號確認並載入Bundle近場景
@@ -1157,6 +1309,7 @@ public class Slot_Manager : MonoBehaviour
 
     }
     #endregion
+
 
     #region 平台偵測
     /// <summary>
@@ -1207,6 +1360,7 @@ public class Slot_Manager : MonoBehaviour
 
     #endregion
 
+
     #region 運行平台偵測
     /// <summary>
     /// Bundle載入平台檢測
@@ -1255,3 +1409,4 @@ public class Slot_Manager : MonoBehaviour
 
 
 }
+

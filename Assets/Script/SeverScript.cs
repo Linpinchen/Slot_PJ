@@ -394,7 +394,7 @@ public class SeverScript
 		else
 		{
 			Debug.Log("!!!!!!!!!!  _SeverDate.SeverJson!=null  !!!!!!!!!!!!!!!!!");
-			Debug.Log("長度為 ：" + _SeverDate.SeverJson.Count);
+			Debug.Log("_SeverDate.SeverJson長度為 ：" + _SeverDate.SeverJson.Count);
 		}
 
 
